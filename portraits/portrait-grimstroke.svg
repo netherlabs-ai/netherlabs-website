@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+
+  <!-- ink brush handle -->
+  <rect x="95" y="28" width="10" height="80" rx="4" fill="#C9A84C"/>
+  <!-- brush tip -->
+  <polygon points="100,108 88,130 100,125 112,130" fill="#C9A84C"/>
+
+  <!-- ink splatter strokes radiating out -->
+  <!-- top-left stroke -->
+  <path d="M 88 60 Q 60 45 42 30" stroke="#C9A84C" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="40" cy="28" rx="5" ry="3" fill="#C9A84C" transform="rotate(-30 40 28)"/>
+  <!-- top-right stroke -->
+  <path d="M 112 60 Q 140 45 158 30" stroke="#C9A84C" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="160" cy="28" rx="5" ry="3" fill="#C9A84C" transform="rotate(30 160 28)"/>
+
+  <!-- sweeping ink arc — left -->
+  <path d="M 90 120 Q 50 130 38 160" stroke="#C9A84C" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- sweeping ink arc — right -->
+  <path d="M 110 120 Q 150 130 162 160" stroke="#C9A84C" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- ink pool at base -->
+  <ellipse cx="100" cy="168" rx="36" ry="8" fill="#C9A84C"/>
+  <!-- ink drips -->
+  <ellipse cx="80" cy="174" rx="5" ry="3" fill="#C9A84C"/>
+  <ellipse cx="120" cy="175" rx="4" ry="2.5" fill="#C9A84C"/>
+  <ellipse cx="100" cy="176" rx="3" ry="2" fill="#C9A84C"/>
+
+  <!-- small ink dots / splatter -->
+  <circle cx="55" cy="95" r="3" fill="#C9A84C"/>
+  <circle cx="48" cy="108" r="2" fill="#C9A84C"/>
+  <circle cx="62" cy="112" r="1.5" fill="#C9A84C"/>
+  <circle cx="145" cy="95" r="3" fill="#C9A84C"/>
+  <circle cx="152" cy="110" r="2" fill="#C9A84C"/>
+  <circle cx="138" cy="115" r="1.5" fill="#C9A84C"/>
+
+</svg>
