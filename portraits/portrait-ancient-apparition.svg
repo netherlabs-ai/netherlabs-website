@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- outer diamond -->
+  <polygon points="100,18 148,100 100,182 52,100" fill="#C9A84C"/>
+  <!-- internal facet lines -->
+  <line x1="52" y1="100" x2="148" y2="100" stroke="#0A0A09" stroke-width="2"/>
+  <line x1="100" y1="18" x2="52" y2="100" stroke="#0A0A09" stroke-width="1.5" opacity="0.7"/>
+  <line x1="100" y1="18" x2="148" y2="100" stroke="#0A0A09" stroke-width="1.5" opacity="0.7"/>
+  <line x1="100" y1="182" x2="52" y2="100" stroke="#0A0A09" stroke-width="1.5" opacity="0.7"/>
+  <line x1="100" y1="182" x2="148" y2="100" stroke="#0A0A09" stroke-width="1.5" opacity="0.7"/>
+  <!-- inner upper diamond -->
+  <line x1="100" y1="18" x2="100" y2="182" stroke="#0A0A09" stroke-width="1.5" opacity="0.5"/>
+  <!-- inner facet crosshatch -->
+  <line x1="76" y1="59" x2="124" y2="59" stroke="#0A0A09" stroke-width="1.2" opacity="0.5"/>
+  <line x1="76" y1="141" x2="124" y2="141" stroke="#0A0A09" stroke-width="1.2" opacity="0.5"/>
+
+</svg>

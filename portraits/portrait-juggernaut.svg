@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- blade: long thin rectangle, slightly tapered via polygon -->
+  <!-- blade body -->
+  <polygon points="106,22 110,155 90,155 94,22" fill="#C9A84C"/>
+  <!-- blade tip -->
+  <polygon points="94,155 106,155 100,182" fill="#C9A84C"/>
+  <!-- crossguard: perpendicular rectangle -->
+  <rect x="52" y="148" width="96" height="14" rx="4" fill="#C9A84C"/>
+  <!-- handle -->
+  <rect x="92" y="162" width="16" height="26" rx="3" fill="#C9A84C"/>
+  <!-- handle wrap lines -->
+  <line x1="92" y1="170" x2="108" y2="170" stroke="#0A0A09" stroke-width="2"/>
+  <line x1="92" y1="178" x2="108" y2="178" stroke="#0A0A09" stroke-width="2"/>
+  <!-- blade fuller (groove line) -->
+  <line x1="98" y1="30" x2="98" y2="148" stroke="#0A0A09" stroke-width="2" opacity="0.5"/>
+
+</svg>

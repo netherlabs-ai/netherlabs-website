@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- closed eye shape: thick arc -->
+  <path d="M 36 100 Q 100 52 164 100" stroke="#C9A84C" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 36 100 Q 100 118 164 100" stroke="#C9A84C" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- eyelashes/lashes above -->
+  <line x1="80" y1="74" x2="76" y2="60" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="100" y1="68" x2="100" y2="54" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="120" y1="74" x2="124" y2="60" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- crescent moon -->
+  <circle cx="130" cy="138" r="28" fill="#C9A84C"/>
+  <circle cx="142" cy="132" r="22" fill="#0A0A09"/>
+
+</svg>

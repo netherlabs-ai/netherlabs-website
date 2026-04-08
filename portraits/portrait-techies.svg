@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- T-bar handle -->
+  <rect x="52" y="28" width="96" height="18" rx="6" fill="#C9A84C"/>
+  <!-- vertical rod -->
+  <rect x="88" y="46" width="24" height="50" rx="4" fill="#C9A84C"/>
+  <!-- cylinder body -->
+  <rect x="64" y="96" width="72" height="60" rx="8" fill="#C9A84C"/>
+  <!-- cylinder detail lines -->
+  <line x1="64" y1="116" x2="136" y2="116" stroke="#0A0A09" stroke-width="3"/>
+  <line x1="64" y1="136" x2="136" y2="136" stroke="#0A0A09" stroke-width="3"/>
+  <!-- spark at base -->
+  <polygon points="100,164 106,174 100,182 94,174" fill="#C9A84C"/>
+  <line x1="86" y1="170" x2="78" y2="178" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+  <line x1="114" y1="170" x2="122" y2="178" stroke="#C9A84C" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="168" x2="100" y2="182" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round"/>
+
+</svg>

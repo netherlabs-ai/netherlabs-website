@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- gear body -->
+  <circle cx="100" cy="100" r="58" fill="#C9A84C"/>
+  <rect x="91.00" y="20.00" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(0.00 100.00 31.00)"/><rect x="139.79" y="40.21" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(45.00 148.79 51.21)"/><rect x="160.00" y="89.00" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(90.00 169.00 100.00)"/><rect x="139.79" y="137.79" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(135.00 148.79 148.79)"/><rect x="91.00" y="158.00" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(180.00 100.00 169.00)"/><rect x="42.21" y="137.79" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(225.00 51.21 148.79)"/><rect x="22.00" y="89.00" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(270.00 31.00 100.00)"/><rect x="42.21" y="40.21" width="18" height="22" rx="2" fill="#C9A84C" transform="rotate(315.00 51.21 51.21)"/>
+  <!-- inner hole -->
+  <circle cx="100" cy="100" r="28" fill="#0A0A09"/>
+  <!-- hub circle -->
+  <circle cx="100" cy="100" r="12" fill="#C9A84C"/>
+
+</svg>

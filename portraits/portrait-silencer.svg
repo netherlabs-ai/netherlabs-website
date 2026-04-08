@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- bell body -->
+  <path d="M 100 28 L 100 38 Q 58 50 52 120 L 148 120 Q 142 50 100 38 Z" fill="#C9A84C"/>
+  <!-- bell base/rim -->
+  <rect x="46" y="120" width="108" height="12" rx="4" fill="#C9A84C"/>
+  <!-- clapper ball -->
+  <circle cx="100" cy="145" r="10" fill="#C9A84C"/>
+  <!-- strike-through line -->
+  <line x1="30" y1="90" x2="170" y2="90" stroke="#0A0A09" stroke-width="9" stroke-linecap="round"/>
+  <line x1="30" y1="90" x2="170" y2="90" stroke="#C9A84C" stroke-width="5" stroke-linecap="round"/>
+  <!-- diagonal lines for "muted" X -->
+  <line x1="30" y1="158" x2="170" y2="42" stroke="#C9A84C" stroke-width="4" stroke-linecap="round" opacity="0.4"/>
+
+</svg>

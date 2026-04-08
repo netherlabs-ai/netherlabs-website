@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+  
+  <!-- gear body -->
+  <circle cx="100" cy="100" r="60" fill="#C9A84C"/>
+  <rect x="93.00" y="22.00" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(0.00 100.00 31.00)"/><rect x="133.56" y="35.18" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(36.00 140.56 44.18)"/><rect x="158.62" y="69.68" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(72.00 165.62 78.68)"/><rect x="158.62" y="112.32" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(108.00 165.62 121.32)"/><rect x="133.56" y="146.82" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(144.00 140.56 155.82)"/><rect x="93.00" y="160.00" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(180.00 100.00 169.00)"/><rect x="52.44" y="146.82" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(216.00 59.44 155.82)"/><rect x="27.38" y="112.32" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(252.00 34.38 121.32)"/><rect x="27.38" y="69.68" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(288.00 34.38 78.68)"/><rect x="52.44" y="35.18" width="14" height="18" rx="2" fill="#C9A84C" transform="rotate(324.00 59.44 44.18)"/>
+  <!-- inner ring -->
+  <circle cx="100" cy="100" r="46" fill="#0A0A09"/>
+  <!-- clock face ring -->
+  <circle cx="100" cy="100" r="38" fill="#C9A84C"/>
+  <circle cx="100" cy="100" r="30" fill="#0A0A09"/>
+  <!-- clock hand pointing to 3 o'clock (right) -->
+  <line x1="100" y1="100" x2="130" y2="100" stroke="#C9A84C" stroke-width="6" stroke-linecap="round"/>
+  <!-- short minute hand pointing up -->
+  <line x1="100" y1="100" x2="100" y2="76" stroke="#C9A84C" stroke-width="4" stroke-linecap="round"/>
+  <!-- center hub -->
+  <circle cx="100" cy="100" r="5" fill="#C9A84C"/>
+  <!-- tick marks at 3 o'clock -->
+  <circle cx="130" cy="100" r="3" fill="#C9A84C"/>
+
+</svg>
