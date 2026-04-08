@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nether Labs — Autonomous AI Organizations</title>
   <meta name="description" content="Nether Labs builds autonomous AI organizations. Purpose-built agent teams that research, execute, and govern — end to end.">
 
@@ -43,8 +43,8 @@
 
     @media (max-width: 640px) {
       :root {
-        --section-pad-v: 80px;
-        --gutter: 24px;
+        --section-pad-v: 52px;
+        --gutter: 20px;
       }
     }
 
@@ -63,6 +63,12 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 15px;
+      }
     }
 
     /* ─── Utility ────────────────────────────────────────────── */
@@ -90,6 +96,13 @@
       color: var(--headline);
       line-height: 1.1;
       margin-bottom: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .section-title {
+        font-size: clamp(32px, 9vw, 48px);
+        margin-bottom: 32px;
+      }
     }
 
     /* ─── Scroll Reveal ──────────────────────────────────────── */
@@ -123,10 +136,12 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 72px;
       z-index: 100;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
+      /* iOS safe area: push content below notch */
+      padding-top: env(safe-area-inset-top, 0px);
+      height: calc(72px + env(safe-area-inset-top, 0px));
       transition: background 300ms ease, border-color 300ms ease;
     }
 
@@ -206,12 +221,13 @@
       justify-content: center;
       align-items: center;
       gap: 5px;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       background: none;
       border: none;
-      padding: 4px;
+      padding: 0;
+      margin-right: -10px; /* optical alignment */
     }
 
     .nav-hamburger span {
@@ -238,14 +254,14 @@
     .nav-dropdown {
       display: none;
       position: absolute;
-      top: 72px;
+      top: calc(72px + env(safe-area-inset-top, 0px));
       left: 0;
       right: 0;
       background: rgba(10, 10, 9, 0.97);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 0;
+      padding: 8px 0;
     }
 
     .nav-dropdown.open {
@@ -253,7 +269,8 @@
     }
 
     .nav-dropdown a {
-      display: block;
+      display: flex;
+      align-items: center;
       font-family: var(--font-body);
       font-weight: 400;
       font-size: 13px;
@@ -261,7 +278,8 @@
       color: var(--muted);
       text-decoration: none;
       text-transform: uppercase;
-      padding: 12px var(--gutter);
+      padding: 0 var(--gutter);
+      min-height: 48px; /* touch target ≥44px */
       transition: color 200ms ease, background 200ms ease;
     }
 
@@ -297,7 +315,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-top: 72px;
+      padding-top: calc(72px + env(safe-area-inset-top, 0px));
       position: relative;
       overflow: hidden;
       background-image: url('hero.jpg');
@@ -342,9 +360,20 @@
       display: block;
     }
 
+    @media (max-width: 640px) {
+      .hero-headline {
+        font-size: clamp(38px, 11vw, 62px);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+      }
+      .hero-overline {
+        margin-bottom: 20px;
+      }
+    }
+
     .scroll-indicator {
       position: absolute;
-      bottom: 40px;
+      bottom: max(40px, calc(20px + env(safe-area-inset-bottom, 0px)));
       left: 50%;
       transform: translateX(-50%);
       color: var(--muted);
@@ -421,6 +450,12 @@
 
     .team-header {
       margin-bottom: 64px;
+    }
+
+    @media (max-width: 640px) {
+      .team-header {
+        margin-bottom: 40px;
+      }
     }
 
     .agent-grid {
@@ -638,22 +673,34 @@
         grid-template-columns: 1fr;
       }
 
+      /* Agent card padding tuning for single-column mobile */
+      .agent-card {
+        padding: 24px 20px;
+      }
+
+      /* Spotlight card border-left intact */
+      .spotlight-card.agent-card {
+        padding: 0;
+      }
+
       .spotlight-inner {
         flex-direction: column;
       }
 
       .spotlight-portrait {
         width: 100% !important;
-        height: 140px !important;
-        object-fit: cover;
+        height: 180px !important;
+        object-fit: contain; /* SVG: contain so portrait isn't cropped */
+        background: var(--surface);
+        padding: 16px 0;
       }
 
       .spotlight-body {
-        padding: 24px 28px;
+        padding: 20px 24px;
       }
 
       .spotlight-body .agent-name {
-        font-size: 24px !important;
+        font-size: 26px !important;
       }
     }
 
@@ -706,6 +753,13 @@
 
       .step:not(:first-child) {
         padding-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .step {
+        padding-bottom: 32px;
+        margin-bottom: 32px;
       }
     }
 
@@ -924,6 +978,14 @@
       text-align: center;
     }
 
+    @media (max-width: 640px) {
+      /* Contact email: easy tap */
+      .contact-email {
+        display: inline-block;
+        padding: 10px 0;
+      }
+    }
+
     .contact-inner {
       max-width: 640px;
       margin: 0 auto;
@@ -965,7 +1027,15 @@
     /* ─── Footer ─────────────────────────────────────────────── */
     footer {
       padding: 80px 0;
+      padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
       border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      footer {
+        padding-top: 48px;
+        padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+      }
     }
 
     .footer-inner {
@@ -978,7 +1048,7 @@
     @media (max-width: 640px) {
       .footer-inner {
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
       }
     }
 
@@ -1406,6 +1476,13 @@
     // ── Particle system ─────────────────────────────────────
     (function () {
       const canvas = document.getElementById('particle-canvas');
+
+      // Disable particles on mobile to prevent jank
+      if (window.innerWidth < 768) {
+        canvas.style.display = 'none';
+        return;
+      }
+
       const ctx = canvas.getContext('2d');
       const PARTICLE_COUNT = 70;
       const COLOR = '201, 168, 76';
