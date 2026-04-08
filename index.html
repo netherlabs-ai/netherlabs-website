@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nether Labs</title>
-  <meta name="description" content="Nether Labs designs, deploys, and operates full autonomous AI organizations.">
+  <title>Nether Labs — Autonomous AI Organizations</title>
+  <meta name="description" content="Nether Labs builds autonomous AI organizations. Purpose-built agent teams that research, execute, and govern — end to end.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nether Labs — Autonomous AI Organizations">
+  <meta property="og:description" content="Nether Labs builds autonomous AI organizations. Purpose-built agent teams that research, execute, and govern — end to end.">
+  <meta property="og:url" content="https://netherlabs.ai">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -97,6 +104,19 @@
       transform: translateY(0);
     }
 
+    /* ─── Scroll Progress Bar ────────────────────────────────── */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      z-index: 9999;
+      pointer-events: none;
+      transition: width 50ms linear;
+    }
+
     /* ─── Navigation ─────────────────────────────────────────── */
     nav {
       position: fixed;
@@ -114,7 +134,7 @@
       background: rgba(10, 10, 9, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--accent);
     }
 
     nav .container {
@@ -132,27 +152,132 @@
       color: var(--headline);
       text-decoration: none;
       text-transform: uppercase;
+      flex-shrink: 0;
     }
 
-    .nav-contact {
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
       font-family: var(--font-body);
-      font-weight: 500;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 200ms ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 200ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--body);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--body);
+      transition: transform 300ms ease, opacity 300ms ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Mobile dropdown */
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 9, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .nav-dropdown.open {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 400;
       font-size: 13px;
       letter-spacing: 0.1em;
       color: var(--muted);
       text-decoration: none;
-      opacity: 0;
-      transition: opacity 400ms ease, color 200ms ease;
-      pointer-events: none;
+      text-transform: uppercase;
+      padding: 12px var(--gutter);
+      transition: color 200ms ease, background 200ms ease;
     }
 
-    .nav-contact.visible {
-      opacity: 1;
-      pointer-events: auto;
+    .nav-dropdown a:hover {
+      color: var(--accent);
+      background: rgba(201,168,76,0.04);
     }
 
-    .nav-contact:hover {
-      color: var(--body);
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
     }
 
     /* ─── Particle Canvas ───────────────────────────────────── */
@@ -265,7 +390,7 @@
     }
 
     /* ─── What We Are ────────────────────────────────────────── */
-    #what-we-are {
+    #about {
       padding: var(--section-pad-v) 0;
     }
 
@@ -290,7 +415,7 @@
     }
 
     /* ─── Team ───────────────────────────────────────────────── */
-    #team {
+    #organization {
       padding: var(--section-pad-v) 0;
     }
 
@@ -513,7 +638,7 @@
     }
 
     /* ─── The Founder ───────────────────────────────────────── */
-    #the-founder {
+    #founder {
       padding: var(--section-pad-v) 0;
     }
 
@@ -640,6 +765,51 @@
       max-width: 620px;
     }
 
+    /* ─── Contact ─────────────────────────────────────────────── */
+    #contact {
+      padding: var(--section-pad-v) 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-headline {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(32px, 4vw, 56px);
+      color: var(--headline);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .contact-sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .contact-email {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 200ms ease, border-color 200ms ease;
+    }
+
+    .contact-email:hover {
+      color: var(--headline);
+      border-bottom-color: var(--accent);
+    }
+
     /* ─── Footer ─────────────────────────────────────────────── */
     footer {
       padding: 80px 0;
@@ -694,6 +864,9 @@
 </head>
 <body>
 
+  <!-- ─── Scroll Progress Bar ────────────────────────────── -->
+  <div id="scroll-progress"></div>
+
   <!-- ─── Particle Canvas ────────────────────────────────── -->
   <canvas id="particle-canvas"></canvas>
 
@@ -701,7 +874,31 @@
   <nav id="nav">
     <div class="container">
       <span class="nav-wordmark">Nether Labs</span>
-      <a href="mailto:contact@netherlabs.ai" class="nav-contact" id="navContact">Contact</a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#organization">The Organization</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#the-proof">The Proof</a></li>
+        <li><a href="#founder">The Founder</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="nav-dropdown" id="navDropdown">
+      <a href="#about">About</a>
+      <a href="#organization">The Organization</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#the-proof">The Proof</a>
+      <a href="#founder">The Founder</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
@@ -720,7 +917,7 @@
   </section>
 
   <!-- ─── What We Are ────────────────────────────────────── -->
-  <section id="what-we-are">
+  <section id="about">
     <div class="container">
       <div class="what-we-are-inner">
         <span class="overline reveal">What We Are</span>
@@ -735,7 +932,7 @@
   </section>
 
   <!-- ─── The Organization ───────────────────────────────── -->
-  <section id="team">
+  <section id="organization">
     <div class="container">
       <div class="team-header reveal">
         <span class="overline">The Organization</span>
@@ -743,82 +940,82 @@
       </div>
 
       <div class="agent-grid">
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-invoker.svg" alt="Invoker" loading="lazy">
           <span class="agent-name">Invoker</span>
           <span class="agent-role">Chief of Staff</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-bane.svg" alt="Bane" loading="lazy">
           <span class="agent-name">Bane</span>
           <span class="agent-role">Chief Risk Officer</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-keeper-of-the-light.svg" alt="Keeper of the Light" loading="lazy">
           <span class="agent-name">Keeper of the Light</span>
           <span class="agent-role">CFO</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-puck.svg" alt="Puck" loading="lazy">
           <span class="agent-name">Puck</span>
           <span class="agent-role">Chief Marketing Officer</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-silencer.svg" alt="Silencer" loading="lazy">
           <span class="agent-name">Silencer</span>
           <span class="agent-role">Legal &amp; Compliance</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-rubick.svg" alt="Rubick" loading="lazy">
           <span class="agent-name">Rubick</span>
           <span class="agent-role">Tax Counsel</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-ancient-apparition.svg" alt="Ancient Apparition" loading="lazy">
           <span class="agent-name">Ancient Apparition</span>
           <span class="agent-role">Project Manager</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-enigma.svg" alt="Enigma" loading="lazy">
           <span class="agent-name">Enigma</span>
           <span class="agent-role">Quant Researcher</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-oracle.svg" alt="Oracle" loading="lazy">
           <span class="agent-name">Oracle</span>
           <span class="agent-role">Financial Comptroller</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-disruptor.svg" alt="Disruptor" loading="lazy">
           <span class="agent-name">Disruptor</span>
           <span class="agent-role">Technical Auditor / QA</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-tinker.svg" alt="Tinker" loading="lazy">
           <span class="agent-name">Tinker</span>
           <span class="agent-role">Lead Engineer</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-lina.svg" alt="Lina" loading="lazy">
           <span class="agent-name">Lina</span>
           <span class="agent-role">UI/UX Designer</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-crystal-maiden.svg" alt="Crystal Maiden" loading="lazy">
           <span class="agent-name">Crystal Maiden</span>
           <span class="agent-role">Reporting &amp; Data Analyst</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-techies.svg" alt="Techies" loading="lazy">
           <span class="agent-name">Techies</span>
           <span class="agent-role">Sysadmin / Infrastructure</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-clockwerk.svg" alt="Clockwerk" loading="lazy">
           <span class="agent-name">Clockwerk</span>
           <span class="agent-role">Live Ops / Kill Switch</span>
         </div>
-        <div class="agent-card">
+        <div class="agent-card" data-blurb="">
           <img class="agent-portrait" src="portraits/portrait-juggernaut.svg" alt="Juggernaut" loading="lazy">
           <span class="agent-name">Juggernaut</span>
           <span class="agent-role">Trade Execution</span>
@@ -883,7 +1080,7 @@
   </section>
 
   <!-- ─── The Founder ────────────────────────────────────── -->
-  <section id="the-founder">
+  <section id="founder">
     <div class="container">
       <span class="overline reveal">The Founder</span>
 
@@ -925,6 +1122,18 @@
       <p class="what-we-build-cta reveal">
         If you have a mission that demands institutional-grade execution, we should talk.
       </p>
+    </div>
+  </section>
+
+  <!-- ─── Contact ────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <span class="overline reveal">Get In Touch</span>
+        <h2 class="contact-headline reveal">Ready to build something that runs itself?</h2>
+        <p class="contact-sub reveal">We're selectively exploring partnerships and deployments.</p>
+        <a href="mailto:hello@netherlabs.ai" class="contact-email reveal">hello@netherlabs.ai</a>
+      </div>
     </div>
   </section>
 
@@ -1030,39 +1239,85 @@
       loop();
     })();
 
-    // ── Navigation scroll behavior ──────────────────────────
+    // ── Navigation + scroll behaviors ───────────────────────
     const nav = document.getElementById('nav');
-    const navContact = document.getElementById('navContact');
     const scrollIndicator = document.getElementById('scrollIndicator');
+    const progressBar = document.getElementById('scroll-progress');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const hamburger = document.getElementById('navHamburger');
+    const dropdown = document.getElementById('navDropdown');
+
+    // Section anchors for active-link tracking
+    const sections = [
+      { id: 'about',        el: null },
+      { id: 'organization', el: null },
+      { id: 'how-it-works', el: null },
+      { id: 'the-proof',    el: null },
+      { id: 'founder',      el: null },
+      { id: 'contact',      el: null },
+    ];
+
+    sections.forEach(s => { s.el = document.getElementById(s.id); });
+
     let scrolled = false;
 
     function onScroll() {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPct = scrollY / docHeight;
+      const scrollPct = docHeight > 0 ? scrollY / docHeight : 0;
 
-      // Nav background
+      // Scroll progress bar
+      progressBar.style.width = (scrollPct * 100).toFixed(2) + '%';
+
+      // Nav background + gold border on scroll
       if (scrollY > 20) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
       }
 
-      // Contact link appears after 80% scroll depth
-      if (scrollPct > 0.8) {
-        navContact.classList.add('visible');
-      } else {
-        navContact.classList.remove('visible');
-      }
-
-      // Hide scroll indicator after first scroll
+      // Hide scroll chevron after first scroll
       if (!scrolled && scrollY > 80) {
         scrolled = true;
         scrollIndicator.classList.add('hidden');
       }
+
+      // Active nav link tracking
+      let currentSection = '';
+      sections.forEach(s => {
+        if (!s.el) return;
+        const top = s.el.getBoundingClientRect().top;
+        if (top <= 100) {
+          currentSection = s.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').replace('#', '');
+        if (href === currentSection) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init on load
+
+    // ── Hamburger menu toggle ────────────────────────────────
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      dropdown.classList.toggle('open');
+    });
+
+    // Close dropdown when a link is clicked
+    dropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        dropdown.classList.remove('open');
+      });
+    });
 
     // ── Scroll reveal: general .reveal elements ─────────────
     const revealObserver = new IntersectionObserver(
