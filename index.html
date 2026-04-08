@@ -1,579 +1,864 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nether Labs — We build autonomous AI organizations." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nether Labs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Nether Labs designs, deploys, and operates full autonomous AI organizations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ─── RESET & BASE ─────────────────────────────────────────────── */
+    /* ─── Reset ─────────────────────────────────────────────── */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    /* ─── Custom Properties ──────────────────────────────────── */
     :root {
-      --black:        #06080f;
-      --navy:         #090a14;
-      --navy-mid:     #0c0d1c;
-      --navy-light:   #101120;
-      --border:       rgba(124, 58, 237, 0.14);
-      --border-hover: rgba(124, 58, 237, 0.32);
+      --bg:           #0A0A09;
+      --surface:      #111110;
+      --border:       #1E1E1C;
+      --muted:        #5A5A56;
+      --body:         #B8B5AD;
+      --headline:     #F0EDE8;
+      --accent:       #C9A84C;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', -apple-system, sans-serif;
 
-      --accent:       #7c3aed;
-      --accent-glow:  rgba(124, 58, 237, 0.20);
-      --accent-soft:  rgba(124, 58, 237, 0.09);
-      --accent-light: #a78bfa;
-
-      --white:        #f8fafc;
-      --grey-100:     #e2e8f0;
-      --grey-300:     #94a3b8;
-      --grey-500:     #64748b;
-
-      --font-display: 'Space Grotesk', system-ui, sans-serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-
-      --max-w:        1000px;
-      --section-gap:  140px;
+      --section-pad-v:    160px;
+      --max-width:        1200px;
+      --gutter:           48px;
     }
 
+    @media (max-width: 640px) {
+      :root {
+        --section-pad-v: 80px;
+        --gutter: 24px;
+      }
+    }
+
+    /* ─── Base ───────────────────────────────────────────────── */
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--black);
-      color: var(--white);
+      background-color: var(--bg);
+      color: var(--body);
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 17px;
       line-height: 1.7;
+      font-weight: 400;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
 
-    /* ─── NOISE TEXTURE ────────────────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.4;
-    }
-
-    /* ─── LAYOUT ───────────────────────────────────────────────────── */
+    /* ─── Utility ────────────────────────────────────────────── */
     .container {
-      max-width: var(--max-w);
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 var(--gutter);
     }
 
-    section {
-      position: relative;
+    .overline {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 24px;
     }
 
-    /* ─── NAV ──────────────────────────────────────────────────────── */
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(42px, 5vw, 72px);
+      color: var(--headline);
+      line-height: 1.1;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Scroll Reveal ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Navigation ─────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      height: 72px;
       z-index: 100;
-      padding: 22px 0;
-      background: linear-gradient(to bottom, rgba(6,8,15,0.96) 0%, transparent 100%);
+      display: flex;
+      align-items: center;
+      transition: background 300ms ease, border-color 300ms ease;
     }
 
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 40px;
+    nav.scrolled {
+      background: rgba(10, 10, 9, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      text-decoration: none;
-    }
-
-    .nav-logo-svg {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-    }
-
     .nav-wordmark {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
-    .nav-domain {
       font-family: var(--font-body);
-      font-size: 12px;
-      color: var(--grey-500);
-      letter-spacing: 0.04em;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: var(--headline);
+      text-decoration: none;
+      text-transform: uppercase;
     }
 
-    /* ─── HERO ─────────────────────────────────────────────────────── */
+    .nav-contact {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 400ms ease, color 200ms ease;
+      pointer-events: none;
+    }
+
+    .nav-contact.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-contact:hover {
+      color: var(--body);
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
     #hero {
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 140px 40px 100px;
-      background:
-        radial-gradient(ellipse 90% 60% at 50% -5%, rgba(124,58,237,0.13) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 80% 110%, rgba(109,40,217,0.07) 0%, transparent 60%),
-        var(--black);
+      padding-top: 72px;
+      position: relative;
       overflow: hidden;
     }
 
-    /* Grid overlay */
-    #hero::after {
+    #hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+      background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,0.04), transparent);
+      pointer-events: none;
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
-      max-width: 760px;
+      z-index: 1;
     }
 
-    /* Hero logo mark */
-    .hero-logo {
-      margin-bottom: 48px;
-      display: inline-block;
-    }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(38px, 6vw, 72px);
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      color: var(--white);
-      margin-bottom: 0;
-    }
-
-    /* ─── SECTION SHARED ───────────────────────────────────────────── */
-    .section-eyebrow {
-      font-family: var(--font-display);
-      font-size: 11px;
+    .hero-overline {
+      font-family: var(--font-body);
       font-weight: 500;
-      letter-spacing: 0.22em;
+      font-size: 11px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--accent-light);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-eyebrow::before {
-      content: '';
+      color: var(--accent);
       display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-      flex-shrink: 0;
+      margin-bottom: 32px;
     }
 
-    h2 {
+    .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 24px;
+      font-weight: 300;
+      font-size: clamp(72px, 10vw, 140px);
+      line-height: 1.0;
+      color: var(--headline);
+      letter-spacing: -0.01em;
     }
 
-    .accent-text {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-headline br {
+      display: block;
     }
 
-    .body-text {
-      font-size: clamp(15px, 1.6vw, 17px);
-      color: var(--grey-300);
-      line-height: 1.75;
-      max-width: 640px;
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 400ms ease;
     }
 
-    .body-text + .body-text {
-      margin-top: 20px;
+    .scroll-indicator.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .divider {
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      margin: 28px 0;
-    }
-
-    /* ─── WHAT WE ARE ──────────────────────────────────────────────── */
-    #what {
-      padding: var(--section-gap) 0;
-      background: var(--navy);
-    }
-
-    .what-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    /* ─── HOW IT WORKS ─────────────────────────────────────────────── */
-    #how {
-      padding: var(--section-gap) 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(124,58,237,0.07) 0%, transparent 60%),
-        var(--black);
-    }
-
-    .how-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    /* ─── THE PROOF ────────────────────────────────────────────────── */
-    #proof {
-      padding: var(--section-gap) 0;
-      background: var(--navy);
-    }
-
-    .proof-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    /* Enigma callout card */
-    .enigma-card {
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 40px 44px;
+    .chevron {
+      width: 20px;
+      height: 12px;
       position: relative;
-      overflow: hidden;
+      display: block;
     }
 
-    .enigma-card::before {
+    .chevron::before,
+    .chevron::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light), transparent);
+      width: 10px;
+      height: 1px;
+      background: var(--muted);
+      top: 50%;
     }
 
-    .enigma-label {
+    .chevron::before {
+      left: 0;
+      transform: rotate(35deg);
+      transform-origin: right center;
+    }
+
+    .chevron::after {
+      right: 0;
+      transform: rotate(-35deg);
+      transform-origin: left center;
+    }
+
+    /* ─── What We Are ────────────────────────────────────────── */
+    #what-we-are {
+      padding: var(--section-pad-v) 0;
+    }
+
+    .what-we-are-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .what-we-are-lead {
       font-family: var(--font-display);
-      font-size: 11px;
+      font-weight: 300;
+      font-size: clamp(24px, 3vw, 36px);
+      color: var(--headline);
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+
+    .what-we-are-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    /* ─── Team ───────────────────────────────────────────────── */
+    #team {
+      padding: var(--section-pad-v) 0;
+    }
+
+    .team-header {
+      margin-bottom: 64px;
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--bg);
+    }
+
+    @media (max-width: 1024px) {
+      .agent-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .agent-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .agent-card {
+      background: var(--surface);
+      padding: 32px 28px;
+      cursor: default;
+      transition: background 200ms ease;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out, background 200ms ease;
+    }
+
+    .agent-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .agent-card:hover {
+      background: #161614;
+    }
+
+    .agent-emoji {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .agent-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--headline);
+      display: block;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .agent-role {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      display: block;
+    }
+
+    .team-caption {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      text-align: center;
+      max-width: 560px;
+      margin: 64px auto 0;
+    }
+
+    /* ─── How It Works ───────────────────────────────────────── */
+    #how-it-works {
+      padding: var(--section-pad-v) 0;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 64px;
+    }
+
+    @media (max-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step {
+      padding: 0 48px 0 0;
+      border-right: 1px solid var(--border);
+      padding-right: 48px;
+    }
+
+    .step:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .step:not(:first-child) {
+      padding-left: 48px;
+    }
+
+    @media (max-width: 1024px) {
+      .step {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0 0 48px 0;
+        margin-bottom: 48px;
+      }
+
+      .step:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .step:not(:first-child) {
+        padding-left: 0;
+      }
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 64px;
+      color: var(--border);
+      line-height: 1;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .step-label {
+      font-family: var(--font-body);
       font-weight: 500;
-      letter-spacing: 0.2em;
+      font-size: 11px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--accent-light);
+      color: var(--accent);
+      display: block;
       margin-bottom: 16px;
     }
 
-    .enigma-name {
+    .step-body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    /* ─── The Proof ──────────────────────────────────────────── */
+    #the-proof {
+      padding: var(--section-pad-v) 0;
+    }
+
+    .proof-split {
+      display: grid;
+      grid-template-columns: 60fr 40fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 1024px) {
+      .proof-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .proof-statement {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3.5vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 20px;
+      font-weight: 300;
+      font-size: clamp(32px, 4vw, 60px);
+      color: var(--headline);
+      line-height: 1.15;
     }
 
-    .enigma-desc {
-      font-size: 15px;
-      color: var(--grey-300);
-      line-height: 1.75;
+    .proof-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--body);
+      padding-top: 8px;
     }
 
-    /* ─── WHAT WE BUILD ────────────────────────────────────────────── */
-    #build {
-      padding: var(--section-gap) 0;
+    .proof-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 64px 0;
+    }
+
+    .proof-footnote {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--muted);
       text-align: center;
-      background:
-        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(124,58,237,0.09) 0%, transparent 65%),
-        var(--black);
+      line-height: 1.3;
     }
 
-    .build-inner {
+    /* ─── What We Build ──────────────────────────────────────── */
+    #what-we-build {
+      padding: var(--section-pad-v) 0;
+    }
+
+    .what-we-build-body {
       max-width: 680px;
-      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--body);
+      margin-bottom: 48px;
     }
 
-    .build-inner .section-eyebrow {
-      justify-content: center;
+    .what-we-build-cta {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--body);
+      max-width: 620px;
     }
 
-    .build-inner .section-eyebrow::before {
-      display: none;
-    }
-
-    .build-inner .body-text {
-      margin: 0 auto;
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────────────────── */
+    /* ─── Footer ─────────────────────────────────────────────── */
     footer {
-      padding: 48px 0;
+      padding: 80px 0;
       border-top: 1px solid var(--border);
-      background: var(--navy);
     }
 
     .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 40px;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .footer-top {
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      align-items: flex-start;
+      gap: 48px;
     }
 
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    @media (max-width: 640px) {
+      .footer-inner {
+        flex-direction: column;
+        gap: 32px;
+      }
     }
 
-    .footer-wordmark {
-      font-family: var(--font-display);
+    .footer-left .wordmark {
+      font-family: var(--font-body);
+      font-weight: 500;
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.25em;
+      color: var(--headline);
       text-transform: uppercase;
-      color: var(--grey-300);
+      display: block;
+      margin-bottom: 4px;
     }
 
-    .footer-site {
+    .footer-left .url {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-right {
+      max-width: 480px;
+    }
+
+    .footer-legal {
+      font-family: var(--font-body);
+      font-weight: 400;
       font-size: 12px;
-      color: var(--grey-500);
-    }
-
-    .footer-disclaimer {
-      font-size: 12px;
-      color: var(--grey-500);
-      line-height: 1.7;
-      max-width: 720px;
-      font-style: italic;
-    }
-
-    /* ─── RESPONSIVE ───────────────────────────────────────────────── */
-    @media (max-width: 800px) {
-      :root { --section-gap: 100px; }
-
-      .what-inner,
-      .how-inner,
-      .proof-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .enigma-card {
-        padding: 32px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      :root { --section-gap: 80px; }
-
-      .container      { padding: 0 24px; }
-      .nav-inner      { padding: 0 24px; }
-      .footer-inner   { padding: 0 24px; }
-      #hero           { padding: 120px 24px 80px; }
-
-      h1 { font-size: clamp(34px, 9vw, 54px); }
+      line-height: 1.6;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
-  <!-- ── NAV ──────────────────────────────────────────────────────── -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <!-- NL Monogram -->
-        <svg class="nav-logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nether Labs">
-          <rect width="32" height="32" rx="6" fill="#0c0d1c"/>
-          <rect width="32" height="32" rx="6" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
-          <text x="3" y="23" font-family="'Space Grotesk', sans-serif" font-size="17" font-weight="700" fill="#7c3aed">N</text>
-          <text x="17" y="23" font-family="'Space Grotesk', sans-serif" font-size="17" font-weight="700" fill="#a78bfa">L</text>
-        </svg>
-        <span class="nav-wordmark">Nether Labs</span>
-      </a>
-      <span class="nav-domain">netherlabs.ai</span>
+  <!-- ─── Navigation ─────────────────────────────────────── -->
+  <nav id="nav">
+    <div class="container">
+      <span class="nav-wordmark">Nether Labs</span>
+      <a href="mailto:contact@netherlabs.ai" class="nav-contact" id="navContact">Contact</a>
     </div>
   </nav>
 
-  <!-- ── HERO ─────────────────────────────────────────────────────── -->
+  <!-- ─── Hero ───────────────────────────────────────────── -->
   <section id="hero">
-    <div class="hero-content">
-
-      <!-- Hero wordmark -->
-      <div class="hero-logo">
-        <svg viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="280" height="64" aria-label="Nether Labs">
-          <!-- Box mark -->
-          <rect x="0" y="10" width="44" height="44" rx="9" fill="#0c0d1c" stroke="rgba(124,58,237,0.4)" stroke-width="1.5"/>
-          <text x="4" y="44" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="700" fill="#7c3aed">N</text>
-          <text x="22" y="44" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="700" fill="#a78bfa">L</text>
-          <!-- Wordmark -->
-          <text x="58" y="38" font-family="'Space Grotesk', sans-serif" font-size="23" font-weight="700" fill="#f8fafc" letter-spacing="1">NETHER</text>
-          <text x="58" y="58" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="500" fill="#7c3aed" letter-spacing="7">LABS</text>
-        </svg>
-      </div>
-
-      <h1>We build autonomous<br/>AI organizations.</h1>
-
+    <div class="container hero-content">
+      <span class="hero-overline">Nether Labs</span>
+      <h1 class="hero-headline">
+        We build autonomous<br>
+        AI organizations.
+      </h1>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span class="chevron"></span>
     </div>
   </section>
 
-  <!-- ── WHAT WE ARE ───────────────────────────────────────────────── -->
-  <section id="what">
+  <!-- ─── What We Are ────────────────────────────────────── -->
+  <section id="what-we-are">
     <div class="container">
-      <div class="what-inner">
-
-        <div>
-          <div class="section-eyebrow">What We Are</div>
-          <h2>Not tools.<br/>Organizations.</h2>
-          <div class="divider"></div>
-        </div>
-
-        <div>
-          <p class="body-text">
-            Nether Labs is an AI firm that designs, deploys, and operates full autonomous organizations — not tools, not chatbots, not assistants. Organizations.
-          </p>
-          <p class="body-text">
-            Each one is a structured swarm of purpose-built agents: researchers, operators, compliance officers, engineers. Every agent is world-class at its function. Together, they operate as a coordinated institution.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ──────────────────────────────────────────────── -->
-  <section id="how">
-    <div class="container">
-      <div class="how-inner">
-
-        <div>
-          <div class="section-eyebrow">How It Works</div>
-          <h2>Architecture,<br/>not automation.</h2>
-          <div class="divider"></div>
-        </div>
-
-        <div>
-          <p class="body-text">
-            We architect agent swarms from the ground up. Each role is defined with precision — scope, accountability, interfaces, red lines. Agents don't overlap and don't leave gaps. They coordinate, escalate, and deliver. The result is an organization that runs, learns, and executes — without a human in every loop.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── THE PROOF ─────────────────────────────────────────────────── -->
-  <section id="proof">
-    <div class="container">
-      <div class="proof-inner">
-
-        <div>
-          <div class="section-eyebrow">The Proof</div>
-          <h2>Already<br/>running.</h2>
-          <div class="divider"></div>
-          <p class="body-text">
-            Our first deployment is live. A fully autonomous, AI-native quantitative fund — built and operated by our agents from day one.
-          </p>
-        </div>
-
-        <div>
-          <div class="enigma-card">
-            <div class="enigma-label">First Deployment</div>
-            <div class="enigma-name">Enigma Capital</div>
-            <p class="enigma-desc">
-              A fully autonomous, AI-native quantitative fund — built and operated by our agents from day one. Research, risk management, compliance, and execution, coordinated end-to-end by the swarm.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHAT WE BUILD ──────────────────────────────────────────────── -->
-  <section id="build">
-    <div class="container">
-      <div class="build-inner">
-        <div class="section-eyebrow">What We Build</div>
-        <h2>The model applies<br/>to any domain.</h2>
-        <p class="body-text">
-          Enigma Capital is one example. The model applies to any domain where institutional-grade execution matters. We build the organization. You define the mission.
+      <div class="what-we-are-inner">
+        <span class="overline reveal">What We Are</span>
+        <p class="what-we-are-lead reveal">
+          Nether Labs is an AI firm that designs, deploys, and operates full autonomous organizations — not tools, not chatbots, not assistants. Organizations.
+        </p>
+        <p class="what-we-are-body reveal">
+          Each one is a structured swarm of purpose-built agents: researchers, operators, compliance officers, engineers. Every agent is world-class at its function. Together, they operate as a coordinated institution.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ────────────────────────────────────────────────────── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-logo">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26" aria-label="NL">
-            <rect width="32" height="32" rx="6" fill="#0c0d1c"/>
-            <rect width="32" height="32" rx="6" stroke="rgba(124,58,237,0.3)" stroke-width="1"/>
-            <text x="3" y="23" font-family="'Space Grotesk', sans-serif" font-size="17" font-weight="700" fill="#7c3aed">N</text>
-            <text x="17" y="23" font-family="'Space Grotesk', sans-serif" font-size="17" font-weight="700" fill="#a78bfa">L</text>
-          </svg>
-          <span class="footer-wordmark" style="margin-left:8px;">Nether Labs</span>
-        </div>
-        <span class="footer-site">netherlabs.ai</span>
+  <!-- ─── The Organization ───────────────────────────────── -->
+  <section id="team">
+    <div class="container">
+      <div class="team-header reveal">
+        <span class="overline">The Organization</span>
+        <h2 class="section-title">Sixteen agents. One organization.</h2>
       </div>
-      <p class="footer-disclaimer">
-        Nether Labs builds autonomous AI organizations. Nothing on this site constitutes financial advice, an offer of securities, or an invitation to invest. Past performance of any system or deployment is not indicative of future results.
+
+      <div class="agent-grid">
+        <div class="agent-card">
+          <span class="agent-emoji">🔮</span>
+          <span class="agent-name">Invoker</span>
+          <span class="agent-role">Chief of Staff</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">💣</span>
+          <span class="agent-name">Techies</span>
+          <span class="agent-role">Sysadmin / Infrastructure</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">⚙️</span>
+          <span class="agent-name">Tinker</span>
+          <span class="agent-role">Lead Engineer</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🌀</span>
+          <span class="agent-name">Enigma</span>
+          <span class="agent-role">Quant Researcher</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🔭</span>
+          <span class="agent-name">Oracle</span>
+          <span class="agent-role">Financial Comptroller</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">⚡</span>
+          <span class="agent-name">Disruptor</span>
+          <span class="agent-role">Technical Auditor / QA</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">⚖️</span>
+          <span class="agent-name">Silencer</span>
+          <span class="agent-role">Legal &amp; Compliance</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🔵</span>
+          <span class="agent-name">Rubick</span>
+          <span class="agent-role">Tax Counsel</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">😴</span>
+          <span class="agent-name">Bane</span>
+          <span class="agent-role">Chief Risk Officer</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">💡</span>
+          <span class="agent-name">Keeper of the Light</span>
+          <span class="agent-role">CFO</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">❄️</span>
+          <span class="agent-name">Crystal Maiden</span>
+          <span class="agent-role">Reporting &amp; Data Analyst</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🧊</span>
+          <span class="agent-name">Ancient Apparition</span>
+          <span class="agent-role">Project Manager</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🕰️</span>
+          <span class="agent-name">Clockwerk</span>
+          <span class="agent-role">Live Ops / Kill Switch</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">⚔️</span>
+          <span class="agent-name">Juggernaut</span>
+          <span class="agent-role">Trade Execution</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🎭</span>
+          <span class="agent-name">Puck</span>
+          <span class="agent-role">Chief Marketing Officer</span>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🎨</span>
+          <span class="agent-name">Lina</span>
+          <span class="agent-role">UI/UX Designer</span>
+        </div>
+      </div>
+
+      <p class="team-caption reveal">
+        Every agent is purpose-built, scope-defined, and accountable.<br>
+        No overlap. No gaps. No human in every loop.
       </p>
+    </div>
+  </section>
+
+  <!-- ─── How It Works ───────────────────────────────────── -->
+  <section id="how-it-works">
+    <div class="container">
+      <span class="overline reveal">How It Works</span>
+      <h2 class="section-title reveal">Architecture by design.</h2>
+
+      <div class="steps-grid">
+        <div class="step reveal">
+          <span class="step-number">01</span>
+          <span class="step-label">Define</span>
+          <p class="step-body">Role architecture from first principles. Every position scoped for precision — accountability, interfaces, and red lines established before a single agent is built.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-number">02</span>
+          <span class="step-label">Build</span>
+          <p class="step-body">Purpose-built agents, not generic LLMs wrapped in prompts. Each agent has identity, domain expertise, memory, and a clear mandate within the organization.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-number">03</span>
+          <span class="step-label">Operate</span>
+          <p class="step-body">The swarm coordinates, escalates, and delivers — end to end. Research informs execution. Compliance gates deployment. The organization runs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── The Proof ──────────────────────────────────────── -->
+  <section id="the-proof">
+    <div class="container">
+      <span class="overline reveal">The Proof</span>
+      <h2 class="section-title reveal">Enigma Capital.</h2>
+
+      <div class="proof-split">
+        <div class="proof-statement reveal">
+          A fully autonomous,<br>
+          AI-native quantitative fund.
+        </div>
+        <div class="proof-body reveal">
+          Our first deployment. Research, risk management, compliance, and execution — coordinated end-to-end by the swarm. No human in the loop on trade execution. No exceptions.
+        </div>
+      </div>
+
+      <div class="proof-rule reveal"></div>
+
+      <p class="proof-footnote reveal">
+        Built and operated by our agents from day one.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── What We Build ──────────────────────────────────── -->
+  <section id="what-we-build">
+    <div class="container">
+      <span class="overline reveal">What We Build</span>
+      <h2 class="section-title reveal">Enigma Capital is one example.</h2>
+
+      <p class="what-we-build-body reveal">
+        The model applies to any domain where institutional-grade execution matters. We build the organization. You define the mission.
+      </p>
+
+      <p class="what-we-build-cta reveal">
+        If you have a mission that demands institutional-grade execution, we should talk.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="wordmark">Nether Labs</span>
+          <a href="https://netherlabs.ai" class="url">netherlabs.ai</a>
+        </div>
+        <div class="footer-right">
+          <p class="footer-legal">
+            Nether Labs builds autonomous AI organizations. Nothing on this site constitutes financial advice, an offer of securities, or an invitation to invest. Past performance of any system or deployment is not indicative of future results.
+          </p>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <!-- ─── JavaScript ─────────────────────────────────────── -->
+  <script>
+    // ── Navigation scroll behavior ──────────────────────────
+    const nav = document.getElementById('nav');
+    const navContact = document.getElementById('navContact');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    let scrolled = false;
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPct = scrollY / docHeight;
+
+      // Nav background
+      if (scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+
+      // Contact link appears after 80% scroll depth
+      if (scrollPct > 0.8) {
+        navContact.classList.add('visible');
+      } else {
+        navContact.classList.remove('visible');
+      }
+
+      // Hide scroll indicator after first scroll
+      if (!scrolled && scrollY > 80) {
+        scrolled = true;
+        scrollIndicator.classList.add('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ── Scroll reveal: general .reveal elements ─────────────
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ── Agent cards: staggered entrance ────────────────────
+    const cards = document.querySelectorAll('.agent-card');
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const card = entry.target;
+            const index = Array.from(cards).indexOf(card);
+            setTimeout(() => {
+              card.classList.add('visible');
+            }, index * 50);
+            cardObserver.unobserve(card);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    cards.forEach(card => {
+      cardObserver.observe(card);
+    });
+  </script>
 </body>
 </html>
