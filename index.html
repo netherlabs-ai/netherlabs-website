@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="hero.jpg" as="image">
   <style>
     /* ─── Reset ─────────────────────────────────────────────── */
     *, *::before, *::after {
@@ -154,6 +155,17 @@
       color: var(--body);
     }
 
+    /* ─── Particle Canvas ───────────────────────────────────── */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     /* ─── Hero ───────────────────────────────────────────────── */
     #hero {
       min-height: 100dvh;
@@ -163,13 +175,16 @@
       padding-top: 72px;
       position: relative;
       overflow: hidden;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center;
     }
 
     #hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,0.04), transparent);
+      background: linear-gradient(to bottom, rgba(10,10,9,0.3) 0%, rgba(10,10,9,0.7) 60%, rgba(10,10,9,1) 100%);
       pointer-events: none;
     }
 
@@ -566,6 +581,9 @@
 </head>
 <body>
 
+  <!-- ─── Particle Canvas ────────────────────────────────── -->
+  <canvas id="particle-canvas"></canvas>
+
   <!-- ─── Navigation ─────────────────────────────────────── -->
   <nav id="nav">
     <div class="container">
@@ -786,6 +804,89 @@
 
   <!-- ─── JavaScript ─────────────────────────────────────── -->
   <script>
+    // ── Particle system ─────────────────────────────────────
+    (function () {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      const PARTICLE_COUNT = 70;
+      const COLOR = '201, 168, 76';
+      let particles = [];
+      let paused = false;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function randomBetween(a, b) {
+        return a + Math.random() * (b - a);
+      }
+
+      function createParticle(fromBottom) {
+        return {
+          x: randomBetween(0, canvas.width),
+          y: fromBottom ? canvas.height + 5 : randomBetween(0, canvas.height),
+          r: randomBetween(0.8, 1.8),
+          opacity: randomBetween(0.12, 0.22),
+          vx: randomBetween(-0.12, 0.12),
+          vy: randomBetween(-0.06, -0.16),
+          life: 0,
+          maxLife: randomBetween(250, 600)
+        };
+      }
+
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const p = createParticle(false);
+          p.life = Math.random() * p.maxLife;
+          particles.push(p);
+        }
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + COLOR + ', ' + p.opacity + ')';
+          ctx.fill();
+        });
+      }
+
+      function updateParticles() {
+        particles.forEach((p, i) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life++;
+          if (p.life > p.maxLife || p.x < -10 || p.x > canvas.width + 10 || p.y < -10) {
+            particles[i] = createParticle(true);
+          }
+        });
+      }
+
+      function loop() {
+        if (!paused) {
+          updateParticles();
+          drawParticles();
+        }
+        requestAnimationFrame(loop);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        paused = document.hidden;
+      });
+
+      window.addEventListener('resize', () => {
+        resize();
+        initParticles();
+      });
+
+      resize();
+      initParticles();
+      loop();
+    })();
+
     // ── Navigation scroll behavior ──────────────────────────
     const nav = document.getElementById('nav');
     const navContact = document.getElementById('navContact');
