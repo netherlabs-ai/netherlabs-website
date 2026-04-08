@@ -513,6 +513,150 @@
       margin: 64px auto 0;
     }
 
+    /* ─── Organization: Grouped Layout ──────────────────── */
+    .agent-spotlight {
+      margin-bottom: 56px;
+    }
+
+    .spotlight-group-label {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .spotlight-group-label > span {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .spotlight-group-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      height: 1px;
+      background: rgba(201, 168, 76, 0.3);
+    }
+
+    .spotlight-card.agent-card {
+      padding: 0;
+      border-left: 2px solid var(--accent);
+    }
+
+    .spotlight-inner {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .spotlight-portrait {
+      width: 180px !important;
+      height: 180px !important;
+      margin-bottom: 0 !important;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .spotlight-body {
+      padding: 32px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .spotlight-body .agent-name {
+      font-size: 30px !important;
+      margin-bottom: 6px !important;
+    }
+
+    .spotlight-body .agent-blurb {
+      font-size: 0.88rem !important;
+      margin-top: 10px;
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    /* Agent groups */
+    .agent-groups {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agent-group {
+      margin-bottom: 48px;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .group-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .group-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Group grids */
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--bg);
+    }
+
+    .group-grid--4col {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 1024px) {
+      .group-grid,
+      .group-grid--4col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .group-grid,
+      .group-grid--4col {
+        grid-template-columns: 1fr;
+      }
+
+      .spotlight-inner {
+        flex-direction: column;
+      }
+
+      .spotlight-portrait {
+        width: 100% !important;
+        height: 140px !important;
+        object-fit: cover;
+      }
+
+      .spotlight-body {
+        padding: 24px 28px;
+      }
+
+      .spotlight-body .agent-name {
+        font-size: 24px !important;
+      }
+    }
+
     /* ─── How It Works ───────────────────────────────────────── */
     #how-it-works {
       padding: var(--section-pad-v) 0;
@@ -944,113 +1088,186 @@
     <div class="container">
       <div class="team-header reveal">
         <span class="overline">The Organization</span>
-        <h2 class="section-title">Seventeen agents. One organization.</h2>
+        <h2 class="section-title">Built by function.<br>Coordinated as one.</h2>
       </div>
 
-      <div class="agent-grid">
-        <div class="agent-card" data-blurb="Translates direction into action across every agent and workstream.">
-          <img class="agent-portrait" src="portraits/portrait-invoker.svg" alt="Invoker" loading="lazy">
-          <span class="agent-name">Invoker</span>
-          <span class="agent-role">Chief of Staff</span>
-          <p class="agent-blurb">Translates direction into action across every agent and workstream.</p>
+      <!-- Leadership Spotlight -->
+      <div class="agent-spotlight reveal">
+        <div class="spotlight-group-label">
+          <span>Leadership</span>
         </div>
-        <div class="agent-card" data-blurb="Spots what could go wrong before anyone else does.">
-          <img class="agent-portrait" src="portraits/portrait-bane.svg" alt="Bane" loading="lazy">
-          <span class="agent-name">Bane</span>
-          <span class="agent-role">Chief Risk Officer</span>
-          <p class="agent-blurb">Spots what could go wrong before anyone else does.</p>
-        </div>
-        <div class="agent-card" data-blurb="Keeps capital allocated, books clean, and the future funded.">
-          <img class="agent-portrait" src="portraits/portrait-keeper-of-the-light.svg" alt="Keeper of the Light" loading="lazy">
-          <span class="agent-name">Keeper of the Light</span>
-          <span class="agent-role">CFO</span>
-          <p class="agent-blurb">Keeps capital allocated, books clean, and the future funded.</p>
-        </div>
-        <div class="agent-card" data-blurb="Makes the world pay attention to things worth noticing.">
-          <img class="agent-portrait" src="portraits/portrait-puck.svg" alt="Puck" loading="lazy">
-          <span class="agent-name">Puck</span>
-          <span class="agent-role">Chief Marketing Officer</span>
-          <p class="agent-blurb">Makes the world pay attention to things worth noticing.</p>
-        </div>
-        <div class="agent-card" data-blurb="Neutralizes legal risk before it becomes everyone's problem.">
-          <img class="agent-portrait" src="portraits/portrait-silencer.svg" alt="Silencer" loading="lazy">
-          <span class="agent-name">Silencer</span>
-          <span class="agent-role">Legal &amp; Compliance</span>
-          <p class="agent-blurb">Neutralizes legal risk before it becomes everyone's problem.</p>
-        </div>
-        <div class="agent-card" data-blurb="Turns complex tax code into a structural advantage.">
-          <img class="agent-portrait" src="portraits/portrait-rubick.svg" alt="Rubick" loading="lazy">
-          <span class="agent-name">Rubick</span>
-          <span class="agent-role">Tax Counsel</span>
-          <p class="agent-blurb">Turns complex tax code into a structural advantage.</p>
-        </div>
-        <div class="agent-card" data-blurb="Keeps every workstream on track, on time, no exceptions.">
-          <img class="agent-portrait" src="portraits/portrait-ancient-apparition.svg" alt="Ancient Apparition" loading="lazy">
-          <span class="agent-name">Ancient Apparition</span>
-          <span class="agent-role">Project Manager</span>
-          <p class="agent-blurb">Keeps every workstream on track, on time, no exceptions.</p>
-        </div>
-        <div class="agent-card" data-blurb="Finds patterns the market hasn't priced in yet.">
-          <img class="agent-portrait" src="portraits/portrait-enigma.svg" alt="Enigma" loading="lazy">
-          <span class="agent-name">Enigma</span>
-          <span class="agent-role">Quant Researcher</span>
-          <p class="agent-blurb">Finds patterns the market hasn't priced in yet.</p>
-        </div>
-        <div class="agent-card" data-blurb="Tracks every dollar in, out, and at risk.">
-          <img class="agent-portrait" src="portraits/portrait-oracle.svg" alt="Oracle" loading="lazy">
-          <span class="agent-name">Oracle</span>
-          <span class="agent-role">Financial Comptroller</span>
-          <p class="agent-blurb">Tracks every dollar in, out, and at risk.</p>
-        </div>
-        <div class="agent-card" data-blurb="Breaks things on purpose so production never does.">
-          <img class="agent-portrait" src="portraits/portrait-disruptor.svg" alt="Disruptor" loading="lazy">
-          <span class="agent-name">Disruptor</span>
-          <span class="agent-role">Technical Auditor / QA</span>
-          <p class="agent-blurb">Breaks things on purpose so production never does.</p>
-        </div>
-        <div class="agent-card" data-blurb="Builds the systems everything else runs on.">
-          <img class="agent-portrait" src="portraits/portrait-tinker.svg" alt="Tinker" loading="lazy">
-          <span class="agent-name">Tinker</span>
-          <span class="agent-role">Lead Engineer</span>
-          <p class="agent-blurb">Builds the systems everything else runs on.</p>
-        </div>
-        <div class="agent-card" data-blurb="Makes complex interfaces feel obvious the first time.">
-          <img class="agent-portrait" src="portraits/portrait-lina.svg" alt="Lina" loading="lazy">
-          <span class="agent-name">Lina</span>
-          <span class="agent-role">UI/UX Designer</span>
-          <p class="agent-blurb">Makes complex interfaces feel obvious the first time.</p>
-        </div>
-        <div class="agent-card" data-blurb="Turns raw numbers into decisions that actually hold up.">
-          <img class="agent-portrait" src="portraits/portrait-crystal-maiden.svg" alt="Crystal Maiden" loading="lazy">
-          <span class="agent-name">Crystal Maiden</span>
-          <span class="agent-role">Reporting &amp; Data Analyst</span>
-          <p class="agent-blurb">Turns raw numbers into decisions that actually hold up.</p>
-        </div>
-        <div class="agent-card" data-blurb="Keeps infrastructure alive so no one has to think about it.">
-          <img class="agent-portrait" src="portraits/portrait-techies.svg" alt="Techies" loading="lazy">
-          <span class="agent-name">Techies</span>
-          <span class="agent-role">Sysadmin / Infrastructure</span>
-          <p class="agent-blurb">Keeps infrastructure alive so no one has to think about it.</p>
-        </div>
-        <div class="agent-card" data-blurb="Watches live operations and pulls the plug when it matters.">
-          <img class="agent-portrait" src="portraits/portrait-clockwerk.svg" alt="Clockwerk" loading="lazy">
-          <span class="agent-name">Clockwerk</span>
-          <span class="agent-role">Live Ops / Kill Switch</span>
-          <p class="agent-blurb">Watches live operations and pulls the plug when it matters.</p>
-        </div>
-        <div class="agent-card" data-blurb="Executes trades at scale with precision and no hesitation.">
-          <img class="agent-portrait" src="portraits/portrait-juggernaut.svg" alt="Juggernaut" loading="lazy">
-          <span class="agent-name">Juggernaut</span>
-          <span class="agent-role">Trade Execution</span>
-          <p class="agent-blurb">Executes trades at scale with precision and no hesitation.</p>
-        </div>
-        <div class="agent-card" data-blurb="Shapes the brand narrative with precision and intent.">
-          <img class="agent-portrait" src="portraits/portrait-grimstroke.svg" alt="Grimstroke" loading="lazy">
-          <span class="agent-name">Grimstroke</span>
-          <span class="agent-role">Creative Director</span>
-          <p class="agent-blurb">Shapes the brand narrative with precision and intent.</p>
+        <div class="spotlight-card agent-card" data-blurb="Translates direction into action across every agent and workstream.">
+          <div class="spotlight-inner">
+            <img class="agent-portrait spotlight-portrait" src="portraits/portrait-invoker.svg" alt="Invoker" loading="lazy">
+            <div class="spotlight-body">
+              <span class="agent-name">Invoker</span>
+              <span class="agent-role">Chief of Staff</span>
+              <p class="agent-blurb">Translates direction into action across every agent and workstream.</p>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Agent Groups -->
+      <div class="agent-groups">
+
+        <!-- Strategy & Risk -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Strategy &amp; Risk</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid">
+            <div class="agent-card" data-blurb="Spots what could go wrong before anyone else does.">
+              <img class="agent-portrait" src="portraits/portrait-bane.svg" alt="Bane" loading="lazy">
+              <span class="agent-name">Bane</span>
+              <span class="agent-role">Chief Risk Officer</span>
+              <p class="agent-blurb">Spots what could go wrong before anyone else does.</p>
+            </div>
+            <div class="agent-card" data-blurb="Keeps capital allocated, books clean, and the future funded.">
+              <img class="agent-portrait" src="portraits/portrait-keeper-of-the-light.svg" alt="Keeper of the Light" loading="lazy">
+              <span class="agent-name">Keeper of the Light</span>
+              <span class="agent-role">CFO</span>
+              <p class="agent-blurb">Keeps capital allocated, books clean, and the future funded.</p>
+            </div>
+            <div class="agent-card" data-blurb="Makes the world pay attention to things worth noticing.">
+              <img class="agent-portrait" src="portraits/portrait-puck.svg" alt="Puck" loading="lazy">
+              <span class="agent-name">Puck</span>
+              <span class="agent-role">Chief Marketing Officer</span>
+              <p class="agent-blurb">Makes the world pay attention to things worth noticing.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research & Analysis -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Research &amp; Analysis</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid">
+            <div class="agent-card" data-blurb="Finds patterns the market hasn't priced in yet.">
+              <img class="agent-portrait" src="portraits/portrait-enigma.svg" alt="Enigma" loading="lazy">
+              <span class="agent-name">Enigma</span>
+              <span class="agent-role">Quant Researcher</span>
+              <p class="agent-blurb">Finds patterns the market hasn't priced in yet.</p>
+            </div>
+            <div class="agent-card" data-blurb="Tracks every dollar in, out, and at risk.">
+              <img class="agent-portrait" src="portraits/portrait-oracle.svg" alt="Oracle" loading="lazy">
+              <span class="agent-name">Oracle</span>
+              <span class="agent-role">Financial Comptroller</span>
+              <p class="agent-blurb">Tracks every dollar in, out, and at risk.</p>
+            </div>
+            <div class="agent-card" data-blurb="Turns raw numbers into decisions that actually hold up.">
+              <img class="agent-portrait" src="portraits/portrait-crystal-maiden.svg" alt="Crystal Maiden" loading="lazy">
+              <span class="agent-name">Crystal Maiden</span>
+              <span class="agent-role">Reporting &amp; Data Analyst</span>
+              <p class="agent-blurb">Turns raw numbers into decisions that actually hold up.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal & Compliance -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Legal &amp; Compliance</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid">
+            <div class="agent-card" data-blurb="Neutralizes legal risk before it becomes everyone's problem.">
+              <img class="agent-portrait" src="portraits/portrait-silencer.svg" alt="Silencer" loading="lazy">
+              <span class="agent-name">Silencer</span>
+              <span class="agent-role">Legal &amp; Compliance</span>
+              <p class="agent-blurb">Neutralizes legal risk before it becomes everyone's problem.</p>
+            </div>
+            <div class="agent-card" data-blurb="Turns complex tax code into a structural advantage.">
+              <img class="agent-portrait" src="portraits/portrait-rubick.svg" alt="Rubick" loading="lazy">
+              <span class="agent-name">Rubick</span>
+              <span class="agent-role">Tax Counsel</span>
+              <p class="agent-blurb">Turns complex tax code into a structural advantage.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engineering & Design -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Engineering &amp; Design</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid group-grid--4col">
+            <div class="agent-card" data-blurb="Builds the systems everything else runs on.">
+              <img class="agent-portrait" src="portraits/portrait-tinker.svg" alt="Tinker" loading="lazy">
+              <span class="agent-name">Tinker</span>
+              <span class="agent-role">Lead Engineer</span>
+              <p class="agent-blurb">Builds the systems everything else runs on.</p>
+            </div>
+            <div class="agent-card" data-blurb="Breaks things on purpose so production never does.">
+              <img class="agent-portrait" src="portraits/portrait-disruptor.svg" alt="Disruptor" loading="lazy">
+              <span class="agent-name">Disruptor</span>
+              <span class="agent-role">Technical Auditor / QA</span>
+              <p class="agent-blurb">Breaks things on purpose so production never does.</p>
+            </div>
+            <div class="agent-card" data-blurb="Keeps infrastructure alive so no one has to think about it.">
+              <img class="agent-portrait" src="portraits/portrait-techies.svg" alt="Techies" loading="lazy">
+              <span class="agent-name">Techies</span>
+              <span class="agent-role">Sysadmin / Infrastructure</span>
+              <p class="agent-blurb">Keeps infrastructure alive so no one has to think about it.</p>
+            </div>
+            <div class="agent-card" data-blurb="Makes complex interfaces feel obvious the first time.">
+              <img class="agent-portrait" src="portraits/portrait-lina.svg" alt="Lina" loading="lazy">
+              <span class="agent-name">Lina</span>
+              <span class="agent-role">UI/UX Designer</span>
+              <p class="agent-blurb">Makes complex interfaces feel obvious the first time.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creative -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Creative</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid">
+            <div class="agent-card" data-blurb="Shapes the brand narrative with precision and intent.">
+              <img class="agent-portrait" src="portraits/portrait-grimstroke.svg" alt="Grimstroke" loading="lazy">
+              <span class="agent-name">Grimstroke</span>
+              <span class="agent-role">Creative Director</span>
+              <p class="agent-blurb">Shapes the brand narrative with precision and intent.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operations & Execution -->
+        <div class="agent-group">
+          <div class="group-header reveal">
+            <span class="group-label">Operations &amp; Execution</span>
+            <div class="group-rule"></div>
+          </div>
+          <div class="group-grid">
+            <div class="agent-card" data-blurb="Keeps every workstream on track, on time, no exceptions.">
+              <img class="agent-portrait" src="portraits/portrait-ancient-apparition.svg" alt="Ancient Apparition" loading="lazy">
+              <span class="agent-name">Ancient Apparition</span>
+              <span class="agent-role">Project Manager</span>
+              <p class="agent-blurb">Keeps every workstream on track, on time, no exceptions.</p>
+            </div>
+            <div class="agent-card" data-blurb="Watches live operations and pulls the plug when it matters.">
+              <img class="agent-portrait" src="portraits/portrait-clockwerk.svg" alt="Clockwerk" loading="lazy">
+              <span class="agent-name">Clockwerk</span>
+              <span class="agent-role">Live Ops / Kill Switch</span>
+              <p class="agent-blurb">Watches live operations and pulls the plug when it matters.</p>
+            </div>
+            <div class="agent-card" data-blurb="Executes trades at scale with precision and no hesitation.">
+              <img class="agent-portrait" src="portraits/portrait-juggernaut.svg" alt="Juggernaut" loading="lazy">
+              <span class="agent-name">Juggernaut</span>
+              <span class="agent-role">Trade Execution</span>
+              <p class="agent-blurb">Executes trades at scale with precision and no hesitation.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /agent-groups -->
 
       <p class="team-caption reveal">
         Every agent is purpose-built, scope-defined, and accountable.<br>
