@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0A0A09"/>
+
+  <!-- Hood/cloak shape -->
+  <path d="M 100 30 L 140 70 L 135 140 L 100 155 L 65 140 L 60 70 Z" fill="#1a1a18"/>
+  <path d="M 100 30 L 125 60 L 120 130 L 100 142 L 80 130 L 75 60 Z" fill="#C9A84C" opacity="0.15"/>
+
+  <!-- Face/mask — angular -->
+  <polygon points="100,48 118,68 115,95 100,102 85,95 82,68" fill="#C9A84C"/>
+  <!-- Eye slits -->
+  <rect x="88" y="72" width="8" height="4" rx="2" fill="#0A0A09"/>
+  <rect x="104" y="72" width="8" height="4" rx="2" fill="#0A0A09"/>
+
+  <!-- Left dagger -->
+  <polygon points="58,85 62,82 78,115 74,118" fill="#C9A84C"/>
+  <rect x="55" y="80" width="8" height="5" rx="1" fill="#C9A84C"/>
+
+  <!-- Right dagger -->
+  <polygon points="142,85 138,82 122,115 126,118" fill="#C9A84C"/>
+  <rect x="137" y="80" width="8" height="5" rx="1" fill="#C9A84C"/>
+
+  <!-- Gold coin — bottom center -->
+  <circle cx="100" cy="168" r="14" fill="none" stroke="#C9A84C" stroke-width="3"/>
+  <circle cx="100" cy="168" r="8" fill="#C9A84C"/>
+
+  <!-- Small tracking dots — surveillance motif -->
+  <circle cx="48" cy="130" r="2.5" fill="#C9A84C" opacity="0.6"/>
+  <circle cx="42" cy="145" r="2" fill="#C9A84C" opacity="0.4"/>
+  <circle cx="152" cy="130" r="2.5" fill="#C9A84C" opacity="0.6"/>
+  <circle cx="158" cy="145" r="2" fill="#C9A84C" opacity="0.4"/>
+
+</svg>
