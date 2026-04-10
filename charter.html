@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enigma Capital — Company Charter v1.2 — DRAFT</title>
+  <title>Enigma Capital — Company Charter v1.3 — ADOPTED</title>
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,8 +57,8 @@
 
     /* ─── Review Banner ──────────────────────────────────────── */
     .review-banner {
-      background: rgba(201, 168, 76, 0.12);
-      border-bottom: 2px solid var(--accent);
+      background: rgba(107, 191, 138, 0.10);
+      border-bottom: 2px solid #6BBF8A;
       padding: 20px var(--gutter);
       text-align: center;
     }
@@ -69,7 +69,7 @@
       font-size: 13px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #6BBF8A;
       display: block;
       margin-bottom: 8px;
     }
@@ -183,9 +183,9 @@
 
     .status-badge {
       display: inline-block;
-      background: rgba(201, 168, 76, 0.15);
-      border: 1px solid rgba(201, 168, 76, 0.4);
-      color: var(--accent);
+      background: rgba(107, 191, 138, 0.15);
+      border: 1px solid rgba(107, 191, 138, 0.4);
+      color: #6BBF8A;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -327,6 +327,59 @@
       margin-bottom: 0;
     }
 
+    /* ─── Prohibition Block ──────────────────────────────────── */
+    .prohibition-block {
+      background: rgba(180, 60, 60, 0.08);
+      border: 1px solid rgba(180, 60, 60, 0.3);
+      border-left: 3px solid #C0505A;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--body);
+    }
+
+    .prohibition-block p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .prohibition-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prohibition-block ul {
+      margin: 8px 0;
+    }
+
+    /* ─── Contingency Block ──────────────────────────────────── */
+    .contingency-block {
+      background: rgba(80, 120, 180, 0.07);
+      border: 1px solid rgba(80, 120, 180, 0.25);
+      border-left: 3px solid #5A8AC0;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--body);
+    }
+
+    .contingency-block p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .contingency-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contingency-block ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .contingency-block li {
+      margin-bottom: 4px;
+    }
+
     /* ─── Tables ─────────────────────────────────────────────── */
     .table-wrap {
       overflow-x: auto;
@@ -405,8 +458,8 @@
 
     .changelog-version .new-badge {
       display: inline-block;
-      background: rgba(201, 168, 76, 0.2);
-      color: var(--accent);
+      background: rgba(107, 191, 138, 0.2);
+      color: #6BBF8A;
       font-family: var(--font-body);
       font-size: 10px;
       font-weight: 500;
@@ -443,7 +496,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted);
-      min-width: 120px;
+      min-width: 140px;
       flex-shrink: 0;
     }
 
@@ -456,8 +509,9 @@
       color: #6BBF8A;
     }
 
-    .sig-value.pending {
-      color: var(--accent);
+    .sig-value.adopted {
+      color: #6BBF8A;
+      font-weight: 500;
     }
 
     /* ─── Preamble / Special Callouts ────────────────────────── */
@@ -500,22 +554,29 @@
     .warning-block li {
       margin-bottom: 4px;
     }
+
+    /* ─── Nested list ────────────────────────────────────────── */
+    ul ul, ol ul, ul ol, ol ol {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      padding-left: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- ─── Review Banner ──────────────────────────────────── -->
+  <!-- ─── Adoption Banner ────────────────────────────────── -->
   <div class="review-banner">
-    <span class="review-banner-title">Enigma Capital — Company Charter v1.2 — DRAFT — For Review by Yves La Rose</span>
+    <span class="review-banner-title">Enigma Capital — Company Charter v1.3 — ADOPTED — Yves La Rose — 2026-04-10</span>
     <p class="review-banner-note">
-      To approve: reply <strong>"Charter approved"</strong> to Invoker on Telegram
+      This Charter has been adopted by the Principal.
     </p>
   </div>
 
   <!-- ─── Doc Nav ────────────────────────────────────────── -->
   <div class="doc-nav">
     <span class="doc-nav-wordmark">Enigma Capital</span>
-    <span class="doc-nav-meta">Company Charter · v1.2 · 2026-04-10</span>
+    <span class="doc-nav-meta">Company Charter · v1.3 · 2026-04-10</span>
   </div>
 
   <!-- ─── Main Content ───────────────────────────────────── -->
@@ -530,7 +591,7 @@
         <div class="doc-meta-grid">
           <div class="doc-meta-item">
             <span class="doc-meta-label">Version</span>
-            <span class="doc-meta-value">1.2 (Draft)</span>
+            <span class="doc-meta-value">1.3 (Adopted)</span>
           </div>
           <div class="doc-meta-item">
             <span class="doc-meta-label">Date</span>
@@ -538,11 +599,11 @@
           </div>
           <div class="doc-meta-item">
             <span class="doc-meta-label">Previous Version</span>
-            <span class="doc-meta-value">1.1 (2026-04-07)</span>
+            <span class="doc-meta-value">1.2 (2026-04-10)</span>
           </div>
           <div class="doc-meta-item">
             <span class="doc-meta-label">Status</span>
-            <span class="doc-meta-value"><span class="status-badge">Pending Principal Approval</span></span>
+            <span class="doc-meta-value"><span class="status-badge">Adopted</span></span>
           </div>
         </div>
 
@@ -558,6 +619,10 @@
           <div class="doc-meta-item">
             <span class="doc-meta-label">Rubick Review</span>
             <span class="doc-meta-value" style="color: #6BBF8A;">✓ APPROVED (v1.1)</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Principal Adoption</span>
+            <span class="doc-meta-value" style="color: #6BBF8A;">✓ Yves La Rose — 2026-04-10</span>
           </div>
         </div>
       </div>
@@ -575,7 +640,6 @@
           <li><a href="#article-vi">Article VI — Operational Standards</a></li>
           <li><a href="#article-vii">Article VII — Organizational Structure</a></li>
           <li><a href="#article-viii">Article VIII — Standing Rules</a></li>
-          <li><a href="#article-ix">Article IX — Open Items</a></li>
           <li><a href="#signatures">Signatures</a></li>
           <li><a href="#changelog">Changelog</a></li>
         </ol>
@@ -664,6 +728,7 @@
           </ul>
           <p style="margin-top: 12px;"><strong>Resolution required before perpetual futures trading begins.</strong> Silencer to assess applicable exemptions at each milestone. Until cleared: spot trading only at M0 and M1.</p>
         </div>
+        <p>Additionally, market manipulation of any kind is an absolute prohibition under this Charter and applicable law. No Principal approval can authorize market manipulation. See §4.4 and Article VIII.</p>
       </section>
 
       <!-- Article III -->
@@ -740,17 +805,27 @@
           <li>Perpetual futures and derivatives strategies (until Silencer clears regulatory framework per §2.4)</li>
           <li>Options or structured derivatives strategies (until Silencer clears regulatory framework)</li>
           <li>Any strategy involving investor capital before the $10k autonomous milestone is proven</li>
-          <li>Market manipulation of any kind — including wash trading, spoofing, layering, or any activity prohibited under applicable market abuse laws</li>
         </ul>
 
-        <h3>4.4 Asset Classes (Permitted)</h3>
+        <h3>4.4 Absolute Prohibitions (No Override Permitted)</h3>
+        <div class="prohibition-block">
+          <p>The following are prohibited under all circumstances. No Principal approval, agent instruction, or market condition can authorize these activities:</p>
+          <ul>
+            <li>Market manipulation of any kind — including wash trading, spoofing, layering, front-running, or any activity prohibited under applicable market abuse laws</li>
+            <li>Trading in sanctioned jurisdictions or with sanctioned entities (OFAC, UN, or equivalent)</li>
+            <li>Any activity that constitutes fraud, insider trading, or market abuse under applicable law</li>
+          </ul>
+          <p>These prohibitions exist independent of any other Charter provision and cannot be amended without human legal counsel review.</p>
+        </div>
+
+        <h3>4.5 Asset Classes (Permitted)</h3>
         <ul>
           <li>Spot cryptocurrency (BTC, ETH, and majors with &gt;$1B daily volume)</li>
           <li>Crypto-native tokens with established liquidity (&gt;$100M market cap, &gt;$10M daily volume minimum)</li>
           <li>Perpetual futures on regulated exchanges <em>(pending Silencer regulatory clearance per §2.4)</em></li>
         </ul>
 
-        <h3>4.5 Asset Classes (Prohibited Without Explicit Principal Approval)</h3>
+        <h3>4.6 Asset Classes (Prohibited Without Explicit Principal Approval)</h3>
         <ul>
           <li>Newly launched tokens (&lt;90 days)</li>
           <li>Tokens with &lt;$10M daily volume</li>
@@ -759,7 +834,7 @@
           <li>Any asset on OFAC, UN, or equivalent sanctions lists</li>
         </ul>
 
-        <h3>4.6 Exchanges (Permitted)</h3>
+        <h3>4.7 Exchanges (Permitted)</h3>
         <p>Major regulated exchanges with established track records. Any new exchange requires:</p>
         <ol>
           <li>Silencer clearance (AML/KYC standing, regulatory status)</li>
@@ -796,6 +871,19 @@
         </ol>
         <p><strong>Post-kill:</strong> No trading resumes without explicit written Principal authorization. Oracle and Disruptor review before new keys issued. Post-mortem within 24 hours.</p>
 
+        <div class="contingency-block">
+          <p><strong>Exchange Operational Risk Contingency:</strong></p>
+          <p>If an exchange becomes unresponsive, halts withdrawals/deposits, or suspends order execution while Enigma holds open positions:</p>
+          <ol>
+            <li>Clockwerk immediately attempts emergency close on all affected positions</li>
+            <li>If orders cannot be submitted, Clockwerk alerts Principal directly via Telegram within 60 seconds</li>
+            <li>Capital remaining on the affected exchange is treated as at-risk; Principal notified of estimated exposure</li>
+            <li>No new positions opened on that exchange until full operational status is confirmed</li>
+            <li>Post-incident review required before resuming trading on affected exchange</li>
+          </ol>
+          <p>This contingency exists because exchange failures (e.g. FTX collapse, platform halts) can prevent orderly liquidation. Capital concentration limits (§5.2) are the primary protection; this protocol handles the residual risk.</p>
+        </div>
+
         <h3>5.2 Position Limits</h3>
         <p>All percentages apply to <strong>portfolio NAV</strong> (net equity value at current market prices, net of all liabilities).</p>
         <ul>
@@ -826,9 +914,16 @@
 
         <h3>5.4 Model Risk</h3>
         <ul>
-          <li>Enigma operates on Sonnet for research; <strong>must switch to Opus for final strategy validation before any live capital deployment</strong></li>
-          <li>Oracle operates on Sonnet through M2; <strong>must switch to Opus from M3 forward</strong> for all strategy validations and quarterly risk reviews</li>
-          <li>No LLM performs arithmetic on live trading data — all calculations are deterministic Python in sandboxed Jupyter kernels</li>
+          <li>Agents operate on <strong>research-tier models</strong> for day-to-day work — capable, cost-effective models appropriate for analysis, research, and routine operations</li>
+          <li><strong>Validation-tier models</strong> (the highest-capability models available at the time of decision) must be used for:
+            <ul>
+              <li>Final strategy validation before any live capital deployment</li>
+              <li>Oracle risk reviews from M3 forward</li>
+              <li>Any decision involving $10,000 USD or more in capital deployment</li>
+            </ul>
+          </li>
+          <li>Model selection is reviewed by Invoker at each milestone gate. The specific models designated as research-tier and validation-tier at any point in time are maintained in IDENTITY.md, not this Charter — ensuring the Charter does not go stale as AI capabilities evolve</li>
+          <li>No LLM performs arithmetic on live trading data — all calculations are deterministic Python in sandboxed environments</li>
           <li>No strategy may be modified after Oracle approval without full re-review</li>
         </ul>
 
@@ -881,52 +976,20 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
         <span class="article-label">Article VII</span>
         <h2 class="article-title">Organizational Structure</h2>
 
-        <h3>7.1 Current Agent Roster</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Agent</th><th>Role</th><th>Model</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>🔮 Invoker</td><td>Chief of Staff</td><td>Sonnet</td></tr>
-              <tr><td>💣 Techies</td><td>Sysadmin / Infrastructure</td><td>Haiku</td></tr>
-              <tr><td>⚙️ Tinker</td><td>Lead Engineer</td><td>Sonnet</td></tr>
-              <tr><td>🌀 Enigma</td><td>Quant Researcher</td><td>Sonnet (Opus before live capital)</td></tr>
-              <tr><td>🔭 Oracle</td><td>Financial Comptroller</td><td>Gemini Pro</td></tr>
-              <tr><td>⚡ Disruptor</td><td>Technical Auditor / QA</td><td>Sonnet</td></tr>
-              <tr><td>⚖️ Silencer</td><td>Legal &amp; Compliance</td><td>Sonnet</td></tr>
-              <tr><td>🧊 Ancient Apparition</td><td>Project Manager</td><td>Sonnet</td></tr>
-              <tr><td>🕰️ Clockwerk</td><td>Live Ops / Kill Switch</td><td>Sonnet</td></tr>
-              <tr><td>⚔️ Juggernaut</td><td>Trade Execution</td><td>Gemini Flash</td></tr>
-              <tr><td>🔵 Rubick</td><td>Tax Counsel</td><td>Gemini Flash</td></tr>
-              <tr><td>💡 Keeper of the Light</td><td>CFO / Cost Intelligence</td><td>Gemini Flash</td></tr>
-              <tr><td>❄️ Crystal Maiden</td><td>Reporting &amp; Analytics</td><td>Gemini Flash</td></tr>
-              <tr><td>😴 Bane</td><td>Chief Risk Officer</td><td>Gemini Flash</td></tr>
-              <tr><td>🎨 Lina</td><td>UI/UX Designer</td><td>Sonnet</td></tr>
-              <tr><td>🎭 Puck</td><td>CMO / Marketing</td><td>Sonnet</td></tr>
-              <tr><td>🗡️ Bounty Hunter</td><td>Security Architect</td><td>Sonnet</td></tr>
-              <tr><td>🖌️ Grimstroke</td><td>Creative Director</td><td>Sonnet</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h3>7.1 Living Roster</h3>
+        <p>The agent roster — including current agents, roles, reporting lines, and models — is maintained as a living document in IDENTITY.md. The Charter governs the rules by which the organization operates; it does not enumerate the specific roster, which evolves continuously as the firm grows.</p>
 
-        <h3>7.2 Pending Roles (To Be Built)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Role</th><th>Priority</th><th>Notes</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>COO</td><td>Low</td><td>When operational scale warrants it</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h3>7.2 Agent Hiring</h3>
+        <p>New agents may only be added with Principal approval. Invoker proposes the role, defines scope and responsibilities, builds the agent to world-class standard, and integrates them into the organization. Every agent is built to the standard of a world-class senior hire in their role.</p>
 
-        <h3>7.3 Agent Hiring</h3>
-        <p>New agents may only be added with Principal approval. Invoker proposes, defines the role, and builds the agent to world-class standard.</p>
+        <h3>7.3 Agent Removal</h3>
+        <p>Agents may be retired or removed with Principal approval. Invoker manages the transition, updates all interfaces, and ensures no operational gaps result from the change.</p>
 
         <h3>7.4 Agent Standards</h3>
-        <p>Every agent operates at the level of a world-class human hire in their role. The standard is excellent, not adequate.</p>
+        <p>Every agent operates at the level of a world-class human hire in their role. The standard is excellent, not adequate. All agents operate under this Charter without exception.</p>
+
+        <h3>7.5 Approval Pipeline</h3>
+        <p>The operational approval pipeline for strategy deployment is defined in IDENTITY.md and updated as the organization evolves. The Charter requires that any strategy involving live capital must pass through Financial (Oracle), Legal (Silencer), and Principal sign-off at minimum.</p>
       </section>
 
       <!-- Article VIII -->
@@ -936,42 +999,20 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
         <p>These rules may not be overridden by any agent, including Invoker, without explicit Principal instruction:</p>
         <ol>
           <li><strong>Kill switch at 10% drawdown.</strong> No exceptions. No override.</li>
-          <li><strong>Opus before live capital.</strong> Enigma switches to Opus for final strategy validation.</li>
+          <li><strong>Validation-tier models before live capital.</strong> Final strategy validation must use the highest-capability models available at time of decision.</li>
           <li><strong>Oracle + Silencer dual sign-off</strong> before any live capital deployment.</li>
           <li><strong>Milestone gates are hard.</strong> M0 → M1 → M2 → M3. No skipping.</li>
           <li><strong>No withdrawal permissions on programmatic keys.</strong> Ever.</li>
           <li><strong>No LLM math on live trading data.</strong> Deterministic Python only.</li>
           <li><strong>No trading in prohibited assets or jurisdictions</strong> without explicit Principal approval.</li>
           <li><strong>No perpetual futures until Silencer clears the regulatory framework</strong> (§2.4).</li>
-          <li><strong>No market manipulation.</strong> Zero tolerance. Immediate kill switch + legal review.</li>
+          <li><strong>No market manipulation. Ever.</strong> This is an absolute prohibition — illegal under applicable law and not subject to Principal override. Violation triggers immediate kill switch, full position liquidation, API key revocation, and mandatory legal review. See §4.4.</li>
           <li><strong>Legal entity must exist before M1.</strong> No live capital before the Cayman entity is formed.</li>
           <li><strong>Rubick reviews all cross-border structure decisions</strong> before execution.</li>
           <li><strong>Nothing external without Principal approval.</strong> No emails, posts, public communications, investor outreach.</li>
           <li><strong>Post-mortem after every P0.</strong> Within 24 hours.</li>
           <li><strong>This Charter governs.</strong> Except for direct Principal instruction.</li>
         </ol>
-      </section>
-
-      <!-- Article IX -->
-      <section class="article" id="article-ix">
-        <span class="article-label">Article IX</span>
-        <h2 class="article-title">Open Items (Require Resolution Before M1)</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Cayman Exempted Company formation</td><td>Silencer + human legal counsel</td><td>⏳ Pending</td></tr>
-              <tr><td>Canadian holdco management fee structure</td><td>Rubick + human tax counsel</td><td>⏳ Pending</td></tr>
-              <tr><td>Approved exchange list</td><td>Silencer + Techies</td><td>⏳ Pending</td></tr>
-              <tr><td>Derivatives regulatory clearance (perpetual futures)</td><td>Silencer</td><td>⏳ Pending</td></tr>
-              <tr><td>Cold storage withdrawal address (pre-approved)</td><td>Yves + Techies</td><td>⏳ Pending</td></tr>
-              <tr><td>AML/KYC program + FINTRAC MSB assessment</td><td>Silencer</td><td>⏳ Pending</td></tr>
-              <tr><td>Transfer pricing documentation</td><td>Rubick</td><td>⏳ Pending</td></tr>
-            </tbody>
-          </table>
-        </div>
       </section>
 
       <!-- Signatures -->
@@ -981,15 +1022,15 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
         <div class="signatures">
           <div class="sig-row">
             <span class="sig-label">Principal</span>
-            <span class="sig-value pending">Yves La Rose — Pending</span>
+            <span class="sig-value adopted">Yves La Rose</span>
           </div>
           <div class="sig-row">
             <span class="sig-label">Date of Adoption</span>
-            <span class="sig-value pending">Pending</span>
+            <span class="sig-value adopted">2026-04-10</span>
           </div>
           <div class="sig-row">
             <span class="sig-label">Version</span>
-            <span class="sig-value">1.2</span>
+            <span class="sig-value">1.3</span>
           </div>
           <div class="sig-row">
             <span class="sig-label">Oracle Review</span>
@@ -1003,6 +1044,10 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
             <span class="sig-label">Rubick Review</span>
             <span class="sig-value approved">APPROVED (v1.1)</span>
           </div>
+          <div class="sig-row">
+            <span class="sig-label">Adopted by Principal</span>
+            <span class="sig-value adopted">2026-04-10</span>
+          </div>
         </div>
       </section>
 
@@ -1012,7 +1057,20 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
         <h2 class="article-title">Version History</h2>
 
         <div class="changelog-entry">
-          <div class="changelog-version">v1.2 (2026-04-10) <span class="new-badge">Current</span></div>
+          <div class="changelog-version">v1.3 (2026-04-10) <span class="new-badge">Current</span></div>
+          <ul>
+            <li>Moved market manipulation from §4.3 (prohibited with approval) to new §4.4 (absolute prohibition, no override)</li>
+            <li>Added exchange operational risk contingency to §5.1</li>
+            <li>Replaced all specific model names in §5.4 with capability tiers (research-tier / validation-tier); model registry moved to IDENTITY.md</li>
+            <li>Restructured Article VII: removed static roster table, replaced with governing principles; living roster maintained in IDENTITY.md</li>
+            <li>Strengthened Standing Rule #9 to reflect absolute prohibition status</li>
+            <li>Removed Article IX (open items tracker — not appropriate for a constitutional document)</li>
+            <li>Adopted by Yves La Rose</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">v1.2 (2026-04-10)</div>
           <ul>
             <li>Added 7 agents to roster (Bane, Keeper of the Light, Crystal Maiden, Lina, Puck, Bounty Hunter, Grimstroke)</li>
             <li>Updated Oracle model to Gemini Pro</li>
@@ -1058,7 +1116,7 @@ INFRASTRUCTURE (Techies) → LIVE OPS (Clockwerk) → EXECUTION (Juggernaut)</di
   <footer>
     <div class="container">
       <p class="footer-confidential">
-        Enigma Capital Company Charter v1.2 — Confidential — Internal Use Only
+        Enigma Capital Company Charter v1.3 — Confidential — Internal Use Only
       </p>
     </div>
   </footer>
