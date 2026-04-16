@@ -100,6 +100,35 @@ th, td { text-align: left; }
 .section-grid { display: grid; gap: var(--section-gap); margin-top: var(--section-gap); }
 .two-col { grid-template-columns: 1fr 1fr; }
 
+/* ── Tab navigation ── */
+.tab-nav {
+  background: linear-gradient(180deg, rgba(6,8,15,0.98) 0%, rgba(13,18,32,0.97) 100%);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: var(--header-height);
+  z-index: 98;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.tab-nav-inner { display: flex; gap: 0; }
+.tab-btn {
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-head);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  letter-spacing: 0.02em;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-pane { display: none; }
+.tab-pane.is-active { display: block; }
+
 .expiry-banner {
   background: rgba(79, 156, 249, 0.10);
   border-bottom: 1px solid rgba(79, 156, 249, 0.25);
@@ -220,7 +249,7 @@ th, td { text-align: left; }
 .milestone-step.is-active .milestone-desc { color: var(--text-muted); }
 
 .milestone-progress-wrap { margin: var(--sp-3) 0; }
-.milestone-progress-track { height: 8px; background: var(--color-surface-2, #1a2540); border-radius: 99px; overflow: hidden; }
+.milestone-progress-track { height: 8px; background: var(--navy); border-radius: 99px; overflow: hidden; }
 .milestone-progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.6s ease; }
 .milestone-progress-fill.complete { background: var(--success); }
 
@@ -290,9 +319,41 @@ th, td { text-align: left; }
 .divider       { height: 1px; background: var(--border-subtle); margin: var(--sp-4) 0; }
 .count-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 99px; font-size: 0.65rem; font-weight: 600; color: var(--accent); font-family: var(--font-mono); line-height: 1; }
 
+/* ── Cost Intelligence styles ── */
+.ci-kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); margin-bottom: var(--sp-6); margin-top: var(--sp-6); }
+.ci-kpi-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-4); position: relative; overflow: hidden; }
+.ci-kpi-card::before { content: ''; position: absolute; left: 0; top: 15%; bottom: 15%; width: 3px; border-radius: 0 2px 2px 0; background: var(--accent); }
+.ci-kpi-card.kpi--warn::before { background: var(--warning); }
+.ci-kpi-label { font-size: var(--text-xs); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: var(--sp-2); }
+.ci-kpi-value { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: var(--sp-1); }
+.ci-kpi-sub { font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono); }
+.ci-approx { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); background: var(--navy); border: 1px solid var(--border-subtle); border-radius: 3px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; }
+.ci-bar-list { display: flex; flex-direction: column; gap: 0; }
+.ci-bar-row { display: grid; grid-template-columns: 140px 1fr 64px; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--border-subtle); transition: background 0.15s ease; }
+.ci-bar-row:last-child { border-bottom: none; }
+.ci-bar-row:hover { background: rgba(79,156,249,0.04); }
+.ci-bar-row.is-top { background: rgba(245,158,11,0.05); }
+.ci-bar-agent { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--text-xs); font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; }
+.ci-bar-track { height: 20px; background: var(--navy); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); overflow: hidden; }
+.ci-bar-fill { height: 100%; border-radius: var(--radius-sm); background: var(--accent-soft); border-right: 2px solid var(--accent); transition: width 0.5s ease; }
+.ci-bar-row.is-top .ci-bar-fill { background: rgba(245,158,11,0.12); border-right-color: var(--warning); }
+.ci-bar-amount { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; color: var(--text-muted); text-align: right; white-space: nowrap; }
+.ci-bar-row.is-top .ci-bar-amount { color: var(--warning); }
+.ci-donut-wrap { display: flex; align-items: center; gap: var(--sp-6); padding: var(--sp-4) 0; }
+.ci-donut-svg-wrap { position: relative; flex-shrink: 0; }
+.ci-donut-center-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
+.ci-donut-center-label .cdl-value { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 700; color: var(--text); line-height: 1; }
+.ci-donut-center-label .cdl-sub { font-size: 0.6rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+.ci-donut-legend { flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
+.ci-legend-row { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--text-xs); color: var(--text-muted); }
+.ci-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.ci-legend-label { flex: 1; }
+.ci-legend-pct { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); min-width: 36px; text-align: right; }
+
 @media (max-width: 1100px) {
   .metrics-row { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; }
+  .ci-kpi-strip { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 700px) {
   :root { --header-height: 56px; --content-gutter: var(--sp-4); --section-gap: var(--sp-4); }
@@ -303,6 +364,9 @@ th, td { text-align: left; }
   .milestone-desc { display: none; }
   .brand-wordmark { display: none; }
   .data-table .col-hide-mobile { display: none; }
+  .ci-kpi-strip { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+  .ci-bar-row { grid-template-columns: 110px 1fr 52px; gap: var(--sp-2); }
+  .ci-donut-wrap { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 420px) {
   .metrics-row { grid-template-columns: 1fr 1fr; }
@@ -313,7 +377,7 @@ th, td { text-align: left; }
 <body>
 
 <div class="expiry-banner">
-  Shared by <strong>Nether Labs</strong> &nbsp;&mdash;&nbsp; This snapshot expires <strong>April 17, 2026 at 1:38 PM EDT</strong>
+  Shared by <strong>Nether Labs</strong> &nbsp;|&nbsp; This snapshot expires <strong>April 17, 2026 at 1:38 PM EDT</strong>
 </div>
 
 <header class="site-header">
@@ -329,7 +393,7 @@ th, td { text-align: left; }
         <div class="header-divider" aria-hidden="true"></div>
         <div>
           <div class="header-title">Enigma Capital</div>
-          <div class="header-subtitle">Operations Dashboard</div>
+          <div class="header-subtitle" id="header-subtitle-text">Operations Dashboard</div>
         </div>
       </div>
       <div class="header-meta">
@@ -346,6 +410,18 @@ th, td { text-align: left; }
   </div>
 </header>
 
+<!-- Tab Navigation -->
+<nav class="tab-nav" aria-label="Dashboard sections">
+  <div class="page-wrapper">
+    <div class="tab-nav-inner">
+      <button class="tab-btn is-active" data-tab="ops" aria-selected="true">Operations Dashboard</button>
+      <button class="tab-btn" data-tab="cost" aria-selected="false">Cost Intelligence</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Tab: Operations Dashboard -->
+<div id="tab-ops" class="tab-pane is-active">
 <main class="main-content">
 <div class="page-wrapper">
 
@@ -353,7 +429,7 @@ th, td { text-align: left; }
 
     <article class="metric-card metric--warning" role="listitem">
       <div class="metric-label">MTD API Cost</div>
-      <div class="metric-value"><sup>$</sup><span id="metric-mtd-cost">—</span></div>
+      <div class="metric-value"><sup>$</sup><span id="metric-mtd-cost">-</span></div>
       <div class="metric-footer">
         <span class="metric-trend trend--neutral" id="metric-cost-today-note">Apr 4-15</span>
         <span class="metric-sublabel" id="metric-cost-steady">~$650/mo steady-state</span>
@@ -362,10 +438,10 @@ th, td { text-align: left; }
 
     <article class="metric-card metric--success" role="listitem">
       <div class="metric-label">Active Agents</div>
-      <div class="metric-value"><span id="metric-agent-count">—</span></div>
+      <div class="metric-value"><span id="metric-agent-count">-</span></div>
       <div class="metric-footer">
         <span class="metric-trend trend--neutral" id="metric-agent-flagged">0 flagged</span>
-        <span class="metric-sublabel" id="metric-oc-version">OpenClaw —</span>
+        <span class="metric-sublabel" id="metric-oc-version">OpenClaw -</span>
       </div>
     </article>
 
@@ -380,37 +456,37 @@ th, td { text-align: left; }
 
     <article class="metric-card metric--success" id="card-signal" role="listitem">
       <div class="metric-label">Signal Score</div>
-      <div class="metric-value"><span id="metric-signal-score">—</span></div>
+      <div class="metric-value"><span id="metric-signal-score">-</span></div>
       <div class="metric-footer">
         <span class="metric-trend trend--up" id="metric-position-code">LONG</span>
-        <span class="metric-sublabel" id="metric-signal-valid">— valid signals</span>
+        <span class="metric-sublabel" id="metric-signal-valid">- valid signals</span>
       </div>
     </article>
 
     <article class="metric-card metric--success" role="listitem">
       <div class="metric-label">Paper NAV</div>
-      <div class="metric-value"><sup>$</sup><span id="metric-nav">—</span></div>
+      <div class="metric-value"><sup>$</sup><span id="metric-nav">-</span></div>
       <div class="metric-footer">
         <span class="metric-trend trend--up" id="metric-drawdown">DD: 0.00%</span>
-        <span class="metric-sublabel">HWM: $<span id="metric-hwm">—</span></span>
+        <span class="metric-sublabel">HWM: $<span id="metric-hwm">-</span></span>
       </div>
     </article>
 
     <article class="metric-card" role="listitem">
       <div class="metric-label">BTC Live</div>
-      <div class="metric-value" style="font-size: var(--text-xl)"><sup>$</sup><span id="metric-btc-price">—</span></div>
+      <div class="metric-value" style="font-size: var(--text-xl)"><sup>$</sup><span id="metric-btc-price">-</span></div>
       <div class="metric-footer">
-        <span class="metric-trend" id="metric-fear-greed">F&amp;G: —</span>
-        <span class="metric-sublabel">SPY: $<span id="metric-spy">—</span></span>
+        <span class="metric-trend" id="metric-fear-greed">F&amp;G: -</span>
+        <span class="metric-sublabel">SPY: $<span id="metric-spy">-</span></span>
       </div>
     </article>
 
     <article class="metric-card" role="listitem">
       <div class="metric-label">Paper P&amp;L</div>
-      <div class="metric-value"><sup>$</sup><span id="metric-pnl">—</span></div>
+      <div class="metric-value"><sup>$</sup><span id="metric-pnl">-</span></div>
       <div class="metric-footer">
-        <span class="metric-trend" id="metric-action">Action: —</span>
-        <span class="metric-sublabel">IBIT: $<span id="metric-ibit-price">—</span></span>
+        <span class="metric-trend" id="metric-action">Action: -</span>
+        <span class="metric-sublabel">IBIT: $<span id="metric-ibit-price">-</span></span>
       </div>
     </article>
 
@@ -425,7 +501,7 @@ th, td { text-align: left; }
       <div class="card">
         <div class="card-header">
           <span class="card-title" id="cost-chart-title">Daily Spend (Apr 4-15)</span>
-          <span class="text-xs text-mono text-muted">MTD: $<span id="cost-header-mtd">—</span></span>
+          <span class="text-xs text-mono text-muted">MTD: $<span id="cost-header-mtd">-</span></span>
         </div>
         <div class="card-body--tight">
           <div class="cost-bar-row" id="cost-bar-chart" aria-label="Daily cost bar chart"></div>
@@ -438,9 +514,9 @@ th, td { text-align: left; }
           </table>
           <div class="cost-total-row">
             <span class="cost-total-label">Running total (Apr 4-15)</span>
-            <span class="cost-total-value" id="cost-grand-total">$—</span>
+            <span class="cost-total-value" id="cost-grand-total">$-</span>
           </div>
-          <div style="margin: var(--sp-2) 0 0; padding: var(--sp-2) var(--sp-3); background: var(--color-surface-2, #0d1220); border-left: 3px solid var(--warning); border-radius: var(--radius-sm);">
+          <div style="margin: var(--sp-2) 0 0; padding: var(--sp-2) var(--sp-3); background: var(--navy); border-left: 3px solid var(--warning); border-radius: var(--radius-sm);">
             <span class="text-xs text-muted" id="cost-note-text">Build phase (Apr 8-10) drove the peak - 200k-1M context windows during M0 construction. Steady-state projection: ~$650/month.</span>
           </div>
         </div>
@@ -460,17 +536,17 @@ th, td { text-align: left; }
           <div style="display:flex; align-items:center; gap: var(--sp-4); margin-bottom: var(--sp-4);">
             <div style="text-align:center;">
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em;">Composite</div>
-              <div style="font-size:var(--text-2xl); font-weight:700; font-family:var(--font-mono); color:var(--accent);" id="signal-composite-big">—</div>
+              <div style="font-size:var(--text-2xl); font-weight:700; font-family:var(--font-mono); color:var(--accent);" id="signal-composite-big">-</div>
             </div>
             <div style="flex:1;">
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Position</div>
-              <div style="font-size:var(--text-xl); font-weight:700;" id="signal-position-big">—</div>
-              <div class="text-xs text-muted" id="signal-timestamp-display">—</div>
+              <div style="font-size:var(--text-xl); font-weight:700;" id="signal-position-big">-</div>
+              <div class="text-xs text-muted" id="signal-timestamp-display">-</div>
             </div>
             <div style="text-align:right;">
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em;">Shares held</div>
-              <div style="font-size:var(--text-xl); font-weight:700; font-family:var(--font-mono);" id="signal-shares-big">—</div>
-              <div class="text-xs text-muted" id="signal-action-display">—</div>
+              <div style="font-size:var(--text-xl); font-weight:700; font-family:var(--font-mono);" id="signal-shares-big">-</div>
+              <div class="text-xs text-muted" id="signal-action-display">-</div>
             </div>
           </div>
           <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">Signal Components</div>
@@ -479,15 +555,15 @@ th, td { text-align: left; }
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap: var(--sp-3);">
             <div>
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">IBIT Est. Price</div>
-              <div class="text-sm fw-600 text-mono">$<span id="sig-est-price">—</span></div>
+              <div class="text-sm fw-600 text-mono">$<span id="sig-est-price">-</span></div>
             </div>
             <div>
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">Fill Status</div>
-              <div class="text-sm fw-600" id="sig-fill-status">—</div>
+              <div class="text-sm fw-600" id="sig-fill-status">-</div>
             </div>
             <div>
               <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">Valid Signals</div>
-              <div class="text-sm fw-600 text-mono"><span id="sig-valid-count">—</span> / 4</div>
+              <div class="text-sm fw-600 text-mono"><span id="sig-valid-count">-</span> / 4</div>
             </div>
           </div>
         </div>
@@ -675,13 +751,86 @@ th, td { text-align: left; }
 
 </div>
 </main>
+</div><!-- /tab-ops -->
+
+<!-- Tab: Cost Intelligence -->
+<div id="tab-cost" class="tab-pane">
+<main class="main-content">
+<div class="page-wrapper">
+
+  <div class="ci-kpi-strip">
+    <div class="ci-kpi-card">
+      <div class="ci-kpi-label">Total Spend</div>
+      <div class="ci-kpi-value">$438.38</div>
+      <div class="ci-kpi-sub">Apr 10 to Apr 16 (7 days)</div>
+    </div>
+    <div class="ci-kpi-card kpi--warn">
+      <div class="ci-kpi-label">Top Agent <span class="ci-approx">approx</span></div>
+      <div class="ci-kpi-value">🔮 Invoker</div>
+      <div class="ci-kpi-sub">~$169.06 - 38.6% of spend</div>
+    </div>
+    <div class="ci-kpi-card kpi--warn">
+      <div class="ci-kpi-label">Top Category <span class="ci-approx">approx</span></div>
+      <div class="ci-kpi-value">Conversation</div>
+      <div class="ci-kpi-sub">~$191.26 - 43.6% of spend</div>
+    </div>
+    <div class="ci-kpi-card">
+      <div class="ci-kpi-label">Avg Daily</div>
+      <div class="ci-kpi-value">$62.63</div>
+      <div class="ci-kpi-sub">1,807 turns over 7 days</div>
+    </div>
+  </div>
+
+  <div class="section-grid two-col">
+
+    <section aria-labelledby="ci-agent-title">
+      <div class="section-label">
+        <span class="section-label-text" id="ci-agent-title">Cost by Agent</span>
+        <span class="ci-approx" style="margin-left:auto; margin-right: var(--sp-3);">approx</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Agent Spend</span>
+          <span class="text-xs text-mono text-muted">Apr 10-16</span>
+        </div>
+        <div class="card-body--tight">
+          <div class="ci-bar-list" id="ci-agent-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="ci-cat-title">
+      <div class="section-label">
+        <span class="section-label-text" id="ci-cat-title">Spend by Activity</span>
+        <span class="ci-approx" style="margin-left:auto; margin-right: var(--sp-3);">approx</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Activity Breakdown</span>
+          <span class="text-xs text-mono text-muted">6 active categories</span>
+        </div>
+        <div class="card-body">
+          <div class="ci-donut-wrap" id="ci-donut-wrap"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div style="margin-top: var(--sp-4); padding: var(--sp-2) var(--sp-3); background: var(--navy); border-left: 3px solid var(--border); border-radius: var(--radius-sm);">
+    <span class="text-xs text-muted">Cache hit rate 75.5% for this period. Total spend sourced from the Anthropic API (authoritative). Agent and category breakdowns are approximate - derived from local session logs (~9.5% coverage).</span>
+  </div>
+
+</div>
+</main>
+</div><!-- /tab-cost -->
 
 <footer>
   <div class="page-wrapper">
     <div class="dash-footer">
       <span class="footer-text">Snapshot as of Apr 16, 14:20 ET</span>
       <span class="footer-text">Nether Labs / Enigma Capital &middot; Confidential</span>
-      <span class="footer-text">🔮 Invoker &middot; v1.1 &middot; static snapshot</span>
+      <span class="footer-text">🔮 Invoker &middot; v1.2 &middot; static snapshot</span>
     </div>
   </div>
 </footer>
@@ -690,23 +839,42 @@ th, td { text-align: left; }
 (function () {
   'use strict';
 
+  /* ── Tab switcher ── */
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-pane').forEach(function(p) {
+        p.classList.remove('is-active');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+      var pane = document.getElementById('tab-' + tab);
+      if (pane) pane.classList.add('is-active');
+    });
+  });
+
+  /* ── Ops dashboard data ── */
   var d = {"last_updated":"2026-04-16T18:20:01Z","openclaw_version":"unknown","paper_trading_days":4,"signals":{"composite_score":2,"position_code":"LONG","fear_greed_value":23,"btc_price":74833.50639132406,"btc_50ma":69690.897738061,"btc_vs_50ma":1,"spy_cross":1,"dxy_momentum_pct":-1.639890745969055,"num_valid_signals":6,"degraded_mode":null,"signal_timestamp":"2026-04-16T04:43:51.704576"},"position":{"shares":187,"action":"BUY","fill_price":null,"fill_status":"TIMEOUT","estimated_price":42.56,"current_position":187,"nav_usd":10000.00,"hwm_usd":10000.00,"drawdown_pct":0.0000,"paper_pnl_usd":0.0,"paper_trading_days":4},"market":{"btc_live_price":74430,"ibit_live_price":42.21,"spy_price":700.34,"fear_greed_live":23,"fear_greed_live_label":"Extreme Fear"},"costs":{"mtd_total":901.93,"weekly_total":901.93,"partial_today":0,"steady_state_monthly":650,"daily":[{"date":"Apr 4","amount":0.15},{"date":"Apr 5","amount":2.37},{"date":"Apr 6","amount":2.32},{"date":"Apr 7","amount":13.15},{"date":"Apr 8","amount":218.61},{"date":"Apr 9","amount":226.94},{"date":"Apr 10","amount":116.46},{"date":"Apr 11","amount":93.8},{"date":"Apr 12","amount":24.96},{"date":"Apr 13","amount":18.73},{"date":"Apr 14","amount":119.77},{"date":"Apr 15","amount":64.67}]},"org_health":{"agent_count":20,"flagged_agents":0,"last_backup":null},"agent_activity":[{"agent":"puck","last_active":"2026-04-16T06:38:16Z","status":"idle"},{"agent":"enigma","last_active":"2026-04-15T14:39:54Z","status":"idle"},{"agent":"shadow-shaman","last_active":"2026-04-15T14:23:04Z","status":"idle"},{"agent":"weaver","last_active":"2026-04-15T01:49:09Z","status":"idle"},{"agent":"disruptor","last_active":"2026-04-14T23:46:52Z","status":"idle"},{"agent":"clockwerk","last_active":"2026-04-14T23:46:45Z","status":"idle"},{"agent":"tinker","last_active":"2026-04-14T23:46:36Z","status":"idle"},{"agent":"invoker","last_active":"2026-04-14T23:46:31Z","status":"idle"},{"agent":"ancient-apparition","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"bane","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"bounty-hunter","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"crystal-maiden","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"grimstroke","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"juggernaut","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"kotl","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"lina","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"oracle","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"rubick","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"silencer","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"techies","last_active":"2026-04-14T16:02:19Z","status":"idle"}],"milestones":{"current":"M0","paper_trading_days":4,"paper_trading_days_required":30,"conditions_m0":[{"label":"Charter v1.3 adopted","status":"done","detail":"Approved by Yves Apr 10"},{"label":"Strategy backtested","status":"done","detail":"Sharpe 1.065 validated"},{"label":"IBKR account approved","status":"done","detail":"Ref: 509772096 - Paper: DUP762003"},{"label":"Paper trading infrastructure","status":"done","detail":"Live as of 2026-04-12"},{"label":"Risk framework defined","status":"done","detail":"Bane - 10% drawdown kill switch"},{"label":"All 4 signals operational","status":"done","detail":"SPY/DXY fix deployed"},{"label":"30 days paper trading","status":"in_progress","detail":"Day 4 of 30"},{"label":"Charter v1.4 amendments","status":"done","detail":"Adopted by Yves 2026-04-13 - all 13 conditions confirmed"},{"label":"FAPI opinion","status":"pending","detail":"Colleen D. Ma, Miller Thomson, Calgary"}],"conditions_m1":[{"label":"30 days clean paper trading","status":"pending","detail":"Required for M1 gate"},{"label":"Oracle validation","status":"pending","detail":"P&L reconciliation sign-off"},{"label":"Silencer clearance","status":"pending","detail":"Regulatory clearance"},{"label":"FAPI opinion received","status":"pending","detail":"Hard blocker"},{"label":"Live capital authorization","status":"pending","detail":"$1,000 initial deployment"},{"label":"Approved exchange list","status":"pending","detail":"Bounty Hunter security review"},{"label":"Legal entity formed","status":"pending","detail":"Cayman structure TBD"}]},"open_decisions":[{"priority":"red","title":"Engage FAPI Counsel - Hard M1 Blocker","summary":"Human legal counsel required for FAPI opinion before M1 capital deployment. Counsel will NOT be Colleen D. Ma (Yves decided Apr 14)."},{"priority":"yellow","title":"LinkedIn Company Page OAuth","summary":"Nether Labs company page posting token - waiting on LinkedIn Community Management API approval"},{"priority":"yellow","title":"New Verticals - Decision when ready","summary":"Three business ideas assessed: Content Creator Workflow, MTG Marketplace, First Nations Tax Tool"}],"workstreams":[{"priority":"red","title":"TOTP permanent fix","detail":"Startup script must run as yves with DISPLAY=:0"},{"priority":"red","title":"FAPI counsel status","detail":"Yves said he would engage Apr 15 - confirm or resurface"},{"priority":"yellow","title":"Apr 16 tweet - proof of work post","detail":"Confirm pipeline fires cleanly"},{"priority":"yellow","title":"ChatGPT export analysis","detail":"Subagent dispatched Apr 15; check completion"},{"priority":"yellow","title":"Psychometric data","detail":"Yves to send Workplace Big5; fold into profile"},{"priority":"yellow","title":"CryptoQuant trial","detail":"Weaver to evaluate for Exchange Net Flow signal"},{"priority":"yellow","title":"Tinker: swap CryptoPanic to CryptoCompare","detail":"LLM News Sentiment signal"},{"priority":"yellow","title":"Clockwerk SPOF documentation","detail":"Manual kill capability before first live trade (pre-M1 gate)"},{"priority":"yellow","title":"Security: webchat elevated exec wildcard","detail":"CRITICAL from Apr 13 audit, still unresolved"},{"priority":"yellow","title":"LinkedIn company page OAuth","detail":"Waiting on LinkedIn CMA approval (~1 week from Apr 11)"},{"priority":"yellow","title":"Puck weekly brief","detail":"Assign Twitter content for next week"}]};
 
   function $(id) { return document.getElementById(id); }
 
   function fmtUSD(v, dec) {
     dec = dec == null ? 2 : dec;
-    if (v == null || isNaN(v)) return '—';
+    if (v == null || isNaN(v)) return '-';
     return Number(v).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   }
 
   function fmtInt(v) {
-    if (v == null || isNaN(v)) return '—';
+    if (v == null || isNaN(v)) return '-';
     return Math.round(Number(v)).toLocaleString('en-US');
   }
 
   function fmtRelative(isoStr) {
-    if (!isoStr) return '—';
+    if (!isoStr) return '-';
     try {
       var diff = Date.now() - new Date(isoStr).getTime();
       var mins = Math.floor(diff / 60000);
@@ -715,12 +883,12 @@ th, td { text-align: left; }
       if (hrs > 0)   return hrs + 'h ago';
       if (mins > 0)  return mins + 'm ago';
       return 'Just now';
-    } catch(e) { return '—'; }
+    } catch(e) { return '-'; }
   }
 
   function setText(id, val) {
     var el = $(id);
-    if (el) el.textContent = (val != null) ? val : '—';
+    if (el) el.textContent = (val != null) ? val : '-';
   }
 
   function setHTML(id, html) {
@@ -734,16 +902,15 @@ th, td { text-align: left; }
   }
 
   function condIcon(s) {
-    if (s === 'done') return '✅';
-    if (s === 'in_progress') return '🔄';
-    if (s === 'pending') return '⬜';
-    return '❓';
+    if (s === 'done') return '&#x2705;';
+    if (s === 'in_progress') return '&#x1F504;';
+    if (s === 'pending') return '&#x2B1C;';
+    return '&#x2753;';
   }
 
   function pbClass(p) { return p === 'red' ? 'badge--danger' : p === 'yellow' ? 'badge--warning' : 'badge--muted'; }
   function plabel(p) { return p === 'red' ? 'High' : p === 'yellow' ? 'Medium' : 'Low'; }
 
-  // Metric cards
   setText('metric-mtd-cost', fmtUSD(d.costs.mtd_total));
   setText('metric-agent-count', d.org_health.agent_count);
   setText('metric-agent-flagged', d.org_health.flagged_agents + ' flagged');
@@ -759,7 +926,6 @@ th, td { text-align: left; }
   setText('metric-action', 'Action: ' + d.position.action);
   setText('metric-ibit-price', fmtUSD(d.market.ibit_live_price));
 
-  // Cost section
   setText('cost-header-mtd', d.costs.mtd_total.toFixed(2));
   setText('cost-grand-total', '$' + d.costs.mtd_total.toFixed(2));
 
@@ -780,7 +946,6 @@ th, td { text-align: left; }
     return '<tr><td class="col-name fw-500">'+r.date+'</td><td class="col-amount text-right'+(r.amount>100?' amount--high':'')+'">$'+r.amount.toFixed(2)+'</td><td class="text-xs text-muted">'+(NOTES[r.date]||'')+'</td></tr>';
   }).join(''));
 
-  // Signal section
   setText('signal-composite-big', d.signals.composite_score);
   setText('signal-position-big', d.signals.position_code);
   setText('signal-timestamp-display', 'Signal: Apr 15, 24:43 ET');
@@ -807,7 +972,6 @@ th, td { text-align: left; }
     '<span class="signal-pill null-val">BTC 50MA: $'+fmtInt(d.signals.btc_50ma)+'</span>'
   );
 
-  // Conditions
   function renderCond(id, arr) {
     if (!arr) return;
     setHTML(id, arr.map(function(c){
@@ -817,19 +981,17 @@ th, td { text-align: left; }
   renderCond('m0-conditions', d.milestones.conditions_m0);
   renderCond('m1-conditions', d.milestones.conditions_m1);
 
-  // Decisions
   setHTML('decisions-list-container', d.open_decisions.map(function(dec){
     var uc = dec.priority==='red'?'urgency--high':'urgency--medium';
-    var ic = dec.priority==='red'?'🔴':'🟡';
+    var ic = dec.priority==='red'?'&#x1F534;':'&#x1F7E1;';
     return '<article class="decision-item '+uc+'"><div class="decision-icon">'+ic+'</div><div class="decision-content"><div class="decision-title">'+esc(dec.title)+'</div><div class="decision-desc">'+esc(dec.summary||'')+'</div><div class="decision-meta"><span class="badge '+pbClass(dec.priority)+'">'+plabel(dec.priority)+'</span></div></div></article>';
   }).join(''));
 
-  // Agents
-  var EMOJI = {'ancient-apparition':'🧊','bane':'😴','bounty-hunter':'🗡️','clockwerk':'🕰️','crystal-maiden':'❄️','disruptor':'⚡','enigma':'🌀','grimstroke':'🖌️','juggernaut':'⚔️','kotl':'💡','lina':'🎨','oracle':'🔭','puck':'🎭','rubick':'🔵','silencer':'⚖️','techies':'💣','tinker':'⚙️','invoker':'🔮','shadow-shaman':'🪄','weaver':'🕷️'};
+  var EMOJI = {'ancient-apparition':'&#x1F9CA;','bane':'&#x1F634;','bounty-hunter':'&#x1F5E1;&#xFE0F;','clockwerk':'&#x1F570;&#xFE0F;','crystal-maiden':'&#x2744;&#xFE0F;','disruptor':'&#x26A1;','enigma':'&#x1F300;','grimstroke':'&#x1F58C;&#xFE0F;','juggernaut':'&#x2694;&#xFE0F;','kotl':'&#x1F4A1;','lina':'&#x1F3A8;','oracle':'&#x1F52D;','puck':'&#x1F3AD;','rubick':'&#x1F535;','silencer':'&#x2696;&#xFE0F;','techies':'&#x1F4A3;','tinker':'&#x2699;&#xFE0F;','invoker':'&#x1F52E;','shadow-shaman':'&#x1FA84;','weaver':'&#x1F577;&#xFE0F;'};
   setHTML('agent-activity-container',
     '<table class="data-table"><thead><tr><th>Agent</th><th class="col-hide-mobile">ID</th><th class="col-hide-mobile text-right">Last Active</th><th>Status</th></tr></thead><tbody>' +
     d.agent_activity.map(function(a){
-      var em = EMOJI[a.agent]||'🤖';
+      var em = EMOJI[a.agent]||'&#x1F916;';
       var nm = a.agent.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
       var sb = a.status==='active'
         ? '<span class="badge badge--success"><span class="status-dot status-dot--active"></span> Active</span>'
@@ -839,11 +1001,118 @@ th, td { text-align: left; }
     '</tbody></table>'
   );
 
-  // Workstreams
   setHTML('workstreams-container', d.workstreams.map(function(ws){
-    var dot = ws.priority==='red'?'🔴':'🟡';
+    var dot = ws.priority==='red'?'&#x1F534;':'&#x1F7E1;';
     return '<div class="workstream-item"><div><div class="workstream-name">'+dot+' '+esc(ws.title)+'</div><div class="workstream-owner">'+esc(ws.detail||'')+'</div></div><span class="badge '+pbClass(ws.priority)+'">'+plabel(ws.priority)+'</span></div>';
   }).join(''));
+
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Cost Intelligence - baked 7d data ── */
+  var CAT_COLORS = {
+    'Conversation': '#4f9cf9',
+    'Execution':    '#22c55e',
+    'File ops':     '#f59e0b',
+    'Agent coordination': '#a855f7',
+    'Memory/search': '#06b6d4',
+    'Other':        '#4a5568'
+  };
+
+  var byAgent = [
+    {agent:'invoker',emoji:'\u{1F52E}',display_name:'Invoker',cost_usd:169.06,pct:38.6},
+    {agent:'cron',emoji:'\u23F1\uFE0F',display_name:'Cron Jobs',cost_usd:96.34,pct:22.0},
+    {agent:'tinker',emoji:'\u2699\uFE0F',display_name:'Tinker',cost_usd:63.37,pct:14.5},
+    {agent:'lina',emoji:'\u{1F3A8}',display_name:'Lina',cost_usd:21.60,pct:4.9},
+    {agent:'puck',emoji:'\u{1F3AD}',display_name:'Puck',cost_usd:15.67,pct:3.6},
+    {agent:'enigma',emoji:'\u{1F300}',display_name:'Enigma',cost_usd:14.33,pct:3.3},
+    {agent:'techies',emoji:'\u{1F4A3}',display_name:'Techies',cost_usd:9.63,pct:2.2},
+    {agent:'weaver',emoji:'\u{1F577}\uFE0F',display_name:'Weaver',cost_usd:8.72,pct:2.0},
+    {agent:'disruptor',emoji:'\u26A1',display_name:'Disruptor',cost_usd:6.90,pct:1.6},
+    {agent:'kotl',emoji:'\u{1F4A1}',display_name:'Keeper of the Light',cost_usd:6.37,pct:1.5},
+    {agent:'shadow-shaman',emoji:'\u{1FA84}',display_name:'Shadow Shaman',cost_usd:4.81,pct:1.1},
+    {agent:'bane',emoji:'\u{1F634}',display_name:'Bane',cost_usd:4.74,pct:1.1},
+    {agent:'grimstroke',emoji:'\u{1F58C}\uFE0F',display_name:'Grimstroke',cost_usd:4.23,pct:1.0},
+    {agent:'ancient-apparition',emoji:'\u{1F9CA}',display_name:'Ancient Apparition',cost_usd:3.04,pct:0.7},
+    {agent:'silencer',emoji:'\u2696\uFE0F',display_name:'Silencer',cost_usd:3.03,pct:0.7},
+    {agent:'oracle',emoji:'\u{1F52D}',display_name:'Oracle',cost_usd:2.64,pct:0.6},
+    {agent:'rubick',emoji:'\u{1F535}',display_name:'Rubick',cost_usd:1.62,pct:0.4},
+    {agent:'clockwerk',emoji:'\u{1F570}\uFE0F',display_name:'Clockwerk',cost_usd:1.22,pct:0.3},
+    {agent:'cron/executor',emoji:'\u{1F916}',display_name:'Cron/Executor',cost_usd:1.06,pct:0.2}
+  ];
+
+  var byCategory = [
+    {category:'Conversation',cost_usd:191.26,pct:43.6},
+    {category:'File ops',cost_usd:109.47,pct:25.0},
+    {category:'Execution',cost_usd:99.33,pct:22.7},
+    {category:'Agent coordination',cost_usd:14.94,pct:3.4},
+    {category:'Other',cost_usd:12.32,pct:2.8},
+    {category:'Memory/search',cost_usd:11.06,pct:2.5}
+  ];
+
+  var topAgent = 'invoker';
+  var totalCost = 438.38;
+
+  function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function fmtUSD(v) {
+    return '$' + Number(v).toFixed(2);
+  }
+
+  /* ── Agent bar chart ── */
+  var maxCost = Math.max.apply(null, byAgent.map(function(a){ return a.cost_usd; }));
+  var barHTML = byAgent.map(function(a) {
+    var isTop = a.agent === topAgent;
+    var pct = Math.max(3, (a.cost_usd / maxCost) * 100);
+    return '<div class="ci-bar-row' + (isTop ? ' is-top' : '') + '" title="' + esc(a.display_name) + ': ' + fmtUSD(a.cost_usd) + ' (' + a.pct + '% of period)">' +
+      '<div class="ci-bar-agent"><span>' + a.emoji + '</span><span class="agent-name">' + esc(a.display_name) + '</span></div>' +
+      '<div class="ci-bar-track"><div class="ci-bar-fill" style="width:' + pct.toFixed(1) + '%;"></div></div>' +
+      '<div class="ci-bar-amount">~' + fmtUSD(a.cost_usd) + '</div>' +
+    '</div>';
+  }).join('');
+  var barsEl = document.getElementById('ci-agent-bars');
+  if (barsEl) barsEl.innerHTML = barHTML;
+
+  /* ── Donut chart ── */
+  var R = 60, CX = 90, CY = 90, CIRCUM = 2 * Math.PI * R, STROKE_W = 22, GAP = 2;
+  var nonZero = byCategory.filter(function(c){ return c.pct > 0; });
+  var svgSegs = '', offset = 0;
+  nonZero.forEach(function(cat) {
+    var color = CAT_COLORS[cat.category] || '#4a5568';
+    var pct = cat.pct / 100;
+    var dashLen = Math.max(0, pct * CIRCUM - GAP);
+    var dashGap = CIRCUM - dashLen;
+    var rotation = -90 + offset;
+    svgSegs += '<circle cx="' + CX + '" cy="' + CY + '" r="' + R + '" fill="none" stroke="' + color + '" stroke-width="' + STROKE_W + '" stroke-dasharray="' + dashLen.toFixed(2) + ' ' + dashGap.toFixed(2) + '" transform="rotate(' + rotation.toFixed(2) + ' ' + CX + ' ' + CY + ')" opacity="0.9"/>';
+    offset += pct * 360;
+  });
+  var holeSVG = '<circle cx="' + CX + '" cy="' + CY + '" r="' + (R - STROKE_W/2 - 2) + '" fill="var(--navy-light)"/>';
+  var svgHTML = '<svg viewBox="0 0 180 180" width="160" height="160" aria-hidden="true" style="display:block;">' +
+    '<circle cx="' + CX + '" cy="' + CY + '" r="' + R + '" fill="none" stroke="rgba(79,156,249,0.06)" stroke-width="' + STROKE_W + '"/>' +
+    svgSegs + holeSVG + '</svg>';
+
+  var legendHTML = nonZero.map(function(cat) {
+    var color = CAT_COLORS[cat.category] || '#4a5568';
+    return '<div class="ci-legend-row">' +
+      '<span class="ci-legend-dot" style="background:' + color + ';"></span>' +
+      '<span class="ci-legend-label">' + esc(cat.category) + '</span>' +
+      '<span class="ci-legend-pct">' + cat.pct.toFixed(1) + '%</span>' +
+    '</div>';
+  }).join('');
+
+  var donutHTML = '<div class="ci-donut-svg-wrap">' + svgHTML +
+    '<div class="ci-donut-center-label"><div class="cdl-value">$438</div><div class="cdl-sub">total</div></div>' +
+    '</div><div class="ci-donut-legend">' + legendHTML + '</div>';
+
+  var donutEl = document.getElementById('ci-donut-wrap');
+  if (donutEl) donutEl.innerHTML = donutHTML;
 
 })();
 </script>
