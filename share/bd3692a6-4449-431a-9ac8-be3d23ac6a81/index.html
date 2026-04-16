@@ -1,2099 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Enigma Capital - Cost Intelligence</title>
-  <style>
-/* ============================================================
-   ENIGMA CAPITAL — CEO WEEKLY DASHBOARD
-   Design System v1.0 | Lina 🎨 | Nether Labs
-   ============================================================ */
-
-/* ── GOOGLE FONTS ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ── 1. DESIGN TOKENS ─────────────────────────────────────── */
-:root {
-  /* Brand Colors */
-  --black:          #06080f;
-  --navy:           #0d1220;
-  --navy-light:     #131b2e;
-  --navy-hover:     #162035;
-  --accent:         #4f9cf9;
-  --accent-soft:    rgba(79, 156, 249, 0.08);
-  --accent-mid:     rgba(79, 156, 249, 0.18);
-  --accent-bright:  rgba(79, 156, 249, 0.35);
-  --text:           #e8edf5;
-  --text-muted:     #8892a4;
-  --text-faint:     #4a5568;
-  --border:         rgba(79, 156, 249, 0.15);
-  --border-subtle:  rgba(79, 156, 249, 0.07);
-  --border-strong:  rgba(79, 156, 249, 0.28);
-
-  /* Semantic */
-  --success:        #22c55e;
-  --success-soft:   rgba(34, 197, 94, 0.10);
-  --success-border: rgba(34, 197, 94, 0.25);
-  --warning:        #f59e0b;
-  --warning-soft:   rgba(245, 158, 11, 0.10);
-  --warning-border: rgba(245, 158, 11, 0.25);
-  --danger:         #ef4444;
-  --danger-soft:    rgba(239, 68, 68, 0.10);
-  --danger-border:  rgba(239, 68, 68, 0.25);
-
-  /* Typography */
-  --font-head: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-
-  /* Type Scale */
-  --text-xs:   0.6875rem;  /* 11px */
-  --text-sm:   0.8125rem;  /* 13px */
-  --text-base: 0.9375rem;  /* 15px */
-  --text-md:   1.0625rem;  /* 17px */
-  --text-lg:   1.25rem;    /* 20px */
-  --text-xl:   1.5rem;     /* 24px */
-  --text-2xl:  2rem;       /* 32px */
-  --text-3xl:  2.625rem;   /* 42px */
-  --text-4xl:  3.25rem;    /* 52px */
-
-  /* Spacing (8px base grid) */
-  --sp-1:  0.25rem;   /*  4px */
-  --sp-2:  0.5rem;    /*  8px */
-  --sp-3:  0.75rem;   /* 12px */
-  --sp-4:  1rem;      /* 16px */
-  --sp-5:  1.25rem;   /* 20px */
-  --sp-6:  1.5rem;    /* 24px */
-  --sp-8:  2rem;      /* 32px */
-  --sp-10: 2.5rem;    /* 40px */
-  --sp-12: 3rem;      /* 48px */
-  --sp-16: 4rem;      /* 64px */
-
-  /* Shape */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 20px;
-
-  /* Shadow */
-  --shadow-sm:    0 1px 4px rgba(0, 0, 0, 0.5);
-  --shadow-md:    0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-lg:    0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow:  0 0 30px rgba(79, 156, 249, 0.07);
-  --shadow-card:  0 2px 8px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border);
-
-  /* Layout */
-  --max-width: 1600px;
-  --content-gutter: clamp(var(--sp-4), 4vw, var(--sp-12));
-  --section-gap: var(--sp-6);
-  --header-height: 68px;
-}
-
-/* ── 2. RESET ─────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html { scroll-behavior: smooth; }
-
-/* ── 3. BASE ──────────────────────────────────────────────── */
-body {
-  background-color: var(--black);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  line-height: 1.6;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Subtle grid texture */
-  background-image:
-    linear-gradient(rgba(79, 156, 249, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 156, 249, 0.02) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-head);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-table { border-collapse: collapse; width: 100%; }
-th, td { text-align: left; }
-
-/* ── 4. PAGE LAYOUT ───────────────────────────────────────── */
-.page-wrapper {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--content-gutter);
-}
-
-.main-content {
-  padding-bottom: var(--sp-16);
-}
-
-.section-grid {
-  display: grid;
-  gap: var(--section-gap);
-  margin-top: var(--section-gap);
-}
-
-/* 2-column equal layout */
-.two-col {
-  grid-template-columns: 1fr 1fr;
-}
-
-/* 2/3 + 1/3 layout */
-.col-2-1 {
-  grid-template-columns: 2fr 1fr;
-}
-
-/* 1/3 + 2/3 layout */
-.col-1-2 {
-  grid-template-columns: 1fr 2fr;
-}
-
-/* ── 5. HEADER ────────────────────────────────────────────── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: linear-gradient(
-    180deg,
-    rgba(6, 8, 15, 0.98) 0%,
-    rgba(13, 18, 32, 0.97) 100%
-  );
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  height: var(--header-height);
-}
-
-/* Blue accent line at top */
-.site-header::before {
-  content: '';
-  display: block;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--accent) 30%,
-    rgba(79, 156, 249, 0.5) 70%,
-    transparent 100%
-  );
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: calc(var(--header-height) - 2px);
-  gap: var(--sp-6);
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-4);
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-2) var(--sp-3);
-  background: var(--accent-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-.brand-logo-icon {
-  width: 22px;
-  height: 22px;
-  opacity: 0.9;
-}
-
-.brand-wordmark {
-  font-family: var(--font-head);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.header-divider {
-  width: 1px;
-  height: 28px;
-  background: var(--border);
-}
-
-.header-title {
-  font-family: var(--font-head);
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.03em;
-}
-
-.header-subtitle {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.header-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-6);
-  text-align: right;
-}
-
-.header-date {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-}
-
-.header-date strong {
-  color: var(--text);
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 600;
-}
-
-.live-indicator {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 6px var(--success);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--success); }
-  50%       { opacity: 0.6; box-shadow: 0 0 12px var(--success); }
-}
-
-/* ── 6. SECTION HEADER ────────────────────────────────────── */
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-4);
-}
-
-.section-label-text {
-  font-family: var(--font-head);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-subtle);
-}
-
-/* ── 7. CARD BASE ─────────────────────────────────────────── */
-.card {
-  background: var(--navy-light);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-card), var(--shadow-glow);
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--sp-4) var(--sp-6);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.card-title {
-  font-family: var(--font-head);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.card-body {
-  padding: var(--sp-5) var(--sp-6);
-}
-
-.card-body--tight {
-  padding: var(--sp-4) var(--sp-6);
-}
-
-/* ── 8. METRIC CARDS (KPI Row) ────────────────────────────── */
-.metrics-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--section-gap);
-  margin-top: var(--section-gap);
-}
-
-.metric-card {
-  background: var(--navy-light);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-5) var(--sp-6);
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  cursor: default;
-}
-
-.metric-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md), var(--shadow-glow);
-}
-
-/* Colored left border accent */
-.metric-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10%;
-  bottom: 10%;
-  width: 3px;
-  border-radius: 0 2px 2px 0;
-  background: var(--accent);
-  opacity: 0.7;
-}
-
-.metric-card.metric--success::before { background: var(--success); }
-.metric-card.metric--warning::before { background: var(--warning); }
-.metric-card.metric--danger::before  { background: var(--danger); }
-
-/* Subtle radial glow in corner */
-.metric-card::after {
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.metric-card.metric--success::after { background: radial-gradient(circle, var(--success-soft) 0%, transparent 70%); }
-.metric-card.metric--warning::after { background: radial-gradient(circle, var(--warning-soft) 0%, transparent 70%); }
-.metric-card.metric--danger::after  { background: radial-gradient(circle, var(--danger-soft)  0%, transparent 70%); }
-
-.metric-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--sp-3);
-}
-
-.metric-value {
-  font-family: var(--font-head);
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: var(--sp-3);
-}
-
-.metric-value sup {
-  font-size: 0.45em;
-  font-weight: 500;
-  vertical-align: top;
-  margin-top: 0.15em;
-  color: var(--text-muted);
-}
-
-.metric-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-2);
-}
-
-.metric-trend {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  font-family: var(--font-mono);
-  padding: 2px var(--sp-2);
-  border-radius: var(--radius-sm);
-}
-
-.metric-trend.trend--up {
-  color: var(--success);
-  background: var(--success-soft);
-}
-
-.metric-trend.trend--down {
-  color: var(--danger);
-  background: var(--danger-soft);
-}
-
-.metric-trend.trend--neutral {
-  color: var(--text-muted);
-  background: rgba(136, 146, 164, 0.10);
-}
-
-.metric-sublabel {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  font-family: var(--font-mono);
-}
-
-/* ── 9. BADGE / STATUS ────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 2px var(--sp-2);
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
-}
-
-.badge--success {
-  color: var(--success);
-  background: var(--success-soft);
-  border: 1px solid var(--success-border);
-}
-
-.badge--warning {
-  color: var(--warning);
-  background: var(--warning-soft);
-  border: 1px solid var(--warning-border);
-}
-
-.badge--danger {
-  color: var(--danger);
-  background: var(--danger-soft);
-  border: 1px solid var(--danger-border);
-}
-
-.badge--accent {
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--border);
-}
-
-.badge--muted {
-  color: var(--text-muted);
-  background: rgba(136, 146, 164, 0.08);
-  border: 1px solid rgba(136, 146, 164, 0.15);
-}
-
-/* Status dot */
-.status-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.status-dot--active {
-  background: var(--success);
-  box-shadow: 0 0 5px var(--success);
-  animation: pulse-dot 2.5s ease-in-out infinite;
-}
-
-.status-dot--idle {
-  background: var(--warning);
-  box-shadow: 0 0 5px rgba(245, 158, 11, 0.5);
-}
-
-.status-dot--offline {
-  background: var(--text-faint);
-}
-
-.status-dot--flag {
-  background: var(--danger);
-  box-shadow: 0 0 5px rgba(239, 68, 68, 0.6);
-}
-
-/* ── 10. DATA TABLE ───────────────────────────────────────── */
-.data-table {
-  width: 100%;
-  font-size: var(--text-sm);
-}
-
-.data-table thead tr {
-  border-bottom: 1px solid var(--border);
-}
-
-.data-table th {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  padding: var(--sp-2) var(--sp-3);
-  padding-top: 0;
-  white-space: nowrap;
-}
-
-.data-table td {
-  padding: var(--sp-3);
-  color: var(--text);
-  border-bottom: 1px solid var(--border-subtle);
-  vertical-align: middle;
-}
-
-.data-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.data-table tbody tr {
-  transition: background 0.15s ease;
-}
-
-.data-table tbody tr:hover {
-  background: var(--accent-soft);
-}
-
-.data-table .col-mono {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-}
-
-.data-table .col-name {
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-}
-
-.data-table .col-name .emoji {
-  font-size: 1em;
-  line-height: 1;
-}
-
-.data-table .col-amount {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  color: var(--text);
-  text-align: right;
-}
-
-.data-table .col-amount.amount--high {
-  color: var(--warning);
-}
-
-/* ── 11. SPARKLINE ────────────────────────────────────────── */
-.sparkline-wrap {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--sp-3);
-  padding: var(--sp-3) 0;
-}
-
-.sparkline {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  opacity: 0.85;
-}
-
-.sparkline-label {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  white-space: nowrap;
-}
-
-.sparkline-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--sp-2);
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  font-family: var(--font-mono);
-}
-
-/* ── 12. MILESTONE PIPELINE ───────────────────────────────── */
-.milestone-pipeline {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  padding: var(--sp-6) var(--sp-2);
-  overflow-x: auto;
-}
-
-.milestone-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-width: 100px;
-  position: relative;
-}
-
-/* Connector line */
-.milestone-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 14px;
-  left: calc(50% + 16px);
-  right: calc(-50% + 16px);
-  height: 2px;
-  background: var(--border);
-  z-index: 0;
-}
-
-.milestone-step.is-complete:not(:last-child)::after {
-  background: var(--success);
-  opacity: 0.5;
-}
-
-.milestone-step.is-active:not(:last-child)::after {
-  background: linear-gradient(90deg, var(--accent-mid), var(--border));
-}
-
-.milestone-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--text-xs);
-  font-weight: 700;
-  font-family: var(--font-mono);
-  z-index: 1;
-  position: relative;
-  margin-bottom: var(--sp-3);
-  transition: box-shadow 0.3s ease;
-}
-
-/* Default (upcoming) */
-.milestone-circle {
-  background: var(--navy);
-  border: 2px solid var(--border);
-  color: var(--text-faint);
-}
-
-.milestone-step.is-complete .milestone-circle {
-  background: var(--success-soft);
-  border-color: var(--success);
-  color: var(--success);
-}
-
-.milestone-step.is-active .milestone-circle {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 16px rgba(79, 156, 249, 0.25);
-  animation: milestone-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes milestone-pulse {
-  0%, 100% { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 16px rgba(79, 156, 249, 0.25); }
-  50%       { box-shadow: 0 0 0 8px rgba(79, 156, 249, 0.05), 0 0 24px rgba(79, 156, 249, 0.35); }
-}
-
-.milestone-name {
-  font-family: var(--font-head);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: var(--sp-1);
-}
-
-.milestone-step.is-active .milestone-name {
-  color: var(--accent);
-}
-
-.milestone-step.is-complete .milestone-name {
-  color: var(--success);
-}
-
-.milestone-desc {
-  font-size: 0.65rem;
-  color: var(--text-faint);
-  text-align: center;
-  line-height: 1.4;
-  max-width: 90px;
-}
-
-.milestone-step.is-active .milestone-desc {
-  color: var(--text-muted);
-}
-
-/* ── 13. DECISION CARDS ───────────────────────────────────── */
-.decision-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
-
-.decision-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-4);
-  padding: var(--sp-4) var(--sp-5);
-  background: var(--navy);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  border-left: 3px solid var(--border);
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.decision-item:hover {
-  background: var(--navy-hover);
-  border-color: var(--border);
-  border-left-color: inherit;
-}
-
-.decision-item.urgency--high {
-  border-left-color: var(--danger);
-}
-
-.decision-item.urgency--medium {
-  border-left-color: var(--warning);
-}
-
-.decision-item.urgency--low {
-  border-left-color: var(--accent);
-}
-
-.decision-icon {
-  font-size: 1.2em;
-  line-height: 1;
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-
-.decision-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.decision-title {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: var(--sp-1);
-}
-
-.decision-desc {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.decision-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: var(--sp-2);
-}
-
-.decision-age {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  font-family: var(--font-mono);
-}
-
-/* ── 14. ORG HEALTH FLAGS ─────────────────────────────────── */
-.flag-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-}
-
-.flag-item {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-}
-
-.flag-item.flag--red {
-  background: var(--danger-soft);
-  border: 1px solid var(--danger-border);
-  color: var(--danger);
-}
-
-.flag-item.flag--yellow {
-  background: var(--warning-soft);
-  border: 1px solid var(--warning-border);
-  color: var(--warning);
-}
-
-.flag-item.flag--green {
-  background: var(--success-soft);
-  border: 1px solid var(--success-border);
-  color: var(--success);
-}
-
-.flag-icon {
-  font-size: 1em;
-  flex-shrink: 0;
-}
-
-.flag-text {
-  flex: 1;
-  font-size: var(--text-xs);
-  line-height: 1.5;
-}
-
-.flag-text strong {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 1px;
-}
-
-.flag-source {
-  font-size: var(--text-xs);
-  font-family: var(--font-mono);
-  opacity: 0.7;
-  white-space: nowrap;
-}
-
-/* ── 15. WORKSTREAM ITEMS ─────────────────────────────────── */
-.workstream-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.workstream-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: var(--sp-4);
-  padding: var(--sp-3) var(--sp-4);
-  border-bottom: 1px solid var(--border-subtle);
-  transition: background 0.15s ease;
-}
-
-.workstream-item:last-child {
-  border-bottom: none;
-}
-
-.workstream-item:hover {
-  background: var(--accent-soft);
-}
-
-.workstream-name {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text);
-}
-
-.workstream-owner {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  margin-top: 2px;
-}
-
-.workstream-progress {
-  width: 80px;
-  height: 3px;
-  background: var(--border);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.workstream-progress-bar {
-  height: 100%;
-  border-radius: 99px;
-  background: var(--accent);
-  transition: width 0.4s ease;
-}
-
-.workstream-progress-bar.progress--success { background: var(--success); }
-.workstream-progress-bar.progress--warning { background: var(--warning); }
-.workstream-progress-bar.progress--danger  { background: var(--danger); }
-
-/* ── 16. API COST DETAIL ──────────────────────────────────── */
-.cost-total-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--sp-3) var(--sp-3);
-  margin-top: var(--sp-2);
-  border-top: 1px solid var(--border);
-  font-size: var(--text-sm);
-}
-
-.cost-total-label {
-  font-weight: 600;
-  color: var(--text-muted);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.cost-total-value {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: var(--text-md);
-  color: var(--text);
-}
-
-/* ── 17. AGENTS TABLE ─────────────────────────────────────── */
-.agent-role {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-}
-
-/* ── 18. FOOTER ───────────────────────────────────────────── */
-.dash-footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: var(--sp-6) 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-4);
-  flex-wrap: wrap;
-}
-
-.footer-text {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  font-family: var(--font-mono);
-}
-
-/* ── 19. UTILITIES ────────────────────────────────────────── */
-.text-muted    { color: var(--text-muted); }
-.text-faint    { color: var(--text-faint); }
-.text-accent   { color: var(--accent); }
-.text-success  { color: var(--success); }
-.text-warning  { color: var(--warning); }
-.text-danger   { color: var(--danger); }
-.text-mono     { font-family: var(--font-mono); }
-.text-head     { font-family: var(--font-head); }
-.text-xs       { font-size: var(--text-xs); }
-.text-sm       { font-size: var(--text-sm); }
-.text-right    { text-align: right; }
-.text-center   { text-align: center; }
-.fw-600        { font-weight: 600; }
-.fw-500        { font-weight: 500; }
-.mt-4          { margin-top: var(--sp-4); }
-.mt-6          { margin-top: var(--sp-6); }
-.flex          { display: flex; }
-.flex-center   { display: flex; align-items: center; }
-.gap-2         { gap: var(--sp-2); }
-.gap-3         { gap: var(--sp-3); }
-.justify-between { justify-content: space-between; }
-.nowrap        { white-space: nowrap; }
-.sr-only {
-  position: absolute; width: 1px; height: 1px;
-  padding: 0; margin: -1px; overflow: hidden;
-  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-
-/* Divider */
-.divider {
-  height: 1px;
-  background: var(--border-subtle);
-  margin: var(--sp-4) 0;
-}
-
-/* Empty state */
-.empty-state {
-  text-align: center;
-  padding: var(--sp-10) var(--sp-6);
-  color: var(--text-faint);
-  font-size: var(--text-sm);
-}
-
-/* Count chip */
-.count-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
-  background: var(--accent-soft);
-  border: 1px solid var(--border);
-  border-radius: 99px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  line-height: 1;
-}
-
-/* ── 20. RESPONSIVE ───────────────────────────────────────── */
-
-/* Tablet (< 1100px): collapse 2-col layouts */
-@media (max-width: 1100px) {
-  .metrics-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .two-col,
-  .col-2-1,
-  .col-1-2 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Mobile (< 700px) */
-@media (max-width: 700px) {
-  :root {
-    --header-height: 56px;
-    --content-gutter: var(--sp-4);
-    --section-gap: var(--sp-4);
-  }
-
-  .metrics-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-3);
-  }
-
-  .metric-value {
-    font-size: var(--text-2xl);
-  }
-
-  .header-title {
-    font-size: var(--text-base);
-  }
-
-  .header-meta { display: none; }
-
-  .milestone-pipeline {
-    padding: var(--sp-4) var(--sp-1);
-    gap: 0;
-  }
-
-  .milestone-desc { display: none; }
-
-  .brand-wordmark { display: none; }
-
-  .workstream-item {
-    grid-template-columns: 1fr auto;
-  }
-
-  .workstream-progress { display: none; }
-
-  .data-table .col-hide-mobile { display: none; }
-}
-
-/* Small mobile (< 420px) */
-@media (max-width: 420px) {
-  .metrics-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .metric-card {
-    padding: var(--sp-4);
-  }
-}
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Enigma Capital - Operations Overview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; }
+  .banner { background: #1a1a2e; border-bottom: 1px solid #30363d; padding: 10px 24px; font-size: 13px; color: #8b949e; display: flex; align-items: center; gap: 8px; }
+  .banner .dot { width: 8px; height: 8px; background: #f0a500; border-radius: 50%; display: inline-block; }
+  header { padding: 28px 24px 0; max-width: 960px; margin: 0 auto; }
+  header h1 { font-size: 22px; font-weight: 600; color: #e6edf3; letter-spacing: -0.3px; }
+  header p { font-size: 13px; color: #8b949e; margin-top: 4px; }
+  .tabs { display: flex; gap: 2px; padding: 20px 24px 0; max-width: 960px; margin: 0 auto; border-bottom: 1px solid #30363d; }
+  .tab { padding: 10px 20px; font-size: 14px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; color: #8b949e; transition: color 0.15s; }
+  .tab:hover { color: #e6edf3; }
+  .tab.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+  .content { max-width: 960px; margin: 0 auto; padding: 28px 24px; }
+  .pane { display: none; }
+  .pane.active { display: block; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 18px; }
+  .card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: #8b949e; margin-bottom: 8px; }
+  .card .value { font-size: 24px; font-weight: 600; color: #e6edf3; line-height: 1.2; }
+  .card .sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
+  .card.green .value { color: #3fb950; }
+  .card.yellow .value { color: #f0a500; }
+  .card.blue .value { color: #58a6ff; }
+  .card.red .value { color: #f85149; }
+  .section-title { font-size: 14px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; margin-top: 8px; }
+  table { width: 100%; border-collapse: collapse; background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; font-size: 14px; }
+  th { padding: 10px 16px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #8b949e; border-bottom: 1px solid #30363d; font-weight: 500; }
+  td { padding: 11px 16px; border-bottom: 1px solid #21262d; color: #e6edf3; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1c2128; }
+  .bar-wrap { background: #21262d; border-radius: 3px; height: 6px; overflow: hidden; }
+  .bar { height: 6px; border-radius: 3px; background: #58a6ff; }
+  .bar.green { background: #3fb950; }
+  .milestone-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; font-size: 14px; }
+  .milestone-row:last-child { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+  .badge.done { background: #1e4620; color: #3fb950; }
+  .badge.in-progress { background: #2d2a14; color: #f0a500; }
+  .badge.pending { background: #1c2128; color: #8b949e; }
+  .signal-box { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+  .signal-indicator { font-size: 36px; font-weight: 700; }
+  .signal-indicator.long { color: #3fb950; }
+  .signal-indicator.short { color: #f85149; }
+  .signal-indicator.flat { color: #8b949e; }
+  .signal-meta { font-size: 13px; color: #8b949e; }
+  .signal-meta strong { color: #e6edf3; font-size: 15px; display: block; margin-bottom: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr 1fr; } }
+  footer { text-align: center; padding: 24px; font-size: 12px; color: #484f58; border-top: 1px solid #21262d; margin-top: 12px; }
 </style>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>" />
-  <style>
-    /* Expiry notice banner */
-    .share-expiry-notice {
-      background: rgba(79, 156, 249, 0.08);
-      border: 1px solid rgba(79, 156, 249, 0.25);
-      border-radius: var(--radius-md);
-      padding: var(--sp-3) var(--sp-4);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-      margin-bottom: var(--sp-4);
-    }
-
-    .share-expiry-notice .expiry-icon {
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-
-    .share-expiry-notice strong {
-      color: var(--text);
-    }
-
-    /* Live data overlay styles */
-    .loading-pulse { opacity: 0.45; }
-
-    /* Period filter pill group */
-    .ci-filter-group {
-      display: flex;
-      gap: var(--sp-2);
-      align-items: center;
-    }
-
-    .ci-filter-btn {
-      padding: 3px var(--sp-3);
-      border-radius: 99px;
-      font-size: var(--text-xs);
-      font-family: var(--font-mono);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-    }
-
-    .ci-filter-btn:hover {
-      border-color: var(--border-strong);
-      color: var(--text);
-    }
-
-    .ci-filter-btn.is-active {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* Summary KPI strip */
-    .ci-kpi-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--sp-4);
-      margin-bottom: var(--sp-6);
-    }
-
-    .ci-kpi-card {
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: var(--sp-4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ci-kpi-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 15%;
-      bottom: 15%;
-      width: 3px;
-      border-radius: 0 2px 2px 0;
-      background: var(--accent);
-    }
-
-    .ci-kpi-card.kpi--warn::before  { background: var(--warning); }
-    .ci-kpi-card.kpi--danger::before { background: var(--danger); }
-
-    .ci-kpi-label {
-      font-size: var(--text-xs);
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: var(--sp-2);
-    }
-
-    .ci-kpi-value {
-      font-family: var(--font-mono);
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: var(--sp-1);
-    }
-
-    .ci-kpi-sub {
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .ci-kpi-approx-tag {
-      display: inline-block;
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      background: var(--color-surface-2, #111827);
-      border: 1px solid var(--border-subtle);
-      border-radius: 3px;
-      padding: 1px 5px;
-      margin-left: 4px;
-      vertical-align: middle;
-    }
-
-    /* Horizontal bar chart rows */
-    .ci-bar-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .ci-bar-row {
-      display: grid;
-      grid-template-columns: 140px 1fr 60px;
-      align-items: center;
-      gap: var(--sp-3);
-      padding: var(--sp-2) var(--sp-3);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: background 0.15s ease;
-    }
-
-    .ci-bar-row:last-child { border-bottom: none; }
-    .ci-bar-row:hover { background: rgba(79, 156, 249, 0.04); }
-
-    .ci-bar-row.is-top {
-      background: rgba(245, 158, 11, 0.05);
-      border-bottom-color: rgba(245, 158, 11, 0.15);
-    }
-
-    .ci-bar-agent {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-      font-size: var(--text-xs);
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .ci-bar-agent .agent-emoji { font-size: 1em; flex-shrink: 0; }
-    .ci-bar-agent .agent-name  { overflow: hidden; text-overflow: ellipsis; }
-
-    .ci-bar-track {
-      height: 20px;
-      background: var(--color-surface-2, #0d1220);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .ci-bar-fill {
-      height: 100%;
-      border-radius: var(--radius-sm);
-      background: var(--accent-soft);
-      border-right: 2px solid var(--accent);
-      transition: width 0.5s ease;
-    }
-
-    .ci-bar-row.is-top .ci-bar-fill {
-      background: rgba(245, 158, 11, 0.12);
-      border-right-color: var(--warning);
-    }
-
-    .ci-bar-amount {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      font-weight: 500;
-      color: var(--text-muted);
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .ci-bar-row.is-top .ci-bar-amount { color: var(--warning); }
-
-    /* Donut chart container */
-    .ci-donut-wrap {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-6);
-      padding: var(--sp-4) 0;
-    }
-
-    .ci-donut-svg-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .ci-donut-center-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      pointer-events: none;
-    }
-
-    .ci-donut-center-label .cdl-value {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-    }
-
-    .ci-donut-center-label .cdl-sub {
-      font-size: 0.6rem;
-      color: var(--text-faint);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .ci-donut-legend {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-2);
-    }
-
-    .ci-legend-row {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-    }
-
-    .ci-legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .ci-legend-label { flex: 1; }
-
-    .ci-legend-pct {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-faint);
-      min-width: 36px;
-      text-align: right;
-    }
-
-    /* Detail table scrollable wrapper */
-    .ci-table-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .ci-detail-table {
-      width: 100%;
-      font-size: var(--text-xs);
-      white-space: nowrap;
-    }
-
-    .ci-detail-table thead tr {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .ci-detail-table th {
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      padding: var(--sp-2) var(--sp-3);
-      padding-top: 0;
-      text-align: right;
-    }
-
-    .ci-detail-table th:first-child { text-align: left; }
-
-    .ci-detail-table td {
-      padding: var(--sp-2) var(--sp-3);
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-subtle);
-      text-align: right;
-      font-family: var(--font-mono);
-    }
-
-    .ci-detail-table td:first-child {
-      text-align: left;
-      font-family: var(--font-body);
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .ci-detail-table td.is-zero { color: var(--text-faint); }
-    .ci-detail-table td.is-high { color: var(--warning); font-weight: 600; }
-
-    .ci-detail-table .total-row td {
-      border-top: 1px solid var(--border);
-      border-bottom: none;
-      font-weight: 600;
-      color: var(--text);
-      padding-top: var(--sp-3);
-    }
-
-    /* Empty / error state */
-    .ci-empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: var(--sp-8) var(--sp-4);
-      gap: var(--sp-2);
-      text-align: center;
-    }
-
-    .ci-empty-state .empty-icon {
-      font-size: 1.5rem;
-      opacity: 0.5;
-      margin-bottom: var(--sp-2);
-    }
-
-    .ci-empty-state .empty-title {
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .ci-empty-state .empty-sub {
-      font-size: var(--text-xs);
-      color: var(--text-faint);
-    }
-
-    /* Error banner */
-    .ci-error-banner {
-      background: var(--danger-soft);
-      border: 1px solid var(--danger-border);
-      border-radius: var(--radius-sm);
-      padding: var(--sp-2) var(--sp-3);
-      font-size: var(--text-xs);
-      color: var(--danger);
-      margin-bottom: var(--sp-4);
-      display: none;
-    }
-
-    .ci-error-banner.visible { display: block; }
-
-    /* Generated at timestamp */
-    .ci-generated-at {
-      font-size: var(--text-xs);
-      color: var(--text-faint);
-      font-family: var(--font-mono);
-      margin-top: var(--sp-2);
-    }
-
-    /* Shared by footer */
-    .share-footer-brand {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-      font-size: var(--text-xs);
-      color: var(--text-faint);
-    }
-
-    .share-footer-brand svg {
-      opacity: 0.5;
-    }
-
-    /* Responsive */
-    @media (max-width: 1100px) {
-      .ci-kpi-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .ci-kpi-strip {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--sp-3);
-      }
-      .ci-bar-row {
-        grid-template-columns: 110px 1fr 52px;
-        gap: var(--sp-2);
-      }
-      .ci-donut-wrap {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--sp-4);
-      }
-    }
-  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="page-wrapper">
-    <div class="header-inner">
+<div class="banner">
+  <span class="dot"></span>
+  Confidential - For Ted Cahall only. This link expires. Do not share.
+</div>
 
-      <div class="header-brand">
-        <div class="brand-logo">
-          <svg class="brand-logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 20V4L12 16V4M12 16V20M12 4L20 20V4" stroke="#4f9cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="brand-wordmark">Enigma Capital</span>
-        </div>
-        <div class="header-divider" aria-hidden="true"></div>
-        <div>
-          <div class="header-title">Cost Intelligence</div>
-          <div class="header-subtitle">API Spend Analysis</div>
-        </div>
-      </div>
-
-      <div class="header-meta">
-        <div class="live-indicator">
-          <span class="live-dot" aria-label="Live"></span>
-          <span id="last-updated">Loading...</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<header>
+  <h1>Enigma Capital</h1>
+  <p>Operations Overview &bull; As of April 16, 2026 &bull; Paper trading phase (M0)</p>
 </header>
 
-<main class="main-content">
-<div class="page-wrapper">
+<div class="tabs">
+  <div class="tab active" onclick="showTab('ops')">Operations</div>
+  <div class="tab" onclick="showTab('cost')">Cost Intelligence</div>
+</div>
 
-  <!-- Expiry notice + page context -->
-  <div style="margin-top: var(--sp-6); margin-bottom: var(--sp-2);">
-    <div class="share-expiry-notice" role="note" aria-label="Link expiry notice">
-      <span class="expiry-icon">⏳</span>
-      <span>This link expires <strong>April 17, 2026 at 01:38 PM EDT</strong>. It is not publicly indexed and will be automatically removed after this time.</span>
-    </div>
-  </div>
+<div class="content">
 
-  <div style="display: flex; align-items: center; justify-content: flex-end; margin-bottom: var(--sp-4);">
-    <div class="ci-generated-at" id="ci-generated-at">Loading...</div>
-  </div>
+  <!-- OPERATIONS TAB -->
+  <div class="pane active" id="pane-ops">
 
-  <!-- Error banner -->
-  <div class="ci-error-banner" id="ci-error-banner">
-    Could not load cost data. This shared report may be temporarily unavailable.
-  </div>
-
-  <!-- COST INTELLIGENCE SECTION -->
-  <section aria-labelledby="sec-cost-intel" id="cost-intelligence-section">
-
-    <!-- Section header with filter controls -->
-    <div class="section-label" style="margin-bottom: var(--sp-4);">
-      <span class="section-label-text" id="sec-cost-intel">Cost Intelligence</span>
-      <div class="ci-filter-group" style="margin-left: auto;">
-        <button class="ci-filter-btn is-active" data-period="7d">7d</button>
-        <button class="ci-filter-btn" data-period="30d">30d</button>
-        <button class="ci-filter-btn" data-period="all">All time</button>
+    <div class="signal-box">
+      <div class="signal-indicator long">LONG</div>
+      <div class="signal-meta">
+        <strong>Today's Signal: BUY IBIT</strong>
+        Composite score: 2/6 signals bullish &bull; BTC $74,834 &bull; Fear &amp; Greed: 23 (Extreme Fear)
       </div>
     </div>
 
-    <!-- Summary KPI strip -->
-    <div class="ci-kpi-strip" id="ci-kpi-strip">
-
-      <div class="ci-kpi-card" id="ci-kpi-total">
-        <div class="ci-kpi-label">Total Spend</div>
-        <div class="ci-kpi-value loading-pulse" id="ci-total-value">$--</div>
-        <div class="ci-kpi-sub" id="ci-total-sub">Loading...</div>
+    <div class="grid">
+      <div class="card blue">
+        <div class="label">Paper NAV</div>
+        <div class="value">$10,000</div>
+        <div class="sub">187 shares IBIT @ ~$42.56</div>
       </div>
-
-      <div class="ci-kpi-card kpi--warn" id="ci-kpi-top-agent">
-        <div class="ci-kpi-label">Top Agent <span class="ci-kpi-approx-tag">approx</span></div>
-        <div class="ci-kpi-value loading-pulse" id="ci-top-agent-value">--</div>
-        <div class="ci-kpi-sub" id="ci-top-agent-sub">Loading...</div>
-      </div>
-
-      <div class="ci-kpi-card kpi--warn" id="ci-kpi-top-cat">
-        <div class="ci-kpi-label">Top Category <span class="ci-kpi-approx-tag">approx</span></div>
-        <div class="ci-kpi-value loading-pulse" id="ci-top-cat-value">--</div>
-        <div class="ci-kpi-sub" id="ci-top-cat-sub">Loading...</div>
-      </div>
-
-      <div class="ci-kpi-card" id="ci-kpi-daily">
-        <div class="ci-kpi-label">Avg Daily</div>
-        <div class="ci-kpi-value loading-pulse" id="ci-daily-value">$--</div>
-        <div class="ci-kpi-sub" id="ci-daily-sub">Loading...</div>
-      </div>
-
-    </div><!-- /ci-kpi-strip -->
-
-
-    <!-- Two-col: bar chart + donut -->
-    <div class="section-grid two-col">
-
-      <!-- Cost by Agent -->
-      <section aria-labelledby="ci-agent-title">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title" id="ci-agent-title">Cost by Agent <span class="ci-kpi-approx-tag">approx</span></span>
-            <span class="text-xs text-mono text-muted" id="ci-agent-header-sub">Loading...</span>
-          </div>
-          <div class="card-body--tight">
-            <div class="ci-bar-list" id="ci-agent-bars">
-              <div class="text-xs text-muted loading-pulse" style="padding: var(--sp-3);">Loading...</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Spend by Activity Category -->
-      <section aria-labelledby="ci-cat-title">
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title" id="ci-cat-title">Spend by Activity <span class="ci-kpi-approx-tag">approx</span></span>
-            <span class="text-xs text-mono text-muted" id="ci-cat-header-sub">Loading...</span>
-          </div>
-          <div class="card-body">
-            <div class="ci-donut-wrap" id="ci-donut-wrap">
-              <div class="text-xs text-muted loading-pulse">Loading...</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div><!-- /two-col -->
-
-
-    <!-- Agent x Category Detail Table -->
-    <div style="margin-top: var(--sp-6);">
       <div class="card">
-        <div class="card-header">
-          <span class="card-title">Agent x Activity Breakdown <span class="ci-kpi-approx-tag">approx</span></span>
-          <span class="text-xs text-mono text-muted" id="ci-matrix-header-sub">Loading...</span>
-        </div>
-        <div class="card-body--tight">
-          <div class="ci-table-scroll">
-            <table class="ci-detail-table" id="ci-matrix-table" aria-label="Cost breakdown by agent and activity category">
-              <thead>
-                <tr>
-                  <th>Agent</th>
-                  <th>Conv.</th>
-                  <th>Exec.</th>
-                  <th>Files</th>
-                  <th>Coord.</th>
-                  <th>Mem.</th>
-                  <th>Gen.</th>
-                  <th>Sched.</th>
-                  <th>Other</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody id="ci-matrix-body">
-                <tr><td colspan="10" class="text-xs text-muted loading-pulse" style="text-align:left; padding: var(--sp-3);">Loading...</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <div class="label">Paper P&amp;L</div>
+        <div class="value" style="color:#8b949e">$0.00</div>
+        <div class="sub">0.00% drawdown</div>
+      </div>
+      <div class="card yellow">
+        <div class="label">MTD Cost</div>
+        <div class="value">$700.69</div>
+        <div class="sub">Steady-state est. $684/mo</div>
+      </div>
+      <div class="card">
+        <div class="label">Active Agents</div>
+        <div class="value">20</div>
+        <div class="sub">0 flagged</div>
+      </div>
+      <div class="card yellow">
+        <div class="label">Milestone</div>
+        <div class="value">M0</div>
+        <div class="sub">Paper trading in progress</div>
+      </div>
+      <div class="card">
+        <div class="label">Paper Trading Days</div>
+        <div class="value">4 / 30</div>
+        <div class="sub">26 days remaining</div>
       </div>
     </div>
 
-    <!-- Cache efficiency note -->
-    <div style="margin-top: var(--sp-4); padding: var(--sp-2) var(--sp-3); background: var(--color-surface-2, #111827); border-left: 3px solid var(--border); border-radius: var(--radius-sm);">
-      <span class="text-xs text-muted" id="ci-cache-note">Loading cache stats...</span>
+    <div class="section-title">M0 Conditions</div>
+    <div class="card" style="margin-bottom:28px">
+      <div class="milestone-row"><span class="badge done">Done</span> Charter v1.3 adopted</div>
+      <div class="milestone-row"><span class="badge done">Done</span> Strategy backtested (Sharpe 1.065)</div>
+      <div class="milestone-row"><span class="badge done">Done</span> IBKR account approved</div>
+      <div class="milestone-row"><span class="badge done">Done</span> Paper trading infrastructure live</div>
+      <div class="milestone-row"><span class="badge done">Done</span> Risk framework defined (10% drawdown kill switch)</div>
+      <div class="milestone-row"><span class="badge done">Done</span> All 4 signals operational</div>
+      <div class="milestone-row"><span class="badge done">Done</span> Charter v1.4 amendments adopted</div>
+      <div class="milestone-row"><span class="badge in-progress">In Progress</span> 30 days paper trading (Day 4 of 30)</div>
+      <div class="milestone-row"><span class="badge pending">Pending</span> FAPI legal opinion (Colleen D. Ma, Miller Thomson)</div>
     </div>
 
-  </section>
+    <div class="section-title">Market Snapshot</div>
+    <div class="grid">
+      <div class="card">
+        <div class="label">BTC Price</div>
+        <div class="value" style="font-size:20px">$74,425</div>
+        <div class="sub">50MA: $69,691 (+7%)</div>
+      </div>
+      <div class="card">
+        <div class="label">IBIT Live</div>
+        <div class="value" style="font-size:20px">$42.16</div>
+        <div class="sub">SPY: $700.63</div>
+      </div>
+      <div class="card red">
+        <div class="label">Fear &amp; Greed</div>
+        <div class="value" style="font-size:20px">23</div>
+        <div class="sub">Extreme Fear</div>
+      </div>
+      <div class="card">
+        <div class="label">DXY Momentum</div>
+        <div class="value" style="font-size:20px">-1.64%</div>
+        <div class="sub">Bearish USD (bullish signal)</div>
+      </div>
+    </div>
 
-</div><!-- /page-wrapper -->
-</main>
+  </div>
+
+  <!-- COST INTELLIGENCE TAB -->
+  <div class="pane" id="pane-cost">
+
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:28px">
+      <div class="card yellow">
+        <div class="label">7-Day Total</div>
+        <div class="value">$438.38</div>
+        <div class="sub">Apr 10 - Apr 16</div>
+      </div>
+      <div class="card">
+        <div class="label">Avg Daily (7d)</div>
+        <div class="value">$62.63</div>
+        <div class="sub">1,807 turns</div>
+      </div>
+      <div class="card">
+        <div class="label">Cache Hit Rate</div>
+        <div class="value">75.5%</div>
+        <div class="sub">Reducing total spend</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-title">Top 5 Agents by Spend (7d)</div>
+        <table>
+          <thead>
+            <tr><th>Agent</th><th>Cost</th><th>Share</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Invoker</td>
+              <td>$169.06</td>
+              <td>38.6%</td>
+              <td style="width:80px"><div class="bar-wrap"><div class="bar" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Cron Jobs</td>
+              <td>$96.34</td>
+              <td>22.0%</td>
+              <td><div class="bar-wrap"><div class="bar" style="width:57%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Tinker</td>
+              <td>$63.37</td>
+              <td>14.5%</td>
+              <td><div class="bar-wrap"><div class="bar" style="width:37%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Lina</td>
+              <td>$21.60</td>
+              <td>4.9%</td>
+              <td><div class="bar-wrap"><div class="bar" style="width:13%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Puck</td>
+              <td>$15.67</td>
+              <td>3.6%</td>
+              <td><div class="bar-wrap"><div class="bar" style="width:9%"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:#484f58;margin-top:8px">Proportions are approximate (~9.5% session log coverage)</p>
+      </div>
+
+      <div>
+        <div class="section-title">Spend by Activity (7d)</div>
+        <table>
+          <thead>
+            <tr><th>Category</th><th>Cost</th><th>Share</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conversation</td>
+              <td>$191.26</td>
+              <td>43.6%</td>
+              <td style="width:80px"><div class="bar-wrap"><div class="bar green" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td>File ops</td>
+              <td>$109.47</td>
+              <td>25.0%</td>
+              <td><div class="bar-wrap"><div class="bar green" style="width:57%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Execution</td>
+              <td>$99.33</td>
+              <td>22.7%</td>
+              <td><div class="bar-wrap"><div class="bar green" style="width:52%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Agent coordination</td>
+              <td>$14.94</td>
+              <td>3.4%</td>
+              <td><div class="bar-wrap"><div class="bar green" style="width:8%"></div></div></td>
+            </tr>
+            <tr>
+              <td>Memory/search</td>
+              <td>$11.06</td>
+              <td>2.5%</td>
+              <td><div class="bar-wrap"><div class="bar green" style="width:6%"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:#484f58;margin-top:8px">Proportions are approximate (~9.5% session log coverage)</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px">30-Day Context</div>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="card">
+        <div class="label">30-Day Total</div>
+        <div class="value" style="font-size:20px">$901.93</div>
+        <div class="sub">Mar 18 - Apr 16</div>
+      </div>
+      <div class="card">
+        <div class="label">Avg Daily (30d)</div>
+        <div class="value" style="font-size:20px">$30.06</div>
+        <div class="sub">2,643 turns</div>
+      </div>
+      <div class="card">
+        <div class="label">Top Spend Driver</div>
+        <div class="value" style="font-size:16px">Invoker</div>
+        <div class="sub">30.9% of 30d spend</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
 <footer>
-  <div class="page-wrapper">
-    <div class="dash-footer">
-      <div class="share-footer-brand">
-        <svg viewBox="0 0 24 24" fill="none" width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 20V4L12 16V4M12 16V20M12 4L20 20V4" stroke="#4f9cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Shared by Nether Labs
-      </div>
-      <span class="footer-text">Cost Intelligence</span>
-      <span class="footer-text">Expires April 17, 2026 at 01:38 PM EDT</span>
-    </div>
-  </div>
+  Enigma Capital &bull; Nether Labs &bull; Confidential &bull; Data as of Apr 16, 2026
 </footer>
 
 <script>
-(function () {
-  'use strict';
-
-  /* Category color map */
-  const CAT_COLORS = {
-    'Conversation':        '#4f9cf9',
-    'Execution':           '#22c55e',
-    'File ops':            '#f59e0b',
-    'Agent coordination':  '#a855f7',
-    'Memory/search':       '#06b6d4',
-    'Generation':          '#ec4899',
-    'Scheduling':          '#84cc16',
-    'Other':               '#4a5568',
-  };
-
-  const CAT_ORDER = [
-    'Conversation', 'Execution', 'File ops', 'Agent coordination',
-    'Memory/search', 'Generation', 'Scheduling', 'Other'
-  ];
-
-  let activePeriod = '7d';
-  let costData = null;
-
-  function $(id) { return document.getElementById(id); }
-
-  function fmtUSD(v, dp) {
-    if (dp === undefined) dp = 2;
-    if (v == null || isNaN(v)) return '$--';
-    return '$' + Number(v).toFixed(dp);
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.pane').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('pane-' + name).classList.add('active');
+    event.target.classList.add('active');
   }
-
-  function esc(str) {
-    if (!str) return '';
-    return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
-
-  function setHTML(id, html) {
-    const el = $(id);
-    if (el) el.innerHTML = (html != null) ? html : '';
-  }
-
-  function setText(id, val) {
-    const el = $(id);
-    if (el) el.textContent = (val != null) ? val : '--';
-  }
-
-  function removeLoadingPulse(id) {
-    const el = $(id);
-    if (el) el.classList.remove('loading-pulse');
-  }
-
-  function emptyStateHTML(title, sub) {
-    return `<div class="ci-empty-state">
-      <div class="empty-icon">&#x1F4CA;</div>
-      <div class="empty-title">${esc(title)}</div>
-      <div class="empty-sub">${esc(sub || '')}</div>
-    </div>`;
-  }
-
-  function buildDonut(categories, totalCost) {
-    if (!categories || !categories.length) {
-      return emptyStateHTML('Not enough data yet', 'Category breakdown unavailable for this period.');
-    }
-
-    const nonZero = categories.filter(c => c.pct > 0);
-    if (!nonZero.length) {
-      return emptyStateHTML('Not enough data yet', 'No category spend recorded for this period.');
-    }
-
-    const R       = 60;
-    const CX      = 90, CY = 90;
-    const CIRCUM  = 2 * Math.PI * R;
-    const STROKE_W = 22;
-    const GAP     = 2;
-
-    const sorted = [...nonZero].sort((a, b) => b.pct - a.pct);
-
-    let svgSegments = '';
-    let offset = 0;
-
-    sorted.forEach(cat => {
-      const color   = CAT_COLORS[cat.category] || '#4a5568';
-      const pct     = cat.pct / 100;
-      const dashLen = Math.max(0, pct * CIRCUM - GAP);
-      const dashGap = CIRCUM - dashLen;
-      const rotation = -90 + offset;
-
-      svgSegments += `<circle
-        cx="${CX}" cy="${CY}" r="${R}"
-        fill="none"
-        stroke="${color}"
-        stroke-width="${STROKE_W}"
-        stroke-dasharray="${dashLen.toFixed(2)} ${dashGap.toFixed(2)}"
-        transform="rotate(${rotation.toFixed(2)} ${CX} ${CY})"
-        opacity="0.9"
-      />`;
-
-      offset += pct * 360;
-    });
-
-    const holeSVG = `<circle cx="${CX}" cy="${CY}" r="${R - STROKE_W/2 - 2}" fill="var(--navy-light)" />`;
-
-    const svgHTML = `<svg viewBox="0 0 180 180" width="160" height="160" aria-hidden="true" style="display:block;">
-      <circle cx="${CX}" cy="${CY}" r="${R}" fill="none"
-        stroke="rgba(79,156,249,0.06)" stroke-width="${STROKE_W}" />
-      ${svgSegments}
-      ${holeSVG}
-    </svg>`;
-
-    const legendHTML = sorted.map(cat => {
-      const color = CAT_COLORS[cat.category] || '#4a5568';
-      return `<div class="ci-legend-row">
-        <span class="ci-legend-dot" style="background:${color};"></span>
-        <span class="ci-legend-label">${esc(cat.category)}</span>
-        <span class="ci-legend-pct">${cat.pct.toFixed(1)}%</span>
-      </div>`;
-    }).join('');
-
-    return `<div class="ci-donut-svg-wrap">
-      ${svgHTML}
-      <div class="ci-donut-center-label">
-        <div class="cdl-value">${fmtUSD(totalCost, 0)}</div>
-        <div class="cdl-sub">total</div>
-      </div>
-    </div>
-    <div class="ci-donut-legend">${legendHTML}</div>`;
-  }
-
-  function buildAgentBars(byAgent, topAgent) {
-    if (!byAgent || !byAgent.length) {
-      return emptyStateHTML('Not enough data yet', 'Agent breakdown unavailable for this period.');
-    }
-
-    const maxCost = Math.max(...byAgent.map(a => a.cost_usd), 1);
-
-    return byAgent.map(a => {
-      const isTop = a.agent === topAgent;
-      const pct   = Math.max(3, (a.cost_usd / maxCost) * 100);
-      const name  = esc(a.display_name || a.agent);
-      const emoji = esc(a.emoji || '');
-      return `<div class="ci-bar-row ${isTop ? 'is-top' : ''}" title="${name}: ${fmtUSD(a.cost_usd)} (${a.pct}% of period)">
-        <div class="ci-bar-agent">
-          <span class="agent-emoji">${emoji}</span>
-          <span class="agent-name">${name}</span>
-        </div>
-        <div class="ci-bar-track">
-          <div class="ci-bar-fill" style="width:${pct.toFixed(1)}%;"></div>
-        </div>
-        <div class="ci-bar-amount">~${fmtUSD(a.cost_usd)}</div>
-      </div>`;
-    }).join('');
-  }
-
-  function buildMatrixTable(matrix, byAgent) {
-    if (!matrix || !matrix.length) {
-      return `<tr><td colspan="10" style="text-align:center; padding: var(--sp-4);">${emptyStateHTML('Not enough data yet', 'Agent x category breakdown unavailable for this period.')}</td></tr>`;
-    }
-
-    const colTotals = {};
-    CAT_ORDER.forEach(c => { colTotals[c] = 0; });
-    let grandTotal = 0;
-
-    const activeRows = matrix.filter(row => {
-      return CAT_ORDER.some(c => (row.costs[c] || 0) > 0);
-    });
-
-    if (!activeRows.length) {
-      return `<tr><td colspan="10" style="text-align:center; padding: var(--sp-4);">${emptyStateHTML('Not enough data yet', 'No categorized spend data for this period.')}</td></tr>`;
-    }
-
-    const rows = activeRows.map(row => {
-      const agent   = byAgent ? byAgent.find(a => a.agent === row.agent) : null;
-      const name    = agent ? agent.display_name : row.agent;
-      const emoji   = agent ? (agent.emoji || '') : '';
-      let rowTotal  = 0;
-      CAT_ORDER.forEach(c => { rowTotal += (row.costs[c] || 0); });
-      grandTotal += rowTotal;
-
-      const cells = CAT_ORDER.map(c => {
-        const v = row.costs[c] || 0;
-        colTotals[c] += v;
-        const isZero = v === 0;
-        const isHigh = v > 10;
-        const cls    = isZero ? 'is-zero' : (isHigh ? 'is-high' : '');
-        return `<td class="${cls}">${isZero ? '--' : '~' + fmtUSD(v)}</td>`;
-      }).join('');
-
-      return `<tr>
-        <td>${esc(emoji)} ${esc(name)}</td>
-        ${cells}
-        <td style="font-weight:600; color:var(--text);">~${fmtUSD(rowTotal)}</td>
-      </tr>`;
-    }).join('');
-
-    const totalCells = CAT_ORDER.map(c => {
-      const v = colTotals[c];
-      return `<td style="font-weight:600;">${v > 0 ? '~' + fmtUSD(v) : '--'}</td>`;
-    }).join('');
-
-    const totalRow = `<tr class="total-row">
-      <td>Total (approx)</td>
-      ${totalCells}
-      <td style="color:var(--accent);">~${fmtUSD(grandTotal)}</td>
-    </tr>`;
-
-    return rows + totalRow;
-  }
-
-  function periodHasData(pd) {
-    if (!pd) return false;
-    if (!pd.total_cost_usd || pd.total_cost_usd === 0) return false;
-    if (!pd.by_agent || pd.by_agent.length === 0) return false;
-    return true;
-  }
-
-  function renderPeriod(periodKey) {
-    const pd = costData && costData.periods ? costData.periods[periodKey] : null;
-
-    ['ci-total-value', 'ci-top-agent-value', 'ci-top-cat-value', 'ci-daily-value'].forEach(removeLoadingPulse);
-
-    if (!periodHasData(pd)) {
-      const emptyMsg = emptyStateHTML('Not enough data yet', 'No data available for this period.');
-      const emptyTableMsg = `<tr><td colspan="10" style="text-align:center; padding: var(--sp-4);">${emptyMsg}</td></tr>`;
-
-      setHTML('ci-agent-bars', emptyMsg);
-      setHTML('ci-donut-wrap', emptyMsg);
-      setHTML('ci-matrix-body', emptyTableMsg);
-
-      setText('ci-total-value', '$--');
-      setText('ci-total-sub', pd ? pd.label : 'No data');
-      setText('ci-top-agent-value', '--');
-      setText('ci-top-agent-sub', 'Not enough data');
-      setText('ci-top-cat-value', '--');
-      setText('ci-top-cat-sub', 'Not enough data');
-      setText('ci-daily-value', '$--');
-      setText('ci-daily-sub', 'Not enough data');
-      setText('ci-agent-header-sub', '');
-      setText('ci-cat-header-sub', '');
-      setText('ci-matrix-header-sub', '');
-      return;
-    }
-
-    const avgDaily = pd.avg_daily_cost_usd;
-    const totalCard = $('ci-kpi-total');
-    if (totalCard) {
-      totalCard.className = 'ci-kpi-card' +
-        (avgDaily > 15 ? ' kpi--danger' : avgDaily > 5 ? ' kpi--warn' : '');
-    }
-
-    setText('ci-total-value', fmtUSD(pd.total_cost_usd));
-    setText('ci-total-sub', pd.date_range.from + ' to ' + pd.date_range.to);
-
-    const topAgent = pd.by_agent.find(a => a.agent === pd.top_agent);
-    setText('ci-top-agent-value', topAgent ? topAgent.display_name : (pd.top_agent || '--'));
-    setText('ci-top-agent-sub', topAgent
-      ? ('~' + fmtUSD(topAgent.cost_usd) + ' - ' + topAgent.pct + '% of spend')
-      : 'Approximate');
-
-    const topCat = pd.by_category ? pd.by_category.find(c => c.category === pd.top_category) : null;
-    setText('ci-top-cat-value', pd.top_category || '--');
-    setText('ci-top-cat-sub', topCat
-      ? ('~' + fmtUSD(topCat.cost_usd) + ' - ' + topCat.pct + '% of spend')
-      : 'Approximate');
-
-    setText('ci-daily-value', fmtUSD(pd.avg_daily_cost_usd));
-    setText('ci-daily-sub',
-      'over ' + pd.day_count + ' day' + (pd.day_count !== 1 ? 's' : '') +
-      ' - ' + (pd.total_turns || 0).toLocaleString() + ' turns');
-
-    const rangeStr = pd.date_range.from + ' to ' + pd.date_range.to;
-    setText('ci-agent-header-sub', pd.by_agent.length + ' agents - ' + rangeStr);
-    const nonZeroCats = pd.by_category ? pd.by_category.filter(c => c.pct > 0).length : 0;
-    setText('ci-cat-header-sub', nonZeroCats + ' active categories');
-    setText('ci-matrix-header-sub', rangeStr);
-
-    setHTML('ci-agent-bars', buildAgentBars(pd.by_agent, pd.top_agent));
-    setHTML('ci-donut-wrap', buildDonut(pd.by_category || [], pd.total_cost_usd));
-    setHTML('ci-matrix-body', buildMatrixTable(pd.agent_category_matrix || [], pd.by_agent));
-
-    if (pd._meta && pd._meta.cache_hit_rate != null) {
-      const cacheRate = (pd._meta.cache_hit_rate * 100).toFixed(1);
-      setText('ci-cache-note',
-        'Cache hit rate ' + cacheRate + '% for this period. ' +
-        'Cost source: ' + (pd._meta.cost_source || 'unknown') + '. ' +
-        'Proportions: ' + (pd._meta.proportions_source || 'local session logs') + '.');
-    } else {
-      setText('ci-cache-note', 'Cost source: Anthropic API (authoritative). Agent and category proportions are estimates derived from local session logs.');
-    }
-  }
-
-  function initFilterButtons() {
-    document.querySelectorAll('.ci-filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.ci-filter-btn').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        activePeriod = btn.dataset.period;
-        renderPeriod(activePeriod);
-      });
-    });
-  }
-
-  function loadData() {
-    fetch('./kotl-burn.json?t=' + Date.now())
-      .then(r => {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(d => {
-        costData = d;
-
-        const genAt = $('ci-generated-at');
-        if (genAt && d.generated_at) {
-          try {
-            const dt = new Date(d.generated_at);
-            genAt.textContent = 'Updated ' + dt.toLocaleString('en-CA', {
-              month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
-            });
-          } catch(e) {
-            genAt.textContent = 'Updated ' + d.generated_at;
-          }
-        }
-
-        const lu = $('last-updated');
-        if (lu) lu.textContent = 'Live';
-
-        renderPeriod(activePeriod);
-      })
-      .catch(err => {
-        console.warn('[cost-intelligence] Failed to load data:', err);
-
-        const banner = $('ci-error-banner');
-        if (banner) banner.classList.add('visible');
-
-        const lu = $('last-updated');
-        if (lu) lu.textContent = 'Data unavailable';
-
-        const genAt = $('ci-generated-at');
-        if (genAt) genAt.textContent = '';
-
-        costData = null;
-        renderPeriod(activePeriod);
-      });
-  }
-
-  initFilterButtons();
-  loadData();
-
-})();
 </script>
 
 </body>
