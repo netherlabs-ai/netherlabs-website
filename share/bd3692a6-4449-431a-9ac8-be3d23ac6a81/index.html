@@ -1,304 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>Enigma Capital - Operations Overview</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; }
-  .banner { background: #1a1a2e; border-bottom: 1px solid #30363d; padding: 10px 24px; font-size: 13px; color: #8b949e; display: flex; align-items: center; gap: 8px; }
-  .banner .dot { width: 8px; height: 8px; background: #f0a500; border-radius: 50%; display: inline-block; }
-  header { padding: 28px 24px 0; max-width: 960px; margin: 0 auto; }
-  header h1 { font-size: 22px; font-weight: 600; color: #e6edf3; letter-spacing: -0.3px; }
-  header p { font-size: 13px; color: #8b949e; margin-top: 4px; }
-  .tabs { display: flex; gap: 2px; padding: 20px 24px 0; max-width: 960px; margin: 0 auto; border-bottom: 1px solid #30363d; }
-  .tab { padding: 10px 20px; font-size: 14px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; color: #8b949e; transition: color 0.15s; }
-  .tab:hover { color: #e6edf3; }
-  .tab.active { color: #58a6ff; border-bottom-color: #58a6ff; }
-  .content { max-width: 960px; margin: 0 auto; padding: 28px 24px; }
-  .pane { display: none; }
-  .pane.active { display: block; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
-  .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 18px; }
-  .card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: #8b949e; margin-bottom: 8px; }
-  .card .value { font-size: 24px; font-weight: 600; color: #e6edf3; line-height: 1.2; }
-  .card .sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
-  .card.green .value { color: #3fb950; }
-  .card.yellow .value { color: #f0a500; }
-  .card.blue .value { color: #58a6ff; }
-  .card.red .value { color: #f85149; }
-  .section-title { font-size: 14px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; margin-top: 8px; }
-  table { width: 100%; border-collapse: collapse; background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; font-size: 14px; }
-  th { padding: 10px 16px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #8b949e; border-bottom: 1px solid #30363d; font-weight: 500; }
-  td { padding: 11px 16px; border-bottom: 1px solid #21262d; color: #e6edf3; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #1c2128; }
-  .bar-wrap { background: #21262d; border-radius: 3px; height: 6px; overflow: hidden; }
-  .bar { height: 6px; border-radius: 3px; background: #58a6ff; }
-  .bar.green { background: #3fb950; }
-  .milestone-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; font-size: 14px; }
-  .milestone-row:last-child { border-bottom: none; }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; }
-  .badge.done { background: #1e4620; color: #3fb950; }
-  .badge.in-progress { background: #2d2a14; color: #f0a500; }
-  .badge.pending { background: #1c2128; color: #8b949e; }
-  .signal-box { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
-  .signal-indicator { font-size: 36px; font-weight: 700; }
-  .signal-indicator.long { color: #3fb950; }
-  .signal-indicator.short { color: #f85149; }
-  .signal-indicator.flat { color: #8b949e; }
-  .signal-meta { font-size: 13px; color: #8b949e; }
-  .signal-meta strong { color: #e6edf3; font-size: 15px; display: block; margin-bottom: 4px; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr 1fr; } }
-  footer { text-align: center; padding: 24px; font-size: 12px; color: #484f58; border-top: 1px solid #21262d; margin-top: 12px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Enigma Capital - Operations Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --black:          #06080f;
+  --navy:           #0d1220;
+  --navy-light:     #131b2e;
+  --navy-hover:     #162035;
+  --accent:         #4f9cf9;
+  --accent-soft:    rgba(79, 156, 249, 0.08);
+  --accent-mid:     rgba(79, 156, 249, 0.18);
+  --accent-bright:  rgba(79, 156, 249, 0.35);
+  --text:           #e8edf5;
+  --text-muted:     #8892a4;
+  --text-faint:     #4a5568;
+  --border:         rgba(79, 156, 249, 0.15);
+  --border-subtle:  rgba(79, 156, 249, 0.07);
+  --border-strong:  rgba(79, 156, 249, 0.28);
+  --success:        #22c55e;
+  --success-soft:   rgba(34, 197, 94, 0.10);
+  --success-border: rgba(34, 197, 94, 0.25);
+  --warning:        #f59e0b;
+  --warning-soft:   rgba(245, 158, 11, 0.10);
+  --warning-border: rgba(245, 158, 11, 0.25);
+  --danger:         #ef4444;
+  --danger-soft:    rgba(239, 68, 68, 0.10);
+  --danger-border:  rgba(239, 68, 68, 0.25);
+  --font-head: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --text-xs:   0.6875rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md:   1.0625rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  2rem;
+  --text-3xl:  2.625rem;
+  --text-4xl:  3.25rem;
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --shadow-sm:    0 1px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md:    0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg:    0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow:  0 0 30px rgba(79, 156, 249, 0.07);
+  --shadow-card:  0 2px 8px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border);
+  --max-width: 1600px;
+  --content-gutter: clamp(var(--sp-4), 4vw, var(--sp-12));
+  --section-gap: var(--sp-6);
+  --header-height: 68px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    linear-gradient(rgba(79, 156, 249, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 156, 249, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; }
+
+.page-wrapper { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--content-gutter); }
+.main-content { padding-bottom: var(--sp-16); }
+.section-grid { display: grid; gap: var(--section-gap); margin-top: var(--section-gap); }
+.two-col { grid-template-columns: 1fr 1fr; }
+
+.expiry-banner {
+  background: rgba(79, 156, 249, 0.10);
+  border-bottom: 1px solid rgba(79, 156, 249, 0.25);
+  text-align: center;
+  padding: 8px 16px;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.expiry-banner strong { color: var(--accent); }
+
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(6, 8, 15, 0.98) 0%, rgba(13, 18, 32, 0.97) 100%);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  height: var(--header-height);
+}
+.site-header::before {
+  content: ''; display: block; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, rgba(79, 156, 249, 0.5) 70%, transparent 100%);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: calc(var(--header-height) - 2px); gap: var(--sp-6); }
+.header-brand { display: flex; align-items: center; gap: var(--sp-4); }
+.brand-logo { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-3); background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--radius-md); }
+.brand-logo-icon { width: 22px; height: 22px; opacity: 0.9; }
+.brand-wordmark { font-family: var(--font-head); font-size: var(--text-sm); font-weight: 600; color: var(--text-muted); letter-spacing: 0.02em; text-transform: uppercase; }
+.header-divider { width: 1px; height: 28px; background: var(--border); }
+.header-title { font-family: var(--font-head); font-size: var(--text-lg); font-weight: 600; color: var(--text); letter-spacing: -0.03em; }
+.header-subtitle { font-size: var(--text-sm); color: var(--text-muted); font-weight: 400; }
+.header-meta { display: flex; align-items: center; gap: var(--sp-6); text-align: right; }
+.header-date { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-muted); }
+.header-date strong { color: var(--text); font-family: var(--font-head); font-size: var(--text-base); font-weight: 600; }
+.live-indicator { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-faint); }
+
+.section-label { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.section-label-text { font-family: var(--font-head); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+
+.card { background: var(--navy-light); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-card), var(--shadow-glow); }
+.card-header { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-4) var(--sp-6); border-bottom: 1px solid var(--border-subtle); }
+.card-title { font-family: var(--font-head); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.card-body { padding: var(--sp-5) var(--sp-6); }
+.card-body--tight { padding: var(--sp-4) var(--sp-6); }
+
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--section-gap); margin-top: var(--section-gap); }
+.metric-card { background: var(--navy-light); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--sp-5) var(--sp-6); position: relative; overflow: hidden; transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; cursor: default; }
+.metric-card:hover { border-color: var(--border-strong); transform: translateY(-1px); box-shadow: var(--shadow-md), var(--shadow-glow); }
+.metric-card::before { content: ''; position: absolute; left: 0; top: 10%; bottom: 10%; width: 3px; border-radius: 0 2px 2px 0; background: var(--accent); opacity: 0.7; }
+.metric-card.metric--success::before { background: var(--success); }
+.metric-card.metric--warning::before { background: var(--warning); }
+.metric-card.metric--danger::before  { background: var(--danger); }
+.metric-card::after { content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); pointer-events: none; }
+.metric-card.metric--success::after { background: radial-gradient(circle, var(--success-soft) 0%, transparent 70%); }
+.metric-card.metric--warning::after { background: radial-gradient(circle, var(--warning-soft) 0%, transparent 70%); }
+.metric-card.metric--danger::after  { background: radial-gradient(circle, var(--danger-soft)  0%, transparent 70%); }
+.metric-label { font-size: var(--text-xs); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-3); }
+.metric-value { font-family: var(--font-head); font-size: var(--text-3xl); font-weight: 700; color: var(--text); letter-spacing: -0.04em; line-height: 1; margin-bottom: var(--sp-3); }
+.metric-value sup { font-size: 0.45em; font-weight: 500; vertical-align: top; margin-top: 0.15em; color: var(--text-muted); }
+.metric-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }
+.metric-trend { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--text-xs); font-weight: 500; font-family: var(--font-mono); padding: 2px var(--sp-2); border-radius: var(--radius-sm); }
+.metric-trend.trend--up   { color: var(--success); background: var(--success-soft); }
+.metric-trend.trend--down { color: var(--danger);  background: var(--danger-soft); }
+.metric-trend.trend--neutral { color: var(--text-muted); background: rgba(136, 146, 164, 0.10); }
+.metric-sublabel { font-size: var(--text-xs); color: var(--text-faint); font-family: var(--font-mono); }
+
+.badge { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--text-xs); font-weight: 500; letter-spacing: 0.04em; padding: 2px var(--sp-2); border-radius: var(--radius-sm); white-space: nowrap; }
+.badge--success { color: var(--success); background: var(--success-soft); border: 1px solid var(--success-border); }
+.badge--warning { color: var(--warning); background: var(--warning-soft); border: 1px solid var(--warning-border); }
+.badge--danger  { color: var(--danger);  background: var(--danger-soft);  border: 1px solid var(--danger-border); }
+.badge--accent  { color: var(--accent);  background: var(--accent-soft);  border: 1px solid var(--border); }
+.badge--muted   { color: var(--text-muted); background: rgba(136, 146, 164, 0.08); border: 1px solid rgba(136, 146, 164, 0.15); }
+
+.status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.status-dot--active { background: var(--success); box-shadow: 0 0 5px var(--success); animation: pulse-dot 2.5s ease-in-out infinite; }
+.status-dot--idle   { background: var(--warning); box-shadow: 0 0 5px rgba(245, 158, 11, 0.5); }
+.status-dot--offline { background: var(--text-faint); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--success); }
+  50%       { opacity: 0.6; box-shadow: 0 0 12px var(--success); }
+}
+
+.data-table { width: 100%; font-size: var(--text-sm); }
+.data-table thead tr { border-bottom: 1px solid var(--border); }
+.data-table th { font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); padding: var(--sp-2) var(--sp-3); padding-top: 0; white-space: nowrap; }
+.data-table td { padding: var(--sp-3); color: var(--text); border-bottom: 1px solid var(--border-subtle); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr { transition: background 0.15s ease; }
+.data-table tbody tr:hover { background: var(--accent-soft); }
+.data-table .col-mono { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); }
+.data-table .col-name { font-weight: 500; display: flex; align-items: center; gap: var(--sp-2); }
+.data-table .col-name .emoji { font-size: 1em; line-height: 1; }
+.data-table .col-amount { font-family: var(--font-mono); font-weight: 500; color: var(--text); text-align: right; }
+.data-table .col-amount.amount--high { color: var(--warning); }
+
+.milestone-pipeline { display: flex; align-items: flex-start; gap: 0; padding: var(--sp-6) var(--sp-2); overflow-x: auto; }
+.milestone-step { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 100px; position: relative; }
+.milestone-step:not(:last-child)::after { content: ''; position: absolute; top: 14px; left: calc(50% + 16px); right: calc(-50% + 16px); height: 2px; background: var(--border); z-index: 0; }
+.milestone-step.is-complete:not(:last-child)::after { background: var(--success); opacity: 0.5; }
+.milestone-step.is-active:not(:last-child)::after { background: linear-gradient(90deg, var(--accent-mid), var(--border)); }
+.milestone-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--text-xs); font-weight: 700; font-family: var(--font-mono); z-index: 1; position: relative; margin-bottom: var(--sp-3); background: var(--navy); border: 2px solid var(--border); color: var(--text-faint); transition: box-shadow 0.3s ease; }
+.milestone-step.is-complete .milestone-circle { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+.milestone-step.is-active .milestone-circle { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft), 0 0 16px rgba(79, 156, 249, 0.25); animation: milestone-pulse 2.5s ease-in-out infinite; }
+
+@keyframes milestone-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 16px rgba(79, 156, 249, 0.25); }
+  50%       { box-shadow: 0 0 0 8px rgba(79, 156, 249, 0.05), 0 0 24px rgba(79, 156, 249, 0.35); }
+}
+
+.milestone-name { font-family: var(--font-head); font-size: var(--text-xs); font-weight: 600; color: var(--text-muted); text-align: center; margin-bottom: var(--sp-1); }
+.milestone-step.is-active .milestone-name { color: var(--accent); }
+.milestone-step.is-complete .milestone-name { color: var(--success); }
+.milestone-desc { font-size: 0.65rem; color: var(--text-faint); text-align: center; line-height: 1.4; max-width: 90px; }
+.milestone-step.is-active .milestone-desc { color: var(--text-muted); }
+
+.milestone-progress-wrap { margin: var(--sp-3) 0; }
+.milestone-progress-track { height: 8px; background: var(--color-surface-2, #1a2540); border-radius: 99px; overflow: hidden; }
+.milestone-progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.6s ease; }
+.milestone-progress-fill.complete { background: var(--success); }
+
+.condition-list { display: flex; flex-direction: column; gap: 6px; }
+.condition-item { display: flex; align-items: flex-start; gap: 8px; font-size: var(--text-xs); }
+.condition-item .ci-icon { flex-shrink: 0; margin-top: 1px; }
+.condition-item .ci-detail { color: var(--text-faint); margin-left: 4px; }
+
+.decision-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+.decision-item { display: flex; align-items: flex-start; gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); background: var(--navy); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); border-left: 3px solid var(--border); transition: border-color 0.2s ease, background 0.2s ease; }
+.decision-item:hover { background: var(--navy-hover); border-color: var(--border); }
+.decision-item.urgency--high   { border-left-color: var(--danger); }
+.decision-item.urgency--medium { border-left-color: var(--warning); }
+.decision-item.urgency--low    { border-left-color: var(--accent); }
+.decision-icon { font-size: 1.2em; line-height: 1; margin-top: 1px; flex-shrink: 0; }
+.decision-content { flex: 1; min-width: 0; }
+.decision-title { font-size: var(--text-sm); font-weight: 600; color: var(--text); margin-bottom: var(--sp-1); }
+.decision-desc { font-size: var(--text-xs); color: var(--text-muted); line-height: 1.5; }
+.decision-meta { display: flex; align-items: center; justify-content: space-between; margin-top: var(--sp-2); }
+
+.flag-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.flag-item { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); font-size: var(--text-sm); }
+.flag-item.flag--red    { background: var(--danger-soft);  border: 1px solid var(--danger-border);  color: var(--danger); }
+.flag-item.flag--yellow { background: var(--warning-soft); border: 1px solid var(--warning-border); color: var(--warning); }
+.flag-item.flag--green  { background: var(--success-soft); border: 1px solid var(--success-border); color: var(--success); }
+.flag-icon { font-size: 1em; flex-shrink: 0; }
+.flag-text { flex: 1; font-size: var(--text-xs); line-height: 1.5; }
+.flag-text strong { font-weight: 600; display: block; margin-bottom: 1px; }
+.flag-source { font-size: var(--text-xs); font-family: var(--font-mono); opacity: 0.7; white-space: nowrap; }
+
+.workstream-list { display: flex; flex-direction: column; gap: 0; }
+.workstream-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border-subtle); transition: background 0.15s ease; }
+.workstream-item:last-child { border-bottom: none; }
+.workstream-item:hover { background: var(--accent-soft); }
+.workstream-name { font-size: var(--text-sm); font-weight: 500; color: var(--text); }
+.workstream-owner { font-size: var(--text-xs); color: var(--text-faint); margin-top: 2px; }
+
+.cost-total-row { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-3) var(--sp-3); margin-top: var(--sp-2); border-top: 1px solid var(--border); font-size: var(--text-sm); }
+.cost-total-label { font-weight: 600; color: var(--text-muted); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; }
+.cost-total-value { font-family: var(--font-mono); font-weight: 600; font-size: var(--text-md); color: var(--text); }
+
+.cost-bar-row { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.cost-bar { flex: 1; background: var(--accent-soft); border-radius: 3px 3px 0 0; border: 1px solid var(--border); border-bottom: none; min-height: 2px; position: relative; cursor: default; }
+.cost-bar.peak    { background: var(--danger-soft);  border-color: var(--danger-border); }
+.cost-bar.partial { background: var(--warning-soft); border-color: var(--warning-border); }
+
+.signal-pills { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+.signal-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 99px; font-size: var(--text-xs); font-family: var(--font-mono); font-weight: 500; border: 1px solid var(--border); }
+.signal-pill.bull  { background: var(--success-soft); border-color: var(--success-border); color: var(--success); }
+.signal-pill.bear  { background: var(--danger-soft);  border-color: var(--danger-border);  color: var(--danger); }
+.signal-pill.neut  { background: var(--warning-soft); border-color: var(--warning-border); color: var(--warning); }
+.signal-pill.null-val { background: var(--accent-soft); border-color: var(--border); color: var(--text-muted); }
+
+.dash-footer { border-top: 1px solid var(--border-subtle); padding: var(--sp-6) 0; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; }
+.footer-text { font-size: var(--text-xs); color: var(--text-faint); font-family: var(--font-mono); }
+
+.text-muted    { color: var(--text-muted); }
+.text-faint    { color: var(--text-faint); }
+.text-mono     { font-family: var(--font-mono); }
+.text-xs       { font-size: var(--text-xs); }
+.text-sm       { font-size: var(--text-sm); }
+.text-right    { text-align: right; }
+.fw-600        { font-weight: 600; }
+.fw-500        { font-weight: 500; }
+.flex-center   { display: flex; align-items: center; }
+.gap-2         { gap: var(--sp-2); }
+.divider       { height: 1px; background: var(--border-subtle); margin: var(--sp-4) 0; }
+.count-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 99px; font-size: 0.65rem; font-weight: 600; color: var(--accent); font-family: var(--font-mono); line-height: 1; }
+
+@media (max-width: 1100px) {
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+  .two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  :root { --header-height: 56px; --content-gutter: var(--sp-4); --section-gap: var(--sp-4); }
+  .metrics-row { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+  .metric-value { font-size: var(--text-2xl); }
+  .header-title { font-size: var(--text-base); }
+  .header-meta { display: none; }
+  .milestone-desc { display: none; }
+  .brand-wordmark { display: none; }
+  .data-table .col-hide-mobile { display: none; }
+}
+@media (max-width: 420px) {
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .metric-card { padding: var(--sp-4); }
+}
+  </style>
 </head>
 <body>
 
-<div class="banner">
-  <span class="dot"></span>
-  Confidential - For Ted Cahall only. This link expires. Do not share.
+<div class="expiry-banner">
+  Shared by <strong>Nether Labs</strong> &nbsp;&mdash;&nbsp; This snapshot expires <strong>April 17, 2026 at 1:38 PM EDT</strong>
 </div>
 
-<header>
-  <h1>Enigma Capital</h1>
-  <p>Operations Overview &bull; As of April 16, 2026 &bull; Paper trading phase (M0)</p>
+<header class="site-header">
+  <div class="page-wrapper">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-logo">
+          <svg class="brand-logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 20V4L12 16V4M12 16V20M12 4L20 20V4" stroke="#4f9cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-wordmark">Nether Labs</span>
+        </div>
+        <div class="header-divider" aria-hidden="true"></div>
+        <div>
+          <div class="header-title">Enigma Capital</div>
+          <div class="header-subtitle">Operations Dashboard</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-date">
+          <div class="text-faint text-xs text-mono">Paper Trading</div>
+          <strong id="dash-week">Paper Day 4 of 30</strong>
+        </div>
+        <div class="live-indicator">
+          <span class="live-dot" aria-label="Snapshot"></span>
+          <span id="last-updated">Snapshot Apr 16, 14:20 ET</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<div class="tabs">
-  <div class="tab active" onclick="showTab('ops')">Operations</div>
-  <div class="tab" onclick="showTab('cost')">Cost Intelligence</div>
-</div>
+<main class="main-content">
+<div class="page-wrapper">
 
-<div class="content">
+  <div class="metrics-row" role="list" aria-label="Key Performance Indicators">
 
-  <!-- OPERATIONS TAB -->
-  <div class="pane active" id="pane-ops">
+    <article class="metric-card metric--warning" role="listitem">
+      <div class="metric-label">MTD API Cost</div>
+      <div class="metric-value"><sup>$</sup><span id="metric-mtd-cost">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend trend--neutral" id="metric-cost-today-note">Apr 4-15</span>
+        <span class="metric-sublabel" id="metric-cost-steady">~$650/mo steady-state</span>
+      </div>
+    </article>
 
-    <div class="signal-box">
-      <div class="signal-indicator long">LONG</div>
-      <div class="signal-meta">
-        <strong>Today's Signal: BUY IBIT</strong>
-        Composite score: 2/6 signals bullish &bull; BTC $74,834 &bull; Fear &amp; Greed: 23 (Extreme Fear)
+    <article class="metric-card metric--success" role="listitem">
+      <div class="metric-label">Active Agents</div>
+      <div class="metric-value"><span id="metric-agent-count">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend trend--neutral" id="metric-agent-flagged">0 flagged</span>
+        <span class="metric-sublabel" id="metric-oc-version">OpenClaw —</span>
       </div>
-    </div>
+    </article>
 
-    <div class="grid">
-      <div class="card blue">
-        <div class="label">Paper NAV</div>
-        <div class="value">$10,000</div>
-        <div class="sub">187 shares IBIT @ ~$42.56</div>
+    <article class="metric-card metric--success" role="listitem">
+      <div class="metric-label">Milestone</div>
+      <div class="metric-value" style="font-size: var(--text-2xl)">M0</div>
+      <div class="metric-footer">
+        <span class="badge badge--success">Paper Trading Live</span>
+        <span class="metric-sublabel" id="metric-paper-days">Day 4 of 30</span>
       </div>
-      <div class="card">
-        <div class="label">Paper P&amp;L</div>
-        <div class="value" style="color:#8b949e">$0.00</div>
-        <div class="sub">0.00% drawdown</div>
-      </div>
-      <div class="card yellow">
-        <div class="label">MTD Cost</div>
-        <div class="value">$700.69</div>
-        <div class="sub">Steady-state est. $684/mo</div>
-      </div>
-      <div class="card">
-        <div class="label">Active Agents</div>
-        <div class="value">20</div>
-        <div class="sub">0 flagged</div>
-      </div>
-      <div class="card yellow">
-        <div class="label">Milestone</div>
-        <div class="value">M0</div>
-        <div class="sub">Paper trading in progress</div>
-      </div>
-      <div class="card">
-        <div class="label">Paper Trading Days</div>
-        <div class="value">4 / 30</div>
-        <div class="sub">26 days remaining</div>
-      </div>
-    </div>
+    </article>
 
-    <div class="section-title">M0 Conditions</div>
-    <div class="card" style="margin-bottom:28px">
-      <div class="milestone-row"><span class="badge done">Done</span> Charter v1.3 adopted</div>
-      <div class="milestone-row"><span class="badge done">Done</span> Strategy backtested (Sharpe 1.065)</div>
-      <div class="milestone-row"><span class="badge done">Done</span> IBKR account approved</div>
-      <div class="milestone-row"><span class="badge done">Done</span> Paper trading infrastructure live</div>
-      <div class="milestone-row"><span class="badge done">Done</span> Risk framework defined (10% drawdown kill switch)</div>
-      <div class="milestone-row"><span class="badge done">Done</span> All 4 signals operational</div>
-      <div class="milestone-row"><span class="badge done">Done</span> Charter v1.4 amendments adopted</div>
-      <div class="milestone-row"><span class="badge in-progress">In Progress</span> 30 days paper trading (Day 4 of 30)</div>
-      <div class="milestone-row"><span class="badge pending">Pending</span> FAPI legal opinion (Colleen D. Ma, Miller Thomson)</div>
-    </div>
+    <article class="metric-card metric--success" id="card-signal" role="listitem">
+      <div class="metric-label">Signal Score</div>
+      <div class="metric-value"><span id="metric-signal-score">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend trend--up" id="metric-position-code">LONG</span>
+        <span class="metric-sublabel" id="metric-signal-valid">— valid signals</span>
+      </div>
+    </article>
 
-    <div class="section-title">Market Snapshot</div>
-    <div class="grid">
-      <div class="card">
-        <div class="label">BTC Price</div>
-        <div class="value" style="font-size:20px">$74,425</div>
-        <div class="sub">50MA: $69,691 (+7%)</div>
+    <article class="metric-card metric--success" role="listitem">
+      <div class="metric-label">Paper NAV</div>
+      <div class="metric-value"><sup>$</sup><span id="metric-nav">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend trend--up" id="metric-drawdown">DD: 0.00%</span>
+        <span class="metric-sublabel">HWM: $<span id="metric-hwm">—</span></span>
       </div>
-      <div class="card">
-        <div class="label">IBIT Live</div>
-        <div class="value" style="font-size:20px">$42.16</div>
-        <div class="sub">SPY: $700.63</div>
+    </article>
+
+    <article class="metric-card" role="listitem">
+      <div class="metric-label">BTC Live</div>
+      <div class="metric-value" style="font-size: var(--text-xl)"><sup>$</sup><span id="metric-btc-price">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend" id="metric-fear-greed">F&amp;G: —</span>
+        <span class="metric-sublabel">SPY: $<span id="metric-spy">—</span></span>
       </div>
-      <div class="card red">
-        <div class="label">Fear &amp; Greed</div>
-        <div class="value" style="font-size:20px">23</div>
-        <div class="sub">Extreme Fear</div>
+    </article>
+
+    <article class="metric-card" role="listitem">
+      <div class="metric-label">Paper P&amp;L</div>
+      <div class="metric-value"><sup>$</sup><span id="metric-pnl">—</span></div>
+      <div class="metric-footer">
+        <span class="metric-trend" id="metric-action">Action: —</span>
+        <span class="metric-sublabel">IBIT: $<span id="metric-ibit-price">—</span></span>
       </div>
-      <div class="card">
-        <div class="label">DXY Momentum</div>
-        <div class="value" style="font-size:20px">-1.64%</div>
-        <div class="sub">Bearish USD (bullish signal)</div>
-      </div>
-    </div>
+    </article>
 
   </div>
 
-  <!-- COST INTELLIGENCE TAB -->
-  <div class="pane" id="pane-cost">
+  <div class="section-grid two-col" style="margin-top: var(--sp-8);">
 
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:28px">
-      <div class="card yellow">
-        <div class="label">7-Day Total</div>
-        <div class="value">$438.38</div>
-        <div class="sub">Apr 10 - Apr 16</div>
+    <section aria-labelledby="sec-costs">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-costs">API Cost Breakdown</span>
       </div>
       <div class="card">
-        <div class="label">Avg Daily (7d)</div>
-        <div class="value">$62.63</div>
-        <div class="sub">1,807 turns</div>
+        <div class="card-header">
+          <span class="card-title" id="cost-chart-title">Daily Spend (Apr 4-15)</span>
+          <span class="text-xs text-mono text-muted">MTD: $<span id="cost-header-mtd">—</span></span>
+        </div>
+        <div class="card-body--tight">
+          <div class="cost-bar-row" id="cost-bar-chart" aria-label="Daily cost bar chart"></div>
+          <div id="cost-bar-labels" style="display:flex; gap:3px; margin-top:3px;"></div>
+          <table class="data-table" aria-label="API cost breakdown by day" style="margin-top: var(--sp-4);">
+            <thead>
+              <tr><th>Date</th><th class="text-right">USD</th><th class="text-right">Notes</th></tr>
+            </thead>
+            <tbody id="cost-table-body"></tbody>
+          </table>
+          <div class="cost-total-row">
+            <span class="cost-total-label">Running total (Apr 4-15)</span>
+            <span class="cost-total-value" id="cost-grand-total">$—</span>
+          </div>
+          <div style="margin: var(--sp-2) 0 0; padding: var(--sp-2) var(--sp-3); background: var(--color-surface-2, #0d1220); border-left: 3px solid var(--warning); border-radius: var(--radius-sm);">
+            <span class="text-xs text-muted" id="cost-note-text">Build phase (Apr 8-10) drove the peak - 200k-1M context windows during M0 construction. Steady-state projection: ~$650/month.</span>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="label">Cache Hit Rate</div>
-        <div class="value">75.5%</div>
-        <div class="sub">Reducing total spend</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="two-col">
-      <div>
-        <div class="section-title">Top 5 Agents by Spend (7d)</div>
-        <table>
-          <thead>
-            <tr><th>Agent</th><th>Cost</th><th>Share</th><th></th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Invoker</td>
-              <td>$169.06</td>
-              <td>38.6%</td>
-              <td style="width:80px"><div class="bar-wrap"><div class="bar" style="width:100%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Cron Jobs</td>
-              <td>$96.34</td>
-              <td>22.0%</td>
-              <td><div class="bar-wrap"><div class="bar" style="width:57%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Tinker</td>
-              <td>$63.37</td>
-              <td>14.5%</td>
-              <td><div class="bar-wrap"><div class="bar" style="width:37%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Lina</td>
-              <td>$21.60</td>
-              <td>4.9%</td>
-              <td><div class="bar-wrap"><div class="bar" style="width:13%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Puck</td>
-              <td>$15.67</td>
-              <td>3.6%</td>
-              <td><div class="bar-wrap"><div class="bar" style="width:9%"></div></div></td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:12px;color:#484f58;margin-top:8px">Proportions are approximate (~9.5% session log coverage)</p>
-      </div>
-
-      <div>
-        <div class="section-title">Spend by Activity (7d)</div>
-        <table>
-          <thead>
-            <tr><th>Category</th><th>Cost</th><th>Share</th><th></th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Conversation</td>
-              <td>$191.26</td>
-              <td>43.6%</td>
-              <td style="width:80px"><div class="bar-wrap"><div class="bar green" style="width:100%"></div></div></td>
-            </tr>
-            <tr>
-              <td>File ops</td>
-              <td>$109.47</td>
-              <td>25.0%</td>
-              <td><div class="bar-wrap"><div class="bar green" style="width:57%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Execution</td>
-              <td>$99.33</td>
-              <td>22.7%</td>
-              <td><div class="bar-wrap"><div class="bar green" style="width:52%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Agent coordination</td>
-              <td>$14.94</td>
-              <td>3.4%</td>
-              <td><div class="bar-wrap"><div class="bar green" style="width:8%"></div></div></td>
-            </tr>
-            <tr>
-              <td>Memory/search</td>
-              <td>$11.06</td>
-              <td>2.5%</td>
-              <td><div class="bar-wrap"><div class="bar green" style="width:6%"></div></div></td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:12px;color:#484f58;margin-top:8px">Proportions are approximate (~9.5% session log coverage)</p>
-      </div>
-    </div>
-
-    <div class="section-title" style="margin-top:28px">30-Day Context</div>
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
-      <div class="card">
-        <div class="label">30-Day Total</div>
-        <div class="value" style="font-size:20px">$901.93</div>
-        <div class="sub">Mar 18 - Apr 16</div>
+    <section aria-labelledby="sec-signal">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-signal">Today's Signal</span>
       </div>
       <div class="card">
-        <div class="label">Avg Daily (30d)</div>
-        <div class="value" style="font-size:20px">$30.06</div>
-        <div class="sub">2,643 turns</div>
+        <div class="card-header">
+          <span class="card-title">M0 Signal Stack</span>
+          <span class="badge badge--success" id="signal-header-badge">Score 2 - LONG</span>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:center; gap: var(--sp-4); margin-bottom: var(--sp-4);">
+            <div style="text-align:center;">
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em;">Composite</div>
+              <div style="font-size:var(--text-2xl); font-weight:700; font-family:var(--font-mono); color:var(--accent);" id="signal-composite-big">—</div>
+            </div>
+            <div style="flex:1;">
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Position</div>
+              <div style="font-size:var(--text-xl); font-weight:700;" id="signal-position-big">—</div>
+              <div class="text-xs text-muted" id="signal-timestamp-display">—</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em;">Shares held</div>
+              <div style="font-size:var(--text-xl); font-weight:700; font-family:var(--font-mono);" id="signal-shares-big">—</div>
+              <div class="text-xs text-muted" id="signal-action-display">—</div>
+            </div>
+          </div>
+          <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">Signal Components</div>
+          <div class="signal-pills" id="signal-pills"></div>
+          <div class="divider" style="margin: var(--sp-4) 0;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap: var(--sp-3);">
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">IBIT Est. Price</div>
+              <div class="text-sm fw-600 text-mono">$<span id="sig-est-price">—</span></div>
+            </div>
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">Fill Status</div>
+              <div class="text-sm fw-600" id="sig-fill-status">—</div>
+            </div>
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;">Valid Signals</div>
+              <div class="text-sm fw-600 text-mono"><span id="sig-valid-count">—</span> / 4</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="label">Top Spend Driver</div>
-        <div class="value" style="font-size:16px">Invoker</div>
-        <div class="sub">30.9% of 30d spend</div>
-      </div>
-    </div>
+    </section>
 
   </div>
 
+  <div class="section-grid two-col" style="margin-top: var(--sp-8);">
+
+    <section aria-labelledby="sec-milestones">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-milestones">Milestone Pipeline</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Enigma Capital Phases</span>
+          <span class="badge badge--success">M0 Paper Trading Live</span>
+        </div>
+        <div class="card-body">
+          <div class="milestone-pipeline" role="list" aria-label="Milestone pipeline">
+            <div class="milestone-step is-active" role="listitem">
+              <div class="milestone-circle">M0</div>
+              <div class="milestone-name">M0</div>
+              <div class="milestone-desc">Infra &amp; legal foundation</div>
+            </div>
+            <div class="milestone-step" role="listitem">
+              <div class="milestone-circle">M1</div>
+              <div class="milestone-name">M1</div>
+              <div class="milestone-desc">Paper trading validation</div>
+            </div>
+            <div class="milestone-step" role="listitem">
+              <div class="milestone-circle">M2</div>
+              <div class="milestone-name">M2</div>
+              <div class="milestone-desc">$1K live capital proven</div>
+            </div>
+            <div class="milestone-step" role="listitem">
+              <div class="milestone-circle">M3</div>
+              <div class="milestone-name">M3</div>
+              <div class="milestone-desc">$10K scale, risk mgmt</div>
+            </div>
+            <div class="milestone-step" role="listitem">
+              <div class="milestone-circle">M4</div>
+              <div class="milestone-name">M4</div>
+              <div class="milestone-desc">Full autonomous ops</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="milestone-progress-wrap">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em;">Paper Trading Progress</span>
+              <span class="text-xs text-mono text-muted">Day 4 of 30</span>
+            </div>
+            <div class="milestone-progress-track">
+              <div class="milestone-progress-fill" style="width:13%"></div>
+            </div>
+          </div>
+          <div style="margin-bottom: var(--sp-3);">
+            <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">M0 Conditions</div>
+            <div class="condition-list" id="m0-conditions"></div>
+          </div>
+          <div class="divider"></div>
+          <div>
+            <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">M1 Conditions (next gate)</div>
+            <div class="condition-list" id="m1-conditions"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-decisions">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-decisions">Open Decisions</span>
+        <span class="count-chip" id="decisions-count">3</span>
+      </div>
+      <div class="decision-list" id="decisions-list-container"></div>
+    </section>
+
+  </div>
+
+  <div class="section-grid two-col" style="margin-top: var(--sp-8);">
+
+    <section aria-labelledby="sec-agents">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-agents">Agent Activity</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Swarm Status</span>
+          <span class="badge badge--success"><span id="agents-header-count">0</span> active</span>
+        </div>
+        <div class="card-body--tight">
+          <div id="agent-activity-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-workstreams">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-workstreams">Active Workstreams</span>
+        <span class="count-chip" id="workstreams-count">11</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Priority Queue</span>
+          <span class="text-xs text-mono text-muted">from HANDOFF.md</span>
+        </div>
+        <div class="workstream-list" id="workstreams-container"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div style="margin-top: var(--sp-8);">
+    <section aria-labelledby="sec-health">
+      <div class="section-label">
+        <span class="section-label-text" id="sec-health">Org Health</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Infrastructure &amp; System Status</span>
+          <div class="flex-center gap-2">
+            <span class="badge badge--success" id="health-agents-badge">0 active &middot; 20 total</span>
+            <span class="badge badge--muted" id="health-backup-badge">Backup: No data</span>
+            <span class="badge badge--muted" id="health-version-badge">OC unknown</span>
+          </div>
+        </div>
+        <div class="card-body--tight">
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-4); padding: var(--sp-2) 0;">
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">Agent Roster</div>
+              <div class="text-sm fw-600">20 agents deployed</div>
+              <div class="text-xs text-muted">0 flagged</div>
+            </div>
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">Last Backup</div>
+              <div class="text-sm fw-600">No data</div>
+              <div class="text-xs text-muted">Auto-backup to GitHub</div>
+            </div>
+            <div>
+              <div class="text-xs text-faint fw-500" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom: var(--sp-2);">OpenClaw Version</div>
+              <div class="text-sm fw-600 text-mono">unknown</div>
+              <div class="text-xs text-muted">Current version</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="flag-list">
+            <div class="flag-item flag--red">
+              <span class="flag-icon">🔴</span>
+              <div class="flag-text">
+                <strong>Charter v1.4 amendments pending</strong>
+                v1.3 adopted. All 13 reviewer conditions locked. Invoker drafting - cannot submit externally until complete.
+              </div>
+              <span class="flag-source">Invoker</span>
+            </div>
+            <div class="flag-item flag--red">
+              <span class="flag-icon">🔴</span>
+              <div class="flag-text">
+                <strong>FAPI opinion - M1 blocker</strong>
+                Colleen D. Ma, Miller Thomson, Calgary. Engagement pending. Paper trading can continue; M1 hard-blocked.
+              </div>
+              <span class="flag-source">Rubick</span>
+            </div>
+            <div class="flag-item flag--green">
+              <span class="flag-icon">✅</span>
+              <div class="flag-text">
+                <strong>All 4 signals operational</strong>
+                Fear &amp; Greed, BTC vs 50MA, SPY cross, DXY momentum - all live. Score 2 - LONG (threshold met).
+              </div>
+              <span class="flag-source">Tinker</span>
+            </div>
+            <div class="flag-item flag--green">
+              <span class="flag-icon">✅</span>
+              <div class="flag-text">
+                <strong>Paper trading infrastructure LIVE</strong>
+                IB Gateway 10.37 + IBC 3.23.0. Paper account DUP762003 (port 7497). Signal collector + executor operational.
+              </div>
+              <span class="flag-source">Tinker &middot; Enigma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </div>
+</main>
 
 <footer>
-  Enigma Capital &bull; Nether Labs &bull; Confidential &bull; Data as of Apr 16, 2026
+  <div class="page-wrapper">
+    <div class="dash-footer">
+      <span class="footer-text">Snapshot as of Apr 16, 14:20 ET</span>
+      <span class="footer-text">Nether Labs / Enigma Capital &middot; Confidential</span>
+      <span class="footer-text">🔮 Invoker &middot; v1.1 &middot; static snapshot</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-  function showTab(name) {
-    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-    document.querySelectorAll('.pane').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('pane-' + name).classList.add('active');
-    event.target.classList.add('active');
+(function () {
+  'use strict';
+
+  var d = {"last_updated":"2026-04-16T18:20:01Z","openclaw_version":"unknown","paper_trading_days":4,"signals":{"composite_score":2,"position_code":"LONG","fear_greed_value":23,"btc_price":74833.50639132406,"btc_50ma":69690.897738061,"btc_vs_50ma":1,"spy_cross":1,"dxy_momentum_pct":-1.639890745969055,"num_valid_signals":6,"degraded_mode":null,"signal_timestamp":"2026-04-16T04:43:51.704576"},"position":{"shares":187,"action":"BUY","fill_price":null,"fill_status":"TIMEOUT","estimated_price":42.56,"current_position":187,"nav_usd":10000.00,"hwm_usd":10000.00,"drawdown_pct":0.0000,"paper_pnl_usd":0.0,"paper_trading_days":4},"market":{"btc_live_price":74430,"ibit_live_price":42.21,"spy_price":700.34,"fear_greed_live":23,"fear_greed_live_label":"Extreme Fear"},"costs":{"mtd_total":901.93,"weekly_total":901.93,"partial_today":0,"steady_state_monthly":650,"daily":[{"date":"Apr 4","amount":0.15},{"date":"Apr 5","amount":2.37},{"date":"Apr 6","amount":2.32},{"date":"Apr 7","amount":13.15},{"date":"Apr 8","amount":218.61},{"date":"Apr 9","amount":226.94},{"date":"Apr 10","amount":116.46},{"date":"Apr 11","amount":93.8},{"date":"Apr 12","amount":24.96},{"date":"Apr 13","amount":18.73},{"date":"Apr 14","amount":119.77},{"date":"Apr 15","amount":64.67}]},"org_health":{"agent_count":20,"flagged_agents":0,"last_backup":null},"agent_activity":[{"agent":"puck","last_active":"2026-04-16T06:38:16Z","status":"idle"},{"agent":"enigma","last_active":"2026-04-15T14:39:54Z","status":"idle"},{"agent":"shadow-shaman","last_active":"2026-04-15T14:23:04Z","status":"idle"},{"agent":"weaver","last_active":"2026-04-15T01:49:09Z","status":"idle"},{"agent":"disruptor","last_active":"2026-04-14T23:46:52Z","status":"idle"},{"agent":"clockwerk","last_active":"2026-04-14T23:46:45Z","status":"idle"},{"agent":"tinker","last_active":"2026-04-14T23:46:36Z","status":"idle"},{"agent":"invoker","last_active":"2026-04-14T23:46:31Z","status":"idle"},{"agent":"ancient-apparition","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"bane","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"bounty-hunter","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"crystal-maiden","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"grimstroke","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"juggernaut","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"kotl","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"lina","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"oracle","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"rubick","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"silencer","last_active":"2026-04-14T16:02:19Z","status":"idle"},{"agent":"techies","last_active":"2026-04-14T16:02:19Z","status":"idle"}],"milestones":{"current":"M0","paper_trading_days":4,"paper_trading_days_required":30,"conditions_m0":[{"label":"Charter v1.3 adopted","status":"done","detail":"Approved by Yves Apr 10"},{"label":"Strategy backtested","status":"done","detail":"Sharpe 1.065 validated"},{"label":"IBKR account approved","status":"done","detail":"Ref: 509772096 - Paper: DUP762003"},{"label":"Paper trading infrastructure","status":"done","detail":"Live as of 2026-04-12"},{"label":"Risk framework defined","status":"done","detail":"Bane - 10% drawdown kill switch"},{"label":"All 4 signals operational","status":"done","detail":"SPY/DXY fix deployed"},{"label":"30 days paper trading","status":"in_progress","detail":"Day 4 of 30"},{"label":"Charter v1.4 amendments","status":"done","detail":"Adopted by Yves 2026-04-13 - all 13 conditions confirmed"},{"label":"FAPI opinion","status":"pending","detail":"Colleen D. Ma, Miller Thomson, Calgary"}],"conditions_m1":[{"label":"30 days clean paper trading","status":"pending","detail":"Required for M1 gate"},{"label":"Oracle validation","status":"pending","detail":"P&L reconciliation sign-off"},{"label":"Silencer clearance","status":"pending","detail":"Regulatory clearance"},{"label":"FAPI opinion received","status":"pending","detail":"Hard blocker"},{"label":"Live capital authorization","status":"pending","detail":"$1,000 initial deployment"},{"label":"Approved exchange list","status":"pending","detail":"Bounty Hunter security review"},{"label":"Legal entity formed","status":"pending","detail":"Cayman structure TBD"}]},"open_decisions":[{"priority":"red","title":"Engage FAPI Counsel - Hard M1 Blocker","summary":"Human legal counsel required for FAPI opinion before M1 capital deployment. Counsel will NOT be Colleen D. Ma (Yves decided Apr 14)."},{"priority":"yellow","title":"LinkedIn Company Page OAuth","summary":"Nether Labs company page posting token - waiting on LinkedIn Community Management API approval"},{"priority":"yellow","title":"New Verticals - Decision when ready","summary":"Three business ideas assessed: Content Creator Workflow, MTG Marketplace, First Nations Tax Tool"}],"workstreams":[{"priority":"red","title":"TOTP permanent fix","detail":"Startup script must run as yves with DISPLAY=:0"},{"priority":"red","title":"FAPI counsel status","detail":"Yves said he would engage Apr 15 - confirm or resurface"},{"priority":"yellow","title":"Apr 16 tweet - proof of work post","detail":"Confirm pipeline fires cleanly"},{"priority":"yellow","title":"ChatGPT export analysis","detail":"Subagent dispatched Apr 15; check completion"},{"priority":"yellow","title":"Psychometric data","detail":"Yves to send Workplace Big5; fold into profile"},{"priority":"yellow","title":"CryptoQuant trial","detail":"Weaver to evaluate for Exchange Net Flow signal"},{"priority":"yellow","title":"Tinker: swap CryptoPanic to CryptoCompare","detail":"LLM News Sentiment signal"},{"priority":"yellow","title":"Clockwerk SPOF documentation","detail":"Manual kill capability before first live trade (pre-M1 gate)"},{"priority":"yellow","title":"Security: webchat elevated exec wildcard","detail":"CRITICAL from Apr 13 audit, still unresolved"},{"priority":"yellow","title":"LinkedIn company page OAuth","detail":"Waiting on LinkedIn CMA approval (~1 week from Apr 11)"},{"priority":"yellow","title":"Puck weekly brief","detail":"Assign Twitter content for next week"}]};
+
+  function $(id) { return document.getElementById(id); }
+
+  function fmtUSD(v, dec) {
+    dec = dec == null ? 2 : dec;
+    if (v == null || isNaN(v)) return '—';
+    return Number(v).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
   }
+
+  function fmtInt(v) {
+    if (v == null || isNaN(v)) return '—';
+    return Math.round(Number(v)).toLocaleString('en-US');
+  }
+
+  function fmtRelative(isoStr) {
+    if (!isoStr) return '—';
+    try {
+      var diff = Date.now() - new Date(isoStr).getTime();
+      var mins = Math.floor(diff / 60000);
+      var hrs  = Math.floor(mins / 60);
+      if (hrs >= 24) return Math.floor(hrs / 24) + 'd ago';
+      if (hrs > 0)   return hrs + 'h ago';
+      if (mins > 0)  return mins + 'm ago';
+      return 'Just now';
+    } catch(e) { return '—'; }
+  }
+
+  function setText(id, val) {
+    var el = $(id);
+    if (el) el.textContent = (val != null) ? val : '—';
+  }
+
+  function setHTML(id, html) {
+    var el = $(id);
+    if (el) el.innerHTML = html || '';
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function condIcon(s) {
+    if (s === 'done') return '✅';
+    if (s === 'in_progress') return '🔄';
+    if (s === 'pending') return '⬜';
+    return '❓';
+  }
+
+  function pbClass(p) { return p === 'red' ? 'badge--danger' : p === 'yellow' ? 'badge--warning' : 'badge--muted'; }
+  function plabel(p) { return p === 'red' ? 'High' : p === 'yellow' ? 'Medium' : 'Low'; }
+
+  // Metric cards
+  setText('metric-mtd-cost', fmtUSD(d.costs.mtd_total));
+  setText('metric-agent-count', d.org_health.agent_count);
+  setText('metric-agent-flagged', d.org_health.flagged_agents + ' flagged');
+  setText('metric-oc-version', 'OpenClaw ' + d.openclaw_version);
+  setText('metric-signal-score', d.signals.composite_score);
+  setText('metric-signal-valid', d.signals.num_valid_signals + ' valid signals');
+  setText('metric-nav', fmtUSD(d.position.nav_usd));
+  setText('metric-hwm', fmtUSD(d.position.hwm_usd));
+  setText('metric-btc-price', fmtInt(d.market.btc_live_price));
+  setText('metric-fear-greed', 'F&G: ' + d.market.fear_greed_live + ' \u00b7 ' + d.market.fear_greed_live_label);
+  setText('metric-spy', fmtUSD(d.market.spy_price));
+  setText('metric-pnl', fmtUSD(d.position.paper_pnl_usd));
+  setText('metric-action', 'Action: ' + d.position.action);
+  setText('metric-ibit-price', fmtUSD(d.market.ibit_live_price));
+
+  // Cost section
+  setText('cost-header-mtd', d.costs.mtd_total.toFixed(2));
+  setText('cost-grand-total', '$' + d.costs.mtd_total.toFixed(2));
+
+  var daily = d.costs.daily;
+  var maxAmt = Math.max.apply(null, daily.map(function(r){ return r.amount; }));
+  var NOTES = {'Apr 4':'First day','Apr 5':'Onboarding','Apr 6':'Onboarding','Apr 7':'Cache reads begin','Apr 8':'M0 build day 1','Apr 9':'M0 build day 2','Apr 10':'Charter + M0 cont.','Apr 11':'M0 live','Apr 12':'Ops normalizing','Apr 13':'Security audit','Apr 14':'M0 ops + audit','Apr 15':'Normal ops'};
+
+  setHTML('cost-bar-chart', daily.map(function(r){
+    var pct = Math.max(4, Math.round((r.amount/maxAmt)*100));
+    return '<div class="cost-bar' + (r.amount>100?' peak':'') + '" style="height:'+pct+'%" title="'+r.date+': $'+r.amount.toFixed(2)+'"></div>';
+  }).join(''));
+
+  setHTML('cost-bar-labels', daily.map(function(r){
+    return '<div style="flex:1;font-size:9px;color:var(--text-faint);text-align:center;">'+(r.date.split(' ')[1]||r.date)+'</div>';
+  }).join(''));
+
+  setHTML('cost-table-body', daily.map(function(r){
+    return '<tr><td class="col-name fw-500">'+r.date+'</td><td class="col-amount text-right'+(r.amount>100?' amount--high':'')+'">$'+r.amount.toFixed(2)+'</td><td class="text-xs text-muted">'+(NOTES[r.date]||'')+'</td></tr>';
+  }).join(''));
+
+  // Signal section
+  setText('signal-composite-big', d.signals.composite_score);
+  setText('signal-position-big', d.signals.position_code);
+  setText('signal-timestamp-display', 'Signal: Apr 15, 24:43 ET');
+  setText('signal-shares-big', d.position.shares);
+  setText('signal-action-display', 'Today: ' + d.position.action);
+  setText('sig-est-price', fmtUSD(d.position.estimated_price));
+  setText('sig-fill-status', d.position.fill_status);
+  setText('sig-valid-count', d.signals.num_valid_signals);
+
+  function spill(label, v, fmt) {
+    var cls = 'null-val', sym = '?';
+    if (v != null) {
+      if (fmt === 'fg') { cls = v>=60?'bull':v>=40?'neut':'bear'; sym = v; }
+      else { cls = v>0?'bull':v<0?'bear':'neut'; sym = v>0?('+'+v):v; }
+    }
+    return '<span class="signal-pill '+cls+'">'+label+': '+sym+'</span>';
+  }
+  var dxy = d.signals.dxy_momentum_pct;
+  setHTML('signal-pills',
+    spill('F&G', d.signals.fear_greed_value, 'fg') +
+    spill('BTC50', d.signals.btc_vs_50ma, 'score') +
+    spill('SPY', d.signals.spy_cross, 'score') +
+    spill('DXY', dxy!=null?(dxy>0.5?1:dxy<-0.5?-1:0):null, 'score') +
+    '<span class="signal-pill null-val">BTC 50MA: $'+fmtInt(d.signals.btc_50ma)+'</span>'
+  );
+
+  // Conditions
+  function renderCond(id, arr) {
+    if (!arr) return;
+    setHTML(id, arr.map(function(c){
+      return '<div class="condition-item"><span class="ci-icon">'+condIcon(c.status)+'</span><span>'+esc(c.label)+(c.detail?' <span class="ci-detail">('+esc(c.detail)+')</span>':'')+'</span></div>';
+    }).join(''));
+  }
+  renderCond('m0-conditions', d.milestones.conditions_m0);
+  renderCond('m1-conditions', d.milestones.conditions_m1);
+
+  // Decisions
+  setHTML('decisions-list-container', d.open_decisions.map(function(dec){
+    var uc = dec.priority==='red'?'urgency--high':'urgency--medium';
+    var ic = dec.priority==='red'?'🔴':'🟡';
+    return '<article class="decision-item '+uc+'"><div class="decision-icon">'+ic+'</div><div class="decision-content"><div class="decision-title">'+esc(dec.title)+'</div><div class="decision-desc">'+esc(dec.summary||'')+'</div><div class="decision-meta"><span class="badge '+pbClass(dec.priority)+'">'+plabel(dec.priority)+'</span></div></div></article>';
+  }).join(''));
+
+  // Agents
+  var EMOJI = {'ancient-apparition':'🧊','bane':'😴','bounty-hunter':'🗡️','clockwerk':'🕰️','crystal-maiden':'❄️','disruptor':'⚡','enigma':'🌀','grimstroke':'🖌️','juggernaut':'⚔️','kotl':'💡','lina':'🎨','oracle':'🔭','puck':'🎭','rubick':'🔵','silencer':'⚖️','techies':'💣','tinker':'⚙️','invoker':'🔮','shadow-shaman':'🪄','weaver':'🕷️'};
+  setHTML('agent-activity-container',
+    '<table class="data-table"><thead><tr><th>Agent</th><th class="col-hide-mobile">ID</th><th class="col-hide-mobile text-right">Last Active</th><th>Status</th></tr></thead><tbody>' +
+    d.agent_activity.map(function(a){
+      var em = EMOJI[a.agent]||'🤖';
+      var nm = a.agent.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+      var sb = a.status==='active'
+        ? '<span class="badge badge--success"><span class="status-dot status-dot--active"></span> Active</span>'
+        : '<span class="badge badge--muted"><span class="status-dot status-dot--idle"></span> Idle</span>';
+      return '<tr><td class="col-name"><span class="emoji">'+em+'</span><div class="fw-500">'+nm+'</div></td><td class="text-xs text-muted col-hide-mobile">'+a.agent+'</td><td class="col-mono text-xs text-muted text-right col-hide-mobile">'+fmtRelative(a.last_active)+'</td><td>'+sb+'</td></tr>';
+    }).join('') +
+    '</tbody></table>'
+  );
+
+  // Workstreams
+  setHTML('workstreams-container', d.workstreams.map(function(ws){
+    var dot = ws.priority==='red'?'🔴':'🟡';
+    return '<div class="workstream-item"><div><div class="workstream-name">'+dot+' '+esc(ws.title)+'</div><div class="workstream-owner">'+esc(ws.detail||'')+'</div></div><span class="badge '+pbClass(ws.priority)+'">'+plabel(ws.priority)+'</span></div>';
+  }).join(''));
+
+})();
 </script>
 
 </body>
