@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Enigma Capital — Partner Intelligence Brief</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --black:         #07070a;
+  --surface:       #0d0d12;
+  --surface-2:     #131318;
+  --surface-3:     #1a1a22;
+  --surface-hover: #1e1e28;
+
+  --gold:          #c9952e;
+  --gold-bright:   #e8b84b;
+  --gold-soft:     rgba(201, 149, 46, 0.10);
+  --gold-mid:      rgba(201, 149, 46, 0.20);
+  --gold-border:   rgba(201, 149, 46, 0.20);
+  --gold-border-s: rgba(201, 149, 46, 0.08);
+
+  --text:          #eaeaf0;
+  --text-muted:    #8888a8;
+  --text-faint:    #44445a;
+
+  --success:       #22c55e;
+  --success-soft:  rgba(34, 197, 94, 0.09);
+  --success-border:rgba(34, 197, 94, 0.22);
+  --warning:       #f59e0b;
+  --warning-soft:  rgba(245, 158, 11, 0.09);
+  --warning-border:rgba(245, 158, 11, 0.22);
+  --danger:        #ef4444;
+  --danger-soft:   rgba(239, 68, 68, 0.09);
+  --danger-border: rgba(239, 68, 68, 0.22);
+  --blue:          #4f8ef0;
+  --blue-soft:     rgba(79, 142, 240, 0.09);
+  --blue-border:   rgba(79, 142, 240, 0.22);
+
+  --font-head: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-border-s);
+  --shadow-glow: 0 0 30px rgba(201, 149, 46, 0.06);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.6);
+
+  --max-w: 1340px;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --gap:    1.5rem;
+  --header-h: 66px;
+}
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(rgba(201, 149, 46, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 149, 46, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+h1,h2,h3,h4,h5 { font-family: var(--font-head); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+a { color: var(--gold-bright); text-decoration: none; }
+
+/* ── Layout ── */
+.wrap   { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+.main   { padding-bottom: 5rem; }
+.grid2  { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.grid3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.grid4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
+.mt4    { margin-top: var(--gap); }
+
+/* ── Expiry Banner ── */
+.expiry-banner {
+  background: var(--gold-soft);
+  border-bottom: 1px solid var(--gold-border);
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.expiry-banner strong { color: var(--gold-bright); }
+#expiry-countdown { font-weight: 500; color: var(--gold); }
+
+/* ── Header ── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(7,7,10,0.98) 0%, rgba(13,13,18,0.97) 100%);
+  border-bottom: 1px solid var(--gold-border-s);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  height: var(--header-h);
+}
+.site-header::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-bright) 55%, transparent 100%);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: calc(var(--header-h) - 2px); gap: 2rem;
+}
+.header-brand { display: flex; align-items: center; gap: 1rem; }
+.brand-lockup {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+}
+.brand-lockup-icon { font-size: 1.1rem; line-height: 1; }
+.brand-lockup-text {
+  font-family: var(--font-head); font-size: 0.75rem; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.header-divider { width: 1px; height: 28px; background: var(--gold-border-s); }
+.header-title-block {}
+.header-title {
+  font-family: var(--font-head); font-size: 1rem; font-weight: 600;
+  color: var(--text); letter-spacing: -0.02em;
+}
+.header-sub {
+  font-size: 0.75rem; color: var(--text-muted);
+}
+.header-right {
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.header-date-block { text-align: right; }
+.header-date-label { font-size: 0.7rem; color: var(--text-faint); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.header-date-val { font-family: var(--font-head); font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.confidential-badge {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  border-radius: 99px;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.conf-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+/* ── Section Label ── */
+.section-label {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.section-label-text {
+  font-family: var(--font-head); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); white-space: nowrap;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--gold-border-s), transparent);
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--gold-border-s);
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.hero-eyebrow::before {
+  content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold);
+}
+.hero-heading {
+  font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700; letter-spacing: -0.04em; color: var(--text);
+  line-height: 1.1; margin-bottom: 1.25rem;
+}
+.hero-heading em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-body {
+  font-size: 1.05rem; color: var(--text-muted); line-height: 1.7;
+  max-width: 680px; margin-bottom: 2rem;
+}
+.hero-meta {
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; color: var(--text-faint); font-family: var(--font-mono);
+}
+.hero-meta-item strong { color: var(--text-muted); }
+.hero-status-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 1rem; border-radius: 99px;
+  background: var(--success-soft); border: 1px solid var(--success-border);
+  font-size: 0.75rem; font-family: var(--font-mono); font-weight: 500;
+  color: var(--success); letter-spacing: 0.04em;
+}
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 6px var(--success); }
+  50%      { opacity: 0.6; box-shadow: 0 0 12px var(--success); }
+}
+
+/* ── Card ── */
+.card {
+  background: var(--surface-2);
+  border: 1px solid var(--gold-border-s);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--gold-border-s);
+}
+.card-title {
+  font-family: var(--font-head); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+}
+.card-body { padding: 1.25rem 1.5rem; }
+.card-body--lg { padding: 1.5rem 1.75rem; }
+
+/* ── Metric Cards ── */
+.metric-card {
+  background: var(--surface-2);
+  border: 1px solid var(--gold-border-s);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.metric-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+.metric-card::before {
+  content: ''; position: absolute; left: 0; top: 15%; bottom: 15%;
+  width: 3px; border-radius: 0 2px 2px 0;
+  background: var(--gold);
+}
+.metric-card.m--success::before { background: var(--success); }
+.metric-card.m--warning::before { background: var(--warning); }
+.metric-card.m--danger::before  { background: var(--danger); }
+.metric-card.m--blue::before    { background: var(--blue); }
+.metric-card::after {
+  content: ''; position: absolute; top: -25px; right: -25px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.metric-card.m--success::after { background: radial-gradient(circle, var(--success-soft) 0%, transparent 70%); }
+.metric-card.m--warning::after { background: radial-gradient(circle, var(--warning-soft) 0%, transparent 70%); }
+.metric-card.m--danger::after  { background: radial-gradient(circle, var(--danger-soft)  0%, transparent 70%); }
+.metric-card.m--blue::after    { background: radial-gradient(circle, var(--blue-soft)    0%, transparent 70%); }
+.metric-label {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
+}
+.metric-value {
+  font-family: var(--font-head); font-size: 2.5rem; font-weight: 700;
+  color: var(--text); letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.metric-value sup {
+  font-size: 0.4em; font-weight: 500; vertical-align: top;
+  margin-top: 0.2em; color: var(--text-muted);
+}
+.metric-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+}
+.metric-sub { font-size: 0.7rem; color: var(--text-faint); font-family: var(--font-mono); }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: var(--radius-sm); white-space: nowrap;
+}
+.badge--success { color: var(--success); background: var(--success-soft); border: 1px solid var(--success-border); }
+.badge--warning { color: var(--warning); background: var(--warning-soft); border: 1px solid var(--warning-border); }
+.badge--danger  { color: var(--danger);  background: var(--danger-soft);  border: 1px solid var(--danger-border); }
+.badge--gold    { color: var(--gold-bright); background: var(--gold-soft);   border: 1px solid var(--gold-border); }
+.badge--blue    { color: var(--blue);    background: var(--blue-soft);    border: 1px solid var(--blue-border); }
+.badge--muted   { color: var(--text-muted); background: rgba(136,136,168,0.08); border: 1px solid rgba(136,136,168,0.15); }
+
+/* ── Signals Grid ── */
+.signals-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 0;
+}
+.signal-card {
+  background: var(--surface-3);
+  border: 1px solid var(--gold-border-s);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.signal-card:hover { background: var(--surface-hover); border-color: var(--gold-border); }
+.signal-name {
+  font-family: var(--font-head); font-size: 0.85rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.4rem;
+}
+.signal-desc {
+  font-size: 0.78rem; color: var(--text-muted); line-height: 1.55;
+}
+.signal-tag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  margin-top: 0.75rem;
+  font-size: 0.68rem; font-family: var(--font-mono); font-weight: 500;
+  color: var(--text-faint); letter-spacing: 0.04em;
+}
+.signal-icon { font-size: 1.4rem; margin-bottom: 0.75rem; display: block; }
+
+/* ── Milestone Pipeline ── */
+.milestone-rail {
+  display: flex; align-items: flex-start; gap: 0;
+  padding: 2rem 0.5rem 1.5rem;
+  overflow-x: auto;
+}
+.milestone-step {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; min-width: 120px; position: relative;
+}
+.milestone-step:not(:last-child)::after {
+  content: ''; position: absolute;
+  top: 15px; left: calc(50% + 18px); right: calc(-50% + 18px);
+  height: 2px; background: var(--gold-border-s); z-index: 0;
+}
+.milestone-step.ms--done:not(:last-child)::after { background: var(--success-border); opacity: 0.6; }
+.milestone-step.ms--active:not(:last-child)::after {
+  background: linear-gradient(90deg, var(--gold-mid), var(--gold-border-s));
+}
+.ms-circle {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; font-family: var(--font-mono);
+  z-index: 1; position: relative; margin-bottom: 0.75rem;
+  background: var(--surface); border: 2px solid var(--gold-border-s);
+  color: var(--text-faint); transition: box-shadow 0.3s;
+}
+.milestone-step.ms--done   .ms-circle { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+.milestone-step.ms--active .ms-circle {
+  background: var(--gold-soft); border-color: var(--gold); color: var(--gold-bright);
+  animation: ms-pulse 2.5s ease-in-out infinite;
+}
+.milestone-step.ms--locked .ms-circle { opacity: 0.5; }
+@keyframes ms-pulse {
+  0%,100% { box-shadow: 0 0 0 4px var(--gold-soft), 0 0 16px rgba(201,149,46,0.2); }
+  50%      { box-shadow: 0 0 0 8px rgba(201,149,46,0.05), 0 0 24px rgba(201,149,46,0.3); }
+}
+.ms-name {
+  font-family: var(--font-head); font-size: 0.78rem; font-weight: 600;
+  color: var(--text-muted); text-align: center; margin-bottom: 0.25rem;
+}
+.milestone-step.ms--active .ms-name { color: var(--gold-bright); }
+.milestone-step.ms--done   .ms-name { color: var(--success); }
+.ms-desc {
+  font-size: 0.68rem; color: var(--text-faint);
+  text-align: center; line-height: 1.4; max-width: 100px;
+}
+.milestone-step.ms--active .ms-desc { color: var(--text-muted); }
+
+/* ── Progress Bar ── */
+.progress-track {
+  height: 6px; background: var(--surface-3); border-radius: 99px;
+  overflow: hidden; margin: 0.5rem 0;
+}
+.progress-fill {
+  height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 100%);
+  transition: width 0.6s ease;
+}
+.progress-fill.pf--success { background: linear-gradient(90deg, #16a34a, var(--success)); }
+
+/* ── Org Grid ── */
+.org-cluster { margin-bottom: 1.5rem; }
+.org-cluster-label {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+  color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 0.75rem; padding-left: 0.25rem;
+  border-left: 2px solid var(--gold-border);
+  padding-left: 0.6rem;
+}
+.agent-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+.agent-chip {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--surface-3);
+  border: 1px solid var(--gold-border-s);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem; color: var(--text-muted);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  cursor: default;
+}
+.agent-chip:hover { background: var(--surface-hover); border-color: var(--gold-border); color: var(--text); }
+.agent-chip.chip--csuite {
+  border-color: var(--gold-border);
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+}
+.agent-chip.chip--csuite:hover { background: var(--gold-mid); }
+.agent-emoji { font-size: 1rem; line-height: 1; flex-shrink: 0; }
+.agent-info {}
+.agent-name { font-weight: 600; font-size: 0.78rem; line-height: 1.2; }
+.agent-role { font-size: 0.67rem; color: var(--text-faint); line-height: 1.3; margin-top: 1px; }
+.agent-chip.chip--csuite .agent-role { color: var(--gold); opacity: 0.7; }
+
+/* ── Pipeline ── */
+.pipeline-wrap {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+  padding: 1.25rem 0; overflow-x: auto;
+}
+.pipe-step {
+  display: flex; align-items: center; gap: 0;
+}
+.pipe-node {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.4rem 0.8rem;
+  background: var(--surface-3);
+  border: 1px solid var(--gold-border-s);
+  border-radius: var(--radius-md);
+  font-size: 0.72rem; font-family: var(--font-head);
+  font-weight: 500; color: var(--text-muted);
+  white-space: nowrap; min-width: 70px; text-align: center;
+  transition: background 0.15s;
+}
+.pipe-node:hover { background: var(--surface-hover); color: var(--text); }
+.pipe-node-emoji { font-size: 1.1rem; margin-bottom: 2px; }
+.pipe-arrow {
+  width: 24px; height: 1px; background: var(--gold-border-s);
+  position: relative; flex-shrink: 0;
+}
+.pipe-arrow::after {
+  content: '▶'; position: absolute; right: -5px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.45rem; color: var(--gold-border);
+}
+
+/* ── Kill Switch ── */
+.killswitch-box {
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.killswitch-icon { font-size: 1.75rem; flex-shrink: 0; margin-top: 0.1rem; }
+.killswitch-title {
+  font-family: var(--font-head); font-size: 0.9rem; font-weight: 600;
+  color: var(--danger); margin-bottom: 0.35rem;
+}
+.killswitch-body { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ── Table ── */
+.data-table { width: 100%; font-size: 0.82rem; }
+.data-table thead tr { border-bottom: 1px solid var(--gold-border-s); }
+.data-table th {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-faint);
+  padding: 0.4rem 0.75rem; padding-top: 0; white-space: nowrap;
+}
+.data-table td {
+  padding: 0.65rem 0.75rem; color: var(--text);
+  border-bottom: 1px solid var(--gold-border-s); vertical-align: middle;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr { transition: background 0.12s; }
+.data-table tbody tr:hover { background: var(--gold-soft); }
+
+/* ── Footer ── */
+.page-footer {
+  border-top: 1px solid var(--gold-border-s);
+  padding: 2rem 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.footer-text { font-size: 0.7rem; color: var(--text-faint); font-family: var(--font-mono); }
+.footer-brand { font-family: var(--font-head); font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+
+/* ── Utility ── */
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger  { color: var(--danger); }
+.text-gold    { color: var(--gold-bright); }
+.text-muted   { color: var(--text-muted); }
+.text-faint   { color: var(--text-faint); }
+.text-mono    { font-family: var(--font-mono); }
+.fw-600       { font-weight: 600; }
+.fw-500       { font-weight: 500; }
+.divider { height: 1px; background: var(--gold-border-s); margin: 1.5rem 0; }
+.section-gap { margin-top: 2.5rem; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grid4 { grid-template-columns: repeat(2, 1fr); }
+  .grid3 { grid-template-columns: 1fr 1fr; }
+  .header-right { gap: 0.75rem; }
+  .header-date-block { display: none; }
+}
+@media (max-width: 640px) {
+  .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
+  .signals-grid { grid-template-columns: 1fr; }
+  .hero-heading { font-size: 1.8rem; }
+  .pipeline-wrap { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  .pipe-arrow { transform: rotate(90deg); margin: 0.1rem 0; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Expiry Banner -->
+<div class="expiry-banner" id="expiry-banner">
+  🔒 <strong>Confidential Partner Brief</strong> — This document expires in <span id="expiry-countdown">calculating…</span> &nbsp;|&nbsp; Prepared by Dragon Knight 🛡️, Nether Labs
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-lockup">
+          <span class="brand-lockup-icon">🌀</span>
+          <span class="brand-lockup-text">Enigma Capital</span>
+        </div>
+        <div class="header-divider"></div>
+        <div class="header-title-block">
+          <div class="header-title">Partner Intelligence Brief</div>
+          <div class="header-sub">Nether Labs · Private &amp; Confidential</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-date-block">
+          <div class="header-date-label">Prepared</div>
+          <div class="header-date-val" id="prep-date">April 19, 2026</div>
+        </div>
+        <div class="confidential-badge">
+          <span class="conf-dot"></span>
+          Confidential
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="main">
+  <div class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Partner Intelligence Brief</div>
+      <h1 class="hero-heading">
+        Enigma Capital<br/>
+        <em>Autonomous Quant Trading</em>
+      </h1>
+      <p class="hero-body">
+        This brief was prepared exclusively for Denis as a valued partner and shareholder of Nether Labs.
+        It covers our current operational posture, trading framework, organizational structure,
+        and the milestone roadmap to live deployment — everything you need to stay meaningfully informed
+        without the noise.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-status-pill">
+          <span class="pulse-dot"></span>
+          M0 Paper Trading — Day 5 of 30
+        </div>
+        <div class="hero-meta-item">
+          <span>Instrument:</span>
+          <strong>IBIT · IBKR</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>Org size:</span>
+          <strong>26 Agents · 6 C-Suite</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>Parent:</span>
+          <strong>Nether Labs</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Market Snapshot -->
+    <section>
+      <div class="section-label">
+        <span class="section-label-text">Live Market Snapshot</span>
+      </div>
+      <div class="grid4">
+        <div class="metric-card m--blue">
+          <div class="metric-label">Bitcoin Price</div>
+          <div class="metric-value"><sup>$</sup>77,283</div>
+          <div class="metric-footer">
+            <span class="metric-sub text-mono">BTC/USD · Live</span>
+            <span class="badge badge--blue">ABOVE 50MA</span>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">IBIT Share Price</div>
+          <div class="metric-value"><sup>$</sup>43.87</div>
+          <div class="metric-footer">
+            <span class="metric-sub text-mono">iShares BTC Trust</span>
+            <span class="badge badge--gold">ACTIVE</span>
+          </div>
+        </div>
+        <div class="metric-card m--danger">
+          <div class="metric-label">Fear &amp; Greed Index</div>
+          <div class="metric-value">21</div>
+          <div class="metric-footer">
+            <span class="metric-sub text-mono">CNN Money · Live</span>
+            <span class="badge badge--danger">Extreme Fear</span>
+          </div>
+        </div>
+        <div class="metric-card m--success">
+          <div class="metric-label">Paper Trading Day</div>
+          <div class="metric-value">5 <span style="font-size:1.2rem;font-weight:400;color:var(--text-muted)">/ 30</span></div>
+          <div class="metric-footer">
+            <span class="metric-sub text-mono">M0 Validation Phase</span>
+            <span class="badge badge--success">ON TRACK</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- M0 Position Status -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">M0 Execution Status</span>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Current Position</span>
+            <span class="badge badge--success">FILLED</span>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="text-muted" style="width:45%">Instrument</td>
+                  <td class="fw-600 text-mono">IBIT — iShares Bitcoin Trust</td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Action</td>
+                  <td><span class="badge badge--success">BUY</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Shares Held</td>
+                  <td class="fw-600 text-mono">184</td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Fill Price</td>
+                  <td class="fw-600 text-mono">$43.45</td>
+                </tr>
+                <tr>
+                  <td class="text-muted">First Trade Date</td>
+                  <td class="text-mono">April 17, 2026</td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Drawdown (Paper)</td>
+                  <td><span class="badge badge--success">0.0%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">System Health</span>
+            <span class="badge badge--success">ALL SYSTEMS OPERATIONAL</span>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td class="text-muted" style="width:55%">Signal Engine</td>
+                  <td><span class="badge badge--success">✓ Operational</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Trade Executor</td>
+                  <td><span class="badge badge--success">✓ Operational</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Daily Automation</td>
+                  <td><span class="badge badge--success">✓ Running</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Kill Switch</td>
+                  <td><span class="badge badge--success">✓ Armed</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Degraded Mode</td>
+                  <td><span class="badge badge--success">✗ Not Active</span></td>
+                </tr>
+                <tr>
+                  <td class="text-muted">Valid Signals</td>
+                  <td class="text-mono fw-600">5 / 5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trading Signals -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">Trading Signal Framework</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Active Alpha Signals — 4 Strategies</span>
+          <span class="badge badge--gold">Semantic Alpha · No HFT</span>
+        </div>
+        <div class="card-body">
+          <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.25rem;">
+            Enigma Capital generates alpha from <strong class="text-gold">unstructured information</strong> — sentiment, macro flows, and behavioral signals
+            that traditional quantitative funds underweight. LLMs process the data; deterministic Python executes the trades.
+            No model makes math decisions. No model touches a live order without passing through the full approval pipeline.
+          </p>
+          <div class="signals-grid">
+            <div class="signal-card">
+              <span class="signal-icon">😨</span>
+              <div class="signal-name">Fear &amp; Greed Contrarian</div>
+              <div class="signal-desc">
+                Monitors the CNN Fear &amp; Greed Index for extreme readings. In periods of extreme fear (&lt;25),
+                historically outperformed markets present a mean-reversion opportunity. The signal triggers a
+                contrarian long when fear is at its highest and macro conditions confirm.
+              </div>
+              <div class="signal-tag">BEHAVIORAL · SENTIMENT</div>
+            </div>
+            <div class="signal-card">
+              <span class="signal-icon">₿</span>
+              <div class="signal-name">BTC Dominance Rotation</div>
+              <div class="signal-desc">
+                Tracks Bitcoin's price relative to its 50-day moving average as a proxy for risk-on/risk-off
+                positioning in crypto markets. IBIT exposure scales with BTC momentum relative to trend,
+                capturing rotation flows between risk assets and crypto.
+              </div>
+              <div class="signal-tag">MACRO · MOMENTUM</div>
+            </div>
+            <div class="signal-card">
+              <span class="signal-icon">🗞️</span>
+              <div class="signal-name">LLM News Sentiment</div>
+              <div class="signal-desc">
+                An LLM continuously processes crypto news headlines and classifies each article as
+                bullish, bearish, or neutral. Aggregated sentiment scores create a directional signal
+                that detects narrative shifts before they appear in price, providing early alpha.
+              </div>
+              <div class="signal-tag">NLP · INFORMATION EDGE</div>
+            </div>
+            <div class="signal-card">
+              <span class="signal-icon">🔄</span>
+              <div class="signal-name">Exchange Net Flow</div>
+              <div class="signal-desc">
+                Monitors net Bitcoin inflows and outflows across major exchanges. Large net outflows
+                (BTC leaving exchanges) historically precede price increases as supply tightens.
+                Large inflows signal selling pressure. This on-chain signal provides supply/demand clarity.
+              </div>
+              <div class="signal-tag">ON-CHAIN · SUPPLY DYNAMICS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestone Roadmap -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">Milestone Roadmap</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">M0 → M1 → M2 → M3 Progression</span>
+          <span class="badge badge--gold">Currently: M0 Active</span>
+        </div>
+        <div class="card-body--lg">
+          <div class="milestone-rail">
+            <div class="milestone-step ms--active">
+              <div class="ms-circle">M0</div>
+              <div class="ms-name">Paper Validation</div>
+              <div class="ms-desc">30-day paper trading · All signals live · Day 5 of 30</div>
+            </div>
+            <div class="milestone-step ms--locked">
+              <div class="ms-circle">M1</div>
+              <div class="ms-name">First Capital</div>
+              <div class="ms-desc">Live trading · Small initial stake · Regulatory opinion cleared</div>
+            </div>
+            <div class="milestone-step ms--locked">
+              <div class="ms-circle">M2</div>
+              <div class="ms-name">Scaled Deployment</div>
+              <div class="ms-desc">Proven M1 performance · Larger capital allocation · Institutional infra</div>
+            </div>
+            <div class="milestone-step ms--locked">
+              <div class="ms-circle">M3</div>
+              <div class="ms-name">External Capital</div>
+              <div class="ms-desc">Fund structure · External investor access · Full automation</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid2" style="gap:1.5rem;">
+            <div>
+              <div style="font-size:0.78rem;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;">M0 Progress (Day 5 / 30)</div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:16.7%"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-faint);margin-top:0.35rem;font-family:var(--font-mono);">
+                <span>Apr 15 — Start</span>
+                <span>May 15 — Target</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:600;color:var(--text-muted);margin-bottom:0.75rem;">M0 → M1 Unlock Conditions</div>
+              <div style="display:flex;flex-direction:column;gap:0.4rem;">
+                <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;">
+                  <span class="badge badge--success" style="flex-shrink:0">✓</span>
+                  <span class="text-muted">Paper trading infrastructure operational</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;">
+                  <span class="badge badge--gold" style="flex-shrink:0">↻</span>
+                  <span class="text-muted">30 days of paper trading validated</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;">
+                  <span class="badge badge--warning" style="flex-shrink:0">⧖</span>
+                  <span class="text-muted">Regulatory opinion received (FAPI)</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;">
+                  <span class="badge badge--warning" style="flex-shrink:0">⧖</span>
+                  <span class="text-muted">Oracle + Silencer sign-off on live capital</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organization -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">The Organization — 26 Agents</span>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Nether Labs / Enigma Capital Agent Swarm</span>
+          <div style="display:flex;gap:0.5rem;">
+            <span class="badge badge--gold">6 C-Suite</span>
+            <span class="badge badge--muted">20 Specialists</span>
+          </div>
+        </div>
+        <div class="card-body--lg">
+          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem;">
+            Enigma Capital operates as a fully autonomous agent swarm. Each agent has a defined domain,
+            explicit responsibilities, hard authority limits, and reports through a clear chain of command.
+            Yves acts as founder and board — setting direction, approving capital milestones, and holding
+            the kill switch. The rest of the organization executes autonomously.
+          </p>
+
+          <!-- C-Suite -->
+          <div class="org-cluster">
+            <div class="org-cluster-label">C-Suite · Reports to Yves La Rose</div>
+            <div class="agent-grid">
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">🔮</span>
+                <div class="agent-info">
+                  <div class="agent-name">Invoker</div>
+                  <div class="agent-role">Chief of Staff</div>
+                </div>
+              </div>
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">⚡</span>
+                <div class="agent-info">
+                  <div class="agent-name">Zeus</div>
+                  <div class="agent-role">CTO</div>
+                </div>
+              </div>
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">🎯</span>
+                <div class="agent-info">
+                  <div class="agent-name">Chen</div>
+                  <div class="agent-role">COO</div>
+                </div>
+              </div>
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">🌌</span>
+                <div class="agent-info">
+                  <div class="agent-name">Outworld Destroyer</div>
+                  <div class="agent-role">CSO</div>
+                </div>
+              </div>
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">👁️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Spectre</div>
+                  <div class="agent-role">CDO</div>
+                </div>
+              </div>
+              <div class="agent-chip chip--csuite">
+                <span class="agent-emoji">🛡️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Dragon Knight</div>
+                  <div class="agent-role">Head of BD &amp; Partnerships</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trading Cluster -->
+          <div class="org-cluster">
+            <div class="org-cluster-label">Trading Cluster · Clockwerk (Lead)</div>
+            <div class="agent-grid">
+              <div class="agent-chip">
+                <span class="agent-emoji">🕰️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Clockwerk</div>
+                  <div class="agent-role">Trading Desk Lead / Kill Switch</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🌀</span>
+                <div class="agent-info">
+                  <div class="agent-name">Enigma</div>
+                  <div class="agent-role">Quant Researcher</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🔭</span>
+                <div class="agent-info">
+                  <div class="agent-name">Oracle</div>
+                  <div class="agent-role">Financial Comptroller</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">😴</span>
+                <div class="agent-info">
+                  <div class="agent-name">Bane</div>
+                  <div class="agent-role">Chief Risk Officer</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">❄️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Crystal Maiden</div>
+                  <div class="agent-role">Reporting &amp; Analytics</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">⚔️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Juggernaut</div>
+                  <div class="agent-role">Trade Execution</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🗡️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Bounty Hunter</div>
+                  <div class="agent-role">Security Architect</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engineering Cluster -->
+          <div class="org-cluster">
+            <div class="org-cluster-label">Engineering Cluster · Zeus (CTO)</div>
+            <div class="agent-grid">
+              <div class="agent-chip">
+                <span class="agent-emoji">⚙️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Tinker</div>
+                  <div class="agent-role">Lead Engineer</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">💣</span>
+                <div class="agent-info">
+                  <div class="agent-name">Techies</div>
+                  <div class="agent-role">Sysadmin / Infrastructure</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🔍</span>
+                <div class="agent-info">
+                  <div class="agent-name">Disruptor</div>
+                  <div class="agent-role">Technical Auditor / QA</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal & Ops -->
+          <div class="org-cluster">
+            <div class="org-cluster-label">Legal, Ops &amp; Finance · Invoker (CoS)</div>
+            <div class="agent-grid">
+              <div class="agent-chip">
+                <span class="agent-emoji">⚖️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Silencer</div>
+                  <div class="agent-role">Legal &amp; Compliance</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🧊</span>
+                <div class="agent-info">
+                  <div class="agent-name">Ancient Apparition</div>
+                  <div class="agent-role">Project Manager</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🔵</span>
+                <div class="agent-info">
+                  <div class="agent-name">Rubick</div>
+                  <div class="agent-role">Tax Counsel</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">💡</span>
+                <div class="agent-info">
+                  <div class="agent-name">Keeper of the Light</div>
+                  <div class="agent-role">CFO / Cost Intelligence</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🐛</span>
+                <div class="agent-info">
+                  <div class="agent-name">Nyx Assassin</div>
+                  <div class="agent-role">CISO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brand & Data -->
+          <div class="org-cluster">
+            <div class="org-cluster-label">Brand &amp; Data · Puck / Spectre</div>
+            <div class="agent-grid">
+              <div class="agent-chip">
+                <span class="agent-emoji">🎭</span>
+                <div class="agent-info">
+                  <div class="agent-name">Puck</div>
+                  <div class="agent-role">CMO / Brand Lead</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🎨</span>
+                <div class="agent-info">
+                  <div class="agent-name">Lina</div>
+                  <div class="agent-role">UI/UX Designer</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🖌️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Grimstroke</div>
+                  <div class="agent-role">Creative Director</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🪄</span>
+                <div class="agent-info">
+                  <div class="agent-name">Shadow Shaman</div>
+                  <div class="agent-role">Social Media Manager</div>
+                </div>
+              </div>
+              <div class="agent-chip">
+                <span class="agent-emoji">🕷️</span>
+                <div class="agent-info">
+                  <div class="agent-name">Weaver</div>
+                  <div class="agent-role">Data Agent</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Risk Framework -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">Risk Framework &amp; Governance</span>
+      </div>
+      <div class="grid2">
+
+        <!-- Kill Switch -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Kill Switch</span>
+            <span class="badge badge--danger">Non-Negotiable</span>
+          </div>
+          <div class="card-body">
+            <div class="killswitch-box">
+              <div class="killswitch-icon">🛑</div>
+              <div>
+                <div class="killswitch-title">10% Drawdown Trigger</div>
+                <div class="killswitch-body">
+                  A hard 10% portfolio drawdown from high-water mark triggers automatic full liquidation
+                  and API key revocation. This kill switch is external to the agent swarm — no agent can
+                  override it, disable it, or vote to keep positions open.
+                  Clockwerk holds independent authority. P0 alerts go directly to Yves.
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;flex-direction:column;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;">
+                <span class="badge badge--success">✓</span>
+                <span class="text-muted">External trigger — beyond swarm authority</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;">
+                <span class="badge badge--success">✓</span>
+                <span class="text-muted">Full liquidation + credential revocation</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;">
+                <span class="badge badge--success">✓</span>
+                <span class="text-muted">Direct P0 alert to Yves La Rose</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;">
+                <span class="badge badge--success">✓</span>
+                <span class="text-muted">Currently armed and monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Approval Pipeline -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Trade Approval Pipeline</span>
+            <span class="badge badge--gold">9 Checkpoints</span>
+          </div>
+          <div class="card-body">
+            <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem;">
+              Every trade signal passes through a sequential multi-agent approval pipeline before any order
+              reaches the market. Each agent has veto authority within its domain.
+            </p>
+            <div class="pipeline-wrap">
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">🌀</div>
+                  <div>Enigma</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">🔭</div>
+                  <div>Oracle</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">⚖️</div>
+                  <div>Silencer</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">⚙️</div>
+                  <div>Tinker</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">🗡️</div>
+                  <div>Bounty Hunter</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">🔍</div>
+                  <div>Disruptor</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">💣</div>
+                  <div>Techies</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node">
+                  <div class="pipe-node-emoji">🕰️</div>
+                  <div>Clockwerk</div>
+                </div>
+                <div class="pipe-arrow"></div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-node" style="border-color:var(--gold-border);background:var(--gold-soft);color:var(--gold-bright);">
+                  <div class="pipe-node-emoji">⚔️</div>
+                  <div>Juggernaut</div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-faint);margin-top:0.75rem;font-family:var(--font-mono);">
+              Research → Financial Review → Legal/Compliance → Engineering → Security Audit → QA → Infrastructure → Operations → Execution
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Nether Labs -->
+    <section class="section-gap">
+      <div class="section-label">
+        <span class="section-label-text">About Nether Labs</span>
+      </div>
+      <div class="card">
+        <div class="card-body--lg">
+          <div class="grid2" style="gap:2.5rem;align-items:start;">
+            <div>
+              <h3 style="font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.02em;">
+                The Parent Company
+              </h3>
+              <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">
+                Nether Labs is the parent organization behind Enigma Capital. Founded by Yves La Rose —
+                who previously co-founded EOS Nation and led the EOS Network Foundation through its
+                rebrand to Vaulta as CEO — Nether Labs is the operating entity where autonomous AI
+                agent infrastructure is being developed and deployed.
+              </p>
+              <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;">
+                The organizational model mirrors how Yves has led thousands of people across distributed,
+                async, remote teams — applied now to an AI agent swarm. The same standards, the same
+                expectations, the same results — but with agents instead of humans.
+              </p>
+            </div>
+            <div>
+              <h3 style="font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.02em;">
+                The Design Philosophy
+              </h3>
+              <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                <div style="padding:0.85rem 1rem;background:var(--surface-3);border-radius:var(--radius-md);border:1px solid var(--gold-border-s);">
+                  <div style="font-size:0.78rem;font-weight:600;color:var(--gold-bright);margin-bottom:0.25rem;">Semantic Alpha, Not HFT</div>
+                  <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">LLMs process unstructured information. Deterministic Python executes. No model makes math decisions.</div>
+                </div>
+                <div style="padding:0.85rem 1rem;background:var(--surface-3);border-radius:var(--radius-md);border:1px solid var(--gold-border-s);">
+                  <div style="font-size:0.78rem;font-weight:600;color:var(--gold-bright);margin-bottom:0.25rem;">Milestone-Gated Funding</div>
+                  <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">Capital scales only after autonomous performance is proven at each tier. No premature scaling.</div>
+                </div>
+                <div style="padding:0.85rem 1rem;background:var(--surface-3);border-radius:var(--radius-md);border:1px solid var(--gold-border-s);">
+                  <div style="font-size:0.78rem;font-weight:600;color:var(--gold-bright);margin-bottom:0.25rem;">Human Oversight as Architecture</div>
+                  <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">The kill switch, the milestone gates, and the board model aren't features — they're the foundation.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer section-gap">
+      <div>
+        <div class="footer-brand">Enigma Capital · Nether Labs</div>
+        <div class="footer-text" style="margin-top:0.3rem;">Prepared by Dragon Knight 🛡️ · Head of BD &amp; Partnerships</div>
+        <div class="footer-text" style="margin-top:0.15rem;">Data as of April 19, 2026 · Market data sourced live at time of generation</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="footer-text">PRIVATE &amp; CONFIDENTIAL</div>
+        <div class="footer-text" style="margin-top:0.15rem;">Prepared exclusively for Denis</div>
+        <div class="footer-text" id="footer-expiry" style="margin-top:0.15rem;color:var(--gold);">Expires April 21, 2026</div>
+      </div>
+    </footer>
+
+  </div><!-- /wrap -->
+</main>
+
+<script>
+  // ── Auto-expire in 48 hours from push ──────────────────────────────────────
+  // Expiry: April 21, 2026 at 06:54 UTC (48h from generation ~02:54 EDT / 06:54 UTC)
+  const EXPIRY_UTC = new Date('2026-04-21T06:54:00Z');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = EXPIRY_UTC - now;
+    if (diff <= 0) {
+      // Expired — replace page content
+      document.body.innerHTML = `
+        <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;
+          background:#07070a;font-family:'Inter',system-ui,sans-serif;padding:2rem;">
+          <div style="text-align:center;max-width:480px;">
+            <div style="font-size:3rem;margin-bottom:1.5rem;">🔒</div>
+            <h1 style="font-family:'Space Grotesk',system-ui,sans-serif;font-size:1.8rem;
+              font-weight:700;color:#eaeaf0;margin-bottom:1rem;letter-spacing:-0.03em;">
+              Brief Expired
+            </h1>
+            <p style="color:#8888a8;font-size:0.9rem;line-height:1.65;">
+              This partner intelligence brief has expired.<br/>
+              Please contact Yves La Rose or Dragon Knight for an updated version.
+            </p>
+          </div>
+        </div>`;
+      return;
+    }
+
+    const hours   = Math.floor(diff / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    const pad = n => String(n).padStart(2, '0');
+
+    const el = document.getElementById('expiry-countdown');
+    if (el) el.textContent = `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Set prep date
+  const prepEl = document.getElementById('prep-date');
+  if (prepEl) {
+    const d = new Date();
+    prepEl.textContent = d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+  }
+</script>
+
+</body>
+</html>
