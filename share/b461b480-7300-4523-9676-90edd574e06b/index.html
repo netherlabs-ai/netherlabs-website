@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Enigma Capital — Partner Overview</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --black:          #06080f;
+  --navy:           #0d1220;
+  --navy-light:     #131b2e;
+  --navy-hover:     #162035;
+  --accent:         #4f9cf9;
+  --accent-dim:     #3a7fd4;
+  --accent-soft:    rgba(79, 156, 249, 0.08);
+  --accent-mid:     rgba(79, 156, 249, 0.18);
+  --accent-bright:  rgba(79, 156, 249, 0.35);
+  --gold:           #f5c842;
+  --gold-soft:      rgba(245, 200, 66, 0.08);
+  --gold-border:    rgba(245, 200, 66, 0.25);
+  --text:           #e8edf5;
+  --text-muted:     #8892a4;
+  --text-faint:     #4a5568;
+  --border:         rgba(79, 156, 249, 0.15);
+  --border-subtle:  rgba(79, 156, 249, 0.07);
+  --border-strong:  rgba(79, 156, 249, 0.28);
+  --success:        #22c55e;
+  --success-soft:   rgba(34, 197, 94, 0.10);
+  --success-border: rgba(34, 197, 94, 0.25);
+  --warning:        #f59e0b;
+  --warning-soft:   rgba(245, 158, 11, 0.10);
+  --warning-border: rgba(245, 158, 11, 0.25);
+  --danger:         #ef4444;
+  --danger-soft:    rgba(239, 68, 68, 0.08);
+  --danger-border:  rgba(239, 68, 68, 0.22);
+  --font-head: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --max-width: 1100px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    linear-gradient(rgba(79, 156, 249, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 156, 249, 0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+h1, h2, h3, h4, h5 { font-family: var(--font-head); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; }
+
+/* ─── EXPIRED OVERLAY ─── */
+#expired-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(6, 8, 15, 0.97);
+  backdrop-filter: blur(16px);
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+}
+#expired-overlay .exp-icon { font-size: 3rem; }
+#expired-overlay h2 { font-family: var(--font-head); font-size: 1.75rem; color: var(--text); }
+#expired-overlay p { color: var(--text-muted); max-width: 420px; line-height: 1.7; }
+#expired-overlay .exp-border { width: 240px; height: 1px; background: var(--border); }
+
+/* ─── EXPIRY BANNER ─── */
+.expiry-banner {
+  background: rgba(79, 156, 249, 0.06);
+  border-bottom: 1px solid rgba(79, 156, 249, 0.18);
+  text-align: center;
+  padding: 8px 20px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.expiry-banner strong { color: var(--accent); }
+
+/* ─── HEADER ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: linear-gradient(180deg, rgba(6,8,15,0.96) 0%, rgba(13,18,32,0.94) 100%);
+}
+.site-header::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 25%, rgba(79,156,249,0.4) 75%, transparent 100%);
+}
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 1rem;
+}
+.brand-badge {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.brand-badge-icon { font-size: 1.1rem; }
+.brand-badge-text {
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.header-divider { width: 1px; height: 24px; background: var(--border); }
+.header-title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.header-right {
+  display: flex; align-items: center; gap: 1.25rem;
+}
+.partner-badge {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.partner-badge::before { content: '◆'; font-size: 0.5rem; }
+.header-expiry {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+.header-expiry span { color: var(--text-muted); }
+
+/* ─── MARKET STRIP ─── */
+.market-strip {
+  background: rgba(13, 18, 32, 0.8);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.market-strip-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.6rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.market-item {
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.market-label {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.market-value {
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text);
+}
+.market-value.fear { color: var(--danger); }
+.market-sep { color: var(--text-faint); font-size: 0.6rem; }
+.market-strip-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+.live-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* ─── WRAPPER ─── */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  padding-bottom: 6rem;
+}
+
+/* ─── HERO ─── */
+.hero {
+  padding: 5rem 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 4rem;
+}
+.hero-left {}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.hero-eyebrow-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.hero-eyebrow-line { flex: 1; max-width: 60px; height: 1px; background: var(--border); }
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.hero-name-sub {
+  font-family: var(--font-head);
+  font-size: clamp(1rem, 2vw, 1.375rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+.hero-desc {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.75;
+}
+.hero-right {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;
+  padding-bottom: 0.25rem;
+}
+.status-chip {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.status-chip.milestone {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+.status-chip.paper {
+  background: var(--warning-soft);
+  border: 1px solid var(--warning-border);
+  color: var(--warning);
+}
+.progress-bar-wrap {
+  width: 180px;
+}
+.progress-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  margin-bottom: 0.4rem;
+}
+.progress-bar-track {
+  height: 4px;
+  background: rgba(79,156,249,0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(79,156,249,0.6) 100%);
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+/* ─── SECTION ─── */
+.section {
+  margin-bottom: 4.5rem;
+}
+.section-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  min-width: 28px;
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.section-line { flex: 1; height: 1px; background: var(--border-subtle); }
+.section-big-title {
+  font-family: var(--font-head);
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  margin-top: -0.5rem;
+}
+.section-big-title + p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ─── ORG GROUPS ─── */
+.org-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.org-stat {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.org-stat-num {
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.org-stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.org-stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  margin-top: 0.25rem;
+}
+
+.org-group {
+  margin-bottom: 2rem;
+}
+.org-group-label {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+.org-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.org-group-line { flex: 1; height: 1px; background: rgba(79,156,249,0.06); }
+
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.agent-grid.c-suite {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.agent-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.agent-card:hover { border-color: var(--border); background: var(--navy-hover); }
+.agent-card.c-suite-card {
+  border-color: var(--border);
+  background: rgba(13,18,32,0.8);
+}
+.agent-card.c-suite-card:hover { border-color: var(--accent-bright); }
+.agent-emoji { font-size: 1.25rem; line-height: 1; flex-shrink: 0; }
+.agent-info {}
+.agent-name {
+  font-family: var(--font-head);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.agent-role {
+  font-size: 0.6875rem;
+  color: var(--text-faint);
+  margin-top: 0.15rem;
+  letter-spacing: 0.01em;
+}
+
+/* ─── OPERATION SECTION ─── */
+.op-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.info-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.info-card-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.info-card-title {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.info-card-body { padding: 1.25rem; }
+
+.position-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.position-stat {}
+.position-stat-val {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1;
+}
+.position-stat-val.positive { color: var(--success); }
+.position-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-top: 0.2rem;
+  letter-spacing: 0.02em;
+}
+.position-note {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  padding: 0.5rem 0.75rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+}
+
+.signal-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.signal-item {
+  display: flex; align-items: flex-start; gap: 0.875rem;
+  padding: 0.75rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(79,156,249,0.06);
+}
+.signal-indicator {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 0.3rem;
+}
+.signal-indicator.active { background: var(--success); box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+.signal-indicator.neutral { background: var(--warning); }
+.signal-info {}
+.signal-name {
+  font-family: var(--font-head);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.signal-desc {
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+.signal-reading {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: right;
+  flex-shrink: 0;
+  padding-left: 0.5rem;
+}
+
+/* ─── M0 CONDITIONS ─── */
+.conditions-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.condition-item {
+  display: flex; align-items: center; gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+}
+.condition-item.done { background: var(--success-soft); }
+.condition-item.in-progress { background: var(--warning-soft); }
+.condition-item.pending { background: rgba(0,0,0,0.15); }
+.condition-icon { font-size: 0.75rem; flex-shrink: 0; }
+.condition-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+.condition-item.done .condition-label { color: var(--success); }
+.condition-item.in-progress .condition-label { color: var(--warning); }
+
+/* ─── RISK SECTION ─── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.25rem;
+}
+
+.killswitch-card {
+  background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(13,18,32,0.95) 100%);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.killswitch-icon { font-size: 2.5rem; line-height: 1; }
+.killswitch-title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--danger);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.killswitch-desc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.killswitch-detail {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  display: flex; flex-direction: column; gap: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--danger-border);
+}
+.killswitch-detail div { display: flex; align-items: center; gap: 0.5rem; }
+.killswitch-detail span:first-child { color: var(--danger); }
+
+.pipeline-card {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+}
+.pipeline-title {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+.pipeline-desc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+.pipeline-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+.pipeline-step {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(79,156,249,0.06);
+  border: 1px solid rgba(79,156,249,0.12);
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.pipeline-step-emoji { font-size: 0.875rem; }
+.pipeline-arrow {
+  color: var(--text-faint);
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* ─── ROADMAP ─── */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+}
+.roadmap::before {
+  content: '';
+  position: absolute;
+  top: 2.25rem;
+  left: calc(12.5% + 0.5rem);
+  right: calc(12.5% + 0.5rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--border) 60%);
+  z-index: 0;
+}
+
+.roadmap-card {
+  position: relative; z-index: 1;
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  transition: border-color 0.2s ease;
+}
+.roadmap-card.current {
+  border-color: var(--accent-bright);
+  background: linear-gradient(135deg, rgba(79,156,249,0.06) 0%, var(--navy-light) 100%);
+  box-shadow: 0 0 24px rgba(79,156,249,0.08);
+}
+.roadmap-card.future { opacity: 0.6; }
+.roadmap-card:hover { border-color: var(--border-strong); opacity: 1; }
+
+.milestone-tag {
+  display: inline-flex; align-items: center;
+  align-self: flex-start;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.milestone-tag.current {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+.milestone-tag.future {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(79,156,249,0.08);
+  color: var(--text-faint);
+}
+.milestone-name {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.roadmap-card.future .milestone-name { color: var(--text-muted); }
+.milestone-desc {
+  font-size: 0.7875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.roadmap-card.future .milestone-desc { color: var(--text-faint); }
+.milestone-gate {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+  letter-spacing: 0.02em;
+}
+.roadmap-card.current .milestone-gate { color: var(--accent); }
+
+/* ─── GOVERNANCE NOTE ─── */
+.governance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.gov-block {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.gov-block-title {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.gov-block-body {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.gov-block-body strong { color: var(--text); font-weight: 600; }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 2.5rem var(--gutter);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+.footer-left {}
+.footer-brand {
+  font-family: var(--font-head);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+.footer-conf {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  line-height: 1.6;
+  max-width: 480px;
+}
+.footer-right {
+  text-align: right;
+}
+.footer-expiry-label {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+.footer-countdown {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* ─── UTIL ─── */
+.full-span { grid-column: 1 / -1; }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { align-items: flex-start; }
+  .op-grid, .risk-grid, .org-intro, .governance-grid, .roadmap, .conditions-grid { grid-template-columns: 1fr; }
+  .roadmap::before { display: none; }
+  .pipeline-flow { gap: 0.25rem; }
+  .site-footer { grid-template-columns: 1fr; }
+  .footer-right { text-align: left; }
+  .market-strip-right { display: none; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Expiry overlay -->
+<div id="expired-overlay">
+  <div class="exp-icon">🔒</div>
+  <h2>This page has expired</h2>
+  <div class="exp-border"></div>
+  <p>This partner overview was time-limited. Please reach out to Yves directly for current materials or an updated link.</p>
+</div>
+
+<!-- Expiry banner -->
+<div class="expiry-banner">
+  CONFIDENTIAL · PARTNER ACCESS · This page expires in <strong id="banner-countdown">48:00:00</strong> · Not for redistribution
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="brand-badge">
+        <span class="brand-badge-icon">🌀</span>
+        <span class="brand-badge-text">Enigma Capital</span>
+      </div>
+      <div class="header-divider"></div>
+      <span class="header-title">Partner Overview</span>
+    </div>
+    <div class="header-right">
+      <div class="partner-badge">Partner Access</div>
+      <div class="header-expiry">Expires <span id="header-expiry-time">—</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Market strip -->
+<div class="market-strip">
+  <div class="market-strip-inner">
+    <div class="market-item">
+      <span class="market-label">BTC</span>
+      <span class="market-value">$77,283</span>
+    </div>
+    <span class="market-sep">·</span>
+    <div class="market-item">
+      <span class="market-label">IBIT</span>
+      <span class="market-value">$43.87</span>
+    </div>
+    <span class="market-sep">·</span>
+    <div class="market-item">
+      <span class="market-label">Fear &amp; Greed</span>
+      <span class="market-value fear">21 — Extreme Fear</span>
+    </div>
+    <span class="market-sep">·</span>
+    <div class="market-item">
+      <span class="market-label">Paper Day</span>
+      <span class="market-value">5 / 30</span>
+    </div>
+    <div class="market-strip-right">
+      <div class="live-dot"></div>
+      <span>As of April 19, 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-text">Nether Labs · Enigma Capital</span>
+        <div class="hero-eyebrow-line"></div>
+      </div>
+      <h1 class="hero-name">Autonomous<br>Quant</h1>
+      <div class="hero-name-sub">Institutional-grade AI trading infrastructure</div>
+      <p class="hero-desc">
+        Enigma Capital is a fully autonomous quantitative trading division operating under Nether Labs. 
+        A 25-agent AI organization — each role purpose-built, each with explicit authority, 
+        governed by a layered approval pipeline and a non-overridable kill switch.
+        Built to institutional standards from the first trade.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="status-chip milestone">M0 · Paper Trading</div>
+      <div class="status-chip paper">Day 5 of 30</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label">
+          <span>M0 Progress</span>
+          <span>17%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" style="width: 17%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: The Organization -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">The Organization</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-big-title">25 specialists. One mandate.</h2>
+    <p>
+      Every role in Enigma Capital is staffed by a purpose-built AI agent with a defined scope, 
+      explicit red lines, and a clear reporting structure. Five C-suite officers. 
+      Twenty domain specialists. No generalists, no overlap.
+    </p>
+
+    <div class="org-intro">
+      <div class="org-stat">
+        <div class="org-stat-num">25</div>
+        <div class="org-stat-label">Active agents</div>
+        <div class="org-stat-sub">5 C-suite · 20 specialists</div>
+      </div>
+      <div class="org-stat">
+        <div class="org-stat-num">9</div>
+        <div class="org-stat-label">Approval steps</div>
+        <div class="org-stat-sub">Per trade signal before execution</div>
+      </div>
+    </div>
+
+    <!-- C-Suite -->
+    <div class="org-group">
+      <div class="org-group-label">
+        <span class="org-group-title">C-Suite</span>
+        <div class="org-group-line"></div>
+      </div>
+      <div class="agent-grid c-suite">
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">🔮</span>
+          <div class="agent-info">
+            <div class="agent-name">Invoker</div>
+            <div class="agent-role">Chief of Staff</div>
+          </div>
+        </div>
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">⚡</span>
+          <div class="agent-info">
+            <div class="agent-name">Zeus</div>
+            <div class="agent-role">Chief Technology Officer</div>
+          </div>
+        </div>
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">🎯</span>
+          <div class="agent-info">
+            <div class="agent-name">Chen</div>
+            <div class="agent-role">Chief Operating Officer</div>
+          </div>
+        </div>
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">🌌</span>
+          <div class="agent-info">
+            <div class="agent-name">Outworld Destroyer</div>
+            <div class="agent-role">Chief Strategy Officer</div>
+          </div>
+        </div>
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">👁️</span>
+          <div class="agent-info">
+            <div class="agent-name">Spectre</div>
+            <div class="agent-role">Chief Data Officer</div>
+          </div>
+        </div>
+        <div class="agent-card c-suite-card">
+          <span class="agent-emoji">🛡️</span>
+          <div class="agent-info">
+            <div class="agent-name">Dragon Knight</div>
+            <div class="agent-role">Head of Business Development</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trading Desk -->
+    <div class="org-group">
+      <div class="org-group-label">
+        <span class="org-group-title">Trading Desk</span>
+        <div class="org-group-line"></div>
+      </div>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <span class="agent-emoji">🕰️</span>
+          <div class="agent-info">
+            <div class="agent-name">Clockwerk</div>
+            <div class="agent-role">Trading Desk Lead</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🌀</span>
+          <div class="agent-info">
+            <div class="agent-name">Enigma</div>
+            <div class="agent-role">Quant Researcher</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🔭</span>
+          <div class="agent-info">
+            <div class="agent-name">Oracle</div>
+            <div class="agent-role">Financial Comptroller</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">😴</span>
+          <div class="agent-info">
+            <div class="agent-name">Bane</div>
+            <div class="agent-role">Chief Risk Officer</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">❄️</span>
+          <div class="agent-info">
+            <div class="agent-name">Crystal Maiden</div>
+            <div class="agent-role">Reporting &amp; Analytics</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">⚔️</span>
+          <div class="agent-info">
+            <div class="agent-name">Juggernaut</div>
+            <div class="agent-role">Trade Execution</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🗡️</span>
+          <div class="agent-info">
+            <div class="agent-name">Bounty Hunter</div>
+            <div class="agent-role">Security Architect</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Engineering -->
+    <div class="org-group">
+      <div class="org-group-label">
+        <span class="org-group-title">Engineering</span>
+        <div class="org-group-line"></div>
+      </div>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <span class="agent-emoji">⚙️</span>
+          <div class="agent-info">
+            <div class="agent-name">Tinker</div>
+            <div class="agent-role">Lead Engineer</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">💣</span>
+          <div class="agent-info">
+            <div class="agent-name">Techies</div>
+            <div class="agent-role">Infrastructure &amp; Sysadmin</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🔍</span>
+          <div class="agent-info">
+            <div class="agent-name">Disruptor</div>
+            <div class="agent-role">Technical Auditor / QA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operations -->
+    <div class="org-group">
+      <div class="org-group-label">
+        <span class="org-group-title">Operations &amp; Legal</span>
+        <div class="org-group-line"></div>
+      </div>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <span class="agent-emoji">⚖️</span>
+          <div class="agent-info">
+            <div class="agent-name">Silencer</div>
+            <div class="agent-role">Legal &amp; Compliance</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🧊</span>
+          <div class="agent-info">
+            <div class="agent-name">Ancient Apparition</div>
+            <div class="agent-role">Project Manager</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🔵</span>
+          <div class="agent-info">
+            <div class="agent-name">Rubick</div>
+            <div class="agent-role">Tax Counsel</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">💡</span>
+          <div class="agent-info">
+            <div class="agent-name">Keeper of the Light</div>
+            <div class="agent-role">Chief Financial Officer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand & Data -->
+    <div class="org-group">
+      <div class="org-group-label">
+        <span class="org-group-title">Brand · Data</span>
+        <div class="org-group-line"></div>
+      </div>
+      <div class="agent-grid">
+        <div class="agent-card">
+          <span class="agent-emoji">🎭</span>
+          <div class="agent-info">
+            <div class="agent-name">Puck</div>
+            <div class="agent-role">CMO / Brand Lead</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🎨</span>
+          <div class="agent-info">
+            <div class="agent-name">Lina</div>
+            <div class="agent-role">UI/UX Designer</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🖌️</span>
+          <div class="agent-info">
+            <div class="agent-name">Grimstroke</div>
+            <div class="agent-role">Creative Director</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🪄</span>
+          <div class="agent-info">
+            <div class="agent-name">Shadow Shaman</div>
+            <div class="agent-role">Social Media Manager</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <span class="agent-emoji">🕷️</span>
+          <div class="agent-info">
+            <div class="agent-name">Weaver</div>
+            <div class="agent-role">Data Agent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Active Operation -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Active Operation</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-big-title">Paper trading. Live infrastructure.</h2>
+    <p>
+      M0 began April 12. Four signals are live and producing composite reads. 
+      First trade executed April 17 — 184 shares of IBIT, the iShares Bitcoin ETF, 
+      at $43.45 on paper. The full stack is operational; this 30-day period validates 
+      signal stability and execution quality before any live capital is deployed.
+    </p>
+
+    <div class="op-grid">
+      <!-- Current position -->
+      <div class="info-card">
+        <div class="info-card-header">
+          <span class="info-card-title">Current Paper Position</span>
+          <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--success);letter-spacing:0.05em;">● ACTIVE</span>
+        </div>
+        <div class="info-card-body">
+          <div class="position-block">
+            <div class="position-stat">
+              <div class="position-stat-val">184</div>
+              <div class="position-stat-label">Shares of IBIT</div>
+            </div>
+            <div class="position-stat">
+              <div class="position-stat-val">$43.45</div>
+              <div class="position-stat-label">Entry price</div>
+            </div>
+            <div class="position-stat">
+              <div class="position-stat-val">$43.87</div>
+              <div class="position-stat-label">Current price</div>
+            </div>
+            <div class="position-stat">
+              <div class="position-stat-val positive">+$0.42</div>
+              <div class="position-stat-label">Per share</div>
+            </div>
+          </div>
+          <div class="position-note">
+            First trade executed April 17, 2026 · IBKR paper account · All figures paper only
+          </div>
+        </div>
+      </div>
+
+      <!-- M0 gate conditions -->
+      <div class="info-card">
+        <div class="info-card-header">
+          <span class="info-card-title">M0 Gate Conditions</span>
+          <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--warning);letter-spacing:0.05em;">IN PROGRESS</span>
+        </div>
+        <div class="info-card-body">
+          <div class="conditions-grid">
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">Charter adopted</span>
+            </div>
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">Strategy backtested</span>
+            </div>
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">IBKR account active</span>
+            </div>
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">Paper infrastructure live</span>
+            </div>
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">Risk framework defined</span>
+            </div>
+            <div class="condition-item done">
+              <span class="condition-icon">✓</span>
+              <span class="condition-label">All 4 signals operational</span>
+            </div>
+            <div class="condition-item in-progress">
+              <span class="condition-icon">◌</span>
+              <span class="condition-label">30 days paper — Day 5</span>
+            </div>
+            <div class="condition-item pending">
+              <span class="condition-icon">○</span>
+              <span class="condition-label">Legal opinion (M1 blocker)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signals -->
+    <div class="info-card">
+      <div class="info-card-header">
+        <span class="info-card-title">Active Signals</span>
+        <span style="font-size:0.7rem;font-family:var(--font-mono);color:var(--text-faint);">4 of 4 operational · Composite: <span style="color:var(--accent)">BUY</span></span>
+      </div>
+      <div class="info-card-body">
+        <div class="signal-list">
+          <div class="signal-item">
+            <div class="signal-indicator active"></div>
+            <div class="signal-info">
+              <div class="signal-name">Fear &amp; Greed Contrarian</div>
+              <div class="signal-desc">When market sentiment reaches extreme fear, the signal reads as a contrarian long opportunity. Inverse correlation with crowd behavior.</div>
+            </div>
+            <div class="signal-reading">21 · Extreme Fear<br><span style="color:var(--success)">→ Contrarian BUY</span></div>
+          </div>
+          <div class="signal-item">
+            <div class="signal-indicator active"></div>
+            <div class="signal-info">
+              <div class="signal-name">BTC Dominance Rotation</div>
+              <div class="signal-desc">Tracks Bitcoin's market share relative to the broader crypto market. Rising dominance signals capital rotation into BTC from alts — a directional edge.</div>
+            </div>
+            <div class="signal-reading">BTC vs 50MA<br><span style="color:var(--success)">→ Above</span></div>
+          </div>
+          <div class="signal-item">
+            <div class="signal-indicator active"></div>
+            <div class="signal-info">
+              <div class="signal-name">LLM News Sentiment</div>
+              <div class="signal-desc">Real-time AI parsing of crypto news headlines. Scores directional sentiment across major publications and social signals using a large language model.</div>
+            </div>
+            <div class="signal-reading">Live parsing<br><span style="color:var(--accent)">→ Active</span></div>
+          </div>
+          <div class="signal-item">
+            <div class="signal-indicator active"></div>
+            <div class="signal-info">
+              <div class="signal-name">Exchange Net Flow</div>
+              <div class="signal-desc">Monitors net BTC and ETH flows in and out of centralized exchanges. Net outflows signal accumulation — a historically bullish indicator.</div>
+            </div>
+            <div class="signal-reading">DXY −1.99%<br><span style="color:var(--success)">→ Risk-on</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Risk Architecture -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Risk Architecture</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-big-title">Governance-first by design.</h2>
+    <p>
+      Risk controls were built before the first trade, not after. 
+      Every signal passes through a 9-step approval pipeline. 
+      The kill switch is external, non-overridable, and hardwired to a 10% drawdown trigger.
+      No agent — including the CTO or the Trading Desk Lead — can override it.
+    </p>
+
+    <div class="risk-grid">
+      <!-- Kill switch -->
+      <div class="killswitch-card">
+        <div class="killswitch-icon">🔴</div>
+        <div class="killswitch-title">Kill Switch</div>
+        <div class="killswitch-desc">
+          An automatic, external liquidation trigger fires at 10% drawdown from the high-water mark. 
+          Full position liquidation. API keys revoked. 
+          Designed to be non-overridable by any agent in the system.
+        </div>
+        <div class="killswitch-detail">
+          <div><span>Trigger:</span><span>10% drawdown from HWM</span></div>
+          <div><span>Action:</span><span>Full liquidation · API revocation</span></div>
+          <div><span>Authority:</span><span>External · Non-overridable</span></div>
+          <div><span>Current drawdown:</span><span style="color:var(--success)">0.00%</span></div>
+        </div>
+      </div>
+
+      <!-- Approval pipeline -->
+      <div class="pipeline-card">
+        <div class="pipeline-title">Trade Approval Pipeline</div>
+        <div class="pipeline-desc">
+          Every signal passes through nine distinct checkpoints before reaching execution. 
+          Quant research, financial validation, legal review, engineering sign-off, security audit, 
+          technical QA, infrastructure verification, trading desk approval, and final execution — in sequence. 
+          No step can be skipped.
+        </div>
+        <div class="pipeline-flow">
+          <div class="pipeline-step"><span class="pipeline-step-emoji">🌀</span> Enigma</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">🔭</span> Oracle</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">⚖️</span> Silencer</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">⚙️</span> Tinker</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">🗡️</span> Bounty Hunter</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">🔍</span> Disruptor</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">💣</span> Techies</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">🕰️</span> Clockwerk</div>
+          <span class="pipeline-arrow">→</span>
+          <div class="pipeline-step"><span class="pipeline-step-emoji">⚔️</span> Juggernaut</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Roadmap -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Milestone Roadmap</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-big-title">Deliberate. Gated. Irreversible.</h2>
+    <p>
+      Each milestone requires the previous to be fully validated before capital scales. 
+      No shortcuts. Paper first — then $1K — then institutional. 
+      The gates exist to protect capital, not to slow momentum.
+    </p>
+
+    <div class="roadmap">
+      <!-- M0 -->
+      <div class="roadmap-card current">
+        <div class="milestone-tag current">M0 — Active</div>
+        <div class="milestone-name">Paper Trading</div>
+        <div class="milestone-desc">30-day live paper trading run. All 4 signals operational. Full stack validated end-to-end with zero capital at risk.</div>
+        <div class="milestone-gate">Day 5 of 30 · In progress</div>
+      </div>
+      <!-- M1 -->
+      <div class="roadmap-card future">
+        <div class="milestone-tag future">M1 — Next</div>
+        <div class="milestone-name">$1K Live Capital</div>
+        <div class="milestone-desc">First real-money deployment after 30 clean paper days, Oracle P&amp;L sign-off, Silencer clearance, and legal opinion.</div>
+        <div class="milestone-gate">Gate: Clean paper + legal opinion</div>
+      </div>
+      <!-- M2 -->
+      <div class="roadmap-card future">
+        <div class="milestone-tag future">M2</div>
+        <div class="milestone-name">Scaled Operations</div>
+        <div class="milestone-desc">Capital scale contingent on M1 performance validation. Strategy diversification and multi-signal expansion.</div>
+        <div class="milestone-gate">Gate: M1 proof of concept</div>
+      </div>
+      <!-- M3 -->
+      <div class="roadmap-card future">
+        <div class="milestone-tag future">M3</div>
+        <div class="milestone-name">Institutional</div>
+        <div class="milestone-desc">Legal entity formation complete. External capital consideration. Full institutional-grade compliance framework.</div>
+        <div class="milestone-gate">Gate: Sustained M2 performance</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Governance -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Governance &amp; Oversight</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="governance-grid">
+      <div class="gov-block">
+        <div class="gov-block-title">Operating Charter</div>
+        <div class="gov-block-body">
+          Enigma Capital operates under a formal charter — currently <strong>v1.4</strong>, 
+          adopted April 13, 2026. The charter defines agent authorities, capital limits, 
+          escalation paths, and conditions under which human approval is mandatory. 
+          All 13 conditions confirmed prior to first paper trade.
+        </div>
+      </div>
+      <div class="gov-block">
+        <div class="gov-block-title">Legal Structure</div>
+        <div class="gov-block-body">
+          A legal opinion on fund structure is a hard blocker for M1. 
+          Entity formation (Cayman Islands structure, under evaluation) is gated to M2. 
+          Silencer, our Legal &amp; Compliance agent, maintains ongoing regulatory awareness 
+          across relevant jurisdictions. No live capital moves without human legal sign-off.
+        </div>
+      </div>
+      <div class="gov-block">
+        <div class="gov-block-title">Capital Authority</div>
+        <div class="gov-block-body">
+          <strong>No agent can authorize live capital deployment.</strong> That authority 
+          sits with Yves La Rose directly. The approval pipeline governs signal processing; 
+          capital deployment authorization is a separate, explicit human decision 
+          at each milestone gate.
+        </div>
+      </div>
+      <div class="gov-block">
+        <div class="gov-block-title">Strategy — Backtested</div>
+        <div class="gov-block-body">
+          The four-signal composite strategy was backtested against historical market data 
+          and validated at a <strong>Sharpe ratio of 1.065</strong> before paper trading began. 
+          The M0 period tests the strategy in live market conditions before any capital is risked.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<!-- Footer -->
+<footer style="border-top: 1px solid var(--border-subtle); padding-top: 0;">
+  <div class="site-footer">
+    <div class="footer-left">
+      <div class="footer-brand">Enigma Capital · Nether Labs</div>
+      <div class="footer-conf">
+        This document is confidential and intended solely for the named recipient. 
+        It contains proprietary organizational and operational information. 
+        Do not forward, copy, or distribute. This page will self-expire automatically.
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-expiry-label">TIME REMAINING</div>
+      <div class="footer-countdown" id="footer-countdown">47:59:59</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Expiry: 48h from page publication (2026-04-19T06:15:00Z)
+  var EXPIRY = new Date('2026-04-21T06:15:00Z').getTime();
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function formatCountdown(ms) {
+    if (ms <= 0) return '00:00:00';
+    var s = Math.floor(ms / 1000);
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    return pad(h) + ':' + pad(m) + ':' + pad(sec);
+  }
+
+  function formatExpiry(ts) {
+    var d = new Date(ts);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getUTCMonth()] + ' ' + d.getUTCDate() + ' at ' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ' UTC';
+  }
+
+  // Set static expiry label
+  var headerExpiry = document.getElementById('header-expiry-time');
+  if (headerExpiry) headerExpiry.textContent = formatExpiry(EXPIRY);
+
+  function tick() {
+    var now = Date.now();
+    var remaining = EXPIRY - now;
+
+    var bannerEl = document.getElementById('banner-countdown');
+    var footerEl = document.getElementById('footer-countdown');
+    var overlay = document.getElementById('expired-overlay');
+
+    if (remaining <= 0) {
+      if (bannerEl) bannerEl.textContent = 'EXPIRED';
+      if (footerEl) footerEl.textContent = 'EXPIRED';
+      if (overlay) {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      return; // stop ticking
+    }
+
+    var str = formatCountdown(remaining);
+    if (bannerEl) bannerEl.textContent = str;
+    if (footerEl) footerEl.textContent = str;
+
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+</script>
+</body>
+</html>
