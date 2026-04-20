@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /investor/
 
 Sitemap: https://netherlabs.ai/sitemap.xml
