@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nether Labs - Friends &amp; Family Investment Package</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Nether Labs F&F Investment Package - Confidential" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────────── */
+    :root {
+      --bg:          #09090e;
+      --surface:     #0d0d14;
+      --surface-hi:  #12121c;
+      --border:      rgba(255,255,255,0.07);
+      --border-mid:  rgba(255,255,255,0.12);
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.18);
+      --accent-mid:  rgba(201,168,76,0.35);
+      --headline:    #f5f4ef;
+      --body-hi:     #c8c9d4;
+      --body:        #8e90a8;
+      --muted:       #5a5c70;
+      --danger:      #c94c4c;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'Outfit', system-ui, sans-serif;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── Layout ─────────────────────────────────────────────────── */
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .wrap-wide {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ─── Typography ─────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: var(--headline);
+      line-height: 1.1;
+    }
+
+    p { color: var(--body); }
+
+    strong { color: var(--body-hi); font-weight: 500; }
+
+    a { color: var(--accent); text-decoration: none; }
+
+    em { font-style: italic; }
+
+    /* ─── Confidential Banner ────────────────────────────────────── */
+    .confidential-banner {
+      background: rgba(201,168,76,0.06);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 10px 32px;
+      text-align: center;
+    }
+
+    .confidential-banner p {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ─── Header ─────────────────────────────────────────────────── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(9,9,14,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .site-header .wordmark {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--headline);
+    }
+
+    .site-header nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    .site-header nav a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .site-header nav a:hover { color: var(--accent); }
+
+    /* ─── Hero / Cover ───────────────────────────────────────────── */
+    .hero {
+      padding: 100px 32px 80px;
+      max-width: 820px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 70% 60% at 0% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .hero-kicker span {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-kicker::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 em {
+      color: rgba(245,244,239,0.4);
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--body-hi);
+      max-width: 620px;
+    }
+
+    .hero-meta {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 0;
+      width: fit-content;
+      border: 1px solid var(--border-mid);
+    }
+
+    .hero-meta-item {
+      padding: 18px 28px;
+      border-right: 1px solid var(--border-mid);
+    }
+
+    .hero-meta-item:last-child { border-right: none; }
+
+    .hero-meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .hero-meta-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--headline);
+    }
+
+    /* ─── Section Common ─────────────────────────────────────────── */
+    .section {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--accent);
+      min-width: 28px;
+      padding-top: 6px;
+      user-select: none;
+    }
+
+    .section-header-text {}
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Content Blocks ─────────────────────────────────────────── */
+    .prose {
+      font-size: 16px;
+      line-height: 1.82;
+    }
+
+    .prose p + p { margin-top: 20px; }
+
+    .prose blockquote {
+      border-left: 2px solid var(--accent);
+      padding: 4px 0 4px 24px;
+      margin: 32px 0;
+    }
+
+    .prose blockquote p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--headline);
+    }
+
+    /* ─── Callout Box ────────────────────────────────────────────── */
+    .callout {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+
+    .callout p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--body-hi);
+    }
+
+    /* ─── Risk Box ───────────────────────────────────────────────── */
+    .risk-box {
+      background: rgba(201,76,76,0.04);
+      border: 1px solid rgba(201,76,76,0.15);
+      padding: 28px 32px;
+      margin: 40px 0;
+    }
+
+    .risk-box h4 {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--danger);
+      margin-bottom: 16px;
+    }
+
+    .risk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .risk-list li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--body);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .risk-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--danger);
+      opacity: 0.5;
+    }
+
+    /* ─── Proof Block ────────────────────────────────────────────── */
+    .proof-block {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-top: 2px solid var(--accent);
+      padding: 36px 40px;
+      margin: 40px 0;
+    }
+
+    .proof-block h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .proof-block p {
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proof-stat-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .proof-stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ─── Founder Bio ─────────────────────────────────────────────── */
+    .founder-bio {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: 28px;
+      margin: 40px 0;
+    }
+
+    .founder-bio-bar {
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .founder-bio-content {}
+
+    .founder-bio-name {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .founder-bio-name em { color: rgba(245,244,239,0.35); }
+
+    .founder-timeline {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .founder-timeline li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--body);
+      display: flex;
+      gap: 12px;
+    }
+
+    .founder-timeline li .tl-dot {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ─── Ask Section ─────────────────────────────────────────────── */
+    .ask-block {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      padding: 40px;
+      margin: 36px 0;
+    }
+
+    .ask-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .ask-amount {
+      font-family: var(--font-display);
+      font-size: 48px;
+      color: var(--headline);
+    }
+
+    .ask-sub {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .ask-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ask-points li {
+      display: flex;
+      gap: 12px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--body-hi);
+    }
+
+    .ask-points li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── Tables ─────────────────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-mid);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--surface-hi);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-mid);
+      white-space: nowrap;
+    }
+
+    thead th:first-child {
+      border-left: none;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    tbody td {
+      padding: 14px 20px;
+      color: var(--body-hi);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    tbody td:first-child {
+      color: var(--body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    tfoot tr {
+      background: rgba(201,168,76,0.06);
+      border-top: 1px solid var(--border-mid);
+    }
+
+    tfoot td {
+      padding: 14px 20px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Scenario highlight column */
+    td.highlight, th.highlight {
+      background: rgba(201,168,76,0.05);
+      color: var(--accent) !important;
+      border-left: 1px solid rgba(201,168,76,0.15);
+      border-right: 1px solid rgba(201,168,76,0.15);
+    }
+
+    th.highlight { background: rgba(201,168,76,0.1); }
+
+    /* ─── Milestone Tables ────────────────────────────────────────── */
+    .milestone-row td:first-child {
+      font-size: 14px;
+      color: var(--body-hi);
+      font-weight: 400;
+      white-space: normal;
+    }
+
+    .milestone-row td:last-child {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ─── Phase Layout ────────────────────────────────────────────── */
+    .phase {
+      margin: 48px 0;
+      padding: 36px 40px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .phase::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), rgba(201,168,76,0.1));
+    }
+
+    .phase-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .phase-title {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .phase-target {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .phase-goal {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--body-hi);
+      margin-bottom: 20px;
+    }
+
+    /* ─── What We're NOT Building ────────────────────────────────── */
+    .exclusion-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .exclusion-list li {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--body);
+      display: flex;
+      gap: 12px;
+    }
+
+    .exclusion-list li::before {
+      content: '✕';
+      color: var(--muted);
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ─── Decision Gate ──────────────────────────────────────────── */
+    .gate {
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 18px 24px;
+      margin-top: 24px;
+    }
+
+    .gate-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .gate p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--body-hi);
+    }
+
+    /* ─── Series A Bridge ─────────────────────────────────────────── */
+    .series-note {
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(201,168,76,0.4);
+    }
+
+    .series-note p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--body-hi);
+    }
+
+    /* ─── Moat Block ─────────────────────────────────────────────── */
+    .moat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border-mid);
+      margin: 32px 0;
+    }
+
+    .moat-item {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    .moat-item:last-child { border-right: none; }
+
+    .moat-period {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .moat-text {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ─── Legal Section ──────────────────────────────────────────── */
+    .legal-section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .legal-section .legal-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .legal-text {
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .legal-text p + p { margin-top: 12px; }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .site-footer p {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ─── Divider ────────────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .site-header nav { display: none; }
+      .hero-meta { grid-template-columns: 1fr; }
+      .hero-meta-item { border-right: none; border-bottom: 1px solid var(--border-mid); }
+      .hero-meta-item:last-child { border-bottom: none; }
+      .moat-grid { grid-template-columns: 1fr; }
+      .moat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .moat-item:last-child { border-bottom: none; }
+      .proof-stats { grid-template-columns: 1fr 1fr; }
+      .phase { padding: 28px 24px; }
+    }
+
+    /* ─── Print / PDF Styles ─────────────────────────────────────── */
+    @media print {
+      :root {
+        --bg:          #ffffff;
+        --surface:     #f7f7f8;
+        --surface-hi:  #eeeff2;
+        --border:      #d8d9e0;
+        --border-mid:  #c0c2cc;
+        --accent:      #8a6e22;
+        --accent-dim:  rgba(138,110,34,0.08);
+        --accent-mid:  rgba(138,110,34,0.2);
+        --headline:    #0f0f14;
+        --body-hi:     #2a2b38;
+        --body:        #4a4c60;
+        --muted:       #7a7c90;
+        --danger:      #9c2a2a;
+      }
+
+      body {
+        font-size: 11pt;
+        background: #fff;
+      }
+
+      .site-header,
+      .confidential-banner {
+        position: static !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: #fff !important;
+      }
+
+      .site-header nav { display: none; }
+
+      .section { page-break-inside: avoid; }
+
+      .phase { page-break-inside: avoid; }
+
+      .table-wrap { overflow: visible; }
+
+      .moat-grid { break-inside: avoid; }
+
+      .proof-block { break-inside: avoid; }
+
+      a { color: inherit; text-decoration: none; }
+
+      .hero::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Password Gate ────────────────────────────────────────── -->
+  <div id="pw-gate" style="
+    position:fixed;inset:0;z-index:99999;
+    background:#09090e;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Outfit',system-ui,sans-serif;
+    padding:2rem;
+  ">
+    <div style="
+      max-width:420px;width:100%;text-align:center;
+      border:1px solid rgba(201,168,76,0.25);
+      border-radius:16px;padding:3rem 2.5rem;
+      background:#0d0d14;
+      box-shadow:0 0 60px rgba(201,168,76,0.06);
+    ">
+      <div style="font-size:2rem;margin-bottom:0.5rem;">🔮</div>
+      <h1 style="color:#f5f4ef;font-size:1.4rem;font-weight:600;margin-bottom:0.25rem;">Nether Labs</h1>
+      <p style="color:#5a5c70;font-size:0.85rem;margin-bottom:2rem;">Restricted — Authorized Access Only</p>
+      <div style="position:relative;">
+        <input id="pw-input" type="password" placeholder="Enter access code"
+          autocomplete="current-password"
+          style="
+            width:100%;box-sizing:border-box;
+            background:#09090e;border:1px solid rgba(255,255,255,0.12);
+            border-radius:8px;padding:0.85rem 1rem;color:#f5f4ef;
+            font-size:1rem;font-family:inherit;outline:none;
+            transition:border-color 0.2s;
+          "
+          onkeydown="if(event.key==='Enter')checkPw();"
+          onfocus="this.style.borderColor='rgba(201,168,76,0.5)'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
+        />
+      </div>
+      <p id="pw-err" style="color:#c94c4c;font-size:0.8rem;margin-top:0.75rem;min-height:1em;"></p>
+      <button onclick="checkPw()" style="
+        margin-top:0.5rem;width:100%;
+        background:linear-gradient(135deg,#c9a84c,#a07830);
+        color:#09090e;border:none;border-radius:8px;
+        padding:0.85rem 1.5rem;font-size:1rem;font-weight:600;
+        cursor:pointer;font-family:inherit;
+        transition:opacity 0.15s;
+      " onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Access Document
+      </button>
+    </div>
+    <p style="color:#2a2b35;font-size:0.75rem;margin-top:2rem;">Confidential · NI 45-106 s.2.6</p>
+  </div>
+
+  <script>
+    (function(){
+      // SHA-256 of access password (password not stored in plaintext)
+      var HASH = 'ef00b7adb9621fcebb9bfc9f5155b5ab39b4e30ee487e5942cf6c10748a04294';
+
+      // If already authenticated this session, skip the gate
+      if(sessionStorage.getItem('nl_auth') === HASH) {
+        document.getElementById('pw-gate').style.display = 'none';
+      }
+
+      async function sha256(msg) {
+        var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+        return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+      }
+
+      window.checkPw = async function() {
+        var val = document.getElementById('pw-input').value;
+        var h = await sha256(val);
+        if(h === HASH) {
+          sessionStorage.setItem('nl_auth', HASH);
+          var gate = document.getElementById('pw-gate');
+          gate.style.transition = 'opacity 0.4s';
+          gate.style.opacity = '0';
+          setTimeout(function(){ gate.style.display='none'; }, 400);
+        } else {
+          var err = document.getElementById('pw-err');
+          err.textContent = 'Incorrect access code. Please try again.';
+          document.getElementById('pw-input').value = '';
+          document.getElementById('pw-input').focus();
+          setTimeout(function(){ err.textContent=''; }, 3000);
+        }
+      };
+    })();
+  </script>
+
+  <!-- ── Confidential Banner ───────────────────────────────────── -->
+  <div class="confidential-banner">
+    <p>Confidential - Eligible recipients only - NI 45-106 s.2.6</p>
+  </div>
+
+  <!-- ── Header ───────────────────────────────────────────────── -->
+  <header class="site-header">
+    <span class="wordmark">Nether Labs</span>
+    <nav>
+      <a href="#opportunity">The Opportunity</a>
+      <a href="#financials">The Numbers</a>
+      <a href="#roadmap">The Roadmap</a>
+    </nav>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-kicker">
+      <span>Friends &amp; Family Investment Package</span>
+    </div>
+    <h1>Nether Labs<br /><em>April 2026</em></h1>
+    <p class="hero-sub">
+      An org-in-a-box for lean teams - and a live proof of concept already running.
+      This is what we're building, how we're building it, and why the economics work.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Round Size</span>
+        <span class="hero-meta-value">$200,000</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Equity</span>
+        <span class="hero-meta-value">20%</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Per-Investor</span>
+        <span class="hero-meta-value">$50k-50k</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PART ONE - THE OPPORTUNITY                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="opportunity" class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <div class="section-header-text">
+          <span class="section-label">Part One</span>
+          <h2 class="section-title">The Opportunity</h2>
+        </div>
+      </div>
+
+      <!-- What Is It -->
+      <div class="prose">
+        <h3 style="font-size:22px; margin-bottom:16px;">What Nether Labs Is</h3>
+        <p>
+          Nether Labs is building <strong>org-in-a-box</strong> - deployable organizations for lean teams. The product
+          (working name: <strong>Steward</strong>) is designed to give a 1-3 person team the operational leverage of a
+          10-person org, without the headcount.
+        </p>
+        <p>
+          Not a chatbot. Not a prompt wrapper. A functioning executive layer - with real hierarchy, defined values,
+          institutional memory, and operating principles pre-installed - designed to operate while you sleep.
+        </p>
+        <p>
+          You deploy Steward. It learns your structure. It supports your ops. It is designed to improve over time.
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- The Problem -->
+      <div class="prose">
+        <h3 style="font-size:22px; margin-bottom:16px;">The Problem</h3>
+        <p>
+          Every solo founder and lean team faces the same ceiling: <strong>you run out of bandwidth before you run out
+          of opportunity.</strong> Coordination breaks down. Context gets lost. You hire, onboard, manage, and lose time
+          to overhead instead of building.
+        </p>
+        <p>
+          Steward is the third option. An org designed to know your values, your SOPs, your reporting structure, and
+          your standards - targeting deployment in hours rather than months of onboarding.
+        </p>
+        <div class="callout">
+          <p>
+            <strong>Why now:</strong> The model capability is here. The tooling is mature. The missing piece is the
+            organizational layer - the culture, hierarchy, and memory that makes a team function. That's what Nether
+            Labs builds.
+          </p>
+          <p style="margin-top:12px;">
+            <strong>Why this approach:</strong> Any competitor can copy a tech stack. They cannot copy culture baked
+            at the agent level. The moat is in the values, operating principles, and institutional memory - not the
+            infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Proof of Concept -->
+      <div class="prose">
+        <h3 style="font-size:22px; margin-bottom:16px;">Proof of Concept</h3>
+        <p>We built and ran this ourselves before we started selling it.</p>
+      </div>
+
+      <div class="proof-block">
+        <h3>Enigma Capital - Already Running</h3>
+        <p style="margin-top:12px; color:var(--body);">
+          Enigma Capital - Yves's autonomous quant trading division - runs on Nether Labs infrastructure today. A
+          multi-agent org with defined roles, reporting structure, SOPs, memory, and a kill-switch protocol for live
+          capital. Not a prototype. A live, operating system.
+        </p>
+        <p style="margin-top:12px; font-style:italic; color:var(--body-hi); font-family:var(--font-display); font-size:17px;">
+          The pitch isn't a deck. It's a running org.
+        </p>
+        <div class="proof-stats">
+          <div>
+            <div class="proof-stat-value">20+</div>
+            <div class="proof-stat-label">Named agents with defined roles</div>
+          </div>
+          <div>
+            <div class="proof-stat-value">Live</div>
+            <div class="proof-stat-label">Operational since early 2026</div>
+          </div>
+          <div>
+            <div class="proof-stat-value">0</div>
+            <div class="proof-stat-label">Human intervention required for routine ops</div>
+          </div>
+          <div>
+            <div class="proof-stat-value">100%</div>
+            <div class="proof-stat-label">Autonomous research-to-execution pipeline</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Why Yves -->
+      <div class="prose">
+        <h3 style="font-size:22px; margin-bottom:24px;">Why Yves</h3>
+        <div class="founder-bio">
+          <div class="founder-bio-bar"></div>
+          <div class="founder-bio-content">
+            <h3 class="founder-bio-name">Yves <em>La Rose</em></h3>
+            <ul class="founder-timeline">
+              <li><span class="tl-dot">·</span><span>Bitcoin miner since 2010. Not a Web2 founder who discovered crypto. Built from the beginning.</span></li>
+              <li><span class="tl-dot">·</span><span>Co-founded EOS Nation, one of the most influential block producers in the EOS ecosystem.</span></li>
+              <li><span class="tl-dot">·</span><span>Founded and led EOS Network Foundation - rebuilt a fragmented, post-crisis chain into a globally operating organization; executed a full rebrand to Vaulta; led thousands of distributed async contributors across multiple time zones.</span></li>
+              <li><span class="tl-dot">·</span><span>Resigned as Vaulta CEO November 2025 to build Nether Labs. This is his full bet.</span></li>
+            </ul>
+            <p style="margin-top:20px; font-size:15px; line-height:1.7; color:var(--body-hi);">
+              He has managed more distributed, async, remote-first operations than most founders have employees. He
+              didn't read about this problem. He lived it for a decade - and then built the solution.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- The Ask -->
+      <div class="prose">
+        <h3 style="font-size:22px; margin-bottom:16px;">The Ask</h3>
+      </div>
+
+      <div class="ask-block">
+        <div class="ask-header">
+          <span class="ask-amount">$50,000-$100,000</span>
+          <span class="ask-sub">as part of a $200k F&F round</span>
+        </div>
+        <p style="font-size:14px; line-height:1.7; color:var(--body); margin-bottom:24px;">
+          The F&F round target is $200,000 for 20% equity in the incorporated CCPC - implying a post-money valuation
+          of approximately $1,000,000. Final share structure, share class, and price per share will be determined at
+          incorporation and confirmed in subscription documents. These indicative terms are subject to revision
+          following review by startup legal counsel.
+        </p>
+        <p style="font-size:13px; font-weight:600; color:var(--accent); letter-spacing:0.04em; margin-bottom:16px; text-transform:uppercase; font-size:10px;">What You Get</p>
+        <ul class="ask-points">
+          <li>Equity in Nether Labs at F&F terms (20% total round, $200k target)</li>
+          <li>Early access to Steward - a real say in how V1 is shaped</li>
+          <li>Relationship with Yves as the company scales - not just a cap table entry</li>
+          <li>Optionality: if Steward becomes the default operating layer for lean startups, you're in at the ground floor</li>
+        </ul>
+      </div>
+
+      <!-- Risk Factors -->
+      <div class="risk-box">
+        <h4>Risk Factors</h4>
+        <ul class="risk-list">
+          <li><strong>Pre-revenue, pre-product.</strong> Nether Labs has not yet generated revenue. Steward is in development. There is no assurance the product will be completed or achieve commercial success.</li>
+          <li><strong>Pre-incorporation.</strong> The issuing CCPC does not yet exist. No funds will be received and no securities issued until incorporation is complete. Terms are subject to change.</li>
+          <li><strong>Competition.</strong> The market is competitive and rapidly evolving. Well-funded players - including large technology companies - may enter with similar or superior products.</li>
+          <li><strong>Illiquid investment.</strong> There is no public market for Nether Labs shares and no assurance one will develop.</li>
+          <li><strong>Key person risk.</strong> The business is currently dependent on Yves La Rose. Loss of his involvement would materially impact the company's prospects.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PART TWO - THE NUMBERS                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="financials" class="section">
+    <div class="wrap-wide">
+      <div class="wrap" style="padding:0;">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <div class="section-header-text">
+            <span class="section-label">Part Two</span>
+            <h2 class="section-title">The Numbers</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Use of Funds -->
+      <div class="wrap" style="padding:0; margin-bottom:48px;">
+        <h3 style="font-size:20px; margin-bottom:16px; color:var(--headline); font-family:var(--font-display);">Use of Funds ($200,000)</h3>
+        <p style="font-size:15px; line-height:1.7; color:var(--body); margin-bottom:24px;">
+          Capital covers ~13-14 months of pre-revenue burn. With paying customers in Month 1 and gross profit
+          covering operating expenses by Month 5-6 (base case), effective runway extends to 22+ months. The raise
+          funds execution risk - legal entity, product polish, Product Hunt, and early GTM - not operational survival.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>% of Round</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Founder stipend</td><td>$54,000</td><td>27%</td></tr>
+            <tr><td>Marketing &amp; GTM</td><td>$40,000</td><td>20%</td></tr>
+            <tr><td>LLM API costs</td><td>$24,000</td><td>12%</td></tr>
+            <tr><td>Reserve / contingency</td><td>$24,000</td><td>12%</td></tr>
+            <tr><td>Legal &amp; compliance</td><td>$22,000</td><td>11%</td></tr>
+            <tr><td>Infrastructure &amp; hosting</td><td>$18,000</td><td>9%</td></tr>
+            <tr><td>Product &amp; tooling</td><td>$18,000</td><td>9%</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Total</td><td>$200,000</td><td>100%</td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Revenue Projections -->
+      <div class="wrap" style="padding:0; margin: 56px 0 24px;">
+        <h3 style="font-size:20px; margin-bottom:12px; color:var(--headline); font-family:var(--font-display);">Revenue Projections - Month 12</h3>
+        <p style="font-size:13px; line-height:1.7; color:var(--muted); margin-bottom:24px;">
+          Key assumptions: Founder tier $199/mo, Team tier $499/mo. Blended ARPU $259-$319 depending on mix. Month 3: Product Hunt launch.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Conservative</th>
+              <th class="highlight">Base</th>
+              <th>Optimistic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Customers</td><td>68</td><td class="highlight">143</td><td>253</td></tr>
+            <tr><td>MRR</td><td>$17,612</td><td class="highlight">$41,327</td><td>$80,707</td></tr>
+            <tr><td>ARR Run Rate</td><td>$211k</td><td class="highlight">$496k</td><td>$969k</td></tr>
+            <tr><td>Break-even Month</td><td>M13-14</td><td class="highlight">M5-6</td><td>M4</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Unit Economics -->
+      <div class="wrap" style="padding:0; margin: 56px 0 24px;">
+        <h3 style="font-size:20px; margin-bottom:12px; color:var(--headline); font-family:var(--font-display);">Key Unit Economics</h3>
+        <p style="font-size:13px; line-height:1.7; color:var(--muted); margin-bottom:24px;">
+          At $289 blended ARPU (base) and ~$43/month in variable COGS per customer, gross margin lands at ~85%.
+          No paid acquisition in Year 1 - Product Hunt, founder network, and content is the GTM.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Conservative</th>
+              <th class="highlight">Base</th>
+              <th>Optimistic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Blended ARPU (Y1)</td><td>$259</td><td class="highlight">$289</td><td>$319</td></tr>
+            <tr><td>Gross Margin</td><td>82%</td><td class="highlight">85%</td><td>87%</td></tr>
+            <tr><td>LTV:CAC Ratio</td><td>8.4×</td><td class="highlight">17.3×</td><td>44.7×</td></tr>
+            <tr><td>CAC Payback</td><td>1.5 months</td><td class="highlight">1.0 months</td><td>0.6 months</td></tr>
+            <tr><td>Monthly Churn</td><td>4%</td><td class="highlight">3%</td><td>2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Series A Bridge -->
+      <div class="wrap" style="padding:0; margin: 56px 0 24px;">
+        <h3 style="font-size:20px; margin-bottom:12px; color:var(--headline); font-family:var(--font-display);">Series A Bridge</h3>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Series A Readiness</th>
+              <th class="highlight">Raise Size</th>
+              <th>Implied Valuation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Conservative</td><td>Month 24-28</td><td class="highlight">$1.5-2.5M</td><td>$6-10M</td></tr>
+            <tr><td style="color:var(--accent); font-weight:600;">Base</td><td>Month 17-18</td><td class="highlight" style="color:var(--accent); font-weight:600;">$2-4M</td><td>$8-14M</td></tr>
+            <tr><td>Optimistic</td><td>Month 9-10</td><td class="highlight">$4-8M</td><td>$15-25M</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="wrap" style="padding:0;">
+        <div class="series-note">
+          <p>
+            Series A triggers: $50k+ MRR, 150+ customers, &gt;100% NRR, &gt;80% gross margin, &gt;10× LTV:CAC.
+            Nether Labs exceeds all threshold metrics in base case by Month 18-20.
+          </p>
+          <p style="margin-top:12px;">
+            <strong>An F&F investor who puts in $50k at $1M post-money sees their stake worth approximately $200k-400k
+            at a $10M Series A valuation - in under three years.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PART THREE - THE ROADMAP                                    -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="roadmap" class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <div class="section-header-text">
+          <span class="section-label">Part Three</span>
+          <h2 class="section-title">The Roadmap</h2>
+        </div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <span class="phase-label">Phase 1 · Months 1-3</span>
+        <h3 class="phase-title">Private Beta</h3>
+        <p class="phase-target">Target: 40-50 customers | Target MRR: $8k-12k</p>
+        <p class="phase-goal">
+          Prove that 10 founders will pay real money, use the product daily, and feel it changed how they operate.
+          Everything in Phase 1 flows from that. Not scale. Not beauty. Not completeness. Proof.
+        </p>
+        <p style="font-size:14px; color:var(--muted); margin-bottom:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; font-size:10px;">Four core agents ship:</p>
+        <ul class="ask-points" style="margin-bottom:24px;">
+          <li>🔮 <strong>Chief of Staff</strong> - inbox, priorities, drafts, open loops, weekly debrief</li>
+          <li>🎯 <strong>Growth Lead</strong> - content from notes/memos, writing voice, content calendar</li>
+          <li>📩 <strong>Customer Ops Lead</strong> - inbound emails, FAQ, escalation, weekly signal summary</li>
+          <li>⚖️ <strong>Legal Watcher</strong> - contract red flags, regulatory context, always disclaimer-first</li>
+        </ul>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Milestone</th><th>Target</th></tr>
+            </thead>
+            <tbody class="milestone-row">
+              <tr><td>3 founders live, 2 complete Day 7</td><td>Day 14</td></tr>
+              <tr><td>10 paying customers, self-serve onboarding live</td><td>Day 45</td></tr>
+              <tr><td>Day-30 retention ≥80%, Team tier launched</td><td>Day 60</td></tr>
+              <tr><td>40-50 customers, Product Hunt launch</td><td>Day 90</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="gate">
+          <span class="gate-label">Decision Gate to Phase 2</span>
+          <p>All three must be true: ≥40 paying customers · Day-30 retention ≥80% · Trial-to-paid conversion ≥40%</p>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <span class="phase-label">Phase 2 · Months 4-9</span>
+        <h3 class="phase-title">Public Launch</h3>
+        <p class="phase-target">Target: 150-200 customers | Target MRR: $40k-60k</p>
+        <p class="phase-goal">
+          Turn a working product into a repeatable growth engine. Phase 2 is about two things: expanding the product
+          (new agents, new capabilities) and unlocking systematic distribution (Product Hunt, Indie Hackers, referral
+          loops, content flywheel).
+        </p>
+        <p style="font-size:10px; color:var(--muted); margin-bottom:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">New agents:</p>
+        <ul class="ask-points" style="margin-bottom:24px;">
+          <li><strong>CFO Agent</strong> - expense tracking, burn rate, monthly financial summary (Team tier)</li>
+          <li><strong>Ops Agent</strong> - calendar, meeting prep, scheduling, follow-up tracking</li>
+        </ul>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Milestone</th><th>Target</th></tr>
+            </thead>
+            <tbody class="milestone-row">
+              <tr><td>Product Hunt launch, 100+ trial signups in launch week</td><td>Month 4</td></tr>
+              <tr><td>75+ customers, $15k+ MRR</td><td>Month 5</td></tr>
+              <tr><td>100+ customers, $50k+ MRR, referral program live</td><td>Month 6</td></tr>
+              <tr><td>150+ customers, $40k+ MRR</td><td>Month 8</td></tr>
+              <tr><td>Series A materials drafted, 200 customers, $50-60k MRR</td><td>Month 9</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="gate">
+          <span class="gate-label">Decision Gate to Phase 3</span>
+          <p>All three must be true: ≥150 paying customers · Annual retention ≥85% · MRR ≥$40k with Team tier ≥30% of revenue</p>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <span class="phase-label">Phase 3 · Months 10-18</span>
+        <h3 class="phase-title">Scale</h3>
+        <p class="phase-target">Target: 400-600 customers | Target MRR: $120k-180k</p>
+        <p class="phase-goal">
+          Phase 3 is where Steward becomes a platform. The founder ICP has been proven. The growth motion is
+          repeatable. Expand to new customer segments (agencies, small teams), add platform capabilities
+          (Agent Builder, Marketplace, API), and close the Series A.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Metric</th><th>Month 18 Target</th></tr>
+            </thead>
+            <tbody class="milestone-row">
+              <tr><td>Paying customers</td><td>400-600</td></tr>
+              <tr><td>MRR</td><td>$120k-180k ($1.4M-2.1M ARR)</td></tr>
+              <tr><td>Annual retention</td><td>≥88%</td></tr>
+              <tr><td>Agency customers</td><td>20+</td></tr>
+              <tr><td>Team size</td><td>10-12</td></tr>
+              <tr><td>Series A</td><td>$3-5M closed or in process</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- What We're NOT Building -->
+      <div style="margin-top:48px;">
+        <h3 style="font-size:20px; color:var(--headline); font-family:var(--font-display); margin-bottom:8px;">What We're NOT Building (18-Month Window)</h3>
+        <p style="font-size:15px; line-height:1.7; color:var(--body); margin-bottom:20px;">
+          Scope discipline is an operating philosophy. These are deliberate exclusions.
+        </p>
+        <ul class="exclusion-list">
+          <li>Enterprise sales motion (long cycles, procurement overhead - Series B story)</li>
+          <li>Generic free-form agent builder (destroys the product metaphor)</li>
+          <li>Per-agent pricing (signals "tool"; we sell orgs)</li>
+          <li>Voice interfaces (not required for PMF)</li>
+          <li>Full financial/bookkeeping compliance (liability surface we don't carry)</li>
+          <li>Multi-language/localization (English-first until $3M ARR)</li>
+          <li>Consumer B2C product (dilutes ICP and brand)</li>
+        </ul>
+        <div class="callout" style="margin-top:24px;">
+          <p style="font-family:var(--font-display); font-style:italic; font-size:17px;">
+            "A team that knows what it's not building is a team that knows what it's building."
+          </p>
+        </div>
+      </div>
+
+      <!-- Competitive Moat -->
+      <div style="margin-top:56px;">
+        <h3 style="font-size:20px; color:var(--headline); font-family:var(--font-display); margin-bottom:20px;">Competitive Moat</h3>
+        <div class="moat-grid">
+          <div class="moat-item">
+            <span class="moat-period">Today</span>
+            <p class="moat-text">Nether Labs ran this organization for itself for months before selling it. Competitors can copy the architecture. They cannot fake having run it.</p>
+          </div>
+          <div class="moat-item">
+            <span class="moat-period">Months 4-9</span>
+            <p class="moat-text">Every org on Steward generates data on what agents get used, what tasks get routed, what founders actually care about. This data loop is unavailable to competitors starting from zero.</p>
+          </div>
+          <div class="moat-item">
+            <span class="moat-period">Months 10-18</span>
+            <p class="moat-text">Marketplace network effects, integration lock-in, and institutional memory (agents that know a founder's business for 12+ months) create real switching costs.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── Legal Notices ────────────────────────────────────────── -->
+  <div class="legal-section">
+    <div class="wrap">
+      <span class="legal-label">Legal Notices</span>
+      <div class="legal-text">
+        <p>
+          No funds will be accepted and no securities will be issued prior to completion of CCPC incorporation. Any
+          investment will be subject to formal subscription documents prepared by legal counsel. All terms described
+          herein are indicative only and subject to change.
+        </p>
+        <p>
+          This offering is being made in reliance on the prospectus exemption under NI 45-106 s.2.6 (close personal
+          friend or close business associate of a director, officer, or founder of the issuer). Investors will be
+          required to confirm their eligibility and sign applicable certificates at the time of subscription.
+        </p>
+        <p>
+          This document contains forward-looking statements. These statements involve known and unknown risks and
+          uncertainties that may cause actual results to differ materially from those anticipated. Forward-looking
+          statements are based on management's current expectations and assumptions and are not guarantees of future
+          performance.
+        </p>
+        <p>
+          Prospective investors should seek independent legal and financial advice before making any investment
+          decision. This document is confidential and intended solely for recipients who qualify as a close personal
+          friend or close business associate of Yves La Rose under NI 45-106 s.2.6. Do not distribute.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Footer ────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>Nether Labs · April 2026 · Confidential - F&amp;F Only</p>
+    <p>Questions: contact Yves La Rose directly</p>
+  </footer>
+
+</body>
+</html>
