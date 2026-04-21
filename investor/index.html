@@ -759,16 +759,90 @@
     }
 
     /* ─── Responsive ─────────────────────────────────────────────── */
-    @media (max-width: 680px) {
+
+    /* ── 768px: tablets and large phones ─────────────────────────── */
+    @media (max-width: 768px) {
+      .wrap,
+      .wrap-wide { padding: 0 20px; }
+
+      .confidential-banner { padding: 10px 20px; }
+
+      .site-header { padding: 20px 20px; }
+
+      .hero { padding: 64px 20px 56px; }
+
+      .section { padding: 60px 0; }
+
       .site-header nav { display: none; }
-      .hero-meta { grid-template-columns: 1fr; }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
       .hero-meta-item { border-right: none; border-bottom: 1px solid var(--border-mid); }
       .hero-meta-item:last-child { border-bottom: none; }
+
+      .hero-sub { font-size: 15px; }
+
+      /* Tables: ensure touch-scroll on iOS */
+      .table-wrap {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .proof-block { padding: 24px 24px; }
+      .proof-stats { grid-template-columns: 1fr 1fr; }
+
+      .ask-block { padding: 28px 24px; }
+
+      .phase { padding: 28px 20px; }
+
       .moat-grid { grid-template-columns: 1fr; }
       .moat-item { border-right: none; border-bottom: 1px solid var(--border); }
       .moat-item:last-child { border-bottom: none; }
-      .proof-stats { grid-template-columns: 1fr 1fr; }
-      .phase { padding: 28px 24px; }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 24px 20px;
+      }
+
+      .legal-section { padding: 48px 0; }
+    }
+
+    /* ── 480px: small phones (iPhone SE, older Androids) ─────────── */
+    @media (max-width: 480px) {
+      .wrap,
+      .wrap-wide { padding: 0 16px; }
+
+      .confidential-banner { padding: 8px 16px; }
+
+      .site-header { padding: 16px 16px; }
+
+      .hero { padding: 48px 16px 40px; }
+
+      .section { padding: 48px 0; }
+
+      /* Ask block: stack amount + sub vertically */
+      .ask-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .ask-amount { font-size: 36px; }
+
+      /* Proof stats: single column on smallest screens */
+      .proof-stats { grid-template-columns: 1fr; }
+
+      .phase { padding: 24px 16px; }
+
+      .proof-block { padding: 20px 16px; }
+      .ask-block { padding: 24px 16px; }
+
+      .section-header { gap: 12px; margin-bottom: 40px; }
+
+      .site-footer { padding: 20px 16px; }
     }
 
     /* ─── Print / PDF Styles ─────────────────────────────────────── */
