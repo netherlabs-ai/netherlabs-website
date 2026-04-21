@@ -711,6 +711,38 @@
       line-height: 1.65;
     }
 
+    /* ─── FAQ Section ─────────────────────────────────────────────── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border-mid);
+    }
+
+    .faq-item {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--headline);
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .faq-a p {
+      font-size: 15px;
+      line-height: 1.78;
+      color: var(--body-hi);
+    }
+
+    .faq-a p + p { margin-top: 14px; }
+
     /* ─── Legal Section ──────────────────────────────────────────── */
     .legal-section {
       padding: 64px 0;
@@ -1481,6 +1513,34 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PART FOUR - COMMON QUESTIONS                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="faq" class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <div class="section-header-text">
+          <span class="section-label">Part Four</span>
+          <h2 class="section-title">Common Questions</h2>
+        </div>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <h4 class="faq-q">Why do customers keep paying after setup?</h4>
+          <div class="faq-a">
+            <p>Because the product is not static software. It is a continuously evolving organizational operating system. Every month, Nether Labs ships new agents, integrations, and capability upgrades that active subscribers receive automatically. A customer that lapses is frozen at their install date while the platform and every active peer continues to advance.</p>
+            <p>The deeper value compounds over time: the SOPs, agent memory, workflows, and organizational intelligence inside a customer's deployment are curated and improved by Nether Labs continuously. In a space where the underlying model layer turns over every few months, staying optimized is not something customers do themselves. It is what their subscription buys.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
