@@ -1,0 +1,8 @@
+[build]
+  publish = "portal/sips-creations"
+  command = ""
+
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
