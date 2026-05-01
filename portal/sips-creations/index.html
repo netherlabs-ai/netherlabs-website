@@ -1523,21 +1523,51 @@
       document.getElementById('imgPreviewThumb').src = '';
     }
 
-    // Mobile keyboard UX — reposition chat panel when keyboard opens
+    // Mobile keyboard UX — reposition and resize chat panel when keyboard opens
     function repositionChat() {
       const panel = document.getElementById('chatPanel');
       const btn = document.getElementById('chatBtn');
       if (!panel || !chatOpen) return;
       const vv = window.visualViewport;
       if (!vv) return;
-      // Distance from bottom of visual viewport to bottom of layout viewport
-      const keyboardHeight = window.innerHeight - vv.height - vv.offsetTop;
-      const offset = Math.max(0, keyboardHeight);
-      panel.style.bottom = (offset + 8) + 'px';
-      btn.style.bottom = (offset + (offset > 0 ? vv.height - 60 : 24)) + 'px';
-      // Scroll messages to bottom so latest is visible
+
+      const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      const isMobile = window.innerWidth < 600;
+
+      if (keyboardHeight > 50) {
+        // Keyboard is open
+        if (isMobile) {
+          // Full-screen chat on mobile when keyboard open
+          panel.style.position = 'fixed';
+          panel.style.top = '0';
+          panel.style.left = '0';
+          panel.style.right = '0';
+          panel.style.bottom = keyboardHeight + 'px';
+          panel.style.width = '100%';
+          panel.style.height = 'auto';
+          panel.style.borderRadius = '0';
+          panel.style.maxWidth = '100%';
+        } else {
+          panel.style.bottom = (keyboardHeight + 8) + 'px';
+          panel.style.height = (vv.height - 100) + 'px';
+        }
+        btn.style.display = 'none';
+      } else {
+        // Keyboard closed — restore
+        panel.style.position = '';
+        panel.style.top = '';
+        panel.style.left = '';
+        panel.style.right = '';
+        panel.style.bottom = '';
+        panel.style.width = '';
+        panel.style.height = '';
+        panel.style.borderRadius = '';
+        panel.style.maxWidth = '';
+        btn.style.display = '';
+      }
+
       const msgs = document.getElementById('chatMessages');
-      if (msgs) setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 100);
+      if (msgs) setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 80);
     }
 
     if (window.visualViewport) {
