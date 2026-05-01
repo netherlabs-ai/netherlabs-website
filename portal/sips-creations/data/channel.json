@@ -1,17 +1,17 @@
 {
-  "fetched_at": "2026-04-30T15:38:41.977448Z",
+  "fetched_at": "2026-05-01T15:00:01.091746Z",
   "channel_id": "UCAgeTTQUrqiI-wKGCTVZm1A",
   "stats": {
-    "subscribers": 65,
-    "video_count": 66,
-    "view_count": 37106
+    "subscribers": 67,
+    "video_count": 67,
+    "view_count": 38040
   },
   "top_10_by_views": [
     {
       "id": "uRi5C_BsdGU",
       "title": "How to thread a Pfaff Varimatic 6085 Sewing Machine #sewing",
       "published": "2026-03-06T19:51:05Z",
-      "views": 2644,
+      "views": 2654,
       "likes": 25,
       "duration": "PT1M26S",
       "is_short": false
@@ -20,7 +20,7 @@
       "id": "m49fE2Q-ZPw",
       "title": "How To  Start #crochet #magicRing MR, Beginner Tutorial #crochet",
       "published": "2026-04-02T17:09:29Z",
-      "views": 2456,
+      "views": 2462,
       "likes": 22,
       "duration": "PT47S",
       "is_short": true
@@ -29,7 +29,7 @@
       "id": "Tc7_2SeBevE",
       "title": "Crochet Hack- Invisible Round Joint #crochet",
       "published": "2026-04-10T22:28:20Z",
-      "views": 2132,
+      "views": 2136,
       "likes": 20,
       "duration": "PT30S",
       "is_short": true
@@ -47,7 +47,7 @@
       "id": "_4DOmDAj3Sk",
       "title": "How to complete 1st row after chains #crochet #crocheting #crochettutorial #startwithchain",
       "published": "2026-04-04T19:07:35Z",
-      "views": 1991,
+      "views": 1992,
       "likes": 7,
       "duration": "PT21S",
       "is_short": true
@@ -56,7 +56,7 @@
       "id": "sLXXUKYB3ZE",
       "title": "Crochet Hack: Perfect Round Finish #crochet",
       "published": "2026-04-10T22:21:45Z",
-      "views": 1977,
+      "views": 1978,
       "likes": 15,
       "duration": "PT37S",
       "is_short": true
@@ -103,7 +103,7 @@
       "id": "m49fE2Q-ZPw",
       "title": "How To  Start #crochet #magicRing MR, Beginner Tutorial #crochet",
       "published": "2026-04-02T17:09:29Z",
-      "views": 2456,
+      "views": 2462,
       "likes": 22,
       "duration": "PT47S",
       "is_short": true
@@ -112,7 +112,7 @@
       "id": "Tc7_2SeBevE",
       "title": "Crochet Hack- Invisible Round Joint #crochet",
       "published": "2026-04-10T22:28:20Z",
-      "views": 2132,
+      "views": 2136,
       "likes": 20,
       "duration": "PT30S",
       "is_short": true
