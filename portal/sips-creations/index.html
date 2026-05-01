@@ -988,7 +988,8 @@
       <div class="welcome">
         <div class="welcome-emoji">👋</div>
         <h1>Hi Akiko! <em>Keep it up.</em></h1>
-        <div class="welcome-date">Your dashboard · April 2026</div>
+        <div class="welcome-date">Your dashboard · <span id="dashboardMonth">April 2026</span></div>
+        <div id="dataTimestamp" style="font-size:11px;color:var(--text-3);margin-top:4px;display:none;"></div>
       </div>
 
       <!-- ── 1. YOUR CHANNELS ── -->
@@ -997,12 +998,12 @@
         <div class="channels-grid">
           <div class="channel-card">
             <div class="channel-icon">📺</div>
-            <div class="channel-number">65</div>
+            <div class="channel-number" id="statSubs">65</div>
             <div class="channel-label">YouTube subscribers</div>
           </div>
           <div class="channel-card">
             <div class="channel-icon">🎬</div>
-            <div class="channel-number">66</div>
+            <div class="channel-number" id="statVideos">66</div>
             <div class="channel-label">Total videos</div>
           </div>
           <div class="channel-card">
@@ -1020,20 +1021,20 @@
 
           <!-- big stat -->
           <div class="ww-big-stat">
-            <div class="ww-badge">10×</div>
+            <div class="ww-badge" id="wwBadge">10×</div>
             <div class="ww-big-text">
-              <div class="ww-big-headline">Shorts get <em>10× more views</em> than long videos.</div>
-              <div class="ww-big-sub">Top Short: 2,456 views</div>
+              <div class="ww-big-headline">Shorts get <em id="wwMultiplier">10× more views</em> than long videos.</div>
+              <div class="ww-big-sub" id="wwTopShortViews">Top Short: 2,456 views</div>
             </div>
           </div>
 
           <hr class="ww-divider">
 
           <div class="ww-top-label">🏆 Your top 3 Shorts</div>
-          <div class="ww-shorts-list">
+          <div class="ww-shorts-list" id="wwShortsList">
             <div class="ww-short-row">
               <div class="ww-rank">1</div>
-              <div class="ww-short-name">How To  Start #crochet #magicRing MR, Beginner Tut…</div>
+              <div class="ww-short-name">How To Start #crochet #magicRing MR, Beginner Tut…</div>
               <div>
                 <div class="ww-short-views">2,456</div>
                 <div class="ww-short-views-label">views</div>
@@ -1053,25 +1054,6 @@
               <div>
                 <div class="ww-short-views">2,005</div>
                 <div class="ww-short-views-label">views</div>
-              </div>
-            </div>
-          </div>
-              </div>
-            </div>
-            <div class="ww-short-row">
-              <div class="ww-rank">2</div>
-              <div class="ww-short-name">Common Beginner Mistake #39</div>
-              <div>
-                <div class="ww-short-views">400+</div>
-                <div class="ww-short-views-label">views</div>
-              </div>
-            </div>
-            <div class="ww-short-row">
-              <div class="ww-rank">3</div>
-              <div class="ww-short-name">Other Shorts (average)</div>
-              <div>
-                <div class="ww-short-views">400–600</div>
-                <div class="ww-short-views-label">views each</div>
               </div>
             </div>
           </div>
@@ -1194,12 +1176,12 @@
               <span>100 subscribers</span>
             </div>
             <div class="goal-bar-track">
-              <div class="goal-bar-fill"></div>
+              <div class="goal-bar-fill" id="goalBarFill"></div>
             </div>
           </div>
 
-          <div class="goal-milestone">65 / 100 subscribers ✨</div>
-          <div class="goal-encouragement">35 more to go — you're more than halfway! 💪</div>
+          <div class="goal-milestone" id="goalMilestone">65 / 100 subscribers ✨</div>
+          <div class="goal-encouragement" id="goalEncouragement">35 more to go — you're more than halfway! 💪</div>
         </div>
       </section>
 
@@ -1433,6 +1415,170 @@
        INIT
     ───────────────────────────────────────────── */
     renderRecs(false);
+  </script>
+
+  <!-- ───── LIVE DATA LOADER ───── -->
+  <script>
+    /* ─────────────────────────────────────────────
+       LIVE DATA — fetches channel.json + recommendations.json
+       Gracefully falls back to hardcoded values on any failure.
+    ───────────────────────────────────────────── */
+
+    function fmtNum(n) {
+      if (n === undefined || n === null) return '';
+      return Number(n).toLocaleString();
+    }
+
+    function truncate(str, max) {
+      if (!str) return '';
+      return str.length > max ? str.slice(0, max - 1) + '\u2026' : str;
+    }
+
+    function applyChannelData(ch) {
+      const stats = ch.stats || {};
+
+      // Channel stat cards
+      const subsEl = document.getElementById('statSubs');
+      const vidsEl = document.getElementById('statVideos');
+      if (subsEl && stats.subscribers !== undefined) subsEl.textContent = fmtNum(stats.subscribers);
+      if (vidsEl && stats.video_count  !== undefined) vidsEl.textContent = fmtNum(stats.video_count);
+
+      // Goal card — 100-sub target
+      const subs = stats.subscribers || 65;
+      const goal = 100;
+      const pct  = Math.min(100, Math.round((subs / goal) * 100));
+      const left  = Math.max(0, goal - subs);
+
+      const barFill = document.getElementById('goalBarFill');
+      if (barFill) {
+        barFill.style.width = pct + '%';
+        barFill.style.setProperty('--bar-label', JSON.stringify(String(subs)));
+        // update the ::after counter via a data attribute trick
+        barFill.setAttribute('data-subs', subs);
+        // override the CSS ::after content with a style tag
+        let styleTag = document.getElementById('goalBarStyle');
+        if (!styleTag) {
+          styleTag = document.createElement('style');
+          styleTag.id = 'goalBarStyle';
+          document.head.appendChild(styleTag);
+        }
+        styleTag.textContent = '#goalBarFill::after { content: "' + subs + '"; }';
+      }
+
+      const milestoneEl    = document.getElementById('goalMilestone');
+      const encourageEl   = document.getElementById('goalEncouragement');
+      if (milestoneEl)  milestoneEl.textContent  = subs + ' / ' + goal + ' subscribers \u2728';
+      if (encourageEl)  encourageEl.textContent  = left + ' more to go \u2014 you\'re more than halfway! \uD83D\uDCAA';
+
+      // What's Working — top 3 shorts
+      const shorts = ch.top_3_shorts || [];
+      const shortsList = document.getElementById('wwShortsList');
+      if (shortsList && shorts.length > 0) {
+        shortsList.innerHTML = shorts.map((s, i) => `
+          <div class="ww-short-row">
+            <div class="ww-rank">${i + 1}</div>
+            <div class="ww-short-name">${truncate(s.title, 52)}</div>
+            <div>
+              <div class="ww-short-views">${fmtNum(s.views)}</div>
+              <div class="ww-short-views-label">views</div>
+            </div>
+          </div>`).join('');
+
+        // Update big stat badge — compare top short vs non-short avg
+        const topShortViews = shorts[0] ? shorts[0].views : null;
+        const top10 = ch.top_10_by_views || [];
+        const longVideos = top10.filter(v => !v.is_short);
+        if (topShortViews && longVideos.length > 0) {
+          const avgLong = longVideos.reduce((a, v) => a + v.views, 0) / longVideos.length;
+          const multiplier = avgLong > 0 ? Math.round(topShortViews / avgLong) : 10;
+          const badgeEl = document.getElementById('wwBadge');
+          const multEl  = document.getElementById('wwMultiplier');
+          if (badgeEl) badgeEl.textContent = multiplier + '\u00d7';
+          if (multEl)  multEl.textContent  = multiplier + '\u00d7 more views';
+        }
+        const topSubEl = document.getElementById('wwTopShortViews');
+        if (topSubEl && topShortViews) {
+          topSubEl.textContent = 'Top Short: ' + fmtNum(topShortViews) + ' views';
+        }
+      }
+
+      // Timestamp
+      if (ch.fetched_at) {
+        const d = new Date(ch.fetched_at);
+        const label = d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+        const tsEl = document.getElementById('dataTimestamp');
+        if (tsEl) {
+          tsEl.textContent = 'Data updated ' + label;
+          tsEl.style.display = 'block';
+        }
+        // Also update welcome month
+        const monthEl = document.getElementById('dashboardMonth');
+        if (monthEl) {
+          monthEl.textContent = d.toLocaleDateString('en-CA', { month: 'long', year: 'numeric' });
+        }
+      }
+    }
+
+    function applyRecsData(recsData) {
+      const recs = recsData.recommendations || recsData;
+      if (!Array.isArray(recs) || recs.length === 0) return;
+
+      // Replace the global RECS array used by the recommendation queue
+      // Map fetched data to the same shape renderRecs() expects
+      const mapped = recs.map((r, i) => ({
+        id:       r.id || i,
+        icon:     r.icon     || '\uD83D\uDCA1',
+        title:    r.title    || '',
+        desc:     r.desc     || '',
+        tag:      r.tag      || 'quick',
+        tagLabel: r.tagLabel || '\u26A1 Quick Win',
+      }));
+
+      // Splice into global RECS in-place so progress bar total stays accurate
+      RECS.splice(0, RECS.length, ...mapped);
+
+      // Re-render (clear current cards, repaint from updated RECS)
+      const container = document.getElementById('recCards');
+      if (container) container.innerHTML = '';
+      renderRecs(false);
+
+      // Sync progress count display
+      const completed = loadCompleted();
+      updateProgressBar(completed);
+    }
+
+    async function loadLiveData() {
+      // Run both fetches in parallel; handle failures independently
+      const [chRes, recsRes] = await Promise.allSettled([
+        fetch('./data/channel.json'),
+        fetch('./data/recommendations.json'),
+      ]);
+
+      if (chRes.status === 'fulfilled' && chRes.value.ok) {
+        try {
+          const ch = await chRes.value.json();
+          applyChannelData(ch);
+        } catch (e) {
+          console.warn('[sips] channel.json parse error', e);
+        }
+      } else {
+        console.warn('[sips] channel.json fetch failed — using fallback stats');
+      }
+
+      if (recsRes.status === 'fulfilled' && recsRes.value.ok) {
+        try {
+          const rd = await recsRes.value.json();
+          applyRecsData(rd);
+        } catch (e) {
+          console.warn('[sips] recommendations.json parse error', e);
+        }
+      } else {
+        console.warn('[sips] recommendations.json fetch failed — using fallback recs');
+      }
+    }
+
+    // Kick off after DOM is ready (script is at bottom so DOM is already ready)
+    loadLiveData();
   </script>
 
   <!-- ───── CHAT WIDGET ───── -->
