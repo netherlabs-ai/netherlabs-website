@@ -1467,9 +1467,8 @@
     /* ─────────────────────────────────────────────
        CHAT WIDGET — OpenRouter/GPT-4o-mini (client-side)
     ───────────────────────────────────────────── */
-    const OR_KEY = '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';
-    const OR_URL = 'https://openrouter.ai/api/v1/chat/completions';
-    const OR_MODEL = 'openai/gpt-4o-mini';
+    // API key is stored server-side in Netlify env vars — never in the browser
+    const CHAT_ENDPOINT = '/.netlify/functions/chat';
     const SYSTEM_PROMPT = 'You are a social media growth coach. Coach the user on growing their YouTube and Instagram channel "Sips & Creations" — a Canadian DIY/craft channel. Her son Amane (6 years old) crochets and sells at community stands. YouTube: ~65 subscribers, Shorts get 10x more views than long videos. Instagram: ~256 followers.\n\nSTRICT RULES — follow exactly:\n1. Plain text only. No asterisks, no pound signs, no dashes, no numbered lists.\n2. Two sentences maximum. Two. Not three. Not four. Two.\n3. Start your response with the actual answer. No opener. No name.\n4. One idea only per message.\n\nIf asked for a video script, write the script as plain text with no intro or commentary.';
 
     function cleanReply(text) {
@@ -1632,23 +1631,17 @@
         }
         messages.push({ role: 'user', content: msg });
 
-        const res = await fetch(OR_URL, {
+        const res = await fetch(CHAT_ENDPOINT, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + OR_KEY,
-            'HTTP-Referer': 'https://portal.netherlabs.ai',
-            'X-Title': 'Sips & Creations Coach',
-          },
-          body: JSON.stringify({ model: OR_MODEL, max_tokens: 80, temperature: 0, messages }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages }),
         });
 
         removeTyping();
 
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        const raw = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-        const reply = raw ? cleanReply(raw) : 'Try again in a moment.';
+        const reply = data.reply ? cleanReply(data.reply) : 'Try again in a moment.';
 
         appendBubble('assistant', reply);
 
