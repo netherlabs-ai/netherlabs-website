@@ -1625,6 +1625,43 @@
       if (el) el.remove();
     }
 
+    function collectPageContext() {
+      const lines = [];
+
+      // Live channel stats from the DOM
+      const channelCards = document.querySelectorAll('.channel-card');
+      if (channelCards.length > 0) {
+        lines.push('WHAT AKIKO SEES ON HER DASHBOARD RIGHT NOW:');
+        channelCards.forEach(card => {
+          const num = card.querySelector('.channel-number')?.textContent?.trim();
+          const label = card.querySelector('.channel-label')?.textContent?.trim();
+          if (num && label) lines.push(`- ${label}: ${num}`);
+        });
+      }
+
+      // Tips progress
+      const progressCount = document.getElementById('recProgressCount')?.textContent?.trim();
+      if (progressCount) lines.push(`- Tips completed: ${progressCount}`);
+
+      // Which tips are currently visible on screen (in order)
+      const visibleCards = document.querySelectorAll('#recCards .rec-card:not(.exiting)');
+      if (visibleCards.length > 0) {
+        lines.push('\nTIPS CURRENTLY VISIBLE ON SCREEN (in order — "the first tip" means Tip 1 below):');
+        visibleCards.forEach((card, i) => {
+          const title = card.querySelector('.rec-title')?.textContent?.trim();
+          const desc  = card.querySelector('.rec-desc')?.textContent?.trim();
+          if (title) lines.push(`Tip ${i + 1}: "${title}" — ${desc || ''}`);
+        });
+      } else {
+        const celebration = document.getElementById('recCelebration');
+        if (celebration?.classList.contains('active')) {
+          lines.push('\nTIPS: Akiko has completed all tips — showing celebration state.');
+        }
+      }
+
+      return lines.length > 0 ? lines.join('\n') : null;
+    }
+
     async function sendChat() {
       if (chatBusy) return;
       const input = document.getElementById('chatInput');
@@ -1661,10 +1698,12 @@
         }
         messages.push({ role: 'user', content: msg });
 
+        const pageContext = collectPageContext();
+
         const res = await fetch(CHAT_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages }),
+          body: JSON.stringify({ messages, pageContext }),
         });
 
         removeTyping();

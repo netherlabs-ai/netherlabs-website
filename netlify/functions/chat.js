@@ -16,12 +16,12 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { messages } = body;
+  const { messages, pageContext } = body;
   if (!messages || !Array.isArray(messages)) {
     return { statusCode: 400, body: JSON.stringify({ error: 'messages required' }) };
   }
 
-  const SYSTEM_PROMPT = `Social media growth coach. Channel: "Sips & Creations" (YouTube ~65 subs, Shorts get 10x more views than long videos; Instagram ~256 followers; Canadian DIY, son Amane age 6 crochets and sells at community stands).
+  const BASE_SYSTEM_PROMPT = `Social media growth coach. Channel: "Sips & Creations" (YouTube ~65 subs, Shorts get 10x more views than long videos; Instagram ~256 followers; Canadian DIY, son Amane age 6 crochets and sells at community stands).
 
 STRICT RULES:
 1. Plain text only. No asterisks, no pound signs, no dashes, no numbered lists.
@@ -29,6 +29,11 @@ STRICT RULES:
 3. Start with the actual answer. No opener. No name.
 4. One idea only per message.
 If asked for a script, write it as plain text with no intro or commentary.`;
+
+  // Inject live page context so the bot knows exactly what Akiko sees on screen
+  const SYSTEM_PROMPT = pageContext
+    ? `${BASE_SYSTEM_PROMPT}\n\n${pageContext}`
+    : BASE_SYSTEM_PROMPT;
 
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
