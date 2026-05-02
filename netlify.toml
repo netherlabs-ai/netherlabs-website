@@ -1,5 +1,5 @@
 [build]
-  publish = "portal/sips-creations"
+  publish = "."
   command = ""
 
 [[redirects]]
