@@ -7,7 +7,9 @@
   from = "/*"
   to = "/portal/sips-creations/:splat"
   status = 200
-  conditions = {Host = ["portal.netherlabs.ai"]}
+  force = true
+  [redirects.conditions]
+    Host = ["portal.netherlabs.ai"]
 
 [[redirects]]
   from = "/.netlify/functions/*"
