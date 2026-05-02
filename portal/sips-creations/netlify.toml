@@ -1,0 +1,15 @@
+# Portal site (portal-netherlabs.netlify.app / portal.netherlabs.ai)
+# Publish dir is portal/sips-creations, so the root of this site IS that folder.
+# Rewrite /sips-creations to / so portal.netherlabs.ai/sips-creations serves index.html.
+
+[[redirects]]
+  from = "/sips-creations"
+  to = "/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/sips-creations/*"
+  to = "/:splat"
+  status = 200
+  force = true

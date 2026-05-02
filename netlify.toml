@@ -2,15 +2,6 @@
   publish = "."
   command = ""
 
-# Rewrite portal.netherlabs.ai/* to portal/sips-creations/ files
-[[redirects]]
-  from = "/*"
-  to = "/portal/sips-creations/:splat"
-  status = 200
-  force = true
-  [redirects.conditions]
-    Host = ["portal.netherlabs.ai"]
-
 [[redirects]]
   from = "/.netlify/functions/*"
   to = "/.netlify/functions/:splat"
