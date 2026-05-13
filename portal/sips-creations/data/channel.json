@@ -1,26 +1,17 @@
 {
-  "fetched_at": "2026-05-01T15:00:01.091746Z",
+  "fetched_at": "2026-05-13T15:00:02.247545Z",
   "channel_id": "UCAgeTTQUrqiI-wKGCTVZm1A",
   "stats": {
-    "subscribers": 67,
-    "video_count": 67,
-    "view_count": 38040
+    "subscribers": 71,
+    "video_count": 76,
+    "view_count": 43774
   },
   "top_10_by_views": [
-    {
-      "id": "uRi5C_BsdGU",
-      "title": "How to thread a Pfaff Varimatic 6085 Sewing Machine #sewing",
-      "published": "2026-03-06T19:51:05Z",
-      "views": 2654,
-      "likes": 25,
-      "duration": "PT1M26S",
-      "is_short": false
-    },
     {
       "id": "m49fE2Q-ZPw",
       "title": "How To  Start #crochet #magicRing MR, Beginner Tutorial #crochet",
       "published": "2026-04-02T17:09:29Z",
-      "views": 2462,
+      "views": 2464,
       "likes": 22,
       "duration": "PT47S",
       "is_short": true
@@ -29,25 +20,16 @@
       "id": "Tc7_2SeBevE",
       "title": "Crochet Hack- Invisible Round Joint #crochet",
       "published": "2026-04-10T22:28:20Z",
-      "views": 2136,
+      "views": 2137,
       "likes": 20,
       "duration": "PT30S",
-      "is_short": true
-    },
-    {
-      "id": "WWUBWz19J7U",
-      "title": "Canadian Winter Life 2 #winter #canadianwinter",
-      "published": "2026-02-15T01:04:07Z",
-      "views": 2005,
-      "likes": 15,
-      "duration": "PT11S",
       "is_short": true
     },
     {
       "id": "_4DOmDAj3Sk",
       "title": "How to complete 1st row after chains #crochet #crocheting #crochettutorial #startwithchain",
       "published": "2026-04-04T19:07:35Z",
-      "views": 1992,
+      "views": 1997,
       "likes": 7,
       "duration": "PT21S",
       "is_short": true
@@ -56,7 +38,7 @@
       "id": "sLXXUKYB3ZE",
       "title": "Crochet Hack: Perfect Round Finish #crochet",
       "published": "2026-04-10T22:21:45Z",
-      "views": 1978,
+      "views": 1989,
       "likes": 15,
       "duration": "PT37S",
       "is_short": true
@@ -65,7 +47,7 @@
       "id": "9c6Z8xbgTfc",
       "title": "How to Make Half Double Crochet (HDC) #crochet",
       "published": "2026-04-16T04:00:07Z",
-      "views": 1486,
+      "views": 1487,
       "likes": 39,
       "duration": "PT47S",
       "is_short": true
@@ -74,7 +56,7 @@
       "id": "vA0Qhs1whE4",
       "title": "How to Make Triple Crochet TC #crochet",
       "published": "2026-04-25T04:00:53Z",
-      "views": 1397,
+      "views": 1399,
       "likes": 14,
       "duration": "PT1M11S",
       "is_short": false
@@ -83,18 +65,36 @@
       "id": "065EJJKYFQ0",
       "title": "How to Start Chain CH , short #crochettutorial",
       "published": "2026-04-03T04:00:01Z",
-      "views": 1377,
+      "views": 1379,
       "likes": 13,
       "duration": "PT25S",
       "is_short": true
     },
     {
-      "id": "cBxRobB6n1o",
-      "title": "Canadian Winter Life 1 #winter #canadianwinter",
-      "published": "2026-02-15T00:51:44Z",
-      "views": 1348,
-      "likes": 10,
-      "duration": "PT48S",
+      "id": "G_P-D4Tqi8A",
+      "title": "How to Make Row 1 Crochet Magic Ring MR, 1/2 #crochet #crochettutorial",
+      "published": "2026-04-07T16:15:06Z",
+      "views": 1347,
+      "likes": 8,
+      "duration": "PT55S",
+      "is_short": true
+    },
+    {
+      "id": "sorpU8u1Mho",
+      "title": "5 Mins Crochet Fluffy Strawberry  #crochet #amigurumi #crochettutorial",
+      "published": "2026-04-07T15:07:14Z",
+      "views": 1344,
+      "likes": 21,
+      "duration": "PT53S",
+      "is_short": true
+    },
+    {
+      "id": "P2XOR4uJHvQ",
+      "title": "How to Make Row 2 Crochet Magic Ring MR, 2/2 #crochet #crochettutorial",
+      "published": "2026-04-07T16:19:01Z",
+      "views": 1318,
+      "likes": 11,
+      "duration": "PT51S",
       "is_short": true
     }
   ],
@@ -103,7 +103,7 @@
       "id": "m49fE2Q-ZPw",
       "title": "How To  Start #crochet #magicRing MR, Beginner Tutorial #crochet",
       "published": "2026-04-02T17:09:29Z",
-      "views": 2462,
+      "views": 2464,
       "likes": 22,
       "duration": "PT47S",
       "is_short": true
@@ -112,18 +112,18 @@
       "id": "Tc7_2SeBevE",
       "title": "Crochet Hack- Invisible Round Joint #crochet",
       "published": "2026-04-10T22:28:20Z",
-      "views": 2136,
+      "views": 2137,
       "likes": 20,
       "duration": "PT30S",
       "is_short": true
     },
     {
-      "id": "WWUBWz19J7U",
-      "title": "Canadian Winter Life 2 #winter #canadianwinter",
-      "published": "2026-02-15T01:04:07Z",
-      "views": 2005,
-      "likes": 15,
-      "duration": "PT11S",
+      "id": "_4DOmDAj3Sk",
+      "title": "How to complete 1st row after chains #crochet #crocheting #crochettutorial #startwithchain",
+      "published": "2026-04-04T19:07:35Z",
+      "views": 1997,
+      "likes": 7,
+      "duration": "PT21S",
       "is_short": true
     }
   ]
