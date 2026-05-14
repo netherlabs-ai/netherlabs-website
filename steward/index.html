@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steward — The AI Organization Built for Trust</title>
+  <meta name="description" content="Steward deploys a complete team of specialized AI agents — coordinated through one central Chief of Staff — so your operations run with accountability, traceability, and without you in the room." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #09090e;
+      --surface:     #0d0d14;
+      --surface-hi:  #12121c;
+      --border:      rgba(255,255,255,0.07);
+      --border-mid:  rgba(255,255,255,0.12);
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.10);
+      --accent-mid:  rgba(201,168,76,0.28);
+      --headline:    #f5f4ef;
+      --body-hi:     #c8c9d4;
+      --body:        #8e90a8;
+      --muted:       #5a5c70;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'Outfit', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9,9,14,0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--headline);
+      text-decoration: none;
+    }
+    .nav-logo em { color: var(--accent); font-style: italic; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      font-size: 0.82rem;
+      color: var(--body);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--headline); }
+    .nav-cta {
+      background: var(--accent);
+      color: #09090e;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 88dvh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 32px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 55% 40%, rgba(201,168,76,0.06) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 70% at 10% 80%, rgba(201,168,76,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: -20%;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-kicker::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      display: inline-block;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      color: var(--headline);
+      line-height: 1.05;
+      font-weight: 400;
+      margin-bottom: 32px;
+      max-width: 720px;
+    }
+    h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #09090e;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost {
+      font-size: 0.82rem;
+      color: var(--body);
+      border: 1px solid var(--border-mid);
+      padding: 13px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--headline); }
+
+    /* ── Section wrapper ── */
+    .section {
+      padding: 100px 32px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .section-kicker {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--headline);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .section-lead {
+      font-size: 1rem;
+      color: var(--body);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    /* ── Feature grid ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--accent-mid); }
+    .feature-icon {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .feature-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--body-hi);
+      margin-bottom: 8px;
+    }
+    .feature-desc {
+      font-size: 0.83rem;
+      color: var(--body);
+      line-height: 1.65;
+    }
+
+    /* ── How it works ── */
+    .steps-divider { border-top: 1px solid var(--border); padding-top: 100px; }
+    .step-list { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--accent);
+      opacity: 0.5;
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .step-content {}
+    .step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--headline);
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--body);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── Proof block ── */
+    .proof-block {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 36px 40px;
+      max-width: 680px;
+    }
+    .proof-quote {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--headline);
+      line-height: 1.4;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .proof-attr {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .proof-attr strong { color: var(--body); font-style: normal; font-family: var(--font-body); }
+
+    /* ── CTA section ── */
+    .cta-section {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .cta-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 100px 32px;
+      text-align: center;
+    }
+    .cta-inner h2 { max-width: 640px; margin: 0 auto 20px; }
+    .cta-sub {
+      font-size: 0.95rem;
+      color: var(--body);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+    .cta-note {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 0.95rem; color: var(--muted); }
+    .footer-logo em { color: var(--accent); font-style: italic; }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+    .footer-link { color: var(--accent); text-decoration: none; font-size: 0.72rem; }
+
+    /* ── Architecture section ── */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .arch-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s;
+    }
+    .arch-block:hover { border-color: var(--accent-mid); }
+    .arch-block--philosophy {
+      border-color: var(--accent-mid);
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(201,168,76,0.04) 100%);
+    }
+    .arch-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .arch-title {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--headline);
+      line-height: 1.3;
+    }
+    .arch-desc {
+      font-size: 0.83rem;
+      color: var(--body);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .arch-signature {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--accent);
+      padding-top: 8px;
+      border-top: 1px solid var(--accent-mid);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 800px) {
+      .feature-grid { grid-template-columns: 1fr; gap: 16px; }
+      .arch-grid { grid-template-columns: 1fr; gap: 16px; }
+      .site-nav .nav-links { display: none; }
+      .hero { padding: 60px 20px; }
+      .section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="https://netherlabs.ai" class="nav-logo">Nether <em>Labs</em></a>
+    <div class="nav-links">
+      <a href="https://netherlabs.ai#about" class="nav-link">About</a>
+      <a href="#how-it-works" class="nav-link">How it works</a>
+      <a href="#architecture" class="nav-link">Architecture</a>
+      <a href="https://netherlabs.ai#cta" class="nav-cta">Book a call</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-kicker">Introducing Steward</div>
+      <h1>Your operations,<br>run by an <em>organization</em>.</h1>
+      <p class="hero-sub">
+        You already have the AI model. What you don't have is the org. Steward is a complete team of specialized agents — Chief of Staff, Growth Lead, Customer Ops, and Legal Watcher — with defined roles, persistent memory, and the discipline to run without you in the room.
+      </p>
+      <div class="hero-actions">
+        <a href="https://netherlabs.ai#cta" class="btn-primary">Get early access <span>→</span></a>
+        <a href="#how-it-works" class="btn-ghost">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value props -->
+  <div style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-kicker">What Steward delivers</div>
+    <h2>An org that runs while<br>you're not watching.</h2>
+    <p class="section-lead">
+      Every agent has a defined role, a soul that governs its judgment, and persistent memory across sessions. The chain of command is real. The accountability is real. The work product is real.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏛️</div>
+        <div class="feature-title">Org Architecture</div>
+        <div class="feature-desc">Roles designed with the precision of senior executive hires. No overlap, no gaps, no ambiguity about who owns what.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Persistent Memory</div>
+        <div class="feature-desc">Agents remember decisions, context, and patterns across every session. The org gets smarter without your involvement.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⛓️</div>
+        <div class="feature-title">Chain of Command</div>
+        <div class="feature-desc">Work flows down. Results flow up. Escalations follow defined paths. Nothing falls through the cracks by accident.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-title">Audit Trail by Design</div>
+        <div class="feature-desc">Every decision has a record. Approval workflows are structural, not configured after the fact. The hub-and-spoke architecture means every action traces back through a documented chain of command — the kind of audit trail that regulators and institutional clients increasingly require.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Real Reporting</div>
+        <div class="feature-desc">Dashboards, reports, and audit trails that reflect what actually happened. Not summaries — records.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Live in Under 20 Minutes</div>
+        <div class="feature-desc">CLI installer. Answer 8 questions. Your org generates its files and sends its first message. No design sprint. No waiting. Or work with us for a guided deployment — we design the org with you.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Architecture -->
+  <div id="architecture" style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-kicker">The Design Choice</div>
+    <h2>Built for stability.<br>Designed to earn trust.</h2>
+    <p class="section-lead">
+      Most AI agent systems compete to add more agents, more autonomy, more complexity. We went the other direction. Steward uses a deliberate hub-and-spoke architecture — because for the businesses we serve, predictability is the feature.
+    </p>
+    <div class="arch-grid">
+      <div class="arch-block">
+        <div class="arch-label">Hub</div>
+        <div class="arch-title">Steward — Your Chief of Staff</div>
+        <div class="arch-desc">Every action, every escalation, every output flows through one central agent. Steward coordinates, delegates, and decides what reaches you. You always know who to talk to. The org always knows who's accountable.</div>
+      </div>
+      <div class="arch-block">
+        <div class="arch-label">Spokes</div>
+        <div class="arch-title">Specialist Agents</div>
+        <div class="arch-desc">Scout (Growth), Harbor (Customer Ops), and Beacon (Legal Watcher) each own their domain completely. They don't compete with each other. They don't generate contradictory outputs. They operate within their defined scope and surface what genuinely requires a human decision.</div>
+      </div>
+      <div class="arch-block arch-block--philosophy">
+        <div class="arch-label">The Philosophy</div>
+        <div class="arch-title">Stability Before Complexity</div>
+        <div class="arch-desc">A fully autonomous, peer-to-peer agent network sounds impressive. It also produces conflicts, contradictions, and outputs that are hard to trace. Hub-and-spoke means every decision has a chain of custody. Every action is logged. When something breaks, you know exactly where and why.</div>
+        <div class="arch-signature">This is not a V1 limitation. It is the V1 design.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="steps-divider" id="how-it-works">
+  <div class="section" style="padding-top: 0;">
+    <div class="section-kicker">How it works</div>
+    <h2>From brief to running<br>org in weeks.</h2>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">You define the operational problem</div>
+          <div class="step-desc">Tell us what your business needs done repeatedly, with judgment, at scale. Ops coordination, client delivery, compliance workflows, reporting — wherever your team spends time that follows patterns.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">We design the org</div>
+          <div class="step-desc">We map your problem to a set of specialized agent roles. Each role is scoped precisely: domain, responsibilities, authority, escalation paths. The design is delivered before a single agent is deployed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">We deploy and run the initial sprint</div>
+          <div class="step-desc">Agents are stood up, briefed, and set to work. We run the first sprint alongside you — watching for gaps, mismatches, and calibration issues. Most corrections happen in week one.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">The org runs</div>
+          <div class="step-desc">After calibration, the organization operates. You receive results, reports, and escalations that actually require your decision. Everything else happens without you initiating it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Proof -->
+  <div style="border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-kicker">Proven model</div>
+    <h2>We built this on ourselves.</h2>
+    <p class="section-lead">
+      Steward is not a product we designed in the abstract. It is the operating model we built and tested running our own company — Enigma Capital, our autonomous quant trading division. What you get is what we proved works.
+    </p>
+    <div class="proof-block">
+      <p class="proof-quote">"The test I keep applying: could this have happened while I was asleep? If yes, the system is working. If I had to initiate it, the org failed that day."</p>
+      <p class="proof-attr"><strong>Yves La Rose</strong> &mdash; Founder, Nether Labs</p>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--body); max-width: 520px; margin-top: 28px; line-height: 1.7;">
+      Steward is the operating model we built running Enigma Capital — a 28-agent autonomous organization managing real capital. What you get is what we proved works.
+    </p>
+  </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="cta">
+    <div class="cta-inner">
+      <div class="section-kicker">Get early access</div>
+      <h2>Be among the first to<br>deploy a Steward org.</h2>
+      <p class="cta-sub">We're working with a small number of companies in the early cohort. If your problem fits the model, we want to hear from you.</p>
+      <a href="https://netherlabs.ai#cta" class="btn-primary">Book a discovery call <span>→</span></a>
+      <p class="cta-note">10-minute intake. No pitch deck required.</p>
+      <p style="margin-top: 24px; font-size: 0.82rem; color: var(--body);">Installing yourself? The CLI installer is in private beta. <a href="https://netherlabs.ai#cta" style="color: var(--accent); text-decoration: none;">Request access →</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-logo">Nether <em>Labs</em></div>
+    <div class="footer-copy">© 2026 Nether Labs. All rights reserved.</div>
+    <a href="https://netherlabs.ai" class="footer-link">netherlabs.ai</a>
+  </footer>
+
+</body>
+</html>
