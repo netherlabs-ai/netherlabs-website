@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Privacy Policy — Nether Labs</title>
+  <meta name="description" content="Nether Labs privacy policy. We collect minimal data and never sell it.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://netherlabs.ai/privacy">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy — Nether Labs">
+  <meta property="og:description" content="Nether Labs privacy policy.">
+  <meta property="og:url" content="https://netherlabs.ai/privacy">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nether Labs">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Additional SEO -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0A0A09">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="favicon-180.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── Custom Properties ──────────────────────────────────── */
+    :root {
+      --bg:           #0A0A09;
+      --surface:      #111110;
+      --border:       #1E1E1C;
+      --muted:        #5A5A56;
+      --body:         #B8B5AD;
+      --headline:     #F0EDE8;
+      --accent:       #C9A84C;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', -apple-system, sans-serif;
+
+      --max-width:    800px;
+      --gutter:       48px;
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --gutter: 20px;
+      }
+    }
+
+    /* ─── Base ───────────────────────────────────────────────── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--body);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 15px;
+      }
+    }
+
+    /* ─── Utility ────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 0;
+      transition: background 0.3s, padding 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 9, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 16px 0;
+      border-color: var(--border);
+    }
+
+    nav .container {
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--headline);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-wordmark a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--headline);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--body);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    /* Mobile dropdown */
+    .nav-dropdown {
+      display: none;
+      background: rgba(10, 10, 9, 0.98);
+      border-top: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .nav-dropdown.open {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 12px var(--gutter);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-dropdown a:hover {
+      color: var(--headline);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+    }
+
+    /* ─── Page Content ───────────────────────────────────────── */
+    .page-content {
+      padding: 160px 0 120px;
+    }
+
+    @media (max-width: 640px) {
+      .page-content {
+        padding: 120px 0 80px;
+      }
+    }
+
+    .page-overline {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      color: var(--headline);
+      margin-bottom: 16px;
+    }
+
+    .page-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 72px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── Policy Sections ────────────────────────────────────── */
+    .policy-section {
+      margin-bottom: 56px;
+    }
+
+    .policy-section h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--headline);
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .policy-section p {
+      color: var(--body);
+      margin-bottom: 14px;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    .policy-section ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: var(--body);
+    }
+
+    .policy-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .policy-section a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .policy-section a:hover {
+      border-color: var(--accent);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    @media (max-width: 640px) {
+      footer {
+        padding: 36px 0;
+      }
+    }
+
+    footer .container {
+      max-width: 1200px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .footer-inner {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    .footer-left .wordmark {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--headline);
+      margin-bottom: 6px;
+    }
+
+    .footer-left .url {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-left .url:hover {
+      color: var(--accent);
+    }
+
+    .footer-right {
+      max-width: 560px;
+    }
+
+    .footer-legal {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Nav ────────────────────────────────────────────── -->
+  <nav id="nav">
+    <div class="container">
+      <span class="nav-wordmark"><a href="/">Nether Labs</a></span>
+
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#organization">The Organization</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#the-proof">The Proof</a></li>
+        <li><a href="/#founder">The Founder</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="nav-dropdown" id="navDropdown">
+      <a href="/#about">About</a>
+      <a href="/#organization">The Organization</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#the-proof">The Proof</a>
+      <a href="/#founder">The Founder</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ─── Page Content ────────────────────────────────────── -->
+  <main class="page-content">
+    <div class="container">
+
+      <p class="page-overline">Legal</p>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-meta">Effective date: April 9, 2026 &nbsp;·&nbsp; Nether Labs Inc. &nbsp;·&nbsp; Ontario, Canada</p>
+
+      <div class="policy-section">
+        <h2>Overview</h2>
+        <p>Nether Labs Inc. ("Nether Labs", "we", "us", or "our") respects your privacy. This policy describes what information we collect when you visit <a href="https://netherlabs.ai">netherlabs.ai</a>, how we use it, and your rights with respect to that information.</p>
+        <p>We keep this simple: we collect minimal data, we do not sell it, and we do not share it with third parties for advertising purposes.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Information We Collect</h2>
+        <p>We collect only what is necessary to operate this website and respond to inquiries:</p>
+        <ul>
+          <li><strong>Contact form submissions</strong> — If you reach out via a contact form or email, we collect the information you provide (e.g., name, email address, message content) in order to respond to you.</li>
+          <li><strong>Usage analytics</strong> — We may collect anonymized, aggregated data about how visitors interact with our site (e.g., pages visited, time on page, referral source). This data does not identify you personally.</li>
+          <li><strong>Technical data</strong> — Standard server logs may capture IP addresses, browser type, and request timestamps. These are used for security and operational purposes and are retained for a limited period.</li>
+        </ul>
+        <p>We do not collect sensitive personal information. We do not use cookies for advertising or tracking.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>How We Use Your Information</h2>
+        <p>Information we collect is used solely to:</p>
+        <ul>
+          <li>Respond to your inquiries and communications</li>
+          <li>Operate, maintain, and improve this website</li>
+          <li>Ensure the security and integrity of our systems</li>
+          <li>Comply with applicable legal obligations</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>We Do Not Sell Your Data</h2>
+        <p>We do not sell, rent, trade, or otherwise transfer your personal information to third parties for commercial purposes. Full stop.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Third-Party Services</h2>
+        <p>Our website may use third-party services (such as font providers or analytics tools) that may set cookies or collect data as governed by their own privacy policies. We select these services carefully and limit the data they can access.</p>
+        <p>We are not responsible for the privacy practices of third-party websites linked from our site.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Data Retention</h2>
+        <p>We retain personal information only as long as necessary to fulfill the purposes described in this policy, or as required by law. Contact form submissions are retained for a reasonable period to allow us to respond and maintain records of correspondence.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Your Rights</h2>
+        <p>Depending on your jurisdiction, you may have rights with respect to your personal information, including the right to access, correct, or request deletion of information we hold about you. To exercise any of these rights, contact us at the address below.</p>
+        <p>For residents of Ontario and other Canadian provinces, your privacy rights are governed by the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) and applicable provincial legislation.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Governing Law</h2>
+        <p>This Privacy Policy is governed by the laws of the Province of Ontario and the federal laws of Canada applicable therein. Any disputes arising under this policy shall be subject to the exclusive jurisdiction of the courts of Ontario.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. When we do, we will revise the effective date at the top of this page. Continued use of our website after any changes constitutes your acceptance of the updated policy.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Contact</h2>
+        <p>Questions about this policy or your personal information? Contact us:</p>
+        <p><strong>Nether Labs Inc.</strong><br>
+        <a href="mailto:hello@netherlabs.ai">hello@netherlabs.ai</a></p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="wordmark">Nether Labs</span>
+          <a href="https://netherlabs.ai" class="url">netherlabs.ai</a>
+        </div>
+        <div class="footer-right">
+          <p class="footer-legal">
+            Nether Labs builds autonomous AI organizations. Nothing on this site constitutes financial advice, an offer of securities, or an invitation to invest. Past performance of any system or deployment is not indicative of future results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── JavaScript ─────────────────────────────────────── -->
+  <script>
+    const nav = document.getElementById('nav');
+    const hamburger = document.getElementById('navHamburger');
+    const dropdown = document.getElementById('navDropdown');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      dropdown.classList.toggle('open');
+    });
+
+    // Close dropdown on link click
+    dropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        dropdown.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
