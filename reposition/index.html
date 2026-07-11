@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Nether Labs — Autonomous AI Organizations</title>
+<title>Nether Labs: Autonomous AI Organizations</title>
 <meta name="description" content="Nether Labs builds autonomous AI organizations. New: AI Workflow Audit for Canadian businesses. Coming: Steward, the packaged AI org.">
 <link rel="canonical" href="https://netherlabs.ai/reposition/">
-<meta property="og:title" content="Nether Labs — Autonomous AI Organizations">
+<meta property="og:title" content="Nether Labs: Autonomous AI Organizations">
 <meta property="og:description" content="We build autonomous AI organizations. New: AI Workflow Audit. Coming: Steward.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nether Labs">
@@ -22,7 +22,7 @@
 <body>
 
 <!-- Staging banner -->
-<div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:#C9A84C;color:#0d0d0d;text-align:center;font:600 12px Inter,sans-serif;padding:6px 0;letter-spacing:.05em;">STAGING — NOT LIVE — Internal review only</div>
+<div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--accent);color:var(--text-inverse);text-align:center;font:600 12px Inter,sans-serif;padding:6px 0;letter-spacing:.05em;" role="status" aria-live="polite">STAGING: NOT LIVE. Internal review only</div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
@@ -43,17 +43,29 @@
 <main>
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg-grid" aria-hidden="true"></div>
-    <div class="hero-glow" aria-hidden="true"></div>
+    <!-- Full-bleed hero image background -->
+    <div class="hero-image-bg" aria-hidden="true">
+      <picture>
+        <source srcset="hero-texture.jpg" type="image/jpeg">
+        <img src="hero-texture.jpg" alt="" aria-hidden="true" loading="eager" role="img" />
+      </picture>
+    </div>
+    <div class="hero-bg-grid" aria-hidden="true" role="presentation"></div>
+    <div class="hero-glow" aria-hidden="true" role="presentation"></div>
     <div class="wrap">
       <p class="hero-kicker">Nether Labs</p>
       <h1>We build autonomous <em>AI organizations.</em></h1>
-      <p class="hero-sub">Purpose-built agent teams that research, execute, and govern — end to end. Not tools. Not chatbots. Organizations.</p>
+      <p class="hero-sub">Purpose-built agent teams that research, execute, and govern. End to end. Not tools. Not chatbots. Organizations.</p>
       <div class="hero-actions">
-        <a href="workflow-audit.html" class="button">See the Workflow Audit</a>
+        <a href="workflow-audit.html" class="button button-primary">See the Workflow Audit</a>
         <a href="steward.html" class="button button-outline">Learn about Steward</a>
       </div>
       <p class="hero-note">Proven daily by a 30+ agent org running Enigma Capital, our own quantitative fund.</p>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-indicator" aria-hidden="true" role="presentation">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
@@ -73,30 +85,30 @@
   </div>
 
   <!-- New: Workflow Audit feature -->
-  <section class="section section-dark">
+  <section class="section section-dark section-glow" data-reveal>
     <div class="wrap">
       <p class="section-label">New</p>
       <h2 class="section-title">Not sure where AI fits in your organization?</h2>
       <div class="prose" style="max-width:720px;margin-bottom:48px;">
-        <p>We audit your highest-friction workflows, quantify the drag, and redesign them around human-AI collaboration — using the same operating model that runs our own 30+ person AI org. Delivered by agents. Reviewed by humans. Built for Canadian businesses.</p>
+        <p>We audit your highest-friction workflows, quantify the drag, and redesign them around human-AI collaboration, using the same operating model that runs our own 30+ person AI org. Delivered by agents. Reviewed by humans. Built for Canadian businesses.</p>
       </div>
-      <div class="feature-grid">
-        <div class="feature-card">
+      <div class="feature-grid" data-stagger>
+        <div class="feature-card glass-card" style="--delay:0">
           <p class="feature-number">01</p>
           <h3>Map</h3>
-          <p>We shadow your actual workflows — not a survey — to find where time and money are leaking.</p>
+          <p>We shadow your actual workflows, not a survey, to find where time and money are leaking.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card glass-card" style="--delay:1">
           <p class="feature-number">02</p>
           <h3>Score</h3>
           <p>Every opportunity ranked by value, feasibility, risk, and SR&amp;ED eligibility.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card glass-card" style="--delay:2">
           <p class="feature-number">03</p>
           <h3>Roadmap</h3>
           <p>A 90-day plan with a first sprint you can approve on the spot.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card glass-card" style="--delay:3">
           <p class="feature-number">04</p>
           <h3>Build &amp; measure</h3>
           <p>One production workflow, built, tested, and documented with governance built in from day one.</p>
@@ -108,59 +120,104 @@
     </div>
   </section>
 
-  <!-- Coming: Steward -->
-  <section class="section section-darker">
+  <!-- Section break: full-width abstract imagery to break rhythm -->
+  <div class="section-break" data-reveal role="presentation">
+    <picture>
+      <source srcset="hero-geometric.jpg" type="image/jpeg">
+      <img src="hero-geometric.jpg" alt="" aria-hidden="true" loading="lazy" role="img" />
+    </picture>
+    <div class="section-break-content">
+      <p class="section-label">Coming</p>
+      <h2 class="section-title" style="margin-bottom:0;">Where the Audit leads.</h2>
+      <p class="prose" style="margin-top:16px;">From workflow redesign to a full autonomous organization. Steward is the destination.</p>
+    </div>
+  </div>
+
+  <!-- Steward section -->
+  <section class="section section-darker" data-reveal>
     <div class="wrap">
       <p class="section-label">Coming</p>
       <h2 class="section-title">Deploy your own autonomous agent organization.</h2>
       <div class="prose" style="max-width:680px;margin-bottom:40px;">
-        <p>Steward packages the operating model we run internally — identity, memory, chain of command, and standard operating procedures — into an org you can deploy. Live in under 20 minutes. You don't wait for Steward. You engage with the Workflow Audit now, and graduate to Steward when you're ready.</p>
+        <p>Steward packages the operating model we run internally: identity, memory, chain of command, and standard operating procedures, into an org you can deploy. Live in under 20 minutes. You don't wait for Steward. You engage with the Workflow Audit now, and graduate to Steward when you're ready.</p>
       </div>
       <a href="steward.html" class="button button-outline">Join the waitlist</a>
     </div>
   </section>
 
-  <!-- The Proof -->
-  <section class="section section-dark">
+  <!-- Why Nether Labs -->
+  <section class="section section-dark" data-reveal>
     <div class="wrap">
-      <p class="section-label">The Proof</p>
-      <h2 class="section-title">Enigma Capital.</h2>
+      <p class="section-label">Why Nether Labs</p>
+      <h2 class="section-title">We built the product by building the company.</h2>
       <div class="prose" style="max-width:760px;">
-        <p>A fully autonomous, AI-native quantitative fund. Research, risk management, compliance, and execution — coordinated end to end by the swarm. No human in the loop on trade execution. No exceptions. Built and operated by our agents from day one.</p>
+        <p>Nether Labs is the reference implementation for Steward. Every agent in this company, from Chief of Staff to Legal and Compliance to our quant trading desk, operates inside the same organizational structure that Steward packages and delivers.</p>
+        <p>We did not design Steward in a lab and look for a customer. We designed it by running ourselves on it. Steward is what our own operations required.</p>
+        <p>Enigma Capital, our autonomous quantitative investment division, is the first external deployment: a fully autonomous trading firm, governed entirely by AI agents from inception. It runs because the architecture works.</p>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="section section-darker">
+  <!-- P0-2: Metrics row — compact, more visual weight than a stats-grid card -->
+  <section class="section section-darker" data-reveal>
     <div class="wrap">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <p class="stat-value">30+</p>
-          <p class="stat-label">Purpose-built agents in the org</p>
+      <p class="section-label">By the Numbers</p>
+      <h2 class="section-title">These aren't projections. They're live data from our own operations.</h2>
+      <div class="prose" style="max-width:720px;margin-bottom:40px;">
+        <p>Every stat below comes from Nether Labs&rsquo; daily operations - not benchmarks, not a pitch deck. This is what a live autonomous AI organization produces when you count the actual outputs.</p>
+      </div>
+      <div class="metrics-row" data-stagger>
+        <div class="metric-item" style="--delay:0">
+          <p class="metric-value">30+</p>
+          <p class="metric-label">Purpose-built agents in the org</p>
         </div>
-        <div class="stat-card">
-          <p class="stat-value">4+</p>
-          <p class="stat-label">Months running daily operations</p>
+        <div class="metric-item" style="--delay:1">
+          <p class="metric-value">4+</p>
+          <p class="metric-label">Months running daily operations</p>
         </div>
-        <div class="stat-card">
-          <p class="stat-value">12.2%</p>
-          <p class="stat-label">Canadian businesses in AI production use (StatCan, 2025)</p>
+        <div class="metric-item" style="--delay:2">
+          <p class="metric-value">12.2%</p>
+          <p class="metric-label">Canadian businesses in AI production use (StatCan, 2025)</p>
         </div>
-        <div class="stat-card">
-          <p class="stat-value">$350B</p>
-          <p class="stat-label">Unrealized SME growth from closing the AI maturity gap (BDC, 2026)</p>
+        <div class="metric-item" style="--delay:3">
+          <p class="metric-value">$350B</p>
+          <p class="metric-label">Unrealized SME growth from closing the AI maturity gap (BDC, 2026)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P0-2: Bento grid — what an autonomous org actually does, asymmetric layout -->
+  <section class="section section-dark section-glow" data-reveal>
+    <div class="wrap">
+      <p class="section-label">What an Autonomous Org Does</p>
+      <h2 class="section-title">Not a chatbot. Not a tool. A working organization.</h2>
+      <div class="bento-grid" data-stagger>
+        <div class="bento-cell span-2" style="--delay:0">
+          <div class="bento-cell-icon" aria-hidden="true">◆</div>
+          <h3 class="bento-cell-title">Researches</h3>
+          <p class="bento-cell-description">Agents shadow real workflows, score opportunities by value and risk, and build the case for what to fix first — the same discipline used on our own operations, daily.</p>
+        </div>
+        <div class="bento-cell" style="--delay:1">
+          <div class="bento-cell-icon" aria-hidden="true">◇</div>
+          <h3 class="bento-cell-title">Executes</h3>
+          <p class="bento-cell-description">Production workflows shipped and documented, not slideware.</p>
+        </div>
+        <div class="bento-cell" style="--delay:2">
+          <div class="bento-cell-icon" aria-hidden="true">◈</div>
+          <h3 class="bento-cell-title">Governs</h3>
+          <p class="bento-cell-description">Escalation gates, chain of command, and audit trails built in from day one.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section section-dark" id="contact-cta">
+  <section class="section section-dark" id="contact-cta" data-reveal>
     <div class="wrap-narrow" style="text-align:center;">
       <p class="section-label" style="justify-content:center;">Get Started</p>
       <h2 class="section-title">Ready to find your highest-ROI workflow?</h2>
-      <p class="prose" style="margin-bottom:40px;">Request a diagnostic conversation. No obligation, no generic pitch — just a look at where AI redesign would actually move the needle for your team.</p>
+      <p class="prose" style="margin-bottom:40px;">Request a diagnostic conversation. No obligation, no generic pitch. Just a look at where AI redesign would actually move the needle for your team.</p>
       <a href="contact.html" class="button">Request a Diagnostic</a>
     </div>
   </section>
@@ -181,8 +238,19 @@
       <a href="contact.html" class="footer-cta">Contact →</a>
     </div>
   </div>
+  <div class="footer-disclaimer" style="max-width:1200px;margin:0 auto;padding:12px 24px 24px;text-align:center;">
+    <p style="font-size:11px;color:var(--muted);line-height:1.5;margin:0;">
+      Enigma Capital is currently in its development and validation phase (paper trading).
+      Nothing on this website constitutes an offer, a solicitation, or investment advice regarding
+      Enigma Capital or any of its activities.
+    </p>
+  </div>
 </footer>
 
+  <!-- Motion layer: Lenis + GSAP + ScrollTrigger -->
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
 <script src="js/reposition.js"></script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Request a Diagnostic — Nether Labs</title>
+<title>Request a Diagnostic: Nether Labs</title>
 <meta name="description" content="Request an AI Workflow Audit diagnostic conversation with Nether Labs.">
 <link rel="canonical" href="https://netherlabs.ai/reposition/contact.html">
-<meta property="og:title" content="Request a Diagnostic — Nether Labs">
+<meta property="og:title" content="Request a Diagnostic: Nether Labs">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nether Labs">
 <meta property="og:locale" content="en_CA">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/reposition.css">
 </head>
 <body>
-<div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:#C9A84C;color:#0d0d0d;text-align:center;font:600 12px Inter,sans-serif;padding:6px 0;letter-spacing:.05em;">STAGING — NOT LIVE — Internal review only</div>
+<div style="position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--accent);color:var(--text-inverse);text-align:center;font:600 12px Inter,sans-serif;padding:6px 0;letter-spacing:.05em;" role="status" aria-live="polite">STAGING: NOT LIVE. Internal review only</div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
@@ -41,10 +41,10 @@
   <header class="page-header wrap">
     <p class="hero-kicker">Get In Touch</p>
     <h1>Request a Diagnostic</h1>
-    <p>Tell us about your workflows. We'll follow up to schedule a diagnostic conversation — no obligation, no generic pitch.</p>
+    <p>Tell us about your workflows. We'll follow up to schedule a diagnostic conversation. No obligation, no generic pitch.</p>
   </header>
 
-  <section class="section section-dark">
+  <section class="section section-dark" data-reveal>
     <div class="wrap-narrow">
 
       <div id="form-success" class="alert alert-success" role="status" style="display:none;">
@@ -120,7 +120,7 @@
 
           <div class="form-group full-width">
             <label class="form-label" for="df-tried">What have you tried already? (optional)</label>
-            <textarea class="form-textarea" id="df-tried" name="tried" placeholder="Tools, vendors, internal projects — anything you've already attempted."></textarea>
+            <textarea class="form-textarea" id="df-tried" name="tried" placeholder="Tools, vendors, internal projects: anything you've already attempted."></textarea>
           </div>
 
           <div class="form-group">
@@ -141,9 +141,12 @@
             <input class="form-input" type="text" id="df-referral" name="referral">
           </div>
 
+          <!-- Honeypot field for bot mitigation (P1-3) -->
+          <input type="text" name="_hp" style="position:absolute;left:-9999px;top:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
           <div class="form-actions">
             <button type="submit" class="button">Submit Request</button>
-            <p class="form-note">We respond within 2 business days. Your information is used only to follow up on this request — see our <a href="../privacy.html">Privacy Policy</a>.</p>
+            <p class="form-note">We respond within 2 business days. Your information is used only to follow up on this request. See our <a href="../privacy.html">Privacy Policy</a>.</p>
           </div>
 
         </div>
@@ -152,7 +155,7 @@
     </div>
   </section>
 
-  <section class="section section-darker" style="text-align:center;">
+  <section class="section section-darker" data-reveal style="text-align:center;">
     <div class="wrap-narrow">
       <p class="prose">Prefer email? Reach us directly at <a href="mailto:hello@netherlabs.ai">hello@netherlabs.ai</a>.</p>
     </div>
@@ -176,6 +179,10 @@
   </div>
 </footer>
 
+  <!-- Motion layer: Lenis + GSAP + ScrollTrigger -->
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
 <script src="js/reposition.js"></script>
 <script>
   // Form submission handling: intercept, POST as JSON to the Netlify
@@ -192,10 +199,19 @@
       successBox.style.display = 'none';
 
       var data = {};
-      new FormData(form).forEach(function (value, key) { data[key] = value; });
+      var formData = new FormData(form);
+      // Include the honeypot field value (even if empty) for server-side validation
+      formData.forEach(function (value, key) { data[key] = value; });
 
       var submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting…'; }
+      var inputs = form.querySelectorAll('.form-input, .form-select, .form-textarea');
+      if (submitBtn) { 
+        submitBtn.disabled = true; 
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.textContent = 'Submitting…'; 
+      }
+      // Mark inputs with loading state
+      inputs.forEach(function (input) { input.classList.add('is-loading'); });
 
       fetch(form.getAttribute('action'), {
         method: 'POST',
@@ -218,7 +234,7 @@
           }
           successBox.style.display = 'block';
           form.reset();
-          if (window.NLTrack) window.NLTrack.send('diagnostic_request_delivered', { problem_area: data.problem_area });
+          if (window.NLTrack) { window.NLTrack.send('diagnostic_request_delivered', { problem_area: data.problem_area }); }
           successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
         .catch(function () {
@@ -226,7 +242,13 @@
           errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
         .finally(function () {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit Request'; }
+          if (submitBtn) { 
+            submitBtn.disabled = false; 
+            submitBtn.removeAttribute('aria-busy');
+            submitBtn.textContent = 'Submit Request'; 
+          }
+          // Remove loading state from inputs
+          inputs.forEach(function (input) { input.classList.remove('is-loading'); });
         });
     });
   })();

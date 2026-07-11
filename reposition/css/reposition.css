@@ -23,6 +23,10 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   --accent-dim:   rgba(201,168,76,0.12);
   --accent-mid:   rgba(201,168,76,0.30);
   --accent-glow:  rgba(201,168,76,0.06);
+  --text-inverse: #09090a;
+  --text-error:   #e07474;
+  --text-hover:   #dfc05e;
+  --bg-dark:      #080808;
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
   --max-width:    1200px;
@@ -45,7 +49,7 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
-a:hover { color: #dfc05e; }
+a:hover { color: var(--text-hover); }
 strong { color: var(--body-hi); font-weight: 500; }
 em { font-style: italic; }
 ::selection { background: var(--accent-dim); color: var(--headline); }
@@ -74,7 +78,7 @@ h1, h2, h3, h4 {
   position: relative;
 }
 .section-dark { background: var(--surface); }
-.section-darker { background: #080808; }
+.section-darker { background: var(--bg-dark); }
 
 .section-label {
   font-family: var(--font-body);
@@ -176,7 +180,7 @@ h1, h2, h3, h4 {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #09090a !important;
+  color: var(--text-inverse) !important;
   background: var(--accent);
   padding: 10px 24px;
   border-radius: 2px;
@@ -184,7 +188,7 @@ h1, h2, h3, h4 {
   transition: background 0.2s;
   white-space: nowrap;
 }
-.nav-cta:hover { background: #dfc05e; color: #09090a !important; }
+.nav-cta:hover { background: var(--text-hover); color: var(--text-inverse) !important; }
 
 /* Mobile-only nav CTA row, shown inside the .nav-links dropdown so the
    "Request a Diagnostic" action stays reachable once .nav-cta is hidden
@@ -211,25 +215,51 @@ h1, h2, h3, h4 {
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #09090a;
+  color: var(--text-inverse);
   background: var(--accent);
   padding: 16px 36px;
   border-radius: 2px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
   position: relative;
   overflow: hidden;
 }
-.button:hover { background: #dfc05e; color: #09090a; }
+.button:hover { background: var(--text-hover); color: var(--text-inverse); }
 .button:active { transform: translateY(1px); }
+.button:disabled,
+.button[disabled] {
+  background: var(--muted);
+  color: var(--text-inverse);
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.button:disabled:hover,
+.button[disabled]:hover {
+  background: var(--muted);
+  color: var(--text-inverse);
+  transform: none;
+}
 .button-outline {
   background: transparent;
   color: var(--accent);
   border: 1px solid var(--accent-mid);
 }
 .button-outline:hover { background: var(--accent-dim); color: var(--accent); }
+.button-outline:disabled,
+.button-outline[disabled] {
+  color: var(--muted);
+  border-color: var(--border);
+  background: transparent;
+  opacity: 0.65;
+}
+.button-outline:disabled:hover,
+.button-outline[disabled]:hover {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
 
 /* ---- Hero ------------------------------------------------------ */
 .hero {
@@ -256,7 +286,7 @@ h1, h2, h3, h4 {
   inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(59,130,246,0.03) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,168,76,0.02) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero-kicker {
@@ -484,13 +514,50 @@ h1, h2, h3, h4 {
   font-weight: 400;
   padding: 12px 0;
   outline: none;
-  transition: border-color 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
   letter-spacing: 0.02em;
 }
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
   border-bottom-color: var(--accent-mid);
+  box-shadow: 0 1px 0 var(--accent-mid);
+}
+.form-input:invalid,
+.form-textarea:invalid {
+  border-bottom-color: var(--text-error);
+}
+.form-input:invalid:focus,
+.form-textarea:invalid:focus {
+  border-bottom-color: var(--text-error);
+  box-shadow: 0 1px 0 var(--text-error);
+}
+.form-input:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--muted);
+}
+.form-input.is-loading,
+.form-select.is-loading,
+.form-textarea.is-loading {
+  border-bottom-color: var(--accent-mid);
+}
+/* Loading state indicator (animated underline) */
+.form-input.is-loading::after,
+.form-textarea.is-loading::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  animation: loading-pulse 1.2s ease-in-out infinite;
+}
+@keyframes loading-pulse {
+  0%, 100% { width: 0; }
+  50% { width: 100%; }
 }
 .form-input::placeholder,
 .form-textarea::placeholder {
@@ -540,7 +607,7 @@ h1, h2, h3, h4 {
 .site-footer {
   margin-top: auto;
   border-top: 1px solid var(--border);
-  background: #080808;
+  background: var(--bg-dark);
   padding: 48px 0;
 }
 .footer-inner {
@@ -611,7 +678,7 @@ h1, h2, h3, h4 {
 .alert-error {
   background: rgba(201,76,76,0.08);
   border: 1px solid rgba(201,76,76,0.3);
-  color: #e07474;
+  color: var(--text-error);
 }
 
 /* ---- Page Header (interior pages) ------------------------------ */
@@ -692,4 +759,630 @@ h1, h2, h3, h4 {
   .footer-links { flex-wrap: wrap; gap: 16px 24px; }
   .step-item { grid-template-columns: 1fr; gap: 8px; }
   .step-number { font-size: 32px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   VISUAL DEPTH — Additions for Yves v5 fix
+   (Noise, hero grid overlay, glow effects, motion primitives,
+    section breaks, scroll indicator, parallax)
+
+   Target: Register B (#0d0d0d / #C9A84C / Playfair + Inter)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- Noise Texture -------------------------------------------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+}
+
+/* ---- Hero Grid Overlay ---------------------------------------- */
+.hero-bg-grid {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,168,76,0.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ---- Hero Image Background ------------------------------------ */
+.hero-image-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-image-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.hero-image-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(13,13,13,0.35) 0%, rgba(13,13,13,0.75) 60%, var(--surface) 100%),
+    radial-gradient(ellipse 70% 60% at 50% 40%, transparent 0%, rgba(13,13,13,0.5) 100%);
+  pointer-events: none;
+}
+.hero-image-bg + .hero-bg-grid { z-index: 1; }
+.hero-image-bg + .hero-bg-grid + .hero-glow { z-index: 1; }
+.hero-image-bg ~ p,
+.hero-image-bg ~ h1,
+.hero-image-bg ~ .hero-kicker,
+.hero-image-bg ~ .hero-sub,
+.hero-image-bg ~ .hero-actions,
+.hero-image-bg ~ .hero-note,
+.hero-image-bg ~ .hero-scroll-indicator,
+.hero-image-bg ~ * { position: relative; z-index: 2; }
+
+/* ---- Hero Scroll Indicator ------------------------------------ */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.2); }
+}
+
+/* ---- Section Break (full-width image / rhythm variation) ------ */
+.section-break {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-break img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.section-break::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--surface) 0%, transparent 20%, transparent 80%, var(--surface) 100%);
+  pointer-events: none;
+}
+.section-break-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 620px;
+  padding: 0 32px;
+}
+.section-break-content .section-label { justify-content: center; }
+.section-break-content .section-label::before { display: none; }
+.section-break-content .section-title { margin-bottom: 12px; }
+.section-break-content .prose { margin: 0 auto; }
+
+@media (max-width: 768px) {
+  .section-break { height: 280px; }
+  .hero-scroll-indicator { display: none; }
+}
+
+/* ---- Motion Primitives ------------------------------------------
+     These CSS classes provide the static / entered-state for all
+     scroll-triggered animations. JS adds '.is-visible' when elements
+     enter viewport. See reposition.js for the Gsap/Lenis integration.
+     --------------------------------------------------------------- */
+
+/* Fade-in-up base state */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-stagger] > * { transition-delay: calc(var(--delay, 0) * 100ms); }
+
+/* Scale-in */
+[data-reveal="scale"] {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="scale"].is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Slide-in from left */
+[data-reveal="left"] {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="left"].is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide-in from right */
+[data-reveal="right"] {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="right"].is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Parallax helper */
+.parallax-bg {
+  will-change: transform;
+}
+
+/* ---- Hero CTA group lift (subtle hover) ----------------------- */
+.hero-actions .button {
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.hero-actions .button:hover {
+  transform: translateY(-2px);
+}
+.hero-actions .button-primary {
+  box-shadow: 0 0 40px rgba(201,168,76,0.2);
+}
+.hero-actions .button-primary:hover {
+  box-shadow: 0 0 60px rgba(201,168,76,0.3);
+}
+
+/* ---- Feature card hover lift ----------------------------------- */
+.feature-card {
+  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+.feature-card:hover {
+  background: rgba(255,255,255,0.012);
+  transform: translateY(-2px);
+  border-color: var(--accent-mid);
+}
+
+/* ---- Stat card hover ------------------------------------------- */
+.stat-card {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.stat-card:hover {
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+}
+
+/* ---- Page header glow (subtle ambient) on interior pages ------ */
+.page-header {
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse 50% 40% at 50% 30%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DESIGN BAR IMPROVEMENTS — Yves Feedback 2026-07-10
+   Decorative depth, broken-image fallback, brand polish
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- Broken-image fallback for hero & section-break ----------- */
+.hero-image-bg img,
+.section-break img {
+  background: var(--surface);
+}
+.hero-image-bg {
+  background: radial-gradient(ellipse 100% 80% at 50% 30%, rgba(201,168,76,0.03) 0%, transparent 70%),
+              repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.008) 40px, rgba(201,168,76,0.008) 41px);
+}
+.section-break {
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%),
+              repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.008) 60px, rgba(255,255,255,0.008) 61px);
+}
+
+/* ---- Section transition gradient separator -------------------- */
+.section-dark + .section-darker::before,
+.section-darker + .section-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.06) 30%, rgba(201,168,76,0.06) 70%, transparent 100%);
+  pointer-events: none;
+}
+.section-dark,
+.section-darker {
+  position: relative;
+}
+
+/* ---- Section-title decorative accent bar ---------------------- */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--accent-mid);
+  margin-top: 20px;
+}
+.section-break-content .section-title::after,
+.section[style*="text-align:center"] .section-title::after,
+#contact-cta .section-title::after,
+.hero .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- Active nav indicator (bottom line) ----------------------- */
+.nav-links a.active {
+  position: relative;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ---- Feature card top accent border on hover ------------------ */
+.feature-card {
+  border-top: 1px solid transparent;
+  position: relative;
+}
+.feature-card:hover {
+  border-top-color: var(--accent-mid);
+}
+
+/* ---- Stat card refined layout --------------------------------- */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: var(--accent-mid);
+  transition: width 0.4s ease;
+}
+.stat-card:hover::after {
+  width: 40%;
+}
+
+/* ---- Price emphasis within feature cards ---------------------- */
+.feature-card strong {
+  color: var(--accent);
+  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Section-label consistency on dark sections -------------- */
+.section-dark .section-label::before,
+.section-darker .section-label::before {
+  background: var(--accent);
+}
+
+/* ---- Footer brand mark - subtle accent divider --------------- */
+.footer-divider {
+  background: var(--accent-mid);
+}
+
+@media (max-width: 860px) {
+  .section-title::after {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-dark + .section-darker::before,
+  .section-darker + .section-dark::before {
+    height: 1px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   P0 GAP PORT — 2026-07-10/11 (Zeus, triage-1783740240.928435)
+   Ported from company/website-v5/design.md + staging build (Tinker/
+   Lina/Disruptor) onto the ACTUAL live site. Structural/component
+   port only — no Enigma Capital copy carried over.
+   design-system: design.md (v5) tokens mapped onto reposition.css
+   custom properties (--headline/--body/--accent/--border/--surface).
+   pre-emit: P0-1 (informational SVGs) P0-2 (bento/FAQ/metrics)
+             P0-3 (typographic scale — italic subsections) complete
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- P0-3: Typographic scale — italic subsection override ------
+   Hallmark Gate 38a override: intentional per design.md Register B
+   typographic scale. h3 (subsection headings inside content, not
+   card/feature titles which stay upright for legibility in dense
+   grids) uses italic Playfair Display for hierarchy contrast. */
+.prose h3,
+.faq-trigger,
+.founder-quote p {
+  font-style: italic;
+}
+
+/* ---- P0-2: FAQ Accordion ---------------------------------------- */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.faq-item {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.faq-item:hover {
+  border-color: var(--accent-mid);
+}
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 24px 28px;
+  background: transparent;
+  border: none;
+  color: var(--headline);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+.faq-trigger:hover { color: var(--accent); }
+.faq-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.faq-chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+.faq-panel {
+  padding: 0 28px 24px;
+  color: var(--body);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.faq-panel p + p { margin-top: 12px; }
+
+/* ---- P0-2: Bento Grid -------------------------------------------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.bento-cell {
+  background: var(--surface);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.bento-cell:hover {
+  background: var(--surface-hi);
+}
+.bento-cell.span-2 { grid-column: span 2; }
+.bento-cell.span-2-row { grid-row: span 2; }
+.bento-cell-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 2px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.bento-cell-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--headline);
+}
+.bento-cell-description {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--body);
+  flex-grow: 1;
+}
+@media (max-width: 1024px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-cell.span-2 { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-cell.span-2,
+  .bento-cell.span-2-row { grid-column: span 1; grid-row: span 1; }
+}
+
+/* ---- P0-2: Metrics Row (compact — home/about) -------------------- */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 2px solid var(--accent);
+}
+.metric-value {
+  font-family: var(--font-body);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.metric-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+@media (max-width: 1024px) {
+  .metrics-row { grid-template-columns: repeat(2, 1fr); gap: 48px 32px; }
+}
+@media (max-width: 640px) {
+  .metrics-row { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ---- P0-1: Informational SVG diagram wrapper --------------------- */
+.diagram-wrap {
+  padding: 48px 0;
+  overflow-x: auto;
+}
+.diagram-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Motionsites.ai Patterns — Liquid Glass Cards + Section Glow
+   Patterns 1 & 2 per Puck REF: motionsites-ai-patterns-2026-07-10.md
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- Pattern 1: Liquid Glass Cards (gold-tinted glassmorphism) -- */
+.glass-card {
+  background: rgba(201, 168, 76, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(201, 168, 76, 0.04);
+  transition: border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--accent-mid);
+  box-shadow: 0 0 60px rgba(201, 168, 76, 0.08);
+}
+
+/* ---- Pattern 2: Section Glow (radial accent glow behind content) -- */
+.section-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  max-width: 800px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 168, 76, 0.06) 0%,
+    rgba(201, 168, 76, 0.02) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content sits above the glow */
+.section-glow > * {
+  position: relative;
+  z-index: 1;
 }

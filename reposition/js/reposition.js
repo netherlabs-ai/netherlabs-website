@@ -4,11 +4,20 @@
    staging-safe, privacy-conscious, console + localStorage-based funnel log
    that Puck/Grimstroke/Yves can inspect before any analytics vendor is
    approved for production).
+
+   MOTION LAYER (v5 visual fix):
+   - Lenis: smooth-scroll with inertia
+   - GSAP + ScrollTrigger: scroll-triggered reveals, parallax, hero load
+   - CSS transition primitives: [data-reveal], [data-stagger], [data-reveal="left|right|scale"]
+
+   CDN deps (replace with bundled versions in production):
+   - lenis@1.1.13
+   - gsap@3.12.5 + ScrollTrigger
 */
 (function () {
   "use strict";
 
-  // ---- Mobile nav toggle -------------------------------------------------
+  // ─── MOBILE NAV TOGGLE ──────────────────────────────────────────
   function initNav() {
     var toggle = document.querySelector(".mobile-menu-toggle");
     var links = document.querySelector(".nav-links");
@@ -25,7 +34,7 @@
     });
   }
 
-  // ---- Scrolled header state ---------------------------------------------
+  // ─── SCROLLED HEADER STATE ──────────────────────────────────────
   function initHeaderScroll() {
     var header = document.querySelector(".site-header");
     if (!header) return;
@@ -37,12 +46,7 @@
     onScroll();
   }
 
-  // ---- Conversion tracking (staging-only, no PII to third parties) -------
-  // Fires a "diagnostic_request_*" funnel event into localStorage + console.
-  // This is intentionally lightweight: staging build must not add an
-  // external analytics vendor without a separate approval. Once Yves/Puck
-  // approve a production analytics stack, replace NLTrack.send() body with
-  // the real vendor call and keep the same call sites.
+  // ─── CONVERSION TRACKING ───────────────────────────────────────
   var NLTrack = {
     key: "nl_conversion_log_v1",
     send: function (eventName, data) {
@@ -55,12 +59,9 @@
       try {
         var log = JSON.parse(localStorage.getItem(this.key) || "[]");
         log.push(entry);
-        // keep last 200 events only
         if (log.length > 200) log = log.slice(log.length - 200);
         localStorage.setItem(this.key, JSON.stringify(log));
-      } catch (e) {
-        /* localStorage unavailable — degrade silently */
-      }
+      } catch (e) { /* degrade silently */ }
       if (window.console && window.console.info) {
         console.info("[nl-track]", eventName, entry);
       }
@@ -69,17 +70,14 @@
   window.NLTrack = NLTrack;
 
   function initConversionTracking() {
-    // Page view on every load
     NLTrack.send("page_view");
 
-    // Any CTA click that points at the diagnostic-request form
     document.querySelectorAll('a[href*="contact.html"], a[href*="#diagnostic-form"]').forEach(function (el) {
       el.addEventListener("click", function () {
         NLTrack.send("diagnostic_request_cta_click", { label: el.textContent.trim() });
       });
     });
 
-    // Diagnostic-request form: track start (first focus) and submit
     var form = document.getElementById("diagnostic-form");
     if (form) {
       var startedTracked = false;
@@ -102,9 +100,125 @@
     }
   }
 
+  // ══════════════════════════════════════════════════════════════════
+  // MOTION LAYER — Gsap / Lenis / ScrollTrigger integration
+  // ══════════════════════════════════════════════════════════════════
+
+  // Guard: only run motion if GSAP loaded
+  function initMotion() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      console.warn("[nl-motion] GSAP or ScrollTrigger not loaded — motion disabled");
+      return;
+    }
+
+    var hasLenis = typeof Lenis !== "undefined";
+
+    // ─── Lenis (smooth scroll) ──────────────────────────────────
+    var lenis;
+    if (hasLenis) {
+      lenis = new Lenis({
+        duration: 0.9,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        orientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+      });
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ─── Nav scroll behavior ────────────────────────────────────
+    var nav = document.querySelector(".site-header");
+    if (nav) {
+      ScrollTrigger.create({
+        start: "top -60px",
+        onUpdate: function (self) {
+          nav.classList.toggle("scrolled", self.progress > 0);
+        }
+      });
+    }
+
+    // ─── Reveal animations via ScrollTrigger ────────────────────
+    document.querySelectorAll("[data-reveal]").forEach(function (el) {
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        end: "bottom 30%",
+        onEnter: function () { el.classList.add("is-visible"); },
+        once: true,
+      });
+    });
+
+    // ─── Staggered children ─────────────────────────────────────
+    document.querySelectorAll("[data-stagger]").forEach(function (parent) {
+      ScrollTrigger.create({
+        trigger: parent,
+        start: "top 82%",
+        onEnter: function () { parent.classList.add("is-visible"); },
+        once: true,
+      });
+    });
+
+    // ─── Hero load animation ────────────────────────────────────
+    var hero = document.querySelector(".hero");
+    if (hero) {
+      var heroContent = hero.querySelectorAll(
+        ".hero-kicker, h1, .hero-sub, .hero-actions, .hero-note, .hero-scroll-indicator"
+      );
+      if (heroContent.length) {
+        gsap.from(heroContent, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          delay: 0.2,
+        });
+      }
+    }
+
+    // ─── Parallax images ────────────────────────────────────────
+    document.querySelectorAll(".section-break img, .hero-image-bg img").forEach(function (img) {
+      var wrapper = img.closest(".section-break") || img.closest(".hero-image-bg");
+      if (wrapper) {
+        gsap.to(img, {
+          y: "15%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          }
+        });
+      }
+    });
+
+    // ─── Page header subtle parallax ────────────────────────────
+    var pageHeader = document.querySelector(".page-header");
+    if (pageHeader) {
+      gsap.from(pageHeader.querySelector("h1"), {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.15,
+      });
+    }
+
+    ScrollTrigger.refresh();
+
+    console.log("[nl-motion] Nether Labs v5 — motion layer active" + (hasLenis ? " (Lenis + GSAP)" : " (GSAP only)"));
+  }
+
+  // ─── INIT ────────────────────────────────────────────────────────
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initHeaderScroll();
     initConversionTracking();
+    initMotion();
   });
 })();
