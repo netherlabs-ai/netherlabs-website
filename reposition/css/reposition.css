@@ -5,7 +5,7 @@
 
 /* ---- Reset & Base ------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; } /* Lenis handles smooth scroll — native smooth-scroll conflicts */
 
 :root {
   --bg:           #0d0d0d;
