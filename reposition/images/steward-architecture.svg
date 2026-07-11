@@ -1,18 +1,18 @@
 <svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Steward architecture diagram: hub-and-spokes model with Steward at the center coordinating purpose-built agent roles">
   <!-- design-system: design.md (v5) ported to Nether Labs reposition site, 2026-07-11 -->
-  <!-- Background -->
+  <!-- Redesigned 2026-07-11: labels moved outside circles for legibility -->
   <rect width="1000" height="760" fill="#0d0d0d"/>
 
   <defs>
     <style>
       .hub-circle { fill: #C9A84C; }
-      .spoke-circle { fill: #111111; stroke: #C9A84C; stroke-width: 2; }
-      .hub-label { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 700; fill: #0d0d0d; text-anchor: middle; dominant-baseline: middle; }
-      .spoke-label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #ede9e3; text-anchor: middle; dominant-baseline: middle; }
-      .spoke-role { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500; fill: #82827e; text-anchor: middle; letter-spacing: 0.04em; }
-      .connection-line { stroke: rgba(201,168,76,0.3); stroke-width: 2; fill: none; }
-      .grid-line { stroke: rgba(201,168,76,0.05); stroke-width: 1; }
-      .diagram-title { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 600; fill: #C9A84C; text-anchor: middle; letter-spacing: 0.02em; }
+      .hub-ring { fill: none; stroke: #C9A84C; stroke-width: 1; }
+      .spoke-circle { fill: #111111; stroke: #C9A84C; stroke-width: 1.5; }
+      .hub-label { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; fill: #0d0d0d; text-anchor: middle; dominant-baseline: middle; }
+      .spoke-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #ede9e3; }
+      .spoke-role { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500; fill: #82827e; letter-spacing: 0.07em; }
+      .connection-line { stroke: rgba(201,168,76,0.22); stroke-width: 1.5; fill: none; stroke-dasharray: 5,4; }
+      .grid-line { stroke: rgba(201,168,76,0.04); stroke-width: 1; }
     </style>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" class="grid-line"/>
@@ -21,67 +21,78 @@
 
   <rect width="1000" height="760" fill="url(#grid)"/>
 
-  <!-- Title -->
-  <text x="500" y="50" class="diagram-title">Steward: Hub and Spokes</text>
+  <!-- Subtle outer rings on hub -->
+  <circle cx="500" cy="390" r="88" class="hub-ring" opacity="0.25"/>
+  <circle cx="500" cy="390" r="112" class="hub-ring" opacity="0.10"/>
 
-  <!-- Hub (center) -->
-  <circle cx="500" cy="400" r="58" class="hub-circle"/>
-  <text x="500" y="400" class="hub-label">Steward</text>
+  <!-- Connection lines: hub edge → spoke circle edge -->
+  <!-- N: Orchestrator (500, 190) -->
+  <line x1="500" y1="322" x2="500" y2="228" class="connection-line"/>
+  <!-- NE: Risk Monitor (641, 249) -->
+  <line x1="548" y1="342" x2="614" y2="276" class="connection-line"/>
+  <!-- E: Alpha Engine (700, 390) -->
+  <line x1="568" y1="390" x2="662" y2="390" class="connection-line"/>
+  <!-- SE: Compliance (641, 531) -->
+  <line x1="548" y1="438" x2="614" y2="504" class="connection-line"/>
+  <!-- S: Live Ops (500, 590) -->
+  <line x1="500" y1="458" x2="500" y2="552" class="connection-line"/>
+  <!-- SW: Comptroller (359, 531) -->
+  <line x1="452" y1="438" x2="386" y2="504" class="connection-line"/>
+  <!-- W: Brand Strategy (300, 390) -->
+  <line x1="432" y1="390" x2="338" y2="390" class="connection-line"/>
+  <!-- NW: Systems Eng. (359, 249) -->
+  <line x1="452" y1="342" x2="386" y2="276" class="connection-line"/>
 
-  <!-- Connection lines -->
-  <line x1="500" y1="400" x2="250" y2="190" class="connection-line"/>
-  <line x1="500" y1="400" x2="180" y2="290" class="connection-line"/>
-  <line x1="500" y1="400" x2="200" y2="500" class="connection-line"/>
-  <line x1="500" y1="400" x2="280" y2="620" class="connection-line"/>
-  <line x1="500" y1="400" x2="750" y2="190" class="connection-line"/>
-  <line x1="500" y1="400" x2="820" y2="290" class="connection-line"/>
-  <line x1="500" y1="400" x2="800" y2="500" class="connection-line"/>
-  <line x1="500" y1="400" x2="720" y2="620" class="connection-line"/>
+  <!-- Hub -->
+  <circle cx="500" cy="390" r="68" class="hub-circle"/>
+  <text x="500" y="390" class="hub-label">Steward</text>
 
-  <!-- Spoke: Orchestrator -->
-  <circle cx="250" cy="190" r="42" class="spoke-circle"/>
-  <text x="250" y="184" class="spoke-label">Orchestrator</text>
-  <text x="250" y="200" class="spoke-role">COORDINATION</text>
+  <!-- ── SPOKE CIRCLES (r=38) at distance 200 from hub ── -->
 
-  <!-- Spoke: Risk Monitor -->
-  <circle cx="180" cy="290" r="42" class="spoke-circle"/>
-  <text x="180" y="284" class="spoke-label">Risk Monitor</text>
-  <text x="180" y="300" class="spoke-role">OVERSIGHT</text>
+  <!-- N: Orchestrator (500, 190) -->
+  <circle cx="500" cy="190" r="38" class="spoke-circle"/>
+  <text x="500" y="133" class="spoke-name" text-anchor="middle">Orchestrator</text>
+  <text x="500" y="150" class="spoke-role" text-anchor="middle">COORDINATION</text>
 
-  <!-- Spoke: Alpha Engine -->
-  <circle cx="200" cy="500" r="42" class="spoke-circle"/>
-  <text x="200" y="494" class="spoke-label">Alpha Engine</text>
-  <text x="200" y="510" class="spoke-role">RESEARCH</text>
+  <!-- NE: Risk Monitor (641, 249) -->
+  <circle cx="641" cy="249" r="38" class="spoke-circle"/>
+  <text x="690" y="203" class="spoke-name" text-anchor="start">Risk Monitor</text>
+  <text x="690" y="220" class="spoke-role" text-anchor="start">OVERSIGHT</text>
 
-  <!-- Spoke: Compliance Gate -->
-  <circle cx="280" cy="620" r="42" class="spoke-circle"/>
-  <text x="280" y="614" class="spoke-label">Compliance</text>
-  <text x="280" y="630" class="spoke-role">LEGAL &amp; REG</text>
+  <!-- E: Alpha Engine (700, 390) -->
+  <circle cx="700" cy="390" r="38" class="spoke-circle"/>
+  <text x="750" y="384" class="spoke-name" text-anchor="start">Alpha Engine</text>
+  <text x="750" y="401" class="spoke-role" text-anchor="start">RESEARCH</text>
 
-  <!-- Spoke: Systems Engineering -->
-  <circle cx="750" cy="190" r="42" class="spoke-circle"/>
-  <text x="750" y="184" class="spoke-label">Systems Eng.</text>
-  <text x="750" y="200" class="spoke-role">INFRASTRUCTURE</text>
+  <!-- SE: Compliance (641, 531) -->
+  <circle cx="641" cy="531" r="38" class="spoke-circle"/>
+  <text x="690" y="573" class="spoke-name" text-anchor="start">Compliance</text>
+  <text x="690" y="590" class="spoke-role" text-anchor="start">LEGAL &amp; REG</text>
 
-  <!-- Spoke: Brand Strategy -->
-  <circle cx="820" cy="290" r="42" class="spoke-circle"/>
-  <text x="820" y="284" class="spoke-label">Brand Strategy</text>
-  <text x="820" y="300" class="spoke-role">GROWTH</text>
+  <!-- S: Live Ops (500, 590) -->
+  <circle cx="500" cy="590" r="38" class="spoke-circle"/>
+  <text x="500" y="643" class="spoke-name" text-anchor="middle">Live Ops Monitor</text>
+  <text x="500" y="660" class="spoke-role" text-anchor="middle">KILL SWITCH</text>
 
-  <!-- Spoke: Comptroller -->
-  <circle cx="800" cy="500" r="42" class="spoke-circle"/>
-  <text x="800" y="494" class="spoke-label">Comptroller</text>
-  <text x="800" y="510" class="spoke-role">FINANCE</text>
+  <!-- SW: Comptroller (359, 531) -->
+  <circle cx="359" cy="531" r="38" class="spoke-circle"/>
+  <text x="310" y="573" class="spoke-name" text-anchor="end">Comptroller</text>
+  <text x="310" y="590" class="spoke-role" text-anchor="end">FINANCE</text>
 
-  <!-- Spoke: Live Ops Monitor -->
-  <circle cx="720" cy="620" r="42" class="spoke-circle"/>
-  <text x="720" y="614" class="spoke-label">Live Ops</text>
-  <text x="720" y="630" class="spoke-role">KILL SWITCH</text>
+  <!-- W: Brand Strategy (300, 390) -->
+  <circle cx="300" cy="390" r="38" class="spoke-circle"/>
+  <text x="250" y="384" class="spoke-name" text-anchor="end">Brand Strategy</text>
+  <text x="250" y="401" class="spoke-role" text-anchor="end">GROWTH</text>
+
+  <!-- NW: Systems Engineering (359, 249) -->
+  <circle cx="359" cy="249" r="38" class="spoke-circle"/>
+  <text x="310" y="203" class="spoke-name" text-anchor="end">Systems Eng.</text>
+  <text x="310" y="220" class="spoke-role" text-anchor="end">INFRASTRUCTURE</text>
 
   <!-- Legend -->
-  <rect x="30" y="690" width="230" height="56" fill="rgba(17,17,17,0.7)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
-  <circle cx="52" cy="708" r="8" class="hub-circle"/>
-  <text x="72" y="713" class="spoke-label" style="text-anchor:start;font-size:11px;">Coordination Hub</text>
-  <circle cx="52" cy="732" r="8" class="spoke-circle"/>
-  <text x="72" y="737" class="spoke-label" style="text-anchor:start;font-size:11px;">Purpose-built Agent</text>
+  <rect x="30" y="700" width="238" height="50" fill="rgba(17,17,17,0.85)" stroke="rgba(201,168,76,0.12)" stroke-width="1" rx="3"/>
+  <circle cx="52" cy="716" r="8" class="hub-circle"/>
+  <text x="70" y="720" class="spoke-name" text-anchor="start" style="font-size:11px;">Coordination Hub</text>
+  <circle cx="52" cy="738" r="8" class="spoke-circle"/>
+  <text x="70" y="742" class="spoke-name" text-anchor="start" style="font-size:11px;">Purpose-built Agent</text>
 </svg>
