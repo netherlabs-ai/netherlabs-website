@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nether Labs — Security Standards v1.3</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #14141f;
+    --border: #2a2a3a;
+    --text: #e0e0e8;
+    --text-muted: #8888a0;
+    --accent: #6c5ce7;
+    --accent-dim: #4a3db0;
+    --warn: #e17055;
+    --critical: #ff7675;
+    --green: #00cec9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  header .meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .banner {
+    background: var(--surface);
+    border: 1px solid var(--warn);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--warn);
+    font-size: 0.95rem;
+  }
+  .banner strong { color: #fab1a0; }
+  h2 {
+    font-size: 1.35rem;
+    color: #fff;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 1.5rem 0 0.75rem;
+  }
+  p { margin-bottom: 1rem; color: var(--text); }
+  ul, ol { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: 0.35rem; }
+  strong { color: #f0f0f8; }
+  a { color: var(--accent); }
+  blockquote {
+    border-left: 3px solid var(--accent-dim);
+    padding: 0.75rem 1.25rem;
+    margin: 1rem 0;
+    background: var(--surface);
+    border-radius: 0 6px 6px 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: var(--surface);
+    color: #fff;
+    font-weight: 600;
+  }
+  td { background: rgba(20,20,31,0.5); }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin-bottom: 0; }
+  .toc li { margin-bottom: 0.25rem; }
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .signature-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .signature-block p { margin-bottom: 0.5rem; }
+  .doc-control {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Nether Labs Security Standards</h1>
+  <div class="meta">
+    Document ID: <strong>SEC-STD-001</strong> &nbsp;|&nbsp;
+    Version: <strong>1.3</strong> &nbsp;|&nbsp;
+    Classification: <strong>Confidential</strong> &nbsp;|&nbsp;
+    Owner: <strong>CISO — Nyx Security Office</strong>
+  </div>
+</header>
+
+<div class="banner">
+  <strong>Effective Date:</strong> [PLACEHOLDER — To be set upon execution of first Client Agreement. The Effective Date will be the date both parties execute the Agreement. Do not sign or date this document until instructed by Legal.]
+</div>
+
+<p><strong>Reference:</strong> Steward Client Agreement (Draft v1.1 — not yet executed), Section 4.7</p>
+
+<blockquote>
+  <strong>Distribution Note:</strong> Upon execution of the Client Agreement, this document will be hosted at a publicly accessible URL (to be specified in the Agreement) for the Client's reference. Until execution, this document is distributed as a controlled PDF. If the Agreement is terminated, the public URL will be deactivated within 30 days.
+</blockquote>
+
+<nav class="toc">
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#s1">Purpose and Scope</a></li>
+    <li><a href="#s2">Organizational Security Measures</a></li>
+    <li><a href="#s3">Access Controls</a></li>
+    <li><a href="#s4">Encryption</a></li>
+    <li><a href="#s5">Logging, Monitoring, and Detection</a></li>
+    <li><a href="#s6">Vulnerability and Patch Management</a></li>
+    <li><a href="#s7">Incident Response</a></li>
+    <li><a href="#s8">Breach Notification Process</a></li>
+    <li><a href="#s9">Business Continuity and Disaster Recovery</a></li>
+    <li><a href="#s10">Physical and Environmental Security</a></li>
+    <li><a href="#s11">Secure Development Lifecycle</a></li>
+    <li><a href="#s12">Compliance and Audit</a></li>
+    <li><a href="#s13">Policy Review and Updates</a></li>
+    <li><a href="#s14">Document Control</a></li>
+  </ol>
+</nav>
+
+<h2 id="s1">1. Purpose and Scope</h2>
+<p>This Security Standards document ("Standards") defines the technical and organizational security measures (TOMs) implemented by Nether Labs to protect Client Data and Confidential Information (as defined in the Client Agreement) against unauthorized access, disclosure, alteration, loss, and destruction.</p>
+<p><strong>"Client Data"</strong> as used in these Standards means any data or information provided by or on behalf of the Client to Nether Labs for the purpose of receiving the Services, as defined in §4.1 of the Steward Client Agreement. Client Data does not include (a) data independently developed or lawfully obtained by Nether Labs outside the Client relationship, (b) aggregated, de-identified, or anonymized data that cannot reasonably be re-associated with the Client or any identified individual, or (c) metadata, logs, or operational data generated by Nether Labs' systems in the course of delivering the Services, unless such data constitutes Client Data under §4.1 of the Agreement.</p>
+<p>These Standards are incorporated by reference into the Steward Client Agreement pursuant to Section 4.7 of that agreement (currently Draft v1.1, not yet executed). Capitalized terms not defined herein have the meanings assigned in the Steward Client Agreement. In the event of conflict between these Standards and the Steward Client Agreement, the Steward Client Agreement shall control unless these Standards provide greater protection for Client Data.</p>
+<p>These Standards apply to all Nether Labs personnel, contractors, subcontractors, systems, and facilities involved in the processing, storage, or transmission of Client Data.</p>
+
+<h2 id="s2">2. Organizational Security Measures</h2>
+
+<h3>2.1 Security Governance</h3>
+<ul>
+  <li>Nether Labs maintains a dedicated Chief Information Security Officer (CISO) with overall authority for the information security program.</li>
+  <li>The CISO reports directly to the CEO and the Board on security posture, incidents, and risk at least quarterly.</li>
+  <li>An Information Security Steering Committee meets quarterly to review policies, incidents, risk acceptances, and control effectiveness.</li>
+  <li>All security policies are reviewed and updated at least annually or upon a material change in operations, threat landscape, or applicable law.</li>
+</ul>
+
+<h3>2.2 Security Policies</h3>
+<p>Nether Labs maintains and enforces the following documented policies, reviewed at least annually:</p>
+<ul>
+  <li>Information Security Policy</li>
+  <li>Access Control Policy</li>
+  <li>Data Classification and Handling Policy</li>
+  <li>Incident Response Plan</li>
+  <li>Business Continuity and Disaster Recovery Plan</li>
+  <li>Vendor Security Assessment Policy</li>
+  <li>Acceptable Use Policy</li>
+  <li>Secure Development and Change Management Policy</li>
+</ul>
+
+<h3>2.3 Personnel Security</h3>
+<ul>
+  <li>Criminal background checks are conducted on all personnel prior to gaining access to Client Data, subject to applicable law.</li>
+  <li>All personnel complete security awareness training within thirty (30) days of onboarding and annually thereafter. Training covers phishing, social engineering, credential hygiene, data handling, and incident reporting procedures.</li>
+  <li>Personnel with elevated privileges (administrators, developers, incident responders) must complete supplementary role-based security training.</li>
+  <li>All personnel and contractors sign confidentiality agreements covering Client Data prior to system access. These obligations survive termination of employment or contract.</li>
+  <li>Upon termination or role change, access is revoked within four (4) hours. A quarterly access recertification is performed by each department head.</li>
+</ul>
+
+<h3>2.4 Third-Party Risk Management</h3>
+<ul>
+  <li>All subcontractors and vendors with access to Client Data undergo a security review prior to engagement.</li>
+  <li>Third-party contracts include data protection clauses at least as protective as these Standards.</li>
+  <li>Sub-processor compliance is reviewed at least annually. A current list of sub-processors is maintained and available to Client upon request.</li>
+</ul>
+
+<h2 id="s3">3. Access Controls</h2>
+
+<h3>3.1 Access Principles</h3>
+<p>All access to systems containing Client Data is governed by the following principles:</p>
+<ul>
+  <li><strong>Least Privilege:</strong> Access is granted only to the minimum data and systems necessary to perform a specific job function.</li>
+  <li><strong>Need-to-Know:</strong> Client Data access is restricted to personnel with a demonstrable business justification.</li>
+  <li><strong>Separation of Duties:</strong> Critical functions require action by more than one authorized individual where operationally feasible.</li>
+  <li><strong>Default Deny:</strong> All access is denied by default; access grants require explicit, documented authorization.</li>
+</ul>
+
+<h3>3.2 User Access Management</h3>
+<ul>
+  <li>A formal identity lifecycle process governs user registration, modification, and de-provisioning across all systems.</li>
+  <li>User accounts are uniquely assigned. Shared accounts are prohibited except where technically unavoidable, in which case credentials are managed in an audited privileged access management (PAM) solution with individual accountability logging.</li>
+  <li>Access rights are reviewed quarterly. Excessive or dormant privileges identified during review are revoked within seventy-two (72) hours.</li>
+  <li>Just-in-time (JIT) access is required for privileged operations: elevation requires justification, approval, and is time-bound (maximum four hours).</li>
+  <li>Emergency break-glass accounts exist with alarmed usage; credentials are stored in a tamper-evident physical safe or equivalent secret store.</li>
+</ul>
+
+<h3>3.3 Authentication</h3>
+<ul>
+  <li>Multi-Factor Authentication (MFA) is mandatory for all production systems, administrative interfaces, and remote access.</li>
+  <li>MFA for privileged accounts must use phishing-resistant methods: FIDO2/WebAuthn, hardware security keys, or TOTP as a minimum.</li>
+  <li>Passwords must be at least twelve (12) characters and must not appear in known breach databases. Nether Labs enforces this through identity provider policies.</li>
+  <li>Service accounts use certificate-based or token-based authentication. Interactive login for service accounts is prohibited.</li>
+  <li>API authentication uses short-lived access tokens (JWT with refresh token rotation) or mutual TLS (mTLS).</li>
+  <li>Session management enforces idle timeout (15 minutes), absolute timeout (12 hours), and concurrent session limits.</li>
+</ul>
+
+<h3>3.4 Privileged Access Management</h3>
+<ul>
+  <li>All privileged accounts (administrator, root, system) are inventoried and managed in a PAM solution.</li>
+  <li>Direct standing privileged access is removed; all elevation follows the JIT workflow.</li>
+  <li>All privileged session activities are logged, recorded, and retained for a minimum of twelve (12) months.</li>
+  <li>Privileged access reviews are conducted quarterly.</li>
+</ul>
+
+<h3>3.5 Network Access Controls</h3>
+<ul>
+  <li>Production environments are segmented from corporate networks by at least one firewall or security group boundary.</li>
+  <li>Administrative access to production systems is permitted only through a jump-host or bastion host with MFA and full session logging.</li>
+  <li>Guest and BYOD networks are isolated from corporate and production networks.</li>
+  <li>Micro-segmentation restricts east-west traffic between services to explicitly authorized paths.</li>
+  <li>Intrusion Detection and Prevention Systems (IDS/IPS) are deployed with automated blocking for known threat signatures.</li>
+</ul>
+
+<h2 id="s4">4. Encryption</h2>
+
+<h3>4.1 Encryption at Rest</h3>
+<p>All Client Data at rest is encrypted using AES-256 or equivalent strength encryption.</p>
+<table>
+  <thead>
+    <tr><th>Data Category</th><th>Encryption Standard</th><th>Key Management</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Client Data (databases)</td><td>AES-256-GCM</td><td>Per-tenant encryption keys where multi-tenant; keys stored in KMS/HSM</td></tr>
+    <tr><td>Client Data (object/file storage)</td><td>AES-256-GCM</td><td>Service-managed keys with customer-managed key option (BYOK)</td></tr>
+    <tr><td>Backups</td><td>AES-256-GCM</td><td>Separate key from production; offline key storage for long-term retention</td></tr>
+    <tr><td>Secrets and credentials</td><td>AES-256-GCM</td><td>HSM or cloud KMS with automatic rotation</td></tr>
+    <tr><td>Endpoints and portable media</td><td>AES-256-XTS (full-disk)</td><td>TPM-bound or KMS-managed host keys</td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>Full-disk encryption (LUKS, BitLocker, or equivalent) is mandatory on all Nether Labs-issued laptops and portable media that may contain Client Data.</li>
+  <li>Database-level encryption (TDE or column-level) is applied to all databases storing Client Data.</li>
+  <li>Encryption keys are stored in a FIPS 140-2 Level 2 (or higher) Hardware Security Module (HSM) or equivalent cloud Key Management Service (e.g., AWS KMS, Azure Key Vault).</li>
+  <li>Key rotation is enforced at least every twelve (12) months or immediately upon suspected compromise.</li>
+  <li>Key material is never stored in plaintext alongside the encrypted data.</li>
+  <li>Private keys are not exportable in plaintext from the HSM except to a backup HSM under split knowledge/dual control.</li>
+</ul>
+
+<h3>4.2 Encryption in Transit</h3>
+<p>All Client Data transmitted over public or untrusted networks is encrypted.</p>
+<table>
+  <thead>
+    <tr><th>Communication Scenario</th><th>Protocol</th><th>Minimum Requirement</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Client to service (public internet)</td><td>TLS</td><td>TLS 1.3 preferred; TLS 1.2 minimum</td></tr>
+    <tr><td>Internal service-to-service</td><td>mTLS</td><td>TLS 1.3 preferred; TLS 1.2 minimum</td></tr>
+    <tr><td>API endpoints</td><td>HTTPS (TLS)</td><td>TLS 1.2+; HSTS with <code>max-age=31536000; includeSubDomains; preload</code></td></tr>
+    <tr><td>Administrative access</td><td>SSHv2 or TLS-encrypted VPN</td><td>SSHv2; TLS 1.2+; IPSec with IKEv2</td></tr>
+    <tr><td>Email containing Client Data</td><td>Opportunistic TLS + S/MIME or PGP</td><td>TLS 1.2+ for transport; AES-256 for content encryption</td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>TLS 1.0, TLS 1.1, SSLv2, and SSLv3 are disabled on all Nether Labs-managed endpoints.</li>
+  <li>Cipher suites are hardened to at minimum the Intermediate compatibility level per Mozilla TLS recommendations.</li>
+  <li>Only forward-secrecy cipher suites are permitted (ECDHE key exchange required).</li>
+  <li>Mutual TLS (mTLS) is required for all machine-to-machine communication involving Client Data.</li>
+  <li>TLS certificates: minimum 2048-bit RSA or ECDSA P-256; SHA-256 signature algorithm.</li>
+  <li>Certificate validity: maximum ninety (90) days for leaf certificates. Automated issuance via ACME protocol where supported.</li>
+</ul>
+
+<h3>4.3 Cryptographic Key Management</h3>
+<ul>
+  <li>A formal key management policy governs key generation, distribution, rotation, revocation, and destruction.</li>
+  <li>All keys are generated using approved random number generators within HSM boundaries where available.</li>
+  <li>Key ceremony records are maintained for root and signing key generation events.</li>
+  <li>Compromised or expired keys are revoked within four (4) hours of identification.</li>
+  <li>Key metadata (creation date, rotation schedule, owner, access policy) is maintained for all managed keys.</li>
+</ul>
+
+<h2 id="s5">5. Logging, Monitoring, and Detection</h2>
+
+<h3>5.1 Log Collection</h3>
+<p>Security-relevant events are logged from all production systems, including:</p>
+<ul>
+  <li>Authentication successes and failures</li>
+  <li>Privilege escalation events</li>
+  <li>Configuration changes</li>
+  <li>Data access, export, and download events</li>
+  <li>Security control modifications</li>
+  <li>Administrative actions</li>
+  <li>System process starts/stops and service state changes</li>
+</ul>
+<p>Log entries include: NTP-synchronized timestamp, actor identity, action performed, target resource, source IP address, and outcome.</p>
+
+<h3>5.2 Centralized Monitoring</h3>
+<ul>
+  <li>Logs are centrally aggregated in a Security Information and Event Management (SIEM) platform.</li>
+  <li>Log integrity is protected via write-once/read-many (WORM) storage or cryptographic chaining.</li>
+  <li>The Security Operations Center (SOC) monitors the SIEM 24/7/365.</li>
+  <li>Automated alerts fire for critical and high-severity events:
+    <ul>
+      <li>Multiple failed authentication attempts</li>
+      <li>Privilege escalations</li>
+      <li>Data exfiltration patterns</li>
+      <li>Malware or ransomware detection</li>
+      <li>Security control disabling or modification</li>
+    </ul>
+  </li>
+  <li>Alert-to-triage SLAs: critical alerts within fifteen (15) minutes; high-severity alerts within sixty (60) minutes.</li>
+</ul>
+
+<h3>5.3 Log Retention</h3>
+<ul>
+  <li>Security logs are retained for a minimum of twelve (12) months online and thirty-six (36) months in cold or archived storage.</li>
+  <li>Logs relevant to an ongoing investigation or legal hold are preserved beyond the standard retention period.</li>
+</ul>
+
+<h2 id="s6">6. Vulnerability and Patch Management</h2>
+<ul>
+  <li>All production systems are scanned for vulnerabilities at least weekly using authenticated credentialed scans.</li>
+</ul>
+<table>
+  <thead>
+    <tr><th>Severity (CVSS v3.1+)</th><th>Remediation Target</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Critical (CVSS ≥ 9.0)</td><td>Seven (7) calendar days</td></tr>
+    <tr><td>High (CVSS 7.0–8.9)</td><td>Fourteen (14) calendar days</td></tr>
+    <tr><td>Medium (CVSS 4.0–6.9)</td><td>Thirty (30) calendar days</td></tr>
+    <tr><td>Low (CVSS 0.1–3.9)</td><td>Next scheduled maintenance window</td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>Emergency patches for zero-day vulnerabilities or actively exploited flaws are deployed within forty-eight (48) hours of availability and testing.</li>
+  <li>Penetration tests are performed at least annually by an independent qualified third party. Findings are tracked to remediation.</li>
+  <li>Internal penetration testing is conducted semi-annually.</li>
+  <li>Exceptions to remediation timelines require written CISO approval with compensating controls documented.</li>
+</ul>
+
+<h2 id="s7">7. Incident Response</h2>
+
+<h3>7.1 Incident Response Plan</h3>
+<p>Nether Labs maintains a documented Incident Response Plan (IRP) that defines roles, responsibilities, and procedures for detecting, containing, eradicating, and recovering from security incidents. The IRP is tested at least annually via tabletop exercises and at least biennially via a full simulated incident exercise.</p>
+
+<h3>7.2 Incident Classification</h3>
+<table>
+  <thead>
+    <tr><th>Severity</th><th>Definition</th><th>Response Initiation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Critical (P1)</strong></td><td>Confirmed breach involving Client Data, active lateral movement, ransomware detonation on production, or data exfiltration in progress</td><td>Immediate (24/7 escalation)</td></tr>
+    <tr><td><strong>High (P2)</strong></td><td>Suspected breach, targeted attack in progress, compromise of a privileged account, or unpatched zero-day on perimeter</td><td>Within one (1) hour</td></tr>
+    <tr><td><strong>Medium (P3)</strong></td><td>Malware on a non-critical endpoint, policy violation with data exposure risk, or targeted attack attempt (blocked)</td><td>Within four (4) hours</td></tr>
+    <tr><td><strong>Low (P4)</strong></td><td>Information event, minor policy deviation, or non-actionable alert</td><td>Within twenty-four (24) hours</td></tr>
+  </tbody>
+</table>
+
+<h3>7.3 Security Incident Response Team (SIRT)</h3>
+<p>The SIRT is led by the CISO or their designated deputy and includes:</p>
+<ul>
+  <li><strong>Incident Commander:</strong> Coordinates response; holds decision-making authority for containment actions.</li>
+  <li><strong>Technical Lead (Security Engineering):</strong> Leads forensic collection, technical investigation, containment, and eradication.</li>
+  <li><strong>Communications Lead:</strong> Coordinates internal and external communications, including client notification.</li>
+  <li><strong>Legal Counsel:</strong> Advises on regulatory obligations, legal privilege, and notification requirements.</li>
+  <li><strong>Engineering Operations:</strong> Supports system recovery and service restoration.</li>
+</ul>
+
+<h3>7.4 Response Lifecycle</h3>
+<ol>
+  <li><strong>Detection and Reporting:</strong> Any Nether Labs personnel who suspect a security incident must report it immediately via the internal incident reporting hotline or to the CISO within 1 hour of awareness. (A dedicated security contact address — [PLACEHOLDER — to be provisioned and inserted here prior to Client Agreement execution] — will be communicated to the Client upon agreement execution.)</li>
+  <li><strong>Triage (≤ 30 minutes):</strong> SOC assesses the alert, validates the event, assigns severity, and escalates per classification.</li>
+  <li><strong>Declaration:</strong> Incident formally declared; SIRT assembled; war room opened (physical or virtual).</li>
+  <li><strong>Containment (P1: ≤ 2 hours; P2: ≤ 4 hours):</strong> Isolate affected systems, revoke compromised credentials, block indicators of compromise (IoCs), and suspend affected services if necessary.</li>
+  <li><strong>Investigation:</strong> Root cause analysis, scope determination, evidence preservation. Forensic images captured before system modification where feasible.</li>
+  <li><strong>Eradication:</strong> Remove attacker footholds, malware, persistence mechanisms, and unauthorized access paths. Patch exploited vulnerabilities. Harden affected systems.</li>
+  <li><strong>Recovery:</strong> Restore systems from known-good backups, apply hardening, and conduct enhanced monitoring before returning to production.</li>
+  <li><strong>Post-Incident Review:</strong> Blameless post-mortem conducted within ten (10) business days. Findings inform control improvements. Action items tracked to closure.</li>
+</ol>
+
+<h3>7.5 Evidence Handling</h3>
+<ul>
+  <li>Forensic evidence is collected in a forensically sound manner preserving chain of custody.</li>
+  <li>All incident artifacts are preserved with chain-of-custody documentation.</li>
+  <li>Evidence is stored in an integrity-verified evidence locker with access restricted to SIRT and legal counsel.</li>
+  <li>Logs and evidence are retained for a minimum of three (3) years post-incident.</li>
+  <li>All response actions are documented in a chronological incident log.</li>
+</ul>
+
+<h2 id="s8">8. Breach Notification Process</h2>
+
+<h3>8.1 Notification Obligation</h3>
+<p>Nether Labs shall notify Client of any Security Breach involving Client Data without undue delay and in accordance with the timelines set forth below. A "Security Breach" means unauthorized access to, acquisition of, use of, disclosure of, or destruction of Client Data that compromises its confidentiality, integrity, or availability.</p>
+
+<h3>8.2 Internal Escalation Timeline</h3>
+<table>
+  <thead>
+    <tr><th>Event</th><th>Responsible Party</th><th>Deadline</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Detection of potential incident</td><td>Any personnel</td><td>Immediately upon discovery</td></tr>
+    <tr><td>Initial triage and severity assignment</td><td>SOC / Security Engineering</td><td>Within one (1) hour of detection</td></tr>
+    <tr><td>CISO notification (P1/P2)</td><td>Security Engineering</td><td>Within thirty (30) minutes of triage</td></tr>
+    <tr><td>Legal counsel engagement (P1/P2)</td><td>CISO</td><td>Within one (1) hour of CISO notification</td></tr>
+    <tr><td>Executive notification</td><td>CISO</td><td>Within two (2) hours for P1; within four (4) hours for P2</td></tr>
+    <tr><td>Breach confirmed and scope determined</td><td>SIRT</td><td>As soon as reasonably practicable</td></tr>
+  </tbody>
+</table>
+
+<h3>8.3 Client Notification Timeline</h3>
+<table>
+  <thead>
+    <tr><th>Milestone</th><th>Timeline</th><th>Method</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Initial Notice</strong></td><td>Within twenty-four (24) hours of confirmed breach</td><td>Encrypted email to designated Client security contact; follow-up telephone call for P1/P2 incidents</td></tr>
+    <tr><td><strong>Status Updates</strong></td><td>Every forty-eight (48) hours (or as otherwise agreed)</td><td>Written update via encrypted email</td></tr>
+    <tr><td><strong>Final Report</strong></td><td>Within ten (10) business days of breach closure</td><td>Formal written report delivered via secure channel</td></tr>
+  </tbody>
+</table>
+<p>For breaches that could reasonably be expected to pose a risk to the rights and freedoms of natural persons (e.g., breaches of personal data governed by GDPR), Nether Labs shall notify Client within twenty-four (24) hours of becoming aware of the breach.</p>
+
+<h3>8.4 Initial Notice Content</h3>
+<p>The Initial Notice shall include, to the extent known at the time of notification:</p>
+<ol>
+  <li>The nature and scope of the Security Breach, including categories and approximate number of data subjects and records affected.</li>
+  <li>The date or date range of the breach.</li>
+  <li>A description of the circumstances of the incident.</li>
+  <li>The type(s) of Client Data involved.</li>
+  <li>Measures Nether Labs has taken or proposes to take to contain and remediate the breach, including mitigation of adverse effects.</li>
+  <li>The name and contact details of Nether Labs' incident response lead.</li>
+  <li>An estimated timeline for the next update.</li>
+</ol>
+
+<h3>8.5 Final Report Content</h3>
+<p>The Final Report shall include:</p>
+<ol>
+  <li>A detailed chronology of the incident.</li>
+  <li>Root cause analysis.</li>
+  <li>Confirmed scope of affected Client Data.</li>
+  <li>All containment, eradication, and recovery actions taken.</li>
+  <li>Measures implemented to prevent recurrence.</li>
+  <li>Any regulatory notifications made by Nether Labs.</li>
+  <li>Recommendations for Client, if applicable.</li>
+</ol>
+
+<h3>8.6 Regulatory Notification</h3>
+<ul>
+  <li>If the Security Breach triggers mandatory notification obligations under applicable data protection laws (e.g., GDPR, CCPA, PIPEDA), Nether Labs shall cooperate with Client in meeting those obligations.</li>
+  <li>Nether Labs shall not notify regulators or affected data subjects directly regarding Client Data unless Client explicitly authorizes such notification in writing, except where Nether Labs is independently required to do so by law (in which case Nether Labs shall notify Client concurrently where legally permissible).</li>
+  <li>Where both Nether Labs and Client have notification obligations, the parties shall coordinate in good faith to ensure consistent and timely notification.</li>
+</ul>
+
+<h3>8.7 Communication Protocol</h3>
+<ul>
+  <li>All breach communications with Client shall be delivered via encrypted email to the designated Client security contact.</li>
+  <li>For Critical (P1) incidents, a follow-up telephone call shall be placed to the designated Client contact within one (1) hour of the initial written notice.</li>
+  <li>Public disclosure, press statements, or regulatory filings shall be coordinated with Client and mutually approved before release, except as required by law.</li>
+</ul>
+
+<h2 id="s9">9. Business Continuity and Disaster Recovery</h2>
+
+<h3>9.1 Backup Strategy</h3>
+<ul>
+  <li>Client Data is backed up daily (incremental) with weekly full backups.</li>
+  <li>All backups are encrypted (AES-256-GCM) both in transit and at rest.</li>
+  <li>Backups are stored in at least two geographically separate locations. At least one location is air-gapped or logically isolated from the production control plane.</li>
+  <li>Backup restoration is tested at least quarterly. Test results are documented and reviewed.</li>
+</ul>
+
+<h3>9.2 Recovery Objectives</h3>
+<ul>
+  <li><strong>Recovery Time Objective (RTO):</strong> Four (4) hours for critical services; twenty-four (24) hours for non-critical services.</li>
+  <li><strong>Recovery Point Objective (RPO):</strong> One (1) hour for transactional Client Data; twenty-four (24) hours for analytical or derived data.</li>
+</ul>
+
+<h3>9.3 Business Continuity Plan</h3>
+<ul>
+  <li>The Business Continuity Plan (BCP) is reviewed and tested at least annually.</li>
+  <li>The BCP identifies critical business functions, succession of key personnel, alternate work locations, and communication trees.</li>
+  <li>Failover capability is maintained for critical services across availability zones or cloud regions.</li>
+</ul>
+
+<h2 id="s10">10. Physical and Environmental Security</h2>
+<ul>
+  <li>Production infrastructure is hosted in Tier III (or equivalent) data centers holding SOC 2 Type II or ISO 27001 certification.</li>
+  <li>Physical access is controlled via biometric and badge access systems, monitored by CCTV 24/7/365.</li>
+  <li>Visitor access requires prior authorization, escort, and logging.</li>
+  <li>Environmental controls (fire suppression, HVAC, UPS with generator backup) are maintained and tested per manufacturer schedules.</li>
+  <li>All physical access events are logged and retained for a minimum of ninety (90) days.</li>
+</ul>
+
+<h2 id="s11">11. Secure Development Lifecycle</h2>
+<ul>
+  <li>Security requirements are defined during the planning phase for all features handling Client Data.</li>
+  <li>Threat modeling is conducted for new services and significant feature changes.</li>
+  <li>All code changes undergo peer review by at least one qualified reviewer who is not the author.</li>
+  <li>Static Application Security Testing (SAST) is integrated into CI/CD pipelines. Findings above "Medium" severity block deployment.</li>
+  <li>Software Composition Analysis (SCA) scans open-source dependencies. Deployment is blocked on known exploited vulnerabilities.</li>
+  <li>Dynamic Application Security Testing (DAST) is performed against staging environments at least monthly.</li>
+  <li>Secrets (API keys, tokens, passwords) are prohibited from source code repositories. Automated secrets detection runs on every commit and blocks pushes containing detected secrets.</li>
+  <li>Penetration testing is conducted for major releases prior to production deployment.</li>
+  <li>All production changes follow a documented change management process. Emergency changes require post-hoc review within twenty-four (24) hours.</li>
+  <li>All third-party MCP (Model Context Protocol) servers, agent skills, and agent applications undergo mandatory supply chain security scanning before installation, deployment, or integration with any production system. Scanning must detect at minimum: prompt injection in tool and function descriptions; tool shadowing and cross-server poisoning references; malicious code patterns including exfiltration, backdoor, and remote code execution signatures; obfuscated content including hidden Unicode characters, zero-width glyphs, and bidirectional override sequences; hardcoded secrets; and unverifiable or unbounded external dependencies. Deployment is blocked on any finding classified as critical or high severity. The accepted scanning tool is Snyk agent-scan (or equivalent successor designated by the CISO), with the <code>--no-bootstrap</code> flag enforced in all runs and sandboxed execution required for untrusted third-party configurations. Skills authored or maintained by Nether Labs personnel may be excluded from scan transmission to external analysis APIs only with documented CISO authorization.</li>
+</ul>
+
+<h2 id="s12">12. Compliance and Audit</h2>
+
+<h3>12.1 Certifications and Assessments</h3>
+<p>Nether Labs shall maintain or pursue (as applicable to service scope):</p>
+<ul>
+  <li>SOC 2 Type II report (annual)</li>
+  <li>ISO/IEC 27001 certification (where applicable)</li>
+  <li>Cloud provider security certifications (as inherited)</li>
+</ul>
+<p>Summary audit reports are available to Client upon request, subject to confidentiality obligations (NDA if required by the auditor).</p>
+
+<h3>12.2 Client Audit Rights</h3>
+<p>Client may, no more than once per twelve (12) months and upon thirty (30) days' advance written notice, conduct or commission an audit (including on-site inspection) of Nether Labs' security controls relevant to the services:</p>
+<ul>
+  <li>Audits shall be conducted during normal business hours.</li>
+  <li>Scope shall be limited to the Client Data processing environment.</li>
+  <li>Audits shall not unreasonably disrupt Nether Labs' operations.</li>
+  <li>Cost shall be borne by Client unless the audit reveals material non-compliance with these Standards.</li>
+  <li>The twelve-month frequency limitation is waived following a confirmed Security Breach involving Client Data.</li>
+</ul>
+<p>Nether Labs shall respond to Client security assessment questionnaires within thirty (30) days of receipt.</p>
+
+<h3>12.3 Remediation of Findings</h3>
+<p>Material non-conformities identified during any audit shall be remediated within a mutually agreed timeframe not to exceed ninety (90) days, unless a shorter timeline is required by the severity of the finding or applicable law.</p>
+
+<h2 id="s13">13. Policy Review and Updates</h2>
+<p>These Standards are reviewed at least annually or upon:</p>
+<ul>
+  <li>A material change in Nether Labs' processing operations or service architecture;</li>
+  <li>A material change in applicable law, regulation, or industry standards;</li>
+  <li>A Security Breach whose post-incident review identifies control gaps;</li>
+  <li>Client's reasonable written request.</li>
+</ul>
+<p>Material changes to security controls that may adversely affect Client are communicated to Client at least thirty (30) days in advance, unless a shorter notice period is required for emergency security reasons. Client may terminate the Agreement within thirty (30) days of receiving notice of a materially adverse change to these Standards if the change cannot be reasonably mitigated.</p>
+
+<h2 id="s14">14. Document Control</h2>
+<table>
+  <thead>
+    <tr><th>Version</th><th>Date</th><th>Author</th><th>Changes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1.0</td><td>2026-05-20</td><td>Nyx Security Office (CISO)</td><td>Initial release for Client Agreement v1.1, Section 4.7</td></tr>
+    <tr><td>1.1</td><td>2026-05-20</td><td>Nyx Assassin (CISO)</td><td>Remediation: entity name corrected to Nether Labs (v1.0 used historical "Steward" name); Effective Date placeholder clarified with execution instruction; breach contact updated to CISO hotline + provision-on-execution note; Distribution Note added for public hosting; Client Data scope aligned with Agreement §5.2</td></tr>
+    <tr><td>1.2</td><td>2026-07-10</td><td>Nyx Assassin (CISO)</td><td>Added agent supply chain security requirements to Section 11 (Secure Development Lifecycle): mandatory scanning of third-party MCP servers, skills, and agent applications using Snyk agent-scan or equivalent; critical/high findings block deployment; operational constraints documented (no-bootstrap, sandboxing, proprietary skill exclusion). Follows Snyk agent-scan adoption decision (triage-1783687446.250268).</td></tr>
+    <tr><td>1.3</td><td>2026-07-14</td><td>Nyx Assassin (CISO)</td><td>Remediation (nyx-002, ref: silencer-security-standards-xref): (1) Reference/Section 1 corrected to name the Steward Client Agreement explicitly and flag its current Draft v1.1 (unexecuted) status, preventing a reader from inferring a finalized/signed agreement exists; (2) Client Data scope citation corrected from §5.2 ("No Professional Advice" — unrelated) to §4.1 ("Ownership" — the actual Client Data definition) in both Section 1 and Appendix B; (3) placeholder contact fields in Appendix A and the §7.4 breach-contact note converted to explicit bracketed [PLACEHOLDER] format consistent with the Effective Date convention, so they cannot be mistaken for finished content prior to Agreement execution.</td></tr>
+  </tbody>
+</table>
+
+<div class="signature-block">
+  <p><strong>Approvals:</strong></p>
+  <p>CISO (nyx-assassin): _________________________ &nbsp; Date: ______________</p>
+  <p>General Counsel: _____________________________ &nbsp; Date: ______________</p>
+  <p>CEO: _______________________________________ &nbsp; Date: ______________</p>
+</div>
+
+<blockquote>
+  <strong>Execution Note:</strong> This document is not valid until the Effective Date is set and the CISO signature block above is completed upon execution of the Client Agreement.
+</blockquote>
+
+<div class="doc-control">
+  <h2>Appendix A: Contact Information</h2>
+  <table>
+    <thead><tr><th>Contact Point</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr><td>Security Incident Response (SOC)</td><td>[PLACEHOLDER — to be provided upon execution of the Steward Client Agreement]</td></tr>
+      <tr><td>CISO Office</td><td>[PLACEHOLDER — to be provided upon execution of the Steward Client Agreement]</td></tr>
+      <tr><td>Data Protection Officer</td><td>[PLACEHOLDER — to be provided upon execution of the Steward Client Agreement]</td></tr>
+      <tr><td>General Security Inquiries</td><td>[PLACEHOLDER — to be provided upon execution of the Steward Client Agreement]</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Appendix B: Glossary</h2>
+  <table>
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Client Data</strong></td><td>Data or information provided by or on behalf of the Client to Nether Labs for the purpose of receiving the Services, as defined in §4.1 of the Steward Client Agreement. Excludes independently developed data, aggregated/de-identified/anonymized data, and operational metadata except as provided by §4.1.</td></tr>
+      <tr><td><strong>Security Breach</strong></td><td>Unauthorized access to, acquisition of, use of, disclosure of, or destruction of Client Data that compromises its confidentiality, integrity, or availability</td></tr>
+      <tr><td><strong>Sub-processor</strong></td><td>A third party engaged by Nether Labs to process Client Data on Nether Labs' behalf</td></tr>
+      <tr><td><strong>MFA</strong></td><td>Multi-Factor Authentication</td></tr>
+      <tr><td><strong>TLS</strong></td><td>Transport Layer Security</td></tr>
+      <tr><td><strong>mTLS</strong></td><td>Mutual Transport Layer Security</td></tr>
+      <tr><td><strong>HSM</strong></td><td>Hardware Security Module</td></tr>
+      <tr><td><strong>KMS</strong></td><td>Key Management Service</td></tr>
+      <tr><td><strong>SIRT</strong></td><td>Security Incident Response Team</td></tr>
+      <tr><td><strong>SIEM</strong></td><td>Security Information and Event Management</td></tr>
+      <tr><td><strong>JIT</strong></td><td>Just-in-Time (access)</td></tr>
+      <tr><td><strong>PAM</strong></td><td>Privileged Access Management</td></tr>
+      <tr><td><strong>RTO</strong></td><td>Recovery Time Objective</td></tr>
+      <tr><td><strong>RPO</strong></td><td>Recovery Point Objective</td></tr>
+      <tr><td><strong>SOC</strong></td><td>Security Operations Center</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  <p><em>This document is confidential and proprietary to Nether Labs. Distribution is limited to authorized parties under the Client Agreement.</em></p>
+  <p style="margin-top: 0.75rem;">Document ID: SEC-STD-001 · Version 1.3 · Last updated: 2026-07-14</p>
+</div>
+
+</div>
+</body>
+</html>
