@@ -1,0 +1,203 @@
+.interior-site {
+  color: var(--ink);
+  background: var(--paper);
+  min-width: 0;
+}
+
+.interior-site .page-shell {
+  width: calc(100% - var(--gutter) * 2);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.interior-site #main-content:focus { outline: none; }
+.interior-site .dark-section { color: var(--paper); background: var(--void); }
+.interior-site .light-section { color: var(--ink); background: var(--paper); }
+.interior-site .site-header { gap: 24px; }
+.interior-site .desktop-nav { gap: clamp(16px, 2vw, 30px); }
+.interior-site .desktop-nav a,
+.interior-site .header-cta,
+.interior-site .footer-main nav a { min-height: 44px; display: flex; align-items: center; }
+.interior-site .header-cta { flex-shrink: 0; }
+.interior-site .brand { flex-shrink: 0; }
+.interior-site .menu-toggle { min-height: 44px; min-width: 44px; }
+
+.interior-site .interior-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(60px, 7vw, 104px);
+}
+.interior-site .interior-hero > picture,
+.interior-site .interior-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+.interior-site .interior-hero > picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 48%;
+}
+.interior-site .interior-hero-shade {
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(8, 13, 15, .97), rgba(8, 13, 15, .9) 45%, rgba(8, 13, 15, .66)), linear-gradient(0deg, var(--void), transparent 65%);
+}
+.interior-site .interior-hero-copy .eyebrow {
+  margin-bottom: 24px;
+  color: var(--signal);
+}
+.interior-site .interior-hero h1 {
+  max-width: 20ch;
+  font-size: clamp(2.625rem, 5vw, 5.125rem);
+  line-height: 1.07;
+  letter-spacing: -.06em;
+}
+.interior-site .interior-hero-copy > p:last-child {
+  max-width: 720px;
+  margin-top: 28px;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.7;
+  color: #d2ddd7;
+}
+.interior-site .interior-content { padding-block: clamp(48px, 6vw, 88px); }
+.interior-site .interior-content > .page-shell > :first-child { margin-top: 0; }
+.interior-site .interior-content > .page-shell > :last-child { margin-bottom: 0; }
+.interior-site .interior-lead {
+  max-width: 880px;
+  margin-bottom: clamp(44px, 5vw, 72px);
+  font-size: clamp(1.1875rem, 1.8vw, 1.625rem);
+  line-height: 1.65;
+  color: #304b3e;
+}
+.interior-site .interior-section { margin-block: clamp(44px, 5vw, 72px); }
+.interior-site .micro-label {
+  margin-bottom: 20px;
+  font: 500 .75rem/1.6 var(--font-mono);
+  letter-spacing: .09em;
+  color: #486352;
+}
+.interior-site .interior-content h2 {
+  max-width: 27ch;
+  font-size: clamp(2rem, 3.3vw, 3.375rem);
+  line-height: 1.15;
+}
+.interior-site .interior-section > p:not(.micro-label),
+.interior-site .privacy-copy > p {
+  max-width: 800px;
+  margin-top: 24px;
+  color: #3e5246;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.interior-site .interior-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+  margin-top: 40px;
+}
+.interior-site .interior-card-grid.four-up { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.interior-site .interior-card-grid article { min-width: 0; border-top: 1px solid #8fa695; padding-top: 22px; }
+.interior-site .interior-card-grid article > span {
+  display: block;
+  margin-bottom: 24px;
+  font: .75rem/1.6 var(--font-mono);
+  color: #486352;
+}
+.interior-site .interior-card-grid h3 { font-size: clamp(1.5rem, 2vw, 1.875rem); line-height: 1.2; }
+.interior-site .interior-card-grid p { margin-top: 18px; color: #47574d; line-height: 1.7; }
+.interior-site .interior-proof {
+  margin-block: clamp(44px, 5vw, 72px);
+  padding: clamp(26px, 4vw, 48px);
+  background: #183b31;
+  color: #eff9f1;
+}
+.interior-site .interior-proof h2 { max-width: 24ch; }
+.interior-site .interior-proof p { max-width: 800px; margin-top: 24px; color: #d3e1d7; line-height: 1.75; }
+.interior-site .stack-list { margin-top: 36px; border-top: 1px solid #8fa695; }
+.interior-site .stack-list article {
+  display: grid;
+  grid-template-columns: 48px minmax(0, .9fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: start;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--paper-line);
+}
+.interior-site .stack-list article > span { font: .8125rem/1.6 var(--font-mono); color: #486352; padding-top: 4px; }
+.interior-site .stack-list h3 { font-size: 1.5rem; line-height: 1.3; }
+.interior-site .stack-list p { color: #47574d; line-height: 1.7; }
+.interior-site .mailbox-panel {
+  margin-top: clamp(48px, 6vw, 88px);
+  padding: clamp(26px, 4.5vw, 56px);
+  background: var(--void);
+  color: var(--paper);
+}
+.interior-site .mailbox-panel .micro-label { color: #b1cdbd; }
+.interior-site .mailbox-panel > p:not(.micro-label) { max-width: 750px; margin-top: 24px; color: #c0d1c7; line-height: 1.75; }
+.interior-site .mailbox-panel .button {
+  margin-top: 28px;
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+.interior-site .button-light { background: var(--signal); color: var(--void); }
+.interior-site .button-light:hover { background: #d0fbe9; }
+.interior-site .mailbox-panel small { display: block; max-width: 650px; margin-top: 20px; color: #b7c9bf; font-size: .8125rem; line-height: 1.7; }
+.interior-site .mailbox-panel :focus-visible,
+.interior-site .dark-section :focus-visible { outline-color: var(--signal); }
+.interior-site .privacy-copy { max-width: 880px; }
+.interior-site .privacy-copy a { text-decoration: underline; text-underline-offset: 3px; color: #216751; }
+.interior-site .privacy-copy a:hover { color: #142125; }
+.interior-site .not-found { padding-block: clamp(64px, 9vw, 128px); }
+.interior-site .not-found .micro-label { color: var(--signal); }
+.interior-site .not-found h1 { max-width: 18ch; font-size: clamp(2.625rem, 5vw, 5rem); line-height: 1.08; }
+.interior-site .not-found .page-shell > p:not(.micro-label) { max-width: 650px; margin-top: 26px; color: #c0d1c7; font-size: 1.0625rem; }
+.interior-site .not-found .page-shell > div { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 32px; }
+.interior-site .footer-main { align-items: start; }
+.interior-site .footer-main > div { min-width: 0; }
+.interior-site .footer-main nav { gap: 4px 36px; }
+.interior-site .footer-main nav a { overflow-wrap: anywhere; }
+.interior-site .footer-bottom { align-items: center; flex-wrap: wrap; }
+.interior-site .footer-bottom a { min-height: 44px; display: inline-flex; align-items: center; }
+.interior-site .contact-email { overflow-wrap: anywhere; }
+.interior-site .menu-dialog nav a { gap: 20px; }
+.interior-site .menu-dialog nav a > span { flex-shrink: 0; }
+
+@media (max-width: 1200px) {
+  .interior-site .interior-card-grid.four-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1000px) {
+  .interior-site .interior-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .interior-site .stack-list article { grid-template-columns: 36px minmax(0, .9fr) minmax(0, 1.2fr); gap: 20px; }
+}
+@media (max-width: 700px) {
+  .interior-site .header-cta { display: none; }
+  .interior-site .interior-hero { padding-block: 52px 60px; }
+  .interior-site .interior-hero h1 { font-size: clamp(2.375rem, 8vw, 3.5rem); }
+  .interior-site .interior-hero-copy .eyebrow { margin-bottom: 22px; }
+  .interior-site .interior-hero-copy > p:last-child { margin-top: 24px; font-size: 1rem; }
+  .interior-site .interior-card-grid,
+  .interior-site .interior-card-grid.four-up { grid-template-columns: 1fr; gap: 30px; margin-top: 30px; }
+  .interior-site .interior-card-grid article > span { margin-bottom: 16px; }
+  .interior-site .interior-card-grid h3 { font-size: 1.75rem; }
+  .interior-site .interior-section > p:not(.micro-label),
+  .interior-site .privacy-copy > p { font-size: 1rem; }
+  .interior-site .stack-list article { grid-template-columns: 32px minmax(0, 1fr); gap: 12px 16px; padding-block: 24px; }
+  .interior-site .stack-list p { grid-column: 2; }
+  .interior-site .mailbox-panel { padding: 26px 22px; }
+  .interior-site .mailbox-panel .button { max-width: 100%; gap: 18px; font-size: .9375rem; padding-inline: 18px; }
+  .interior-site .mailbox-panel .button span { flex-shrink: 0; }
+  .interior-site .interior-content h2 { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+  .interior-site .footer-main nav { gap: 4px 20px; }
+  .interior-site .footer-bottom > span:nth-child(2) { display: block; }
+  .interior-site .menu-dialog nav a { font-size: clamp(1.125rem, 5vw, 1.5rem); }
+}
+@media (max-width: 360px) {
+  .interior-site .interior-hero h1 { font-size: 2.25rem; }
+  .interior-site .interior-proof,
+  .interior-site .mailbox-panel { padding: 24px 18px; }
+  .interior-site .mailbox-panel .button { font-size: .875rem; padding-inline: 14px; gap: 14px; }
+}

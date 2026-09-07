@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "nether-labs-v2-gpt-build-contract-20260716",
+  "baseline": {
+    "repository": "company/website-nether-release-rc6-static-20260716",
+    "branch": "release/nether-next-20260716-rc6-static",
+    "commit": "5a788851035d06c1487c2d297a7ecdc49b37db28",
+    "git_tree": "b2cf6a3354b9ea0d4abd49a77035fd7ebd8d9bd5",
+    "tracked_file_count": 124,
+    "package_json_sha256": "5814eaece4d84804a08a153c86ec81b68699702cf659a82dcd13bd715e7e3300",
+    "package_lock_sha256": "687f4fbf03bd840e9307416be611e2833719e879f2037ada2e2b1b5019287e07",
+    "next_config_sha256": "7ac5e8b84eca5d0c8e3d605a5862a9ccf1ff07dd74861a87f0615fa6c064f68d",
+    "netlify_toml_sha256": "653ef05ba2f6145d8660b72bd4fdfa70cfa03626988eaf43fe1368484771c398"
+  },
+  "baseline_manifest": {
+    "handoff_zip_sha256": "eb90107fb629507775e28d82f0db343d409c4f3b2472c1e50cc98e0695fce8d1",
+    "manifest_sha256": "0bd02c532aa2655a4b9c0cee300fc469f79338bc81400caec3386f3af8280025",
+    "tracked_file_count": 124,
+    "candidate_overlap_count": 30,
+    "baseline_only_count": 94,
+    "candidate_path_sha256": {
+      ".gitignore": "ca9acbc058f99beb01693467442086a7a5ce82c99012a4d54793780f2e14a645",
+      "README.md": "f110d10878a9c5370e74da32ddb919c96be7d0d2bef650f333bea9a2f7230942",
+      "app/about/page.tsx": "67f15e6081d69e6e3a9ea610734501843785f12b8b593411b7bb224df483b667",
+      "app/components/HeroScene.tsx": "fb966866ece7f3e4a60039dd3b8e891414e2702e8c7518e0d6fdf92e66718acc",
+      "app/contact/page.tsx": "0a32b4b0009a30430cb94e627d363202364ef761cdc4eec090eaf50723bdbed0",
+      "app/globals.css": "52c3dd336acf49ec1923dce73101b3309af03166ad523a0010cae986c1057d9d",
+      "app/layout.tsx": "9d9a14d051c6d6df382dd61078f11c6d15b24af85fa8fef5d5fb840bd691fc31",
+      "app/lib/site.ts": "49cc4eaf61329b1bdcb11e75ae7dc068819191668d1586b2dd526502ced838db",
+      "app/not-found.tsx": "0a674050e9b0ca34b18d6c9c0d4481fdea2af436ea95b1648e99491a2d1dfa55",
+      "app/page.tsx": "5474293f589603f1d3e006272280e28a3cdbb2edff72120af4344adb59e584e2",
+      "app/privacy/page.tsx": "31265f6d7f80209d87d0577cd158e6dd9c92a4ff52069cdad1042a2a6d924341",
+      "app/steward/page.tsx": "91dbea973a6026e300f5f5cd1ea5a0787ebf8e732c10436e92845f2c67695594",
+      "app/workflow-audit/page.tsx": "80a3cf02e863009f26a08463606bc2cd5e3df344b64ca4a9c173f887550d0386",
+      "docs/contact-data-operations.md": "1f0f95af8687a04366794e88ab5c0f3170f59e4e1727d19b13ea759cfedf17dc",
+      "eslint.config.mjs": "870f1adccecf3051cbcd9fd307cef51d7633cf510979c181a81f4b1797273493",
+      "netlify.toml": "653ef05ba2f6145d8660b72bd4fdfa70cfa03626988eaf43fe1368484771c398",
+      "next-env.d.ts": "7b550dda9686c16f36a17bf9051d5dbf31e98555b30d114ac49fc49a1e712651",
+      "next.config.ts": "7ac5e8b84eca5d0c8e3d605a5862a9ccf1ff07dd74861a87f0615fa6c064f68d",
+      "package-lock.json": "687f4fbf03bd840e9307416be611e2833719e879f2037ada2e2b1b5019287e07",
+      "package.json": "5814eaece4d84804a08a153c86ec81b68699702cf659a82dcd13bd715e7e3300",
+      "postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+      "public/favicon.svg": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7",
+      "public/hero-factory-enhanced-1920.webp": "b8325d00ed48598ceeccb690ffb278a19b70cffe2e10da3a86282fe385aa71eb",
+      "public/hero-factory-enhanced-3840.webp": "a3d3bd5bbc33dbc33909d6d558ca43192e4b39dd2ae3a468c801588934268829",
+      "public/hero-factory-enhanced-mobile.webp": "856d5c60bf60e06954939f291d6149c197d244d160f1e9b477fe0fd3d3de83fd",
+      "scripts/verify-live.mjs": "9b6a088d804b4ce0e8331f9a891047b5f2e78684133f633e873e829bef61e16f",
+      "tests/build-output.test.js": "5f3a0dedfb0f41374c5539cba23d28645abdaaf9de0007e0b264fb79ac1dc7a2",
+      "tests/release-config.test.js": "071232f986264897d3eb9630ff6d0f977badcfd38f2b8be2c8ab479084db9c52",
+      "tests/static-contact.test.js": "a9ddfb2624de04dd885147b015842942c20f46fdfc8b374f6ac1625ecfee6869",
+      "tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+    },
+    "scope_note": "Inherited RC6 manifest metadata and candidate-path hashes from the July 23 handoff. Historical candidate counts refer to that handoff; current counts are under candidate. Original RC6 checkout was not available in this session."
+  },
+  "inputs": [
+    "Latest user request to prepare internal-team external-site package",
+    "Private preview version 13 with cinematic hero restoration",
+    "July 23 source handoff",
+    "July 16 build contract and inherited RC6 provenance"
+  ],
+  "target": {
+    "framework": "Next.js 16.2.6 App Router",
+    "output": "static export",
+    "publish_directory": "out",
+    "host": "Netlify",
+    "contact": "mailto:hello@netherlabs.ai",
+    "runtime_functions": 0
+  },
+  "candidate": {
+    "package_json_sha256": "6d06e2c0fea46ab05fc80ed19942e19a03c2af492f5ea2b4983c60858f36df39",
+    "package_lock_sha256": "687f4fbf03bd840e9307416be611e2833719e879f2037ada2e2b1b5019287e07",
+    "next_config_sha256": "7ac5e8b84eca5d0c8e3d605a5862a9ccf1ff07dd74861a87f0615fa6c064f68d",
+    "netlify_toml_sha256": "653ef05ba2f6145d8660b72bd4fdfa70cfa03626988eaf43fe1368484771c398",
+    "provenance_counts": {
+      "modified-from-baseline": 20,
+      "added": 21,
+      "preserved-foundation": 9
+    },
+    "included_file_count": 50,
+    "rc6_known_path_overlap": 29
+  },
+  "deviations": [
+    "No new change to package.json, package-lock.json, next.config.ts or netlify.toml. Package already contains the accepted BLD-004 npm test clarification relative to original RC6.",
+    "Latest private homepage ported into the existing server-wrapper/client-component architecture. Original local font assets and production metadata foundation retained.",
+    "Preview email-preparation form and ops mailbox replaced with required hello mailbox-only dialog; no visitor data entry, collection, storage, clipboard or submission.",
+    "Original RC6 full checkout and current production checkout were not inspected. Historical RC6 manifest metadata is inherited; July 23 archive identity and complete source manifest were verified directly.",
+    "Old HeroScene component removed. Internal CSS and shell updated with the current palette and typography; routes and legal copy preserved.",
+    "Fresh production dependency audit fails on the inherited locked graph. No dependency upgrade or forced remediation performed. Engineering must reconcile newer fixes or remediate before release.",
+    "Fresh external-build browser QA and Netlify draft method/header verification were not run. Older preview checks are contextual evidence only.",
+    "No external repository commit, branch, PR, deployment, provider modification or message was made for this handoff. Private preview version 13 was published earlier with user authorization."
+  ],
+  "immediate_source": {
+    "archive": "nether-labs-v2-source-20260723.zip",
+    "zip_sha256": "2f8790f6c3b258d840790f40561890009fc4234f664a2f26f15b709084c5a650",
+    "all_41_manifest_entries_verified": true,
+    "file_sha256": {
+      "package-lock.json": "687f4fbf03bd840e9307416be611e2833719e879f2037ada2e2b1b5019287e07",
+      "SOURCE_SHA256SUMS.txt": "b7619bcb0f342aa39eb0cb676611c2dde83c5f205fd690675bb5b08794ad061c",
+      "next.config.ts": "7ac5e8b84eca5d0c8e3d605a5862a9ccf1ff07dd74861a87f0615fa6c064f68d",
+      ".gitignore": "c00b3a82c099b44ea6d03686da82991e0a7e4f4971b4c1cc44a4dccfd4eabf5a",
+      "postcss.config.mjs": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde",
+      "GPT_DELIVERY.md": "bef3f4a988d8a0a310e7824d9d453c6794d4c4a1aa9c533b61c153dbddb6d07e",
+      "V2_ACCEPTANCE.json": "71390a29191734913ca55dd9a9c44d9cc46434249a2ec47f625d3774a60e3e92",
+      "next-env.d.ts": "7b550dda9686c16f36a17bf9051d5dbf31e98555b30d114ac49fc49a1e712651",
+      "BASELINE_PROVENANCE.json": "43973caa50b083a28462afeb65e25df00b8f2e30990cd37347cfbd378d2d99fe",
+      "package.json": "6d06e2c0fea46ab05fc80ed19942e19a03c2af492f5ea2b4983c60858f36df39",
+      "netlify.toml": "653ef05ba2f6145d8660b72bd4fdfa70cfa03626988eaf43fe1368484771c398",
+      "eslint.config.mjs": "03ecc8b3b2e65fb70d84e03c4b2874ac39bc1bb26e3d49d9b9b4a869f69a77c0",
+      "tsconfig.json": "fc667bb79ffd49fd38ccd3e3ea9ba1f4a617fb6157a545bcf89600efdb2ac8eb",
+      "CHANGED_FILES.md": "b42aea24b2c1658754802cef1fefcf5a988bbd6714565370e42692677a366c71",
+      "README.md": "4094855531e1718963623821573ec26426823c0a42865803d94ccb8fcd263047",
+      "scripts/verify-live.mjs": "82040fb1d5e15b66d7fb63e8919fcf11f0b5767b877b3fbe257387137c0096df",
+      "public/favicon.svg": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7",
+      "public/hero-factory-enhanced-1920.webp": "b8325d00ed48598ceeccb690ffb278a19b70cffe2e10da3a86282fe385aa71eb",
+      "public/hero-factory-enhanced-3840.webp": "a3d3bd5bbc33dbc33909d6d558ca43192e4b39dd2ae3a468c801588934268829",
+      "public/hero-factory-enhanced-mobile.webp": "856d5c60bf60e06954939f291d6149c197d244d160f1e9b477fe0fd3d3de83fd",
+      "docs/contact-data-operations.md": "5935764901d76cff42fd487f43b823562f55c7e8f577a66c417c56bbba74ab7f",
+      "app/globals.css": "9575ea98936d8fb0cbf14447d9949445b970dd3c819922f338ed5574a44e7320",
+      "app/sitemap.ts": "6a3e443a877b78f595abcc1c4963473ac74eaba7ca9c1bf8b5f9d1ef88b9a0a3",
+      "app/robots.ts": "0a857e7278bb2af27d5a5cb923ade226759a426b9039321a59408d05a042b2ad",
+      "app/page.tsx": "3d34256efbb1c2ff66778798912eec77820d43d1785a143169a372b30027abf1",
+      "app/not-found.tsx": "f59d942c5c894dc9fc533247895e76b5aaa531b3965d0f84972c277b3796cdec",
+      "app/layout.tsx": "b7b21c1e76dfa140f1376b673335d872fe512542570c315e4f1af153819b6440",
+      "tests/build-output.test.js": "43fb68389879f1348d0b6141322ec557a581ab90727b0becca6e8d72b6ba8de3",
+      "tests/release-config.test.js": "d8665c3ff3a0aef3f3a3fbeb882f0d3a51cb6d4f878de702836c9f98f927fd69",
+      "tests/static-contact.test.js": "c7444991afa4b1ac455e16bc7a9ae6ccc6467eaea7f352e52ba2dd578ad68eef",
+      "public/fonts/geist-mono.woff2": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b",
+      "public/fonts/geist-sans.woff2": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+      "app/privacy/page.tsx": "6ba3db453409ecb774d06cae24468d02a53da169660b53a3d766fb478dfb91d9",
+      "app/lib/site.ts": "02339383024b21c63b81579a487291f1c0c3ccbb242ee79a980932a488f6d741",
+      "app/components/HeroScene.tsx": "c766696c97aee5d9e616da6e8929c735e4ec3a2dcd8784e7b02680313da02e1b",
+      "app/components/InteriorPage.tsx": "5d297327b7248480606b1c82eb447e261acf60b345f5503143a58f5b586ea1cc",
+      "app/components/HomeExperience.tsx": "fca00be1584a13fcfe820aeb23e3f9c91f8976cb48a15b1462fa473de43cd5a2",
+      "app/components/StaticShell.tsx": "07e5d7ef669bbf7eb419563e3e77877a90426d4ab4a3ea7615e727d918cae23f",
+      "app/workflow-audit/page.tsx": "78bee41c7627a875a02b69033a6f0a733a25624a4e1131f58187fa7306704063",
+      "app/steward/page.tsx": "567a018a7b75de970fb7d1889a142aacc9cc98ddabd882e00fad06d8cd5acab8",
+      "app/about/page.tsx": "f7c2c1917796e291ed72eb499b8eb4148a29bafe5b190e4bd973c80d4681b619",
+      "app/contact/page.tsx": "6c1883bdfd772e6cc9c22959bec1030380bfb91c4ed76ae415108a0a4fbc311f"
+    },
+    "status_note": "Source handoff, not production release approval; historical audit failed. Current external checkout was not inspected.",
+    "candidate_comparison": [
+      {
+        "path": ".gitignore",
+        "status": "preserved"
+      },
+      {
+        "path": "BASELINE_PROVENANCE.json",
+        "status": "modified"
+      },
+      {
+        "path": "CHANGED_FILES.md",
+        "status": "modified"
+      },
+      {
+        "path": "GPT_DELIVERY.md",
+        "status": "modified"
+      },
+      {
+        "path": "README.md",
+        "status": "modified"
+      },
+      {
+        "path": "SOURCE_SHA256SUMS.txt",
+        "status": "modified"
+      },
+      {
+        "path": "V2_ACCEPTANCE.json",
+        "status": "modified"
+      },
+      {
+        "path": "app/about/page.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "app/components/CinematicHero.tsx",
+        "status": "added"
+      },
+      {
+        "path": "app/components/HomeExperience.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "app/components/InteriorPage.tsx",
+        "status": "preserved"
+      },
+      {
+        "path": "app/components/StaticShell.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "app/components/cinematic-hero.css",
+        "status": "added"
+      },
+      {
+        "path": "app/components/interior.css",
+        "status": "added"
+      },
+      {
+        "path": "app/contact/page.tsx",
+        "status": "preserved"
+      },
+      {
+        "path": "app/content.ts",
+        "status": "added"
+      },
+      {
+        "path": "app/globals.css",
+        "status": "modified"
+      },
+      {
+        "path": "app/layout.tsx",
+        "status": "preserved"
+      },
+      {
+        "path": "app/lib/site.ts",
+        "status": "modified"
+      },
+      {
+        "path": "app/not-found.tsx",
+        "status": "preserved"
+      },
+      {
+        "path": "app/page.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "app/privacy/page.tsx",
+        "status": "preserved"
+      },
+      {
+        "path": "app/robots.ts",
+        "status": "preserved"
+      },
+      {
+        "path": "app/sitemap.ts",
+        "status": "preserved"
+      },
+      {
+        "path": "app/steward/page.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "app/workflow-audit/page.tsx",
+        "status": "modified"
+      },
+      {
+        "path": "docs/COMMAND_RESULTS.json",
+        "status": "added"
+      },
+      {
+        "path": "docs/DEPENDENCY_AUDIT.json",
+        "status": "added"
+      },
+      {
+        "path": "docs/DESIGN_NOTES.md",
+        "status": "added"
+      },
+      {
+        "path": "docs/INTEGRATION.md",
+        "status": "added"
+      },
+      {
+        "path": "docs/QA_CHECKLIST.md",
+        "status": "added"
+      },
+      {
+        "path": "docs/contact-data-operations.md",
+        "status": "preserved"
+      },
+      {
+        "path": "eslint.config.mjs",
+        "status": "preserved"
+      },
+      {
+        "path": "netlify.toml",
+        "status": "preserved"
+      },
+      {
+        "path": "next-env.d.ts",
+        "status": "preserved"
+      },
+      {
+        "path": "next.config.ts",
+        "status": "preserved"
+      },
+      {
+        "path": "package-lock.json",
+        "status": "preserved"
+      },
+      {
+        "path": "package.json",
+        "status": "preserved"
+      },
+      {
+        "path": "postcss.config.mjs",
+        "status": "preserved"
+      },
+      {
+        "path": "public/favicon.svg",
+        "status": "preserved"
+      },
+      {
+        "path": "public/fonts/geist-mono.woff2",
+        "status": "preserved"
+      },
+      {
+        "path": "public/fonts/geist-sans.woff2",
+        "status": "preserved"
+      },
+      {
+        "path": "public/hero-factory-enhanced-1920.webp",
+        "status": "preserved"
+      },
+      {
+        "path": "public/hero-factory-enhanced-3840.webp",
+        "status": "preserved"
+      },
+      {
+        "path": "public/hero-factory-enhanced-mobile.webp",
+        "status": "preserved"
+      },
+      {
+        "path": "scripts/verify-live.mjs",
+        "status": "preserved"
+      },
+      {
+        "path": "tests/build-output.test.js",
+        "status": "modified"
+      },
+      {
+        "path": "tests/release-config.test.js",
+        "status": "modified"
+      },
+      {
+        "path": "tests/static-contact.test.js",
+        "status": "modified"
+      },
+      {
+        "path": "tsconfig.json",
+        "status": "preserved"
+      }
+    ],
+    "removed_paths": [
+      "app/components/HeroScene.tsx"
+    ]
+  },
+  "visual_source": {
+    "preview_version": 13,
+    "source_commit": "f81648c6a6f2b2b33a605347fb0b63de7a609a06",
+    "mapping": {
+      "app/page.tsx": "app/components/HomeExperience.tsx",
+      "app/content.ts": "app/content.ts",
+      "app/components/CinematicHero.tsx": "app/components/CinematicHero.tsx",
+      "app/components/cinematic-hero.css": "app/components/cinematic-hero.css",
+      "app/globals.css": "app/globals.css"
+    },
+    "adaptations": "Mailbox-only contact, route access, local fonts, server metadata wrapper, unused style cleanup, dialog accessibility state and internal-page consistency."
+  }
+}

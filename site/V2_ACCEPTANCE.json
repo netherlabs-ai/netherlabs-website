@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "nether-labs-v2-gpt-build-contract-20260716",
+  "overall": "fail",
+  "checks": [
+    {
+      "id": "PKG-001",
+      "status": "pass",
+      "evidence": "Final clean archive extraction verified one required root, one package, required paths, no prohibited files or links, no path collisions and complete SHA-256 manifest coverage."
+    },
+    {
+      "id": "PKG-002",
+      "status": "pass",
+      "evidence": "Final clean archive extraction verified one required root, one package, required paths, no prohibited files or links, no path collisions and complete SHA-256 manifest coverage."
+    },
+    {
+      "id": "PKG-003",
+      "status": "pass",
+      "evidence": "Final clean archive extraction verified one required root, one package, required paths, no prohibited files or links, no path collisions and complete SHA-256 manifest coverage."
+    },
+    {
+      "id": "PKG-004",
+      "status": "pass",
+      "evidence": "Final clean archive extraction verified one required root, one package, required paths, no prohibited files or links, no path collisions and complete SHA-256 manifest coverage."
+    },
+    {
+      "id": "PKG-005",
+      "status": "pass",
+      "evidence": "Final clean archive extraction verified one required root, one package, required paths, no prohibited files or links, no path collisions and complete SHA-256 manifest coverage."
+    },
+    {
+      "id": "CFG-001",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "CFG-002",
+      "status": "pass",
+      "evidence": "npm ci exited 0 at 2026-09-07T14:15:21.794566+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "CFG-003",
+      "status": "pass",
+      "evidence": "node --version exited 0 at 2026-09-07T14:21:13.590020+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "CFG-004",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "CFG-005",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "NET-001",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "NET-002",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "NET-003",
+      "status": "not_run",
+      "evidence": "No external Netlify draft was deployed for this source-only handoff. Actual HTTP 404 and retired-path method/body/header/preflight behavior require the preserved live verifier on the team draft."
+    },
+    {
+      "id": "SEC-001",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "SEC-002",
+      "status": "pass",
+      "evidence": "Preserved foundation hashes and release-config tests assert exact dependency versions, static-export configuration, Netlify build, zero functions and unchanged security headers."
+    },
+    {
+      "id": "SEC-003",
+      "status": "pass",
+      "evidence": "Application/source scans and explicit archive allowlist: no secrets, provider identity, raw HTML injection, remote runtime or production credentials required. Only source and non-sensitive handoff evidence are included."
+    },
+    {
+      "id": "SEC-005",
+      "status": "pass",
+      "evidence": "Application/source scans and explicit archive allowlist: no secrets, provider identity, raw HTML injection, remote runtime or production credentials required. Only source and non-sensitive handoff evidence are included."
+    },
+    {
+      "id": "SEC-004",
+      "status": "fail",
+      "evidence": "Fresh npm audit --omit=dev --audit-level=high reports 4 high, 0 critical, 0 moderate package records; exit 1. Locked dependency graph preserved. See docs/DEPENDENCY_AUDIT.json; engineering remediation required."
+    },
+    {
+      "id": "CON-001",
+      "status": "pass",
+      "evidence": "Static-contact tests and generated-output checks verify the visible hello mailbox and disclosure and prohibit forms, submissions, storage and runtime endpoints."
+    },
+    {
+      "id": "CON-002",
+      "status": "pass",
+      "evidence": "Static-contact tests and generated-output checks verify the visible hello mailbox and disclosure and prohibit forms, submissions, storage and runtime endpoints."
+    },
+    {
+      "id": "CON-003",
+      "status": "pass",
+      "evidence": "Static-contact tests and generated-output checks verify the visible hello mailbox and disclosure and prohibit forms, submissions, storage and runtime endpoints."
+    },
+    {
+      "id": "RTE-001",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "RTE-002",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "RTE-003",
+      "status": "not_run",
+      "evidence": "No external Netlify draft was deployed for this source-only handoff. Actual HTTP 404 and retired-path method/body/header/preflight behavior require the preserved live verifier on the team draft."
+    },
+    {
+      "id": "SEO-001",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "SEO-002",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "SEO-003",
+      "status": "pass",
+      "evidence": "Fresh Next static export and generated-output tests pass all six directory-index pages, branded noindex 404 artifact, unique metadata, canonical URLs, local sharing assets, robots/sitemap and no preview references. Actual provider status is separately unverified."
+    },
+    {
+      "id": "AST-001",
+      "status": "pass",
+      "evidence": "Local assets and image dimensions pass output tests. Raster total 560720 bytes; largest 276206 bytes."
+    },
+    {
+      "id": "PERF-001",
+      "status": "pass",
+      "evidence": "Fresh generated chunks total 208458 JavaScript gzip bytes and 10640 CSS gzip bytes, below 250000/40000 limits."
+    },
+    {
+      "id": "PERF-002",
+      "status": "not_run",
+      "evidence": "Fresh browser rendering/interaction/accessibility matrix was not run on this exported build. Prior private-preview checks do not certify this package. Browser preview access was blocked by URL policy; no workaround attempted. Team checklist covers all routes, motion and viewport matrix."
+    },
+    {
+      "id": "A11Y-001",
+      "status": "not_run",
+      "evidence": "Fresh browser rendering/interaction/accessibility matrix was not run on this exported build. Prior private-preview checks do not certify this package. Browser preview access was blocked by URL policy; no workaround attempted. Team checklist covers all routes, motion and viewport matrix."
+    },
+    {
+      "id": "A11Y-002",
+      "status": "not_run",
+      "evidence": "Fresh browser rendering/interaction/accessibility matrix was not run on this exported build. Prior private-preview checks do not certify this package. Browser preview access was blocked by URL policy; no workaround attempted. Team checklist covers all routes, motion and viewport matrix."
+    },
+    {
+      "id": "A11Y-003",
+      "status": "not_run",
+      "evidence": "Fresh browser rendering/interaction/accessibility matrix was not run on this exported build. Prior private-preview checks do not certify this package. Browser preview access was blocked by URL policy; no workaround attempted. Team checklist covers all routes, motion and viewport matrix."
+    },
+    {
+      "id": "CNT-001",
+      "status": "not_run",
+      "evidence": "Source follows latest private version 13 with illustrative examples, human review and explicit Steward development status. Final visual/copy acceptance of the external contact and internal-route adaptations requires Yves review on the merged draft."
+    },
+    {
+      "id": "TXT-001",
+      "status": "pass",
+      "evidence": "Static-contact test and final archive text scan found no prohibited dash character."
+    },
+    {
+      "id": "BLD-001",
+      "status": "pass",
+      "evidence": "npm ci exited 0 at 2026-09-07T14:15:21.794566+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "BLD-002",
+      "status": "pass",
+      "evidence": "npm run typecheck exited 0 at 2026-09-07T14:19:11.308806+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "BLD-003",
+      "status": "pass",
+      "evidence": "npm run lint exited 0 at 2026-09-07T14:21:29.241773+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "BLD-004",
+      "status": "pass",
+      "evidence": "npm test exited 0 at 2026-09-07T14:21:26.974873+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "BLD-005",
+      "status": "pass",
+      "evidence": "npm run check exited 0 at 2026-09-07T14:24:51.553825+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "BLD-006",
+      "status": "fail",
+      "evidence": "Fresh npm audit --omit=dev --audit-level=high reports 4 high, 0 critical, 0 moderate package records; exit 1. Locked dependency graph preserved. See docs/DEPENDENCY_AUDIT.json; engineering remediation required."
+    },
+    {
+      "id": "BLD-007",
+      "status": "pass",
+      "evidence": "npm run build exited 0 at 2026-09-07T14:24:01.389370+00:00. Exact Node/npm versions and command evidence in docs/COMMAND_RESULTS.json."
+    },
+    {
+      "id": "EVD-001",
+      "status": "pass",
+      "evidence": "Fresh command evidence, current limitations, complete inventory, original RC6 provenance and independently verified immediate July 23 archive identity are included."
+    },
+    {
+      "id": "EVD-002",
+      "status": "pass",
+      "evidence": "Fresh command evidence, current limitations, complete inventory, original RC6 provenance and independently verified immediate July 23 archive identity are included."
+    },
+    {
+      "id": "EVD-003",
+      "status": "pass",
+      "evidence": "Fresh command evidence, current limitations, complete inventory, original RC6 provenance and independently verified immediate July 23 archive identity are included."
+    }
+  ]
+}

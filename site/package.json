@@ -1,0 +1,44 @@
+{
+  "name": "nether-labs",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && npm run test:build-output",
+    "start": "next start",
+    "lint": "eslint app netlify/functions scripts tests next.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:functions && npm run test:static && npm run test:release",
+    "test:functions": "node --test tests/intake-form.test.js",
+    "test:static": "node --test tests/static-contact.test.js",
+    "test:release": "node --test tests/release-config.test.js",
+    "test:build-output": "node --test tests/build-output.test.js",
+    "verify:live": "node scripts/verify-live.mjs",
+    "check": "npm run typecheck && npm run lint && npm test"
+  },
+  "dependencies": {
+    "next": "16.2.11",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.11",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "postcss": "8.5.28",
+    "sharp": "0.35.3",
+    "nanoid": "3.3.18"
+  },
+  "type": "module",
+  "displayName": "Nether Labs"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "command": "npm ci",
+    "started_utc": "2026-09-07T14:14:51.605091+00:00",
+    "finished_utc": "2026-09-07T14:15:21.794566+00:00",
+    "duration_seconds": 30.19,
+    "exit_code": 0,
+    "log": "npm-ci.log"
+  },
+  {
+    "command": "npm audit --omit=dev --audit-level=high --json",
+    "started_utc": "2026-09-07T14:15:45.453088+00:00",
+    "finished_utc": "2026-09-07T14:16:00.339607+00:00",
+    "duration_seconds": 14.89,
+    "exit_code": 1,
+    "log": "npm-audit---omit-dev---audit-level-high---json.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "started_utc": "2026-09-07T14:19:07.080326+00:00",
+    "finished_utc": "2026-09-07T14:19:11.308806+00:00",
+    "duration_seconds": 4.23,
+    "exit_code": 0,
+    "log": "npm-run-typecheck.log"
+  },
+  {
+    "command": "node --version",
+    "started_utc": "2026-09-07T14:21:13.581056+00:00",
+    "finished_utc": "2026-09-07T14:21:13.590020+00:00",
+    "duration_seconds": 0.01,
+    "exit_code": 0,
+    "log": "node---version.log"
+  },
+  {
+    "command": "npm --version",
+    "started_utc": "2026-09-07T14:21:13.638971+00:00",
+    "finished_utc": "2026-09-07T14:21:13.824218+00:00",
+    "duration_seconds": 0.19,
+    "exit_code": 0,
+    "log": "npm---version.log"
+  },
+  {
+    "command": "npm audit --omit=dev --audit-level=high",
+    "started_utc": "2026-09-07T14:21:25.976005+00:00",
+    "finished_utc": "2026-09-07T14:21:39.009921+00:00",
+    "duration_seconds": 13.03,
+    "exit_code": 1,
+    "log": "npm-audit---omit-dev---audit-level-high.log"
+  },
+  {
+    "command": "npm run lint",
+    "started_utc": "2026-09-07T14:21:25.987680+00:00",
+    "finished_utc": "2026-09-07T14:21:29.241773+00:00",
+    "duration_seconds": 3.25,
+    "exit_code": 0,
+    "log": "npm-run-lint.log"
+  },
+  {
+    "command": "npm test",
+    "started_utc": "2026-09-07T14:21:25.991274+00:00",
+    "finished_utc": "2026-09-07T14:21:26.974873+00:00",
+    "duration_seconds": 0.98,
+    "exit_code": 0,
+    "log": "npm-test.log"
+  },
+  {
+    "command": "npm run build",
+    "started_utc": "2026-09-07T14:23:51.305053+00:00",
+    "finished_utc": "2026-09-07T14:24:01.389370+00:00",
+    "duration_seconds": 10.08,
+    "exit_code": 0,
+    "log": "npm-run-build.log"
+  },
+  {
+    "command": "npm run check",
+    "started_utc": "2026-09-07T14:24:39.946199+00:00",
+    "finished_utc": "2026-09-07T14:24:51.553825+00:00",
+    "duration_seconds": 11.61,
+    "exit_code": 0,
+    "log": "npm-run-check.log"
+  }
+]
