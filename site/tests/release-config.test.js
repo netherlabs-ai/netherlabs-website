@@ -93,11 +93,11 @@ test("required source and evidence files exist", () => {
     "tests/static-contact.test.js",
     "tests/release-config.test.js",
     "tests/build-output.test.js",
-    "GPT_DELIVERY.md",
-    "CHANGED_FILES.md",
-    "BASELINE_PROVENANCE.json",
-    "V2_ACCEPTANCE.json",
-    "SOURCE_SHA256SUMS.txt",
+    "docs/upstream/GPT_DELIVERY.md",
+    "docs/upstream/CHANGED_FILES.md",
+    "docs/upstream/BASELINE_PROVENANCE.json",
+    "docs/upstream/V2_ACCEPTANCE.json",
+    "docs/upstream/SOURCE_SHA256SUMS.txt",
   ];
   required.forEach((path) => assert.equal(existsSync(join(root, path)), true, path));
 });
