@@ -89,3 +89,10 @@ test("sink endpoint validation rejects non-HTTPS and foreign hosts", () => {
   assert.equal(resolveFormsEndpoint({ URL: "https://attacker.example/" }), null);
   assert.equal(resolveFormsEndpoint({ URL: "https://netherlabs.ai/path?query=1" }), "https://netherlabs.ai/");
 });
+
+test("all intake responses retain the production HSTS policy", async () => {
+  for (const httpMethod of ["GET", "OPTIONS", "POST"]) {
+    const result = await handler({ httpMethod, headers: {}, body: "{}" });
+    assert.equal(result.headers["Strict-Transport-Security"], "max-age=63072000; includeSubDomains; preload");
+  }
+});

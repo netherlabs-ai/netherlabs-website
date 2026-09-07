@@ -165,7 +165,7 @@ function header(headers = {}, name) {
 }
 
 function response(statusCode, body, extraHeaders = {}) {
-  return { statusCode, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff", ...extraHeaders }, body };
+  return { statusCode, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff", "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload", ...extraHeaders }, body };
 }
 
 function json(statusCode, payload, extraHeaders = {}) {
