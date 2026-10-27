@@ -7,6 +7,19 @@
   NODE_VERSION = "22.13.0"
   NEXT_TELEMETRY_DISABLED = "1"
 
+# NetherForge was named Steward until 2026-10-27; keep old links working.
+[[redirects]]
+  from = "/steward"
+  to = "/netherforge/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/steward/*"
+  to = "/netherforge/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404.html"

@@ -27,6 +27,20 @@ test("Next static export configuration is exact", () => {
   }
 });
 
+test("retired Steward route redirects to NetherForge before the 404 fallback", () => {
+  for (const file of ["netlify.toml", "../netlify.toml"]) {
+    const source = read(file);
+    const steward = source.indexOf('from = "/steward"');
+    const splat = source.indexOf('from = "/steward/*"');
+    const fallback = source.indexOf('from = "/*"');
+    assert.ok(steward > -1 && splat > -1, file);
+    assert.ok(steward < fallback && splat < fallback, `${file}: redirect precedes fallback`);
+    assert.match(source, /from = "\/steward"\n  to = "\/netherforge\/"\n  status = 301\n  force = true/, file);
+    assert.match(source, /from = "\/steward\/\*"\n  to = "\/netherforge\/:splat"\n  status = 301\n  force = true/, file);
+  }
+  assert.equal(existsSync(join(root, "app/steward")), false);
+});
+
 test("Netlify build, fallback and security headers are preserved", () => {
   const source = read("netlify.toml");
   for (const required of [
@@ -85,7 +99,7 @@ test("required source and evidence files exist", () => {
     "app/sitemap.ts",
     "app/about/page.tsx",
     "app/workflow-audit/page.tsx",
-    "app/steward/page.tsx",
+    "app/netherforge/page.tsx",
     "app/contact/page.tsx",
     "app/privacy/page.tsx",
     "docs/contact-data-operations.md",

@@ -16,3 +16,7 @@ These are local verification results. Provider deployment and live checks are re
 ## Deployment
 
 Netlify site ID: 3e2e2127-ee12-4af4-bf25-a1e3dc4653e9. Use a draft deployment, validate it, then promote the same deployment to netherlabs.ai. Preserve functions and Netlify Forms processing. Prior production deployment for rollback: 6a5a06baa9e0ec7ff990b39e. Never publish historical repository directories such as reposition or portal. Root Netlify configuration selects only site/out.
+
+## October 27, 2026: NetherForge name
+
+The product formerly called Steward is NetherForge (Yves, Telegram 4425, 2026-10-27). Pure name change: visible copy, page title and metadata now say NetherForge, with no new product claims. The interior page moved from `/steward/` to `/netherforge/`. `netlify.toml` (root and `site/`) sends `/steward`, `/steward/` and `/steward/*` to the new path with a 301 before the 404 fallback. `scripts/verify-live.mjs` checks the redirect. Internal CSS class names (`.steward*`) are unchanged.

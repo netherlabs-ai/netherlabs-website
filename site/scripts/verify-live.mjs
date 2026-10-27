@@ -65,13 +65,20 @@ async function request(path, init = {}) {
   return { response, body: await response.text(), url };
 }
 
-const routes = ["/", "/about/", "/workflow-audit/", "/steward/", "/contact/", "/privacy/"];
+const routes = ["/", "/about/", "/workflow-audit/", "/netherforge/", "/contact/", "/privacy/"];
 for (const route of routes) {
   const { response, body } = await request(route);
   assert.equal(response.status, 200, route);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, route);
   assert.match(body, /NETHER LABS/i, route);
   verifyHeaders(response, route);
+}
+
+// NetherForge was named Steward until 2026-10-27; the old route must keep working.
+for (const route of ["/steward", "/steward/"]) {
+  const { response } = await request(route);
+  assert.equal(response.status, 301, `${route}: redirect status`);
+  assert.equal(new URL(response.headers.get("location") ?? "", base).pathname, "/netherforge/", `${route}: redirect target`);
 }
 
 for (const route of ["/", "/contact/"]) {

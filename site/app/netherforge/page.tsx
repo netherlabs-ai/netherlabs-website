@@ -3,24 +3,24 @@ import InteriorPage from "../components/InteriorPage";
 import { buildMetadata, capabilities, stackLayers } from "../lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Steward",
-  description: "Steward is the Nether Labs pathway for connecting workflows, knowledge, agents, governance, metrics and human authority.",
-  path: "/steward/",
+  title: "NetherForge",
+  description: "NetherForge is the Nether Labs pathway for connecting workflows, knowledge, agents, governance, metrics and human authority.",
+  path: "/netherforge/",
 });
 
-export default function StewardPage() {
+export default function NetherForgePage() {
   return (
     <InteriorPage
-      eyebrow="STEWARD / IN DEVELOPMENT"
+      eyebrow="NETHERFORGE / IN DEVELOPMENT"
       title="Optimize one workflow. Then connect the whole operating stack."
-      introduction="Steward is the product we are building for established organizations ready to move beyond isolated workflow improvements."
+      introduction="NetherForge is the product we are building for established organizations ready to move beyond isolated workflow improvements."
     >
       <div className="interior-lead">
-        <p>It is designed to connect workflows, knowledge, agents, governance, metrics and human authority in one managed operating environment. Steward is in development. These are design intentions, not a claim that every capability is available today. A workflow diagnostic is available independently, and production implementation is scoped separately.</p>
+        <p>It is designed to connect workflows, knowledge, agents, governance, metrics and human authority in one managed operating environment. NetherForge is in development. These are design intentions, not a claim that every capability is available today. A workflow diagnostic is available independently, and production implementation is scoped separately.</p>
       </div>
-      <section className="interior-section" aria-labelledby="steward-capabilities-title">
+      <section className="interior-section" aria-labelledby="netherforge-capabilities-title">
         <p className="micro-label">DESIGN INTENTIONS</p>
-        <h2 id="steward-capabilities-title">The principles behind coordinated work.</h2>
+        <h2 id="netherforge-capabilities-title">The principles behind coordinated work.</h2>
         <div className="interior-card-grid four-up">
           {capabilities.map((capability) => (
             <article key={capability.number}>

@@ -38,7 +38,7 @@ const companyPath = [
   },
   {
     number: "03",
-    title: "Steward",
+    title: "NetherForge",
     copy: "Use proven patterns to shape the operating environment that connects intelligence across the whole business.",
   },
 ] as const;
@@ -97,7 +97,7 @@ export default function AboutPage() {
       <section className="interior-section stack-section" aria-labelledby="about-path-title">
         <p className="micro-label">FROM PRACTICE TO PRODUCT</p>
         <h2 id="about-path-title">Improve what exists. Build what comes next.</h2>
-        <p>Workflow diagnostics are the front door. Controlled implementation creates evidence. Those lessons inform Steward, our operating environment in development. It is designed to connect intelligence, memory, governance and execution across the business. Implementation is scoped separately from the diagnostic.</p>
+        <p>Workflow diagnostics are the front door. Controlled implementation creates evidence. Those lessons inform NetherForge, our operating environment in development. It is designed to connect intelligence, memory, governance and execution across the business. Implementation is scoped separately from the diagnostic.</p>
         <div className="stack-list">
           {companyPath.map((stage) => (
             <article key={stage.number}>

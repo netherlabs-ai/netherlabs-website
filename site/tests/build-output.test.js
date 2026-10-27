@@ -12,7 +12,7 @@ const routes = [
   ["out/index.html", "AI Workflow Strategy and Implementation", "Nether Labs helps established businesses find where AI can improve real workflows. Start with a focused diagnostic, clear human review and a practical implementation path.", "https://netherlabs.ai/"],
   ["out/about/index.html", "About | Nether Labs", "How Nether Labs helps established organizations direct AI at real operating constraints and compound governed improvements.", "https://netherlabs.ai/about/"],
   ["out/workflow-audit/index.html", "AI Workflow Diagnostic | Nether Labs", "Map one real workflow, expose operating drag, define controls and create a governed path to a first pilot.", "https://netherlabs.ai/workflow-audit/"],
-  ["out/steward/index.html", "Steward | Nether Labs", "Steward is the Nether Labs pathway for connecting workflows, knowledge, agents, governance, metrics and human authority.", "https://netherlabs.ai/steward/"],
+  ["out/netherforge/index.html", "NetherForge | Nether Labs", "NetherForge is the Nether Labs pathway for connecting workflows, knowledge, agents, governance, metrics and human authority.", "https://netherlabs.ai/netherforge/"],
   ["out/contact/index.html", "Contact | Nether Labs", "Contact Nether Labs about a workflow diagnostic for an established business.", "https://netherlabs.ai/contact/"],
   ["out/privacy/index.html", "Privacy | Nether Labs", "How Nether Labs handles public website request data and workflow diagnostic submissions.", "https://netherlabs.ai/privacy/"],
 ];

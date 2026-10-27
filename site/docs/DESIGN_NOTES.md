@@ -6,7 +6,7 @@ Desktop camera motion and exit shading follow document position. Wide/tall viewp
 
 Do not add overflow clipping, transforms or paint containment to an ancestor of the sticky hero. Keep `cinema` styles scoped, and do not flatten the opening to a static image during integration.
 
-The buyer journey moves from business friction to concrete workflows, diagnostic deliverables, the method, Steward and the people behind the work. Diagnostic availability, separately scoped implementation and Steward's development status remain distinct. Examples are illustrative, not published client results.
+The buyer journey moves from business friction to concrete workflows, diagnostic deliverables, the method, NetherForge and the people behind the work. Diagnostic availability, separately scoped implementation and NetherForge's development status remain distinct. Examples are illustrative, not published client results.
 
 The palette is ink `#080d0f`, paper `#f3f4f0` and mint `#a3f2d5`, with local Geist and Georgia emphasis. Internal routes share these materials and retain their substantive content.
 

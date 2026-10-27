@@ -8,14 +8,14 @@ export const publicRoutes = [
   "/",
   "/about/",
   "/workflow-audit/",
-  "/steward/",
+  "/netherforge/",
   "/contact/",
   "/privacy/",
 ] as const;
 
 export const navigation = [
   { label: "Workflow diagnostic", href: "/workflow-audit/" },
-  { label: "Steward", href: "/steward/" },
+  { label: "NetherForge", href: "/netherforge/" },
   { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" },
 ] as const;

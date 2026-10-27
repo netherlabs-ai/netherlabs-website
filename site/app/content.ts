@@ -5,7 +5,7 @@ export const capabilities = [
     mobileTitle: "Roles",
     condition: "Reliable agent workflows need explicit roles, shared context and clear decision boundaries.",
     build:
-      "Steward is designed to give each agent a defined purpose, context, authority and relationship to the rest of the organization.",
+      "NetherForge is designed to give each agent a defined purpose, context, authority and relationship to the rest of the organization.",
     outcome: "Agents behave like accountable role-holders instead of interchangeable chat windows.",
     signal: "Identity → accountable role",
   },
@@ -25,7 +25,7 @@ export const capabilities = [
     mobileTitle: "Dispatch",
     condition: "Multiple agents create noise when no system owns prioritization and coordination.",
     build:
-      "Steward is being designed to route work to the right roles, coordinate dependencies and return outputs for human review.",
+      "NetherForge is being designed to route work to the right roles, coordinate dependencies and return outputs for human review.",
     outcome: "Specialists act as one organization rather than a collection of disconnected automations.",
     signal: "Mission → coordinated action",
   },
@@ -158,7 +158,7 @@ export const faqs = [
     a: "Humans retain professional judgment, consequential approvals, exception handling, relationships and final accountability. Autonomy is designed around explicit boundaries rather than assumed everywhere.",
   },
   {
-    q: "How do the diagnostic and Steward fit together?",
-    a: "A diagnostic examines an agreed workflow and identifies the first controlled improvement. Steward is the broader product pathway for operating workflows, knowledge, governance, metrics and future expansion in one managed environment. Steward is in development. The diagnostic is available independently; implementation is scoped separately.",
+    q: "How do the diagnostic and NetherForge fit together?",
+    a: "A diagnostic examines an agreed workflow and identifies the first controlled improvement. NetherForge is the broader product pathway for operating workflows, knowledge, governance, metrics and future expansion in one managed environment. NetherForge is in development. The diagnostic is available independently; implementation is scoped separately.",
   },
 ];
