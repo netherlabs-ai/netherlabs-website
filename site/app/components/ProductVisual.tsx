@@ -61,7 +61,10 @@ function EnvoyVisual() {
   return (
     <svg viewBox="0 0 480 360" className="pv-svg" aria-hidden="true" focusable="false">
       <line className="pv-faint" x1="30" y1="180" x2="450" y2="180" />
-      {bars.map((b) => <rect key={b.i} className={b.i > 14 && b.i < 30 ? "pv-bar pv-bar-accent" : "pv-bar"} style={delay(-b.i * 90)} x={b.x} y={180 - b.h / 2} width="4" height={b.h} rx="2" />)}
+      {/* Four interleaved groups breathe out of phase: organic motion for 4 animated elements, not 44. */}
+      {[0, 1, 2, 3].map((group) => <g key={group} className="pv-wave" style={delay(-group * 550)}>
+        {bars.filter((b) => b.i % 4 === group).map((b) => <rect key={b.i} className={b.i > 14 && b.i < 30 ? "pv-bar pv-bar-accent" : "pv-bar"} x={b.x} y={180 - b.h / 2} width="4" height={b.h} rx="2" />)}
+      </g>)}
       <text className="pv-label" x="42" y="44">YOU</text>
       <text className="pv-label" x="42" y="62">&quot;What is blocked today?&quot;</text>
       <text className="pv-label pv-label-accent" x="438" y="316" textAnchor="end">SPOKEN ON YOUR HARDWARE</text>

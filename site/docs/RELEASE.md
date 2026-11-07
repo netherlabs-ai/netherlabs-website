@@ -30,3 +30,4 @@ The product formerly called Steward is NetherForge (Yves, Telegram 4425, 2026-10
 - OG images are generated from the built pages with `engineering/state/growth-20261107/site/scripts/og_images.py` (Playwright); rebuild after regenerating.
 - `scripts/verify-live.mjs` now also checks title, canonical, OG image, JSON-LD, sitemap, robots and llms.txt on every route.
 - Prior production deployment for rollback: `6ae0cc16178b2f1241c928c8` (commit 8a6176b).
+- Follow-up the same night: NetherEnvoy waveform animates 4 interleaved groups instead of 44 bars (less main-thread style work). Prior production deployment for rollback: `6aeebb557c1b58dc0e78520b` (commit 78d605f).

@@ -60,7 +60,8 @@
 .pv-chain { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 6; animation: pv-flow 2.4s linear infinite; }
 .pv-shield { fill: rgba(255, 255, 255, .03); stroke: var(--accent); stroke-width: 1.5; }
 .pv-check { fill: none; stroke: var(--pp-text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.pv-bar { fill: rgba(255, 255, 255, .26); transform-box: fill-box; transform-origin: center; animation: pv-wave 2.2s ease-in-out infinite alternate; }
+.pv-bar { fill: rgba(255, 255, 255, .26); }
+.pv-wave { transform-box: view-box; transform-origin: 240px 180px; animation: pv-wave 2.2s ease-in-out infinite alternate; }
 .pv-bar-accent { fill: var(--accent); }
 .pv-box { fill: var(--pp-s2); stroke: rgba(255, 255, 255, .12); }
 .pv-box-accent { stroke: var(--accent); stroke-opacity: .7; }
@@ -70,7 +71,7 @@
 @keyframes pv-scan { from { transform: translateX(36px); } to { transform: translateX(444px); } }
 @keyframes pv-spin { to { transform: rotate(360deg); } }
 @keyframes pv-flow { to { stroke-dashoffset: -26; } }
-@keyframes pv-wave { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+@keyframes pv-wave { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
 
 /* Entrance only, staggered 60 ms. Text rises without fading so it paints immediately. */
 .pp-in, .pp-rise { animation: var(--dur-4) var(--ease) calc(var(--i, 0) * 60ms) both; }
