@@ -2,7 +2,7 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { contactEmail, navigation } from "../lib/site";
+import { contactEmail, navigation, productLinks } from "../lib/site";
 import "./interior.css";
 
 function Brand() {
@@ -56,6 +56,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
           </div>
           <nav aria-label="Footer navigation">
             {navigation.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}
+            {productLinks.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}
             <Link href="/privacy/" prefetch={false}>Privacy</Link>
             <Link href="/" prefetch={false}>Home</Link>
           </nav>

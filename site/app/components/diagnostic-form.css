@@ -13,3 +13,4 @@
 .contact-form-panel > p { margin-block:20px; }
 .contact-form-panel h2 { font-size:clamp(2rem,4vw,3.5rem); }
 @media(max-width:600px) { .diagnostic-form { grid-template-columns:1fr; gap:18px; } }
+.contact-form-panel .inline-link { text-decoration:underline; text-underline-offset:3px; color:#216751; }

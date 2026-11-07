@@ -4,29 +4,49 @@ export const siteOrigin = "https://netherlabs.ai";
 export const siteName = "Nether Labs";
 export const contactEmail = "hello@netherlabs.ai";
 
-export const publicRoutes = [
-  "/",
-  "/about/",
-  "/workflow-audit/",
-  "/netherforge/",
-  "/contact/",
-  "/privacy/",
-] as const;
+// Date of the last meaningful content change per route; feeds sitemap <lastmod>.
+export const routeLastModified = {
+  "/": "2026-11-07",
+  "/products/": "2026-11-07",
+  "/nethercommand/": "2026-11-07",
+  "/nethershield-guard/": "2026-11-07",
+  "/netherenvoy/": "2026-11-07",
+  "/netherfuse/": "2026-11-07",
+  "/netherforge/": "2026-10-27",
+  "/workflow-audit/": "2026-09-07",
+  "/about/": "2026-10-27",
+  "/contact/": "2026-11-07",
+  "/privacy/": "2026-09-07",
+} as const;
+
+export type PublicRoute = keyof typeof routeLastModified;
+export const publicRoutes = Object.keys(routeLastModified) as PublicRoute[];
 
 export const navigation = [
+  { label: "Products", href: "/products/" },
   { label: "Workflow diagnostic", href: "/workflow-audit/" },
-  { label: "NetherForge", href: "/netherforge/" },
   { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" },
 ] as const;
 
+export const productLinks = [
+  { label: "NetherCommand", href: "/nethercommand/" },
+  { label: "NetherShield Guard", href: "/nethershield-guard/" },
+  { label: "NetherEnvoy", href: "/netherenvoy/" },
+  { label: "NetherFuse", href: "/netherfuse/" },
+  { label: "NetherForge", href: "/netherforge/" },
+] as const;
+
+export const defaultOgImage = { url: "/og/default.jpg", alt: "Nether Labs: less friction, more possibility" };
+
 type MetadataInput = {
   title: string;
   description: string;
-  path: (typeof publicRoutes)[number];
+  path: PublicRoute;
+  image?: { url: string; alt: string };
 };
 
-export function buildMetadata({ title, description, path }: MetadataInput): Metadata {
+export function buildMetadata({ title, description, path, image = defaultOgImage }: MetadataInput): Metadata {
   const canonical = new URL(path, siteOrigin).toString();
 
   return {
@@ -40,20 +60,13 @@ export function buildMetadata({ title, description, path }: MetadataInput): Meta
       siteName,
       locale: "en_US",
       type: "website",
-      images: [
-        {
-          url: "/hero-factory-enhanced-1920.webp",
-          width: 1920,
-          height: 1080,
-          alt: "Robotic arms working across a luminous city-like operating system",
-        },
-      ],
+      images: [{ url: image.url, width: 1200, height: 630, alt: image.alt, type: "image/jpeg" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/hero-factory-enhanced-1920.webp"],
+      images: [{ url: image.url, alt: image.alt }],
     },
   };
 }

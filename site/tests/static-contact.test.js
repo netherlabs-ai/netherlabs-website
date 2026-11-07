@@ -25,8 +25,14 @@ test("existing contact path and privacy remain available", () => {
   assert.match(read("app/components/HomeExperience.tsx"), /<DiagnosticForm source="homepage-drawer"/);
   assert.match(read("app/components/DiagnosticForm.tsx"), /role=\{state === "error" \? "alert" : "status"\}/);
   assert.match(read("app/privacy/page.tsx"), /24 months/);
-  const source = filesBelow("app").map(path => readFileSync(path,"utf8")).join("\n");
-  assert.doesNotMatch(source, /localStorage|sessionStorage|document\.cookie|dangerouslySetInnerHTML|XMLHttpRequest|sendBeacon|WebSocket/);
+  const files = filesBelow("app");
+  const source = files.map(path => readFileSync(path,"utf8")).join("\n");
+  assert.doesNotMatch(source, /localStorage|sessionStorage|document\.cookie|XMLHttpRequest|sendBeacon|WebSocket/);
+  // JSON-LD is the single sanctioned raw-HTML sink, and it must escape "<".
+  const rawSinks = files.filter(path => readFileSync(path, "utf8").includes("dangerouslySetInnerHTML")).map(path => relative(root, path));
+  assert.deepEqual(rawSinks, ["app/components/JsonLd.tsx"]);
+  assert.match(read("app/components/JsonLd.tsx"), /type="application\/ld\+json"/);
+  assert.match(read("app/components/JsonLd.tsx"), /\.replace\(\/<\/g, "\\\\u003c"\)/);
 });
 
 test("all returned text files avoid the prohibited dash character", () => {

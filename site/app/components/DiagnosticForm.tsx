@@ -1,10 +1,20 @@
 "use client";
 import "./diagnostic-form.css";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { buildDiagnosticBrief, IntakePayload, submitIntake } from "../lib/site";
 
 type FormState = "idle" | "submitting" | "sent" | "error";
+
+// Product pages link to /contact/?product=<slug>; prefill the workflow field so
+// early-access requests arrive labelled. Only known slugs are accepted.
+const earlyAccess: Record<string, string> = {
+  nethercommand: "Early access: NetherCommand",
+  "nethershield-guard": "Early access: NetherShield Guard",
+  netherenvoy: "Early access: NetherEnvoy",
+  netherfuse: "Early access: NetherFuse",
+  general: "Early access: Nether Labs products",
+};
 
 type DiagnosticFormProps = {
   source: IntakePayload["source"];
@@ -14,6 +24,13 @@ type DiagnosticFormProps = {
 export default function DiagnosticForm({ source, className }: DiagnosticFormProps) {
   const [state, setState] = useState<FormState>("idle");
   const [brief, setBrief] = useState("");
+  const workflowField = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const product = new URLSearchParams(window.location.search).get("product") ?? "";
+    const label = Object.hasOwn(earlyAccess, product) ? earlyAccess[product] : "";
+    if (label && workflowField.current && !workflowField.current.value) workflowField.current.value = label;
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,7 +66,7 @@ export default function DiagnosticForm({ source, className }: DiagnosticFormProp
         <span>Timing</span>
         <select name="timing" defaultValue="This quarter"><option>Now</option><option>This quarter</option><option>Exploring</option></select>
       </label>
-      <label className="full-field"><span>Workflow or process <i>OPTIONAL</i></span><input name="workflow" maxLength={300} placeholder="e.g. document intake and review" /></label>
+      <label className="full-field"><span>Workflow or process <i>OPTIONAL</i></span><input name="workflow" ref={workflowField} maxLength={300} placeholder="e.g. document intake and review" /></label>
       <label className="full-field"><span>What makes it difficult today?</span><textarea name="challenge" required maxLength={4000} rows={source === "contact-page" ? 6 : 5} placeholder="The handoffs, delays, repeated work, exceptions or risk you want to understand..." /></label>
       <button className="button drawer-submit" type="submit" disabled={state === "submitting"}>
         {state === "submitting" ? "Submitting request" : state === "sent" ? "Request submitted" : "Submit diagnostic request"}

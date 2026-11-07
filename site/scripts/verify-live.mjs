@@ -65,14 +65,55 @@ async function request(path, init = {}) {
   return { response, body: await response.text(), url };
 }
 
-const routes = ["/", "/about/", "/workflow-audit/", "/netherforge/", "/contact/", "/privacy/"];
+const routes = [
+  "/", "/products/", "/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/",
+  "/about/", "/workflow-audit/", "/netherforge/", "/contact/", "/privacy/",
+];
+const structuredRoutes = new Set(["/", "/products/", "/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/"]);
+const canonicalOrigin = "https://netherlabs.ai";
+const meta = (body, pattern) => body.match(pattern)?.[1] ?? "";
+const ogImages = new Set();
+let jsonLdBlocks = 0;
 for (const route of routes) {
   const { response, body } = await request(route);
   assert.equal(response.status, 200, route);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, route);
   assert.match(body, /NETHER LABS/i, route);
   verifyHeaders(response, route);
+
+  // SEO contract: title, canonical, Open Graph image and parseable JSON-LD.
+  assert.ok(meta(body, /<title>([^<]+)<\/title>/).length > 10, `${route}: title`);
+  assert.equal(meta(body, /<link rel="canonical" href="([^"]+)"/), canonicalOrigin + route, `${route}: canonical`);
+  assert.ok(meta(body, /<meta name="description" content="([^"]+)"/).length > 50, `${route}: description`);
+  const image = meta(body, /<meta property="og:image" content="([^"]+)"/);
+  assert.equal(new URL(image).origin, canonicalOrigin, `${route}: og:image origin`);
+  ogImages.add(new URL(image).pathname);
+  const blocks = [...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  if (structuredRoutes.has(route)) assert.ok(blocks.length > 0, `${route}: JSON-LD`);
+  jsonLdBlocks += blocks.length;
 }
+for (const image of ogImages) {
+  const { response } = await request(image);
+  assert.equal(response.status, 200, image);
+  assert.match(response.headers.get("content-type") ?? "", /^image\/jpeg/i, image);
+}
+
+const sitemap = await request("/sitemap.xml");
+assert.equal(sitemap.response.status, 200, "sitemap status");
+assert.match(sitemap.response.headers.get("content-type") ?? "", /xml/i, "sitemap type");
+assert.deepEqual(
+  [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]).sort(),
+  routes.map((route) => canonicalOrigin + route).sort(),
+  "sitemap lists every public route",
+);
+const robots = await request("/robots.txt");
+assert.equal(robots.response.status, 200, "robots status");
+assert.match(robots.body, /Allow: \//, "robots allow");
+assert.match(robots.body, /Sitemap: https:\/\/netherlabs\.ai\/sitemap\.xml/, "robots sitemap");
+const llms = await request("/llms.txt");
+assert.equal(llms.response.status, 200, "llms.txt status");
+assert.match(llms.response.headers.get("content-type") ?? "", /^text\/plain/i, "llms.txt type");
+assert.match(llms.body, /^# Nether Labs/, "llms.txt body");
 
 // NetherForge was named Steward until 2026-10-27; the old route must keep working.
 for (const route of ["/steward", "/steward/"]) {
@@ -184,4 +225,4 @@ for (const path of retiredPaths) {
   }
 }
 
-console.log(`Verified ${base.origin} across ${routes.length} routes, ${assets.size} assets, the active intake contract and the retired-route matrix.`);
+console.log(`Verified ${base.origin} across ${routes.length} routes (canonical, OG images ${ogImages.size}, JSON-LD blocks ${jsonLdBlocks}, sitemap, robots, llms.txt), ${assets.size} assets, the active intake contract and the retired-route matrix.`);
