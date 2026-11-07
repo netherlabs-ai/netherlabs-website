@@ -31,7 +31,7 @@ export type Product = {
   legal?: string;
 };
 
-const earlyAccess = "Not yet. It runs inside Nether Labs today. We are starting early-access conversations with a small number of teams; use the contact form and tell us about your setup.";
+const earlyAccess = "Not yet. It runs inside Nether Labs today and has no external release. Join the early-access interest list through the contact form and tell us about your setup; we will reach out when there is something real to try.";
 
 export const products: readonly Product[] = [
   {
@@ -43,7 +43,7 @@ export const products: readonly Product[] = [
     category: "AI OPERATIONS",
     status: "In development",
     title: "NetherCommand: AI Agent Command Center",
-    description: "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one read-only view. Early access by request.",
+    description: "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one read-only view. In development.",
     summary: "One read-only command center for agent work, hardware health and the decisions that need a person.",
     h1: "The command center for AI agents and the hardware they run on.",
     lead: "When work is spread across many agents, models and machines, status hides in logs and chat threads. NetherCommand brings the work, the hardware and the decisions waiting on people into one calm view.",
@@ -98,13 +98,13 @@ export const products: readonly Product[] = [
     visual: "shield",
     category: "AI AGENT SECURITY",
     status: "In development",
-    title: "NetherShield Guard: AI Agent Security for Mac and Linux",
-    description: "NetherShield Guard audits a Linux or Mac machine for the ways an AI agent could be turned against you, and explains each fix. Runs locally. In development.",
+    title: "NetherShield Guard: AI Agent Security for Your Machine",
+    description: "NetherShield Guard audits a computer for the ways an AI agent could be turned against you and explains each fix. Runs locally. Linux today; macOS in progress.",
     summary: "A local security audit for machines that run AI agents, MCP servers and local models.",
     h1: "Security for computers that run AI agents.",
     lead: "AI agents, MCP servers and local models get real access to your files, keys and shell. NetherShield Guard checks how that access could be abused on your machine and shows how to close each path. It runs on your machine; nothing is uploaded.",
     applicationCategory: "SecurityApplication",
-    operatingSystem: "Linux, macOS",
+    operatingSystem: "Linux",
     ogImage: "/og/nethershield-guard.jpg",
     ogAlt: "NetherShield Guard: security for computers that run AI agents",
     problem: {
@@ -128,12 +128,12 @@ export const products: readonly Product[] = [
       working: [
         "Read-only audit command-line tool: 18 checks across 11 categories and 5 attack-chain rules.",
         "Local scan history with diffs, a loopback-only API and a JSON report format.",
-        "Automated test suite; tests confirm that secret values never appear in reports.",
+        "Automated test suite, including checks that fixture secrets are excluded from reports.",
         "Used on our own Linux machines.",
       ],
       next: [
         "Guided, reversible fixes and continuous monitoring are in development.",
-        "macOS testing on our own machines is next; Windows comes later.",
+        "macOS checks are written but not yet tested on a real Mac; Windows comes later.",
         "No public download, signed release or pricing yet.",
       ],
     },
@@ -142,7 +142,7 @@ export const products: readonly Product[] = [
       { q: "Is it an antivirus?", a: "Not in the traditional sense. It does not depend on malware signatures. It looks at how your machine is configured for AI agents and where that configuration could be abused, and can use established open-source scanners where they help." },
       { q: "Does it upload my data?", a: "No. Scans run on your machine and results stay there. There is no cloud scanning." },
       { q: "Will it change my system?", a: "The current version only reads. Planned fixes will show the change first, keep a backup, verify the result and be reversible." },
-      { q: "Which systems are supported?", a: "Linux and macOS first. Windows support is planned after that." },
+      { q: "Which systems are supported?", a: "Linux today, tested on our own machines. macOS support is in progress and has not yet been tested on a real Mac. Windows is planned after that." },
       { q: "Can I try NetherShield Guard?", a: earlyAccess },
     ],
   },
@@ -155,10 +155,10 @@ export const products: readonly Product[] = [
     category: "PRIVATE VOICE",
     status: "In development",
     title: "NetherEnvoy: Private Voice Assistant for AI Agents",
-    description: "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model on your own hardware. In development; early access by request.",
+    description: "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model running on your own hardware. In development.",
     summary: "A private voice interface for the agents you already run, with speech generated on your own hardware.",
     h1: "A private voice assistant for the AI agents you already run.",
-    lead: "Talk to your agents the way you would talk to a chief of staff. NetherEnvoy turns speech into requests for your existing agents and answers in a natural voice generated on your own hardware, so sensitive work does not have to leave the building.",
+    lead: "Talk to your agents the way you would talk to a chief of staff. NetherEnvoy turns speech into requests for your existing agents and answers in a natural voice synthesized on your own hardware. The goal is an assistant where sensitive work never has to leave the building.",
     applicationCategory: "CommunicationApplication",
     operatingSystem: "macOS",
     ogImage: "/og/netherenvoy.jpg",
@@ -175,7 +175,7 @@ export const products: readonly Product[] = [
       heading: "Your agents, with a voice you control.",
       steps: [
         { title: "Speak naturally", copy: "Ask in plain language. The design uses local speech recognition and lets you interrupt an answer.", planned: true },
-        { title: "Route to your agents", copy: "Requests go to the agents and tools you already run, and the answer names the agent that did the work." },
+        { title: "Route to your agents", copy: "Requests go to the agents and tools you already run, instead of to a separate assistant with its own memory." },
         { title: "Hear a local voice", copy: "Replies are synthesized on your own hardware with an open-weight speech model and a licensed stock voice." },
         { title: "Fail closed", copy: "A spoken-content guard blocks sensitive categories, and if the local voice is down the reply arrives as text instead of using a hosted fallback." },
       ],
@@ -195,7 +195,7 @@ export const products: readonly Product[] = [
     },
     faqs: [
       { q: "What is NetherEnvoy?", a: "A voice interface for an organization's AI agents. You speak a request, your existing agents do the work, and the answer is spoken back in a voice generated on your own hardware." },
-      { q: "Does my voice leave my machine?", a: "Speech synthesis runs on local hardware today, and the design keeps microphone capture and sensitive material local with no silent hosted fallback. A delivery channel you choose, such as a messaging app, still carries the finished message." },
+      { q: "Does my voice leave my machine?", a: "Today, speech synthesis runs on local hardware. Where audio and text go otherwise depends on the speech recognition, the agent's model provider and the delivery channel you use, such as a messaging app. Keeping capture and sensitive material fully local, with no silent hosted fallback, is a design goal for the first release, not a finished feature." },
       { q: "Which languages does it support?", a: "English today. French is a goal for the first release, and its quality is still being improved." },
       { q: "Does NetherEnvoy clone voices?", a: "No. It uses a licensed stock voice and does not clone any real person's voice." },
       { q: "Can I try NetherEnvoy?", a: earlyAccess },
@@ -227,12 +227,12 @@ export const products: readonly Product[] = [
       ],
     },
     how: {
-      heading: "Prefill on Spark, decode on Mac.",
+      heading: "The design: prefill on Spark, decode on Mac.",
       steps: [
-        { title: "Split the work", copy: "Prompt processing (prefill) runs on DGX Spark systems; token generation (decode) runs on the Mac, where memory is plentiful." },
-        { title: "Hand off the cache", copy: "The attention (KV) cache moves from Spark to Mac over a direct high-speed link. We start with TCP and add RDMA where it measurably helps." },
-        { title: "Fall back safely", copy: "If the link or a node fails, requests continue on a single machine instead of failing." },
-        { title: "Measure end to end", copy: "A benchmark harness measures full requests on real workloads before we claim any speed-up." },
+        { title: "Split the work", copy: "Prompt processing (prefill) will run on DGX Spark systems and token generation (decode) on the Mac, where memory is plentiful.", planned: true },
+        { title: "Hand off the cache", copy: "The attention (KV) cache will move from Spark to Mac over a direct high-speed link. We start with TCP and add RDMA only where it measurably helps.", planned: true },
+        { title: "Fall back safely", copy: "If the link or a node fails, requests should continue on a single machine instead of failing.", planned: true },
+        { title: "Measure end to end", copy: "A benchmark harness will measure full requests on real workloads before we claim any speed-up.", planned: true },
       ],
     },
     today: {

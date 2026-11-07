@@ -9,11 +9,11 @@ type FormState = "idle" | "submitting" | "sent" | "error";
 // Product pages link to /contact/?product=<slug>; prefill the workflow field so
 // early-access requests arrive labelled. Only known slugs are accepted.
 const earlyAccess: Record<string, string> = {
-  nethercommand: "Early access: NetherCommand",
-  "nethershield-guard": "Early access: NetherShield Guard",
-  netherenvoy: "Early access: NetherEnvoy",
-  netherfuse: "Early access: NetherFuse",
-  general: "Early access: Nether Labs products",
+  nethercommand: "Early-access list: NetherCommand",
+  "nethershield-guard": "Early-access list: NetherShield Guard",
+  netherenvoy: "Early-access list: NetherEnvoy",
+  netherfuse: "Early-access list: NetherFuse",
+  general: "Early-access list: Nether Labs products",
 };
 
 type DiagnosticFormProps = {

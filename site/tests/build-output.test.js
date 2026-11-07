@@ -11,9 +11,9 @@ const read = (path) => readFileSync(join(root, path), "utf8");
 const routes = [
   ["out/index.html", "AI Workflow Strategy and Implementation", "Nether Labs helps established businesses find where AI can improve real workflows: a focused diagnostic, clear human review and a practical implementation path.", "https://netherlabs.ai/"],
   ["out/products/index.html", "Products: Local-First AI Software | Nether Labs", "Software for running AI agents on hardware you control: NetherCommand, NetherShield Guard, NetherEnvoy, NetherFuse and NetherForge. All in development.", "https://netherlabs.ai/products/"],
-  ["out/nethercommand/index.html", "NetherCommand: AI Agent Command Center | Nether Labs", "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one read-only view. Early access by request.", "https://netherlabs.ai/nethercommand/"],
-  ["out/nethershield-guard/index.html", "NetherShield Guard: AI Agent Security for Mac and Linux | Nether Labs", "NetherShield Guard audits a Linux or Mac machine for the ways an AI agent could be turned against you, and explains each fix. Runs locally. In development.", "https://netherlabs.ai/nethershield-guard/"],
-  ["out/netherenvoy/index.html", "NetherEnvoy: Private Voice Assistant for AI Agents | Nether Labs", "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model on your own hardware. In development; early access by request.", "https://netherlabs.ai/netherenvoy/"],
+  ["out/nethercommand/index.html", "NetherCommand: AI Agent Command Center | Nether Labs", "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one read-only view. In development.", "https://netherlabs.ai/nethercommand/"],
+  ["out/nethershield-guard/index.html", "NetherShield Guard: AI Agent Security for Your Machine | Nether Labs", "NetherShield Guard audits a computer for the ways an AI agent could be turned against you and explains each fix. Runs locally. Linux today; macOS in progress.", "https://netherlabs.ai/nethershield-guard/"],
+  ["out/netherenvoy/index.html", "NetherEnvoy: Private Voice Assistant for AI Agents | Nether Labs", "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model running on your own hardware. In development.", "https://netherlabs.ai/netherenvoy/"],
   ["out/netherfuse/index.html", "NetherFuse: One Model Across Mac Studio and DGX Spark | Nether Labs", "NetherFuse is software to run one AI model across a Mac Studio and NVIDIA DGX Spark systems over a fast network link. Early research; no benchmarks claimed.", "https://netherlabs.ai/netherfuse/"],
   ["out/about/index.html", "About | Nether Labs", "How Nether Labs helps established organizations direct AI at real operating constraints and compound governed improvements.", "https://netherlabs.ai/about/"],
   ["out/workflow-audit/index.html", "AI Workflow Diagnostic | Nether Labs", "Map one real workflow, expose operating drag, define controls and create a governed path to a first pilot.", "https://netherlabs.ai/workflow-audit/"],
@@ -240,7 +240,7 @@ test("structured data is valid JSON-LD and stays honest", () => {
     const app = graph.find((node) => node["@type"] === "SoftwareApplication");
     assert.ok(app, slug);
     assert.equal(app.url, `https://netherlabs.ai/${slug}/`);
-    assert.match(app.creativeWorkStatus, /not generally available/i);
+    assert.match(app.creativeWorkStatus, /no external release/i);
     for (const key of ["offers", "aggregateRating", "review", "price"]) assert.equal(key in app, false, `${slug}: ${key}`);
     const crumbs = graph.find((node) => node["@type"] === "BreadcrumbList");
     assert.deepEqual(crumbs.itemListElement.map((item) => item.item), ["https://netherlabs.ai/", "https://netherlabs.ai/products/", `https://netherlabs.ai/${slug}/`]);

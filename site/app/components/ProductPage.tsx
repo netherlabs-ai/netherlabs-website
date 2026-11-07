@@ -35,7 +35,7 @@ export default function ProductPage({ product }: { product: Product }) {
               <h1 id="pp-title" className="pp-rise">{product.h1}</h1>
               <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>{product.lead}</p>
               <div className="pp-actions pp-in" style={{ "--i": 3 } as CSSProperties}>
-                <a className="pp-btn pp-btn-primary" href={accessHref}>Request early access <span aria-hidden="true">↗</span></a>
+                <a className="pp-btn pp-btn-primary" href={accessHref}>Join the early-access list <span aria-hidden="true">↗</span></a>
                 <a className="pp-btn pp-btn-ghost" href="#how">How it works <span aria-hidden="true">↓</span></a>
               </div>
             </div>
@@ -112,11 +112,11 @@ export default function ProductPage({ product }: { product: Product }) {
           <div className="page-shell pp-cta-inner">
             <div>
               <p className="pp-label"><span>05</span>EARLY ACCESS</p>
-              <h2 id="pp-cta-title">Want early access to <em>{product.name}</em>?</h2>
-              <p>Tell us what you run and what you need. Every request is reviewed by Nether Labs. Early access is limited while the product is in development.</p>
+              <h2 id="pp-cta-title">Interested in <em>{product.name}</em>?</h2>
+              <p>There is no external release yet. Join the early-access interest list, tell us what you run and what you need, and we will reach out when there is something real to try.</p>
             </div>
             <div className="pp-actions">
-              <a className="pp-btn pp-btn-primary" href={accessHref}>Request early access <span aria-hidden="true">↗</span></a>
+              <a className="pp-btn pp-btn-primary" href={accessHref}>Join the early-access list <span aria-hidden="true">↗</span></a>
               <a className="pp-btn pp-btn-ghost" href="/products/">All products</a>
             </div>
           </div>

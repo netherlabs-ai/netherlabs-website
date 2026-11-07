@@ -49,7 +49,7 @@ export function softwareApplication(product: Product) {
     image: url(product.ogImage),
     applicationCategory: product.applicationCategory,
     operatingSystem: product.operatingSystem,
-    creativeWorkStatus: `${product.status}; not generally available. Early access by request.`,
+    creativeWorkStatus: `${product.status}; no external release yet. Early-access interest list open.`,
     publisher: { "@id": organizationId },
     author: { "@id": organizationId },
   };

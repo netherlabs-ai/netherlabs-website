@@ -48,7 +48,7 @@ export default function ProductsPage() {
             <nav className="pp-crumbs pp-in" aria-label="Breadcrumb"><ol><li><Link href="/" prefetch={false}>Home</Link></li><li aria-current="page">Products</li></ol></nav>
             <p className="pp-meta pp-in" style={{ "--i": 1 } as CSSProperties}><span className="pp-pill"><i aria-hidden="true" />5 products in development</span><span>NETHER LABS / PRODUCTS</span></p>
             <h1 id="hub-title" className="pp-rise">Software for running AI on hardware you control.</h1>
-            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>We build these products for our own operations first, on our own machines, then open them to early-access teams. Each page says plainly what works today and what does not yet.</p>
+            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>We build these products for our own operations first, on our own machines. Each page says plainly what works today and what does not yet.</p>
           </div>
         </section>
         <section className="pp-section" aria-label="Product list">
@@ -72,9 +72,9 @@ export default function ProductsPage() {
             <div>
               <SectionLabel n="→">EARLY ACCESS</SectionLabel>
               <h2 id="hub-cta">Run agents or AI hardware of your own?</h2>
-              <p>Tell us what you operate and which product fits. Early access is limited while these products are in development.</p>
+              <p>None of these products has an external release yet. Join the early-access interest list, tell us what you operate and which product fits, and we will reach out when there is something real to try.</p>
             </div>
-            <div className="pp-actions"><a className="pp-btn pp-btn-primary" href="/contact/?product=general">Request early access <span aria-hidden="true">↗</span></a></div>
+            <div className="pp-actions"><a className="pp-btn pp-btn-primary" href="/contact/?product=general">Join the early-access list <span aria-hidden="true">↗</span></a></div>
           </div>
         </section>
       </div>

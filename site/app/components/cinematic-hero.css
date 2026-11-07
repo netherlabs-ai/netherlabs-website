@@ -114,6 +114,14 @@
 .cinema-caption { text-align: right; font-size: .875rem; color: #d5e0d8; }
 .cinema-caption > span { display: block; font: .75rem/1.6 var(--font-mono); letter-spacing: .04em; color: #acc6b5; margin-bottom: 5px; }
 @keyframes cinema-arrive { from { opacity: .45; transform: scale(1.085); } to { opacity: 1; transform: scale(1); } }
+/* Before hydration, assume the desktop scroll layout the script almost always
+   chooses there, so switching data-motion does not shift the page (CLS). */
+@media (min-width: 1001px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .cinema:not([data-motion]) { height: calc(165svh - var(--scene-header)); }
+  .cinema:not([data-motion]) .cinema-stage { position: sticky; top: var(--scene-header); height: calc(100svh - var(--scene-header)); min-height: 0; padding-block: 48px 96px; }
+  .cinema:not([data-motion]) .cinema-static-label { display: none; }
+  .cinema:not([data-motion]) .cinema-scroll-label { display: inline; }
+}
 @media (max-width: 1200px) {
   .cinema h1 { font-size: clamp(3.875rem, 6.3vw, 5.2rem); }
   .cinema-description { max-width: 470px; }

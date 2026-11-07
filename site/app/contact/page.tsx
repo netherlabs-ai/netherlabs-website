@@ -20,7 +20,7 @@ export default function ContactPage() {
         <p className="micro-label">BEGIN WITH ONE WORKFLOW</p>
         <h2 id="contact-form-title">Request a workflow diagnostic.</h2>
         <p>Tell us which repeated workflow is creating drag, where it breaks down, and what a better result would make possible.</p>
-        <p>Requesting early access to a <a className="inline-link" href="/products/">Nether Labs product</a>? Use the same form: name the product in the workflow field and tell us what you run.</p>
+        <p>Interested in a <a className="inline-link" href="/products/">Nether Labs product</a>? Use the same form to join the early-access interest list: name the product in the workflow field and tell us what you run.</p>
         <DiagnosticForm source="contact-page" className="route-form" />
         <form name="workflow-diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
           <input type="hidden" name="form-name" value="workflow-diagnostic" />
