@@ -1,0 +1,86 @@
+/* Nether Labs night city. Source: TOKENS-v2.json, Yves 2026-11-08 11:28.
+   One quiet city: warm-paper reading planes, cyan guidance, sodium human moments.
+   The cinematic home hero and its images remain independently owned. */
+:root {
+  --night-city-version: 2;
+  color-scheme: dark;
+  --night-canvas: #061314;
+  --night-surface: #0a1d1f;
+  --night-panel: #0b2224;
+  --night-panel-bottom: #103030;
+  --night-selected: #0d2526;
+  --night-haze: #0f3b3a;
+  --night-line: #1f4644;
+  --night-text: #f2efe8;
+  --night-muted: #a7bfbb;
+  --guide: #7fe3e0;
+  --guide-fill: #5fd6d0;
+  --guide-hi: #b5f0ee;
+  --guide-ink: #062022;
+  --guide-wash: rgba(127,227,224,.08);
+  --lamp: #e6cd85;
+  --lamp-hi: #f6e3ae;
+  --night-backdrop: rgba(4,18,18,.96);
+  --void: var(--night-canvas);
+  --surface: var(--night-surface);
+  --surface-2: var(--night-panel);
+  --paper: var(--night-text);
+  --ink: var(--night-text);
+  --muted: var(--night-muted);
+  --signal: var(--guide);
+  --line: var(--night-line);
+  --paper-line: var(--night-line);
+}
+body { color: var(--night-text); background: var(--night-canvas); }
+:focus-visible { outline-color: var(--guide); }
+::selection { background: var(--guide-fill); color: var(--guide-ink); }
+.paper, .interior-site, .interior-site .light-section { background: var(--night-surface); color: var(--night-text); }
+.site-header { background: var(--night-backdrop); }
+.brand-mark { border-color: var(--night-line); color: var(--night-text); }
+.section-label, .eyebrow { color: var(--night-muted); }
+.section-label > span, .tab-number { opacity: 1; }
+.primary, .dark-button, .interior-site .button-light, .product-page .pp-btn-primary, .diagnostic-form button {
+  background: var(--guide-fill); color: var(--guide-ink);
+  box-shadow: 0 0 24px -12px var(--guide);
+}
+.primary:hover, .dark-button:hover, .interior-site .button-light:hover, .product-page .pp-btn-primary:hover, .diagnostic-form button:hover {
+  background: var(--guide-hi); color: var(--guide-ink);
+}
+.skip-link { background: var(--guide-fill); color: var(--guide-ink); }
+.paper .tab-list button { color: var(--night-muted); }
+.paper .tab-list button[aria-selected=true] { color: var(--guide); border-bottom-color: var(--guide); background: var(--night-selected); }
+.paper .tab-list button:hover { color: var(--night-text); background: var(--night-selected); }
+.flow-nodes li.review-node { background: var(--night-selected); color: var(--night-text); border-color: var(--guide); }
+.flow-nodes li.review-node > span { color: var(--night-muted); }
+.diagnostic-sheet, .steward-panel, .contact-form-panel { background: var(--night-panel); }
+.thesis, .interior-site .interior-proof {
+  background: radial-gradient(ellipse at 50% 0%, rgba(46,107,102,.18), transparent 75%), var(--night-panel-bottom);
+  color: var(--night-text);
+}
+.thesis h2 em { color: var(--lamp); }
+/* Other display emphasis stays paper; warmth belongs to the human thesis line. */
+.steward-heading h2 em, .closing h2 em, .brief-dialog h2 em, .product-page h2 em { color: var(--night-text); }
+.closing { background: linear-gradient(180deg, var(--night-surface), var(--night-canvas)); }
+.product-page {
+  --accent: var(--night-muted);
+  --pp-ground: var(--night-canvas);
+  --pp-s1: var(--night-surface);
+  --pp-s2: var(--night-panel);
+  --pp-s3: var(--night-panel-bottom);
+  --pp-hair: var(--night-line);
+  --pp-text: var(--night-text);
+  --pp-muted: var(--night-muted);
+  --pp-dim: var(--night-muted);
+}
+.product-page :focus-visible { outline-color: var(--guide); }
+.product-page .pp-btn-ghost { color: var(--night-text); border-color: var(--night-muted); }
+.product-page .pp-cta { background: linear-gradient(180deg, var(--night-panel), var(--night-surface)); }
+.hub-card a::after { background: radial-gradient(closest-side, var(--night-haze), transparent); }
+.pv-label-accent, .pv-label { fill: var(--night-muted); }
+.pv-value { fill: var(--night-text); }
+.diagnostic-form input, .diagnostic-form select, .diagnostic-form textarea {
+  background: var(--night-canvas); color: var(--night-text); border-color: var(--night-muted);
+}
+.diagnostic-form input::placeholder, .diagnostic-form textarea::placeholder { color: var(--night-muted); opacity: 1; }
+.diagnostic-form :is(input,select,textarea):focus-visible { outline-color: var(--guide); }
+dialog::backdrop { background: rgba(4,18,18,.58); backdrop-filter: blur(8px) saturate(.85); }

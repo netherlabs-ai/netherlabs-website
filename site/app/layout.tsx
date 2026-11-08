@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import "./globals.css";
+import "./night-tokens.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://netherlabs.ai"),
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#080d0f",
+  themeColor: "#061314",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

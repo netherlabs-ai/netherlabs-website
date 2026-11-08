@@ -218,18 +218,16 @@ test("generated JavaScript and CSS pass gzip budgets", () => {
 
 test("primary text and focus colors preserve WCAG AA contrast", () => {
   const css = read("app/globals.css");
-  const pairs = [
-    ["#142125", "#f3f4f0"],
-    ["#f3f4f0", "#080d0f"],
-    ["#b0baba", "#11191c"],
-    ["#080d0f", "#a3f2d5"],
-    ["#4a5a56", "#f3f4f0"],
-    ["#65756d", "#fafbf7"],
-    ["#b6c9bb", "#080d0f"],
-  ];
-  for (const [foreground, background] of pairs) assert.ok(contrast(rgb(foreground), rgb(background)) >= 4.5, `${foreground} on ${background}`);
-  assert.ok(contrast(rgb("#2c826c"), rgb("#f3f4f0")) >= 3);
-  assert.match(css, /:focus-visible\s*\{[^}]*outline:2px solid #2c826c/);
+  const tokens = read("app/night-tokens.css");
+  const token = (name) => tokens.match(new RegExp(`--${name}:\\s*(#[0-9a-f]{6})`))[1];
+  for (const foreground of ["night-text", "night-muted", "guide", "lamp"]) {
+    for (const background of ["night-canvas", "night-surface", "night-panel", "night-panel-bottom", "night-haze"]) {
+      assert.ok(contrast(rgb(token(foreground)), rgb(token(background))) >= 4.5, `${foreground} on ${background}`);
+    }
+  }
+  for (const fill of ["guide-fill", "guide-hi"]) assert.ok(contrast(rgb(token("guide-ink")), rgb(token(fill))) >= 4.5);
+  assert.ok(contrast(rgb(token("guide")), rgb(token("night-panel"))) >= 3);
+  assert.match(css, /:focus-visible\s*\{[^}]*outline:2px solid var\(--guide\)/);
   assert.match(css, /dialog :focus-visible\s*\{[^}]*outline-color:var\(--signal\)/);
 });
 

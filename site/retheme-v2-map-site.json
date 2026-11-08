@@ -1,0 +1,900 @@
+{
+  "authority": "TOKENS-v2.json; Yves 2026-11-08 11:28 override",
+  "protected": [
+    "app/components/CinematicHero.tsx",
+    "app/components/cinematic-hero.css",
+    "public/night-city-*"
+  ],
+  "mappings": [
+    {
+      "file": "app/globals.css",
+      "property": "outline",
+      "from_": "#2c826c",
+      "to": "var(--guide)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#d0fbe9",
+      "to": "var(--guide-fill)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#2b4546",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#216751",
+      "to": "var(--guide)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "rgba(8,13,15,.97)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border",
+      "from_": "#5b8979",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#bec8c7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-bottom",
+      "from_": "#628678",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "rgba(163,242,213,.05)",
+      "to": "var(--guide-wash)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "rgba(163,242,213,.05)",
+      "to": "var(--guide-wash)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#4a5a56",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#e3e9e2",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#e8ece7",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b4c3bd",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#759d8d",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#182325",
+      "to": "var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border",
+      "from_": "#4b635a",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a8bcb1",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#345a4d",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#9caea4",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b1c7ba",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-bottom",
+      "from_": "#a0b6a6",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#395745",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#fafbf7",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#65756d",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#4f6759",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#556a5b",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#e9eee6",
+      "to": "var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-bottom",
+      "from_": "#bdcbbd",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#385545",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-bottom",
+      "from_": "#c7d3c6",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#4e6650",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#3a654b",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#45614a",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#58665e",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#183b31",
+      "to": "var(--night-haze)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#eff9f1",
+      "to": "var(--night-text)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b8d3c3",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b6f5d7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#d3e1d7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-top",
+      "from_": "#7e9484",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#486352",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#47574d",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#385945",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#0d1518",
+      "to": "var(--night-canvas)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b3c0bc",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border",
+      "from_": "#648575",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#bfe1cf",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#152125",
+      "to": "var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a6beb1",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#c3ceca",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a6beb1",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#d4dfd9",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#9eb8a9",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a6beb1",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b7c6bd",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#c0cfc5",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border",
+      "from_": "#516a5a",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#bce0c9",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#3e5246",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#dae4d9",
+      "to": "var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#244c38",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#566a5b",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border-top",
+      "from_": "#9aaea0",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#58705e",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#43584a",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a7c5b3",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#c0d1c7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b7c9bf",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a0b4a8",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#bacdc0",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#9db2a4",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#0a1012",
+      "to": "var(--night-canvas)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "rgba(255,255,255,.025)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a9b8b3",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "border",
+      "from_": "#455a4e",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "rgba(0,8,7,.78)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b1cdbd",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#22332b",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b7cabe",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#a2b5a8",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#0d1518",
+      "to": "var(--night-canvas)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "background",
+      "from_": "#152125",
+      "to": "var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#bdcfc3",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "color",
+      "from_": "#b6c9bb",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "background",
+      "from_": "rgba(8, 13, 15, .97)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "background",
+      "from_": "rgba(8, 13, 15, .9)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "background",
+      "from_": "rgba(8, 13, 15, .66)",
+      "to": "var(--night-backdrop)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#d2ddd7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#304b3e",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#486352",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#3e5246",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "border-top",
+      "from_": "#8fa695",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#486352",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#47574d",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "background",
+      "from_": "#183b31",
+      "to": "var(--night-haze)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#eff9f1",
+      "to": "var(--night-text)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#d3e1d7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "border-top",
+      "from_": "#8fa695",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#486352",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#47574d",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#b1cdbd",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#c0d1c7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "background",
+      "from_": "#d0fbe9",
+      "to": "var(--guide-fill)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#b7c9bf",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#216751",
+      "to": "var(--guide)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#142125",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/interior.css",
+      "property": "color",
+      "from_": "#c0d1c7",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "border",
+      "from_": "rgba(255, 255, 255, .18)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "stroke",
+      "from_": "rgba(255, 255, 255, .09)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "fill",
+      "from_": "rgba(255, 255, 255, .22)",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "stroke",
+      "from_": "rgba(255, 255, 255, .2)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "fill",
+      "from_": "rgba(255, 255, 255, .03)",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "fill",
+      "from_": "rgba(255, 255, 255, .26)",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "stroke",
+      "from_": "rgba(255, 255, 255, .12)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "border-top",
+      "from_": "rgba(255, 255, 255, .16)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "border-color",
+      "from_": "rgba(255, 255, 255, .16)",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "border",
+      "from_": "#80948b",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "background",
+      "from_": "#fff",
+      "to": "var(--night-surface)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "color",
+      "from_": "#142125",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "background",
+      "from_": "#a3f2d5",
+      "to": "var(--guide-fill)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "color",
+      "from_": "#080d0f",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "border",
+      "from_": "#cbd2ce",
+      "to": "var(--night-line)"
+    },
+    {
+      "file": "app/components/diagnostic-form.css",
+      "property": "color",
+      "from_": "#216751",
+      "to": "var(--guide)"
+    },
+    {
+      "file": "app/lib/products.ts",
+      "property": "accent",
+      "from_": "#8fb0ff",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/lib/products.ts",
+      "property": "accent",
+      "from_": "#5fd6a0",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/lib/products.ts",
+      "property": "accent",
+      "from_": "#f6a66a",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/lib/products.ts",
+      "property": "accent",
+      "from_": "#c3a6ff",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/lib/products.ts",
+      "property": "accent",
+      "from_": "#a3f2d5",
+      "to": "var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "void",
+      "from_": "--void:#080d0f",
+      "to": "--void:var(--night-canvas)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "surface",
+      "from_": "--surface:#11191c",
+      "to": "--surface:var(--night-surface)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "surface-2",
+      "from_": "--surface-2:#182225",
+      "to": "--surface-2:var(--night-panel)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "paper",
+      "from_": "--paper:#f3f4f0",
+      "to": "--paper:var(--night-text)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "ink",
+      "from_": "--ink:#142125",
+      "to": "--ink:var(--night-text)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "muted",
+      "from_": "--muted:#b0baba",
+      "to": "--muted:var(--night-muted)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "signal",
+      "from_": "--signal:#a3f2d5",
+      "to": "--signal:var(--guide)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "line",
+      "from_": "--line:rgba(223,240,233,.18)",
+      "to": "--line:var(--night-line)"
+    },
+    {
+      "file": "app/globals.css",
+      "property": "paper-line",
+      "from_": "--paper-line:#cbd2ce",
+      "to": "--paper-line:var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "accent",
+      "from_": "--accent: #a3f2d5",
+      "to": "--accent:var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-ground",
+      "from_": "--pp-ground: #080b0c",
+      "to": "--pp-ground:var(--night-canvas)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-s1",
+      "from_": "--pp-s1: #101517",
+      "to": "--pp-s1:var(--night-surface)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-s2",
+      "from_": "--pp-s2: #151b1e",
+      "to": "--pp-s2:var(--night-panel)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-s3",
+      "from_": "--pp-s3: #1c2427",
+      "to": "--pp-s3:var(--night-panel-bottom)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-hair",
+      "from_": "--pp-hair: rgba(255, 255, 255, .09)",
+      "to": "--pp-hair:var(--night-line)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-text",
+      "from_": "--pp-text: #f3f4f0",
+      "to": "--pp-text:var(--night-text)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-muted",
+      "from_": "--pp-muted: #aab4b2",
+      "to": "--pp-muted:var(--night-muted)"
+    },
+    {
+      "file": "app/components/product.css",
+      "property": "pp-dim",
+      "from_": "--pp-dim: #8d9896",
+      "to": "--pp-dim:var(--night-muted)"
+    }
+  ],
+  "semantic_resolution": {
+    "background:var(--paper)": "var(--night-surface)",
+    "form input text": "var(--night-text)",
+    "form button text": "var(--guide-ink)",
+    "form field border": "var(--night-muted)",
+    "primary CTA": "var(--guide-fill) / var(--guide-ink)",
+    "product inline accents": "var(--night-muted)"
+  }
+}

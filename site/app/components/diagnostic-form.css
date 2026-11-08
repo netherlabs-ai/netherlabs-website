@@ -2,15 +2,15 @@
 .diagnostic-form label { display:flex; flex-direction:column; gap:8px; min-width:0; }
 .diagnostic-form label > span { font-size:.875rem; font-weight:600; }
 .diagnostic-form label i { font: .6875rem var(--font-mono); font-style:normal; opacity:.8; margin-left:6px; }
-.diagnostic-form input,.diagnostic-form select,.diagnostic-form textarea { width:100%; min-width:0; padding:12px 14px; border:1px solid #80948b; border-radius:0; background:#fff; color:#142125; }
+.diagnostic-form input,.diagnostic-form select,.diagnostic-form textarea { width:100%; min-width:0; padding:12px 14px; border:1px solid var(--night-muted); border-radius:0; background:var(--night-canvas); color:var(--night-text); }
 .diagnostic-form textarea { resize:vertical; }
 .diagnostic-form .full-field,.diagnostic-form button,.diagnostic-form > p { grid-column:1/-1; }
-.diagnostic-form button { background:#a3f2d5; color:#080d0f; }
+.diagnostic-form button { background:var(--guide-fill); color:var(--guide-ink); }
 .diagnostic-form button:disabled { opacity:.7; cursor:wait; }
 .diagnostic-form .intake-route,.diagnostic-form .form-note { font-size:.875rem; }
 .diagnostic-form .form-note { padding:14px; border:1px solid currentColor; }
-.contact-form-panel { max-width:850px; padding:clamp(24px,4vw,56px); border:1px solid #cbd2ce; }
+.contact-form-panel { max-width:850px; padding:clamp(24px,4vw,56px); border:1px solid var(--night-line); }
 .contact-form-panel > p { margin-block:20px; }
 .contact-form-panel h2 { font-size:clamp(2rem,4vw,3.5rem); }
 @media(max-width:600px) { .diagnostic-form { grid-template-columns:1fr; gap:18px; } }
-.contact-form-panel .inline-link { text-decoration:underline; text-underline-offset:3px; color:#216751; }
+.contact-form-panel .inline-link { text-decoration:underline; text-underline-offset:3px; color:var(--guide); }
