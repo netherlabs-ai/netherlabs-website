@@ -168,17 +168,17 @@ for (const asset of assets) {
 const heroBlock = home.match(/<section class="cinema"[\s\S]*?<\/picture>/)?.[0] ?? "";
 assert.ok(heroBlock, "home: hero picture");
 const heroImg = heroBlock.match(/<img\b[^>]*>/)?.[0] ?? "";
-assert.match(heroImg, /src="\/night-city-1920\.webp"/, "home hero: fallback src");
+assert.match(heroImg, /src="\/night-street-1920\.webp"/, "home hero: fallback src");
 assert.match(heroImg, /width="1920"/, "home hero: width");
 assert.match(heroImg, /height="1080"/, "home hero: height");
 assert.match(heroImg, /fetchpriority="high"/i, "home hero: fetchpriority");
-assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-city-mobile-780\.avif/i, "home: mobile hero preload");
-assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-city-1920\.avif/i, "home: desktop hero preload");
-const heroCandidates = new Set(["/night-city-1920.webp"]);
+assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-street-mobile-780\.avif/i, "home: mobile hero preload");
+assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-street-1920\.avif/i, "home: desktop hero preload");
+const heroCandidates = new Set(["/night-street-1920.webp"]);
 for (const set of heroBlock.matchAll(/srcSet="([^"]+)"/gi)) {
   for (const part of set[1].split(",")) heroCandidates.add(part.trim().split(/\s+/)[0]);
 }
-assert.ok(heroCandidates.size >= 7, `home hero: ${heroCandidates.size} candidates`);
+assert.ok(heroCandidates.size >= 8, `home hero: ${heroCandidates.size} candidates`);
 const magic = { avif: (b) => b.subarray(4, 12).toString("latin1") === "ftypavif", webp: (b) => b.subarray(8, 12).toString("latin1") === "WEBP", jpg: (b) => b[0] === 0xff && b[1] === 0xd8 };
 for (const path of heroCandidates) {
   const response = await fetch(new URL(path, base), { redirect: "manual" });
