@@ -163,6 +163,34 @@ for (const asset of assets) {
   verifyHeaders(response, asset, { asset: true });
 }
 
+// Home hero (Night city, NET-2224): every candidate the <picture> and its preloads can pick is served whole, with
+// the right type and real image bytes, and the LCP image keeps its intrinsic size and high fetch priority.
+const heroBlock = home.match(/<section class="cinema"[\s\S]*?<\/picture>/)?.[0] ?? "";
+assert.ok(heroBlock, "home: hero picture");
+const heroImg = heroBlock.match(/<img\b[^>]*>/)?.[0] ?? "";
+assert.match(heroImg, /src="\/night-city-1920\.webp"/, "home hero: fallback src");
+assert.match(heroImg, /width="1920"/, "home hero: width");
+assert.match(heroImg, /height="1080"/, "home hero: height");
+assert.match(heroImg, /fetchpriority="high"/i, "home hero: fetchpriority");
+assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-city-mobile-780\.avif/i, "home: mobile hero preload");
+assert.match(home, /<link rel="preload"[^>]*imageSrcSet="\/night-city-1920\.avif/i, "home: desktop hero preload");
+const heroCandidates = new Set(["/night-city-1920.webp"]);
+for (const set of heroBlock.matchAll(/srcSet="([^"]+)"/gi)) {
+  for (const part of set[1].split(",")) heroCandidates.add(part.trim().split(/\s+/)[0]);
+}
+assert.ok(heroCandidates.size >= 7, `home hero: ${heroCandidates.size} candidates`);
+const magic = { avif: (b) => b.subarray(4, 12).toString("latin1") === "ftypavif", webp: (b) => b.subarray(8, 12).toString("latin1") === "WEBP", jpg: (b) => b[0] === 0xff && b[1] === 0xd8 };
+for (const path of heroCandidates) {
+  const response = await fetch(new URL(path, base), { redirect: "manual" });
+  const bytes = Buffer.from(await response.arrayBuffer());
+  const kind = path.split(".").pop();
+  assert.equal(response.status, 200, path);
+  assert.match(response.headers.get("content-type") ?? "", kind === "jpg" ? /^image\/jpeg/i : new RegExp(`^image/${kind}`, "i"), `${path}: type`);
+  assert.ok(magic[kind]?.(bytes), `${path}: ${kind} bytes`);
+  assert.ok(bytes.length > 20000 && bytes.length <= 500000, `${path}: ${bytes.length} bytes`);
+  verifyHeaders(response, path, { asset: true });
+}
+
 const intakePath = "/.netlify/functions/intake-form";
 const intakeGet = await request(intakePath);
 assert.equal(intakeGet.response.status, 405, "intake GET status");
@@ -234,4 +262,4 @@ for (const path of retiredPaths) {
   }
 }
 
-console.log(`Verified ${base.origin} across ${routes.length} routes (canonical, OG images ${ogImages.size}, JSON-LD blocks ${jsonLdBlocks}, sitemap, robots, llms.txt), ${assets.size} assets, the active intake contract and the retired-route matrix.`);
+console.log(`Verified ${base.origin} across ${routes.length} routes (canonical, OG images ${ogImages.size}, JSON-LD blocks ${jsonLdBlocks}, sitemap, robots, llms.txt), ${assets.size} assets, ${heroCandidates.size} hero images, the active intake contract and the retired-route matrix.`);

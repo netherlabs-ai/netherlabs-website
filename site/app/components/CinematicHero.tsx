@@ -1,9 +1,22 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { preload } from "react-dom";
 import "./cinematic-hero.css";
 
+// Night city plate (INI-122 / NET-2224, Yves 2026-11-08): original, generated 2026-11-08, Real-ESRGAN to 3840 px.
+// The phone crop is a full-height slice around the Nether beacon and the transit line.
+const MOBILE = "(max-width: 600px)";
+const DESKTOP = "(min-width: 601px)";
+const MOBILE_AVIF = "/night-city-mobile-780.avif 780w, /night-city-mobile-1170.avif 1170w";
+const MOBILE_WEBP = "/night-city-mobile-780.webp 780w";
+const WIDE_AVIF = "/night-city-1920.avif 1920w, /night-city-2880.avif 2880w, /night-city-3840.avif 3840w";
+
 export default function CinematicHero({ onContact, contactOpen }: { onContact: () => void; contactOpen: boolean }) {
+  // The hero image is the home LCP: preload exactly the candidate the <picture> below picks (same media, type,
+  // srcset and sizes), so browsers without AVIF skip the hint and nothing downloads twice.
+  preload("/night-city-mobile-780.avif", { as: "image", type: "image/avif", media: MOBILE, imageSrcSet: MOBILE_AVIF, imageSizes: "100vw", fetchPriority: "high" });
+  preload("/night-city-1920.avif", { as: "image", type: "image/avif", media: DESKTOP, imageSrcSet: WIDE_AVIF, imageSizes: "100vw", fetchPriority: "high" });
   const scene = useRef<HTMLElement>(null);
   const copy = useRef<HTMLDivElement>(null);
 
@@ -78,8 +91,10 @@ export default function CinematicHero({ onContact, contactOpen }: { onContact: (
     <div className="cinema-stage">
       <div className="cinema-camera" aria-hidden="true">
         <picture>
-          <source media="(max-width: 600px)" srcSet="/hero-factory-enhanced-mobile.webp" />
-          <img src="/hero-factory-enhanced-1920.webp" srcSet="/hero-factory-enhanced-1920.webp 1920w, /hero-factory-enhanced-3840.webp 3840w" sizes="100vw" width="1920" height="1080" alt="" fetchPriority="high" />
+          <source media={MOBILE} type="image/avif" srcSet={MOBILE_AVIF} sizes="100vw" />
+          <source media={MOBILE} type="image/webp" srcSet={MOBILE_WEBP} sizes="100vw" />
+          <source type="image/avif" srcSet={WIDE_AVIF} sizes="100vw" />
+          <img src="/night-city-1920.webp" width="1920" height="1080" alt="" fetchPriority="high" />
         </picture>
       </div>
       <div className="cinema-shade" aria-hidden="true" />
