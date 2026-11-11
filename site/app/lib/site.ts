@@ -8,7 +8,7 @@ export const contactEmail = "hello@netherlabs.ai";
 export const routeLastModified = {
   "/": "2026-11-07",
   "/products/": "2026-11-07",
-  "/nethercommand/": "2026-11-07",
+  "/nethercommand/": "2026-11-10",
   "/nethershield-guard/": "2026-11-07",
   "/netherenvoy/": "2026-11-07",
   "/netherfuse/": "2026-11-07",

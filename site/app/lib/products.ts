@@ -43,8 +43,8 @@ export const products: readonly Product[] = [
     category: "AI OPERATIONS",
     status: "In development",
     title: "NetherCommand: AI Agent Command Center",
-    description: "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one read-only view. In development.",
-    summary: "One read-only command center for agent work, hardware health and the decisions that need a person.",
+    description: "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one view. In development.",
+    summary: "One command center for agent work, hardware health and the decisions that need a person.",
     h1: "The command center for AI agents and the hardware they run on.",
     lead: "When work is spread across many agents, models and machines, status hides in logs and chat threads. NetherCommand brings the work, the hardware and the decisions waiting on people into one calm view.",
     applicationCategory: "BusinessApplication",
@@ -62,7 +62,7 @@ export const products: readonly Product[] = [
     how: {
       heading: "From scattered signals to one overview.",
       steps: [
-        { title: "Read the systems you already run", copy: "NetherCommand reads your issue tracker, machine telemetry and agent activity. The current version only reads; it does not change them." },
+        { title: "Read the systems you already run", copy: "NetherCommand reads your issue tracker, machine telemetry and agent activity. Monitoring screens only read; the one place you act is Needs-you, where an owner's answers are recorded back to the tracker." },
         { title: "Start from what needs attention", copy: "The Overview leads with blocked work, machines that stopped reporting and items waiting on a person, then one live tile per area." },
         { title: "Go from summary to detail fast", copy: "A sidebar, a Cmd/Ctrl-K command palette and deep links take you from the summary to the exact machine or issue." },
         { title: "Know when data is stale", copy: "Every screen shows whether its feed is loading, live, stale, down or rejected, so nothing on screen is a guess." },
@@ -74,6 +74,7 @@ export const products: readonly Product[] = [
         "App shell with sidebar, command palette, Overview and 14 routed screens.",
         "Fleet view of our AI hardware, refreshed every five minutes.",
         "Timeline (Gantt) of all tracked work, from product down to individual issue.",
+        "Needs-you: the decisions waiting on a person, answered in the app and recorded back to the tracker.",
         "Explicit loading, stale, down and rejected states on every screen.",
       ],
       next: [
@@ -83,9 +84,9 @@ export const products: readonly Product[] = [
       ],
     },
     faqs: [
-      { q: "What is NetherCommand?", a: "A command center web app for organizations that run AI agents on their own hardware. It shows agent work, machine health and the items that need a human decision in one read-only view." },
+      { q: "What is NetherCommand?", a: "A command center web app for organizations that run AI agents on their own hardware. It shows agent work, machine health and the items that need a human decision in one view." },
       { q: "Can I use NetherCommand today?", a: earlyAccess },
-      { q: "Does NetherCommand change my systems?", a: "No. The current version is read-only. It reads feeds and shows state; actions stay in the tools you already use." },
+      { q: "Does NetherCommand change my systems?", a: "Monitoring screens only read. Needs-you is the exception: the owner answers decisions there, and the answers are recorded back to the tracker. Actions on machines stay in the tools you already use." },
       { q: "Which hardware does it monitor?", a: "Today it monitors the machines we operate: NVIDIA GB10-based systems, Apple Mac Studio computers and a GPU workstation. Support for other hardware will follow what early-access teams run." },
       { q: "How is it different from a monitoring dashboard?", a: "Monitoring dashboards show metrics. NetherCommand is organized around work and decisions: what is moving, what is blocked and what needs you, with hardware health as context." },
     ],
