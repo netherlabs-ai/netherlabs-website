@@ -127,7 +127,7 @@ export const products: readonly Product[] = [
     },
     today: {
       working: [
-        "Read-only audit command-line tool: 18 checks across 11 categories and 5 attack-chain rules.",
+        "Read-only audit command-line tool: 18 checks across 10 categories and 5 attack-chain rules.",
         "Local scan history with diffs, a loopback-only API and a JSON report format.",
         "Automated test suite, including checks that fixture secrets are excluded from reports.",
         "Used on our own Linux machines.",
