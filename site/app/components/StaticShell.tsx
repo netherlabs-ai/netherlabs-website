@@ -3,6 +3,7 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { contactEmail, navigation, productLinks } from "../lib/site";
+import InceptionMember from "./InceptionMember";
 import "./interior.css";
 
 function Brand() {
@@ -53,6 +54,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
             <Link className="brand" href="/" prefetch={false} aria-label="Nether Labs home"><Brand /></Link>
             <p>Better workflows. Stronger businesses.</p>
             <a className="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>
+            <InceptionMember variant="footer" />
           </div>
           <nav aria-label="Footer navigation">
             {navigation.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}

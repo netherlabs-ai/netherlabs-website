@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InteriorPage from "../components/InteriorPage";
+import InceptionMember from "../components/InceptionMember";
 import { buildMetadata } from "../lib/site";
 
 const principles = [
@@ -92,6 +93,7 @@ export default function AboutPage() {
         <p className="micro-label">FOUNDER</p>
         <h2 id="about-founder-title">Built by an operator, for operators.</h2>
         <p>Yves La Rose founded Nether Labs around a simple conviction: businesses should not need to rebuild themselves from scratch to benefit from AI. The company starts with the operating reality, assigns clear authority, tests against evidence and compounds only what works.</p>
+        <InceptionMember variant="about" />
       </section>
 
       <section className="interior-section stack-section" aria-labelledby="about-path-title">

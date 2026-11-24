@@ -84,3 +84,23 @@ body { color: var(--night-text); background: var(--night-canvas); }
 .diagnostic-form input::placeholder, .diagnostic-form textarea::placeholder { color: var(--night-muted); opacity: 1; }
 .diagnostic-form :is(input,select,textarea):focus-visible { outline-color: var(--guide); }
 dialog::backdrop { background: rgba(4,18,18,.58); backdrop-filter: blur(8px) saturate(.85); }
+/* NVIDIA Inception membership (InceptionMember.tsx): a quiet credential line, never a banner. */
+.footer-main .inception-member {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 28px;
+  font: 500 .6875rem/1.6 var(--font-mono); letter-spacing: .09em;
+  color: var(--night-muted);
+}
+.footer-main .inception-member-footer::before {
+  content: ""; flex: 0 0 18px; height: 1px; background: var(--night-muted); opacity: .45;
+}
+.footer-main .inception-member img { display: block; width: auto; height: 32px; }
+.footer-main .inception-member[data-inception-badge="image"]::before { display: none; }
+.interior-site .interior-section > .inception-member.inception-member-about {
+  display: flex; align-items: center; gap: 18px;
+  max-width: 800px; margin-top: 36px; padding-top: 22px;
+  border-top: 1px solid var(--night-line);
+  font-size: .9375rem; line-height: 1.65;
+  color: var(--night-muted);
+}
+.interior-section > .inception-member-about img { display: block; flex-shrink: 0; width: auto; height: 44px; }
