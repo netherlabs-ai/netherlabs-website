@@ -84,29 +84,30 @@ body { color: var(--night-text); background: var(--night-canvas); }
 .diagnostic-form input::placeholder, .diagnostic-form textarea::placeholder { color: var(--night-muted); opacity: 1; }
 .diagnostic-form :is(input,select,textarea):focus-visible { outline-color: var(--guide); }
 dialog::backdrop { background: rgba(4,18,18,.58); backdrop-filter: blur(8px) saturate(.85); }
-/* NVIDIA Inception membership (InceptionMember.tsx): a quiet credential line, never a banner. */
-.footer-main .inception-member {
-  display: flex; align-items: center; gap: 12px;
-  margin-top: 28px;
-  font: 500 .6875rem/1.6 var(--font-mono); letter-spacing: .09em;
+/* NVIDIA Inception membership (InceptionMember.tsx). Footer: its own credential row between the
+   link grid and the legal line, set like the legal line (mono, muted) with a hairline lead-in.
+   Badge: official artwork, unmodified, never linked. --badge-w is the SVG width; the bordered box
+   is 89.8% of it (449.4 of 500.4 units), 2.72:1. Desktop box 120x44 (5,290 px2) stays under the
+   155x36 Nether Labs logo (5,580 px2) in width and area; at 700px and below the box is 100x37
+   (3,700 px2) against the 128x30 logo (3,830 px2). Both clear NVIDIA's 30px digital minimum. The
+   SVG's own margin (5.1% per side) plus the row padding keep NVIDIA's clear space. */
+.footer-credential {
+  --badge-w: 133.6px;
+  display: flex; align-items: center; gap: 20px;
+  border-top: 1px solid var(--line);
+  padding-block: 22px;
+  font: 500 .6875rem/1.6 var(--font-mono); letter-spacing: .12em; text-transform: uppercase;
   color: var(--night-muted);
 }
-.footer-main .inception-member-footer::before {
-  content: ""; flex: 0 0 18px; height: 1px; background: var(--night-muted); opacity: .45;
+.footer-credential-label { display: inline-flex; align-items: center; gap: 16px; white-space: nowrap; }
+.footer-credential[data-inception-badge="image"] .footer-credential-label::after {
+  content: ""; width: 28px; height: 1px; background: currentColor; opacity: .4;
 }
-/* Official badge, unmodified, never linked. --badge-w is the SVG width; the bordered box is 89.8% of it
-   (449.4 of 500.4 units) and 2.72:1. Desktop box 120x44 (5,290 px2) stays under the 155x36 Nether Labs
-   logo (5,580 px2) in width and area; mobile box 100x37 (3,700 px2) stays under the 128x30 logo
-   (3,830 px2). Both clear NVIDIA's 30px digital minimum. The SVG's own margin (5.1% per side) plus the
-   row spacing keep clear space; the negative inset aligns the box edge with the tagline. */
-.footer-main .inception-member[data-inception-badge="image"] { --badge-w: 133.6px; margin-top: 36px; }
-.footer-main .inception-member[data-inception-badge="image"]::before { display: none; }
-.footer-main .inception-member img {
-  display: block; flex-shrink: 0;
-  width: var(--badge-w); height: auto; margin-left: calc(var(--badge-w) * -.051);
-}
+/* The negative inset cancels the SVG's side margin so the badge box sits the same 16px past the
+   hairline as the hairline sits past the label; the margin itself stays as clear space above/below/right. */
+.footer-credential img { display: block; flex-shrink: 0; width: var(--badge-w); height: auto; margin-left: calc(var(--badge-w) * -.051 - 4px); }
 @media (max-width: 700px) {
-  .footer-main .inception-member[data-inception-badge="image"] { --badge-w: 111.4px; margin-top: 32px; }
+  .footer-credential { --badge-w: 111.4px; padding-block: 20px; }
 }
 .interior-site .interior-section > .inception-member.inception-member-about {
   display: flex; align-items: center; gap: 18px;

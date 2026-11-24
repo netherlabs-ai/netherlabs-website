@@ -54,7 +54,6 @@ export default function StaticShell({ children }: { children: ReactNode }) {
             <Link className="brand" href="/" prefetch={false} aria-label="Nether Labs home"><Brand /></Link>
             <p>Better workflows. Stronger businesses.</p>
             <a className="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>
-            <InceptionMember variant="footer" />
           </div>
           <nav aria-label="Footer navigation">
             {navigation.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}
@@ -63,6 +62,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
             <Link href="/" prefetch={false}>Home</Link>
           </nav>
         </div>
+        <InceptionMember variant="footer" />
         <div className="shell footer-bottom">
           <span>© 2026 Nether Labs</span>
           <span>Strategy / Systems / Operations</span>
