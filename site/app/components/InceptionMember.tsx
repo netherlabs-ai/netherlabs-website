@@ -2,12 +2,16 @@
    partner, certified, endorsed or invested. Do not substitute the plain NVIDIA
    logo; only the official Inception member badge belongs here. */
 
-/* BADGE SLOT. To show the official badge, put its file in public/brand/ and
-   set this to { src: "/brand/<file>", width, height } (intrinsic pixels).
-   That is the only change needed: the footer shows the badge in place of its
-   line (the line becomes the image's alt text), the About page shows it beside
-   its sentence. */
-export const inceptionBadge: { src: string; width: number; height: number } | null = null;
+/* BADGE SLOT (footer only). The official full-colour member badge, unmodified,
+   from NVIDIA's partner kit. Badge rules: no colour, proportion or text changes;
+   keep clear space; at least 30px box height on screen; never larger than the
+   Nether Labs logo; no link implying endorsement. Set to null for the text line. */
+export const inceptionBadge: { src: string; width: number; height: number; alt: string } | null = {
+  src: "/brand/nvidia-inception-program-badge.svg",
+  width: 500,
+  height: 216,
+  alt: "NVIDIA Inception Program member",
+};
 
 const copy = {
   footer: "Member of NVIDIA Inception",
@@ -15,14 +19,15 @@ const copy = {
 } as const;
 
 export default function InceptionMember({ variant }: { variant: keyof typeof copy }) {
-  const text = copy[variant];
-  const badge = inceptionBadge;
-  const replacesText = variant === "footer";
+  const badge = variant === "footer" ? inceptionBadge : null;
   return (
     <p className={`inception-member inception-member-${variant}`} data-inception-badge={badge ? "image" : "text"}>
-      {/* eslint-disable-next-line @next/next/no-img-element -- static export serves the badge file as-is at a fixed size */}
-      {badge && <img src={badge.src} width={badge.width} height={badge.height} alt={replacesText ? text : ""} decoding="async" loading="lazy" />}
-      {!(badge && replacesText) && <span>{text}</span>}
+      {badge ? (
+        // eslint-disable-next-line @next/next/no-img-element -- static export serves the badge file as-is at a fixed size
+        <img src={badge.src} width={badge.width} height={badge.height} alt={badge.alt} decoding="async" loading="lazy" />
+      ) : (
+        <span>{copy[variant]}</span>
+      )}
     </p>
   );
 }

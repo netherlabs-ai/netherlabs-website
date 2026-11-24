@@ -94,8 +94,12 @@ dialog::backdrop { background: rgba(4,18,18,.58); backdrop-filter: blur(8px) sat
 .footer-main .inception-member-footer::before {
   content: ""; flex: 0 0 18px; height: 1px; background: var(--night-muted); opacity: .45;
 }
-.footer-main .inception-member img { display: block; width: auto; height: 32px; }
+/* Official badge, unmodified. The SVG carries its own clear-space margin (25.5 of 216 units per side):
+   39.25px tall renders the bordered box at NVIDIA's 30px digital minimum, at or below the 30-36px
+   Nether Labs mark and well under the logo's width. The negative inset aligns the box with the tagline. */
+.footer-main .inception-member[data-inception-badge="image"] { margin-top: 24px; }
 .footer-main .inception-member[data-inception-badge="image"]::before { display: none; }
+.footer-main .inception-member img { display: block; flex-shrink: 0; width: auto; height: 39.25px; margin-left: -4.63px; }
 .interior-site .interior-section > .inception-member.inception-member-about {
   display: flex; align-items: center; gap: 18px;
   max-width: 800px; margin-top: 36px; padding-top: 22px;
@@ -103,4 +107,3 @@ dialog::backdrop { background: rgba(4,18,18,.58); backdrop-filter: blur(8px) sat
   font-size: .9375rem; line-height: 1.65;
   color: var(--night-muted);
 }
-.interior-section > .inception-member-about img { display: block; flex-shrink: 0; width: auto; height: 44px; }
