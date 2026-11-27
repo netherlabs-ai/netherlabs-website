@@ -6,14 +6,14 @@ export const contactEmail = "hello@netherlabs.ai";
 
 // Date of the last meaningful content change per route; feeds sitemap <lastmod>.
 export const routeLastModified = {
-  "/": "2026-11-26",
-  "/products/": "2026-11-26",
-  "/netherguard/": "2026-11-26",
-  "/nethercommand/": "2026-11-26",
+  "/": "2026-11-27",
+  "/products/": "2026-11-27",
+  "/netherguard/": "2026-11-27",
+  "/nethercommand/": "2026-11-27",
   "/netherenvoy/": "2026-11-07",
   "/netherfuse/": "2026-11-07",
-  "/about/": "2026-11-26",
-  "/contact/": "2026-11-26",
+  "/about/": "2026-11-27",
+  "/contact/": "2026-11-27",
   "/privacy/": "2026-11-26",
 } as const;
 
