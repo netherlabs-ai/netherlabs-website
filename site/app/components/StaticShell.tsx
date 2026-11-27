@@ -44,7 +44,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}
         </nav>
-        <Link className="header-cta" href="/contact/?product=nethershield-guard" prefetch={false}>Request early access <span aria-hidden="true">↗</span></Link>
+        <Link className="header-cta" href="/contact/?product=netherguard" prefetch={false}>Request early access <span aria-hidden="true">↗</span></Link>
         <button className="menu-toggle" type="button" ref={opener} aria-label="Open navigation" aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="interior-navigation" onClick={openMenu}>Menu <span aria-hidden="true">☰</span></button>
       </header>
       <main id="main-content" tabIndex={-1}>{children}</main>

@@ -1,4 +1,4 @@
-// Illustrative mock of the NetherShield Guard v0.2 one-page report. The layout and section names follow the real
+// Illustrative mock of the NetherGuard v0.2 one-page report. The layout and section names follow the real
 // report (engineering/state/guard-ship-v02-20261126/proof/report-mac-full.png); the findings and counts are an
 // example, not a real machine. Pure markup and CSS, no JavaScript.
 
@@ -22,7 +22,7 @@ export default function GuardReport() {
       <div className="gr-head">
         <span className="gr-score"><b>3</b><small>to fix</small></span>
         <div>
-          <p className="gr-kicker">NETHERSHIELD GUARD · ONE-PAGE REPORT</p>
+          <p className="gr-kicker">NETHERGUARD · ONE-PAGE REPORT</p>
           <p className="gr-title">3 things need your attention first.</p>
           <p className="gr-sub">Example Mac · scanned on this computer · nothing uploaded</p>
         </div>

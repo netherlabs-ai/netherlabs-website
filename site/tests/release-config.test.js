@@ -27,10 +27,12 @@ test("Next static export configuration is exact", () => {
   }
 });
 
-test("retired consulting routes redirect before the 404 fallback", () => {
+test("retired and renamed routes redirect before the 404 fallback", () => {
   const expected = [
-    ["/workflow-audit", "/nethershield-guard/"],
-    ["/workflow-audit/*", "/nethershield-guard/"],
+    ["/nethershield-guard", "/netherguard/"],
+    ["/nethershield-guard/*", "/netherguard/"],
+    ["/workflow-audit", "/netherguard/"],
+    ["/workflow-audit/*", "/netherguard/"],
     ["/netherforge", "/products/"],
     ["/netherforge/*", "/products/"],
     ["/steward", "/products/"],
@@ -46,7 +48,7 @@ test("retired consulting routes redirect before the 404 fallback", () => {
       assert.ok(at < fallback, `${file}: ${from} precedes fallback`);
     }
   }
-  for (const retired of ["app/steward", "app/netherforge", "app/workflow-audit"]) assert.equal(existsSync(join(root, retired)), false, retired);
+  for (const retired of ["app/steward", "app/netherforge", "app/workflow-audit", "app/nethershield-guard"]) assert.equal(existsSync(join(root, retired)), false, retired);
 });
 
 test("Netlify build, fallback and security headers are preserved", () => {

@@ -1,4 +1,4 @@
-// Homepage content. Every claim must be provable today: Guard v0.2 is a release candidate for Mac (Apple silicon)
+// Homepage content. Every claim must be provable today: NetherGuard v0.2 is a release candidate for Mac (Apple silicon)
 // and Windows (x64), read-only, unsigned, not open source, with no customers yet. Evidence and competitor sources:
 // engineering/state/ai-security-refocus-20261126/POSITIONING.md.
 
@@ -10,8 +10,8 @@ export const exposures = [
     description: "Claude, ChatGPT, Cursor and VS Code can be wired to MCP servers and connectors that read folders, run commands or reach your accounts. Most are set up once and never looked at again.",
     steps: ["Prompt arrives", "Assistant calls a connector", "Connector runs with your access", "Result leaves the machine"],
     risk: "Broad file, shell or account access, added months ago and forgotten.",
-    shows: "Every connector Guard finds, what it runs, and which ones look risky.",
-    boundary: "You decide which connectors stay. Guard explains how to remove the rest.",
+    shows: "Every connector NetherGuard finds, what it runs, and which ones look risky.",
+    boundary: "You decide which connectors stay. NetherGuard explains how to remove the rest.",
   },
   {
     label: "Keys and tokens",
@@ -21,7 +21,7 @@ export const exposures = [
     steps: ["Agent reads a file", "Finds a saved key", "Key is used elsewhere", "Bill or breach follows"],
     risk: "Secrets saved in plain files, sometimes inside folders that sync to the cloud.",
     shows: "Where each secret sits, by name and location only. The value never appears in the report.",
-    boundary: "You move or rotate the key. Guard tells you which ones and why.",
+    boundary: "You move or rotate the key. NetherGuard tells you which ones and why.",
   },
   {
     label: "Agents that act alone",
@@ -31,7 +31,7 @@ export const exposures = [
     steps: ["Agent opens a page", "Hidden instruction", "Command runs unasked", "Files change or leak"],
     risk: "Auto-approve settings that turn one injected prompt into a real action.",
     shows: "Which tools are set to act without asking, and how that combines with what they can reach.",
-    boundary: "You choose where autonomy is worth it. Guard shows the risk.",
+    boundary: "You choose where autonomy is worth it. NetherGuard shows the risk.",
   },
   {
     label: "The machine around it",
@@ -49,9 +49,9 @@ export const guardSteps = [
   {
     title: "Scan",
     output: "A read-only look at your AI layer",
-    copy: "Guard reads the AI tools, connectors, keys, browser extensions and security settings on this computer. It takes about a minute and only reads.",
+    copy: "NetherGuard reads the AI tools, connectors, keys, browser extensions and security settings on this computer. It takes about a minute and only reads.",
     decision: "What AI is on this machine, and what can it reach?",
-    signal: "WHAT GUARD READS",
+    signal: "WHAT NETHERGUARD READS",
     nodes: ["AI APPS", "CONNECTORS", "KEYS", "EXTENSIONS"],
     planned: false,
   },
@@ -67,7 +67,7 @@ export const guardSteps = [
   {
     title: "Connect",
     output: "How these problems combine",
-    copy: "Guard links separate findings into the paths an attacker could actually use, such as an injected prompt reaching a key saved in plain text.",
+    copy: "NetherGuard links separate findings into the paths an attacker could actually use, such as an injected prompt reaching a key saved in plain text.",
     decision: "Which single fix breaks the most dangerous chain?",
     signal: "ATTACK PATHS",
     nodes: ["PROMPT", "AGENT", "KEY", "EXIT"],
@@ -76,7 +76,7 @@ export const guardSteps = [
   {
     title: "Watch",
     output: "A monitor that stays on",
-    copy: "Next: Guard runs in the menu bar or tray, notices when a new connector, key or risky setting appears, and tells you in plain language. Fixes will be one click and reversible.",
+    copy: "Next: NetherGuard runs in the menu bar or tray, notices when a new connector, key or risky setting appears, and tells you in plain language. Fixes will be one click and reversible.",
     decision: "Did anything change since last time?",
     signal: "IN DEVELOPMENT",
     nodes: ["MONITOR", "ALERT", "FIX", "UNDO"],
@@ -154,15 +154,15 @@ export const commandFeatures = [
 export const faqs = [
   {
     q: "What does Nether Labs do?",
-    a: "We build security for the AI layer: the AI tools and agents on your computer, the connectors they use, the keys they can read and the settings around them. Our flagship is NetherShield Guard, which shows what the AI on your Mac or PC can reach and do.",
+    a: "We build security for the AI layer: the AI tools and agents on your computer, the connectors they use, the keys they can read and the settings around them. Our flagship is NetherGuard, which shows what the AI on your Mac or PC can reach and do.",
   },
   {
-    q: "Is NetherShield Guard an antivirus?",
+    q: "Is NetherGuard an antivirus?",
     a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus, and it covers what most antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings.",
   },
   {
     q: "Does my data leave my computer?",
-    a: "No. The scan runs on your computer and the report is saved there. Guard sends nothing anywhere, and secret values never appear in the report.",
+    a: "No. The scan runs on your computer and the report is saved there. NetherGuard sends nothing anywhere, and secret values never appear in the report.",
   },
   {
     q: "Which computers does it support?",
@@ -173,11 +173,11 @@ export const faqs = [
     a: "Early access is by request. The current builds are not yet code-signed, so macOS and Windows ask you to confirm before the first run; early-access users get written install steps. Request access through the form and tell us what AI tools you use.",
   },
   {
-    q: "Is Guard open source?",
-    a: "No. Guard is a single program built only from Go's standard library, with no third-party dependencies.",
+    q: "Is NetherGuard open source?",
+    a: "No. NetherGuard is a single program built only from Go's standard library, with no third-party dependencies.",
   },
   {
     q: "How is this different from enterprise AI security?",
-    a: "Large security platforms now inventory AI agents across company fleets and report to an IT or security team. Guard is built for the person at the keyboard: one app on your own Mac or PC, one page in plain language, nothing uploaded.",
+    a: "Large security platforms now inventory AI agents across company fleets and report to an IT or security team. NetherGuard is built for the person at the keyboard: one app on your own Mac or PC, one page in plain language, nothing uploaded.",
   },
 ];

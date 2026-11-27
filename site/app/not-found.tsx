@@ -15,7 +15,7 @@ export default function NotFound() {
         <div className="page-shell">
           <p className="micro-label">404 / PAGE NOT FOUND</p>
           <h1>This page does not exist.</h1>
-          <p>Return to the Nether Labs home page or see what NetherShield Guard can show you about the AI on your computer.</p>
+          <p>Return to the Nether Labs home page or see what NetherGuard can show you about the AI on your computer.</p>
           <div>
             <Link className="button button-light" href="/">Return home</Link>
             <a className="text-link" href="/contact/">Contact Nether Labs</a>

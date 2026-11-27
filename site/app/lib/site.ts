@@ -8,7 +8,7 @@ export const contactEmail = "hello@netherlabs.ai";
 export const routeLastModified = {
   "/": "2026-11-26",
   "/products/": "2026-11-26",
-  "/nethershield-guard/": "2026-11-26",
+  "/netherguard/": "2026-11-26",
   "/nethercommand/": "2026-11-26",
   "/netherenvoy/": "2026-11-07",
   "/netherfuse/": "2026-11-07",
@@ -21,7 +21,7 @@ export type PublicRoute = keyof typeof routeLastModified;
 export const publicRoutes = Object.keys(routeLastModified) as PublicRoute[];
 
 export const navigation = [
-  { label: "NetherShield Guard", href: "/nethershield-guard/" },
+  { label: "NetherGuard", href: "/netherguard/" },
   { label: "Products", href: "/products/" },
   { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" },

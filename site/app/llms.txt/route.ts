@@ -1,4 +1,4 @@
-import { products } from "../lib/products";
+import { netherforgeCard, products } from "../lib/products";
 import { contactEmail, siteOrigin } from "../lib/site";
 
 export const dynamic = "force-static";
@@ -9,11 +9,12 @@ export function GET() {
   const body = [
     "# Nether Labs",
     "",
-    "> Nether Labs (Ottawa, Canada) is an AI security company building security for the AI layer: the AI tools and agents on a computer, the connectors (MCP servers) they use, the keys they can read and the settings around them. The flagship, NetherShield Guard, shows what the AI on a Mac or Windows PC can reach and do, on one page. Guard v0.2 is a release candidate with early access by request; builds are not yet code-signed, it is not open source, and there is no public pricing.",
+    "> Nether Labs (Ottawa, Canada) is an AI security company building security for the AI layer: the AI tools and agents on a computer, the connectors (MCP servers) they use, the keys they can read and the settings around them. The flagship, NetherGuard, shows what the AI on a Mac or Windows PC can reach and do, on one page. NetherGuard v0.2 is a release candidate with early access by request; builds are not yet code-signed, it is not open source, and there is no public pricing.",
     "",
     "## Security products",
     "",
     ...products.filter((product) => product.line === "security").map((product) => `- [${product.name}](${url(product.path)}): ${product.summary} Status: ${product.status}.`),
+    `- ${netherforgeCard.name} (listed on the [Products overview](${url("/products/")})): ${netherforgeCard.summary} Status: ${netherforgeCard.status}; no external release yet.`,
     "",
     "## Lab projects (no external release yet)",
     "",
@@ -21,7 +22,7 @@ export function GET() {
     "",
     "## Contact",
     "",
-    `- [Early access and contact](${url("/contact/")}): NetherShield Guard early-access requests and general questions.`,
+    `- [Early access and contact](${url("/contact/")}): NetherGuard early-access requests and general questions.`,
     `- Email: ${contactEmail}`,
     "",
     "## Optional",

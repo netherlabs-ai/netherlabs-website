@@ -10,7 +10,9 @@ type FormState = "idle" | "submitting" | "sent" | "error";
 // early-access requests arrive labelled. Only known slugs are accepted.
 const earlyAccess: Record<string, string> = {
   nethercommand: "Early access: NetherCommand",
-  "nethershield-guard": "Early access: NetherShield Guard",
+  netherguard: "Early access: NetherGuard",
+  // NetherShield Guard was renamed NetherGuard on 2026-11-27; old links keep their label.
+  "nethershield-guard": "Early access: NetherGuard",
   netherenvoy: "Early access: NetherEnvoy",
   netherfuse: "Early access: NetherFuse",
   general: "Early access: Nether Labs products",
@@ -66,7 +68,7 @@ export default function DiagnosticForm({ source, className }: DiagnosticFormProp
         <span>How soon</span>
         <select name="timing" defaultValue="This quarter"><option>Now</option><option>This quarter</option><option>Exploring</option></select>
       </label>
-      <label className="full-field"><span>Interested in <i>OPTIONAL</i></span><input name="workflow" ref={workflowField} maxLength={300} placeholder="e.g. NetherShield Guard on a Mac" /></label>
+      <label className="full-field"><span>Interested in <i>OPTIONAL</i></span><input name="workflow" ref={workflowField} maxLength={300} placeholder="e.g. NetherGuard on a Mac" /></label>
       <label className="full-field"><span>Which AI tools and agents do you use?</span><textarea name="challenge" required maxLength={4000} rows={source === "contact-page" ? 6 : 5} placeholder="e.g. Claude Desktop with two MCP servers, Cursor, ChatGPT in the browser. Mac or Windows? Just you, or a team?" /></label>
       <button className="button drawer-submit" type="submit" disabled={state === "submitting"}>
         {state === "submitting" ? "Sending request" : state === "sent" ? "Request sent" : "Request early access"}

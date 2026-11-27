@@ -14,7 +14,7 @@ export function SectionLabel({ n, children }: { n: string; children: string }) {
 
 export default function ProductPage({ product }: { product: Product }) {
   const related = products.filter((item) => item.slug !== product.slug);
-  const isGuard = product.slug === "nethershield-guard";
+  const isGuard = product.slug === "netherguard";
   const accessHref = `/contact/?product=${product.slug}`;
 
   return (

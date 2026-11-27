@@ -8,17 +8,30 @@
   NODE_VERSION = "22.13.0"
   NEXT_TELEMETRY_DISABLED = "1"
 
+# 2026-11-27: NetherShield Guard is renamed NetherGuard; keep the old product route working.
+[[redirects]]
+  from = "/nethershield-guard"
+  to = "/netherguard/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nethershield-guard/*"
+  to = "/netherguard/"
+  status = 301
+  force = true
+
 # 2026-11-26: the site refocused on AI security. The workflow diagnostic and NetherForge (formerly Steward) pages
 # are retired; keep their old links working.
 [[redirects]]
   from = "/workflow-audit"
-  to = "/nethershield-guard/"
+  to = "/netherguard/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/workflow-audit/*"
-  to = "/nethershield-guard/"
+  to = "/netherguard/"
   status = 301
   force = true
 

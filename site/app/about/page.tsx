@@ -12,7 +12,7 @@ const principles = [
   {
     number: "02",
     title: "Your data stays yours",
-    copy: "Guard runs on your computer and sends nothing anywhere. Secrets are reported by name and location, never by value.",
+    copy: "NetherGuard runs on your computer and sends nothing anywhere. Secrets are reported by name and location, never by value.",
   },
   {
     number: "03",
@@ -29,12 +29,12 @@ const principles = [
 const companyPath = [
   {
     number: "01",
-    title: "NetherShield Guard",
+    title: "NetherGuard",
     copy: "See what the AI on your Mac or PC can reach and do, on one page. v0.2 release candidate; early access by request.",
   },
   {
     number: "02",
-    title: "Guard, always on",
+    title: "NetherGuard, always on",
     copy: "Next: a monitor in the menu bar or tray that notices new connectors, keys and risky settings, with reversible fixes. In development.",
   },
   {
@@ -46,7 +46,7 @@ const companyPath = [
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
-  description: "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherShield Guard for Mac and Windows.",
+  description: "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherGuard for Mac and Windows.",
   path: "/about/",
 });
 
@@ -85,21 +85,21 @@ export default function AboutPage() {
       <section className="interior-proof" aria-labelledby="operating-proof-title">
         <div>
           <h2 id="operating-proof-title">We are our own first test.</h2>
-          <p>Nether Labs runs AI agents across its own operations every day, on Macs, Windows PCs and AI servers. Guard v0.2 was tested on our own Mac and Windows machines, and its first reports found real issues on them.</p>
+          <p>Nether Labs runs AI agents across its own operations every day, on Macs, Windows PCs and AI servers. NetherGuard v0.2 was tested on our own Mac and Windows machines, and its first reports found real issues on them.</p>
         </div>
       </section>
 
       <section className="interior-section" aria-labelledby="about-founder-title">
         <p className="micro-label">FOUNDER</p>
         <h2 id="about-founder-title">Built by an operator, for operators.</h2>
-        <p>Yves La Rose founded Nether Labs and runs it with a large team of AI agents. Guard started as the tool we needed to see, in plain language, what those agents could reach on our own machines.</p>
+        <p>Yves La Rose founded Nether Labs and runs it with a large team of AI agents. NetherGuard started as the tool we needed to see, in plain language, what those agents could reach on our own machines.</p>
         <InceptionMember variant="about" />
       </section>
 
       <section className="interior-section stack-section" aria-labelledby="about-path-title">
         <p className="micro-label">WHAT WE ARE BUILDING</p>
         <h2 id="about-path-title">See what AI can reach. Oversee what it does.</h2>
-        <p>Guard comes first. NetherCommand follows, for owners who need oversight of the work their agents do.</p>
+        <p>NetherGuard comes first. NetherCommand follows, for owners who need oversight of the work their agents do.</p>
         <div className="stack-list">
           {companyPath.map((stage) => (
             <article key={stage.number}>
@@ -114,8 +114,8 @@ export default function AboutPage() {
       <section className="mailbox-panel" aria-labelledby="about-contact-title">
         <p className="micro-label">EARLY ACCESS</p>
         <h2 id="about-contact-title">See what the AI on your computer can reach.</h2>
-        <p>NetherShield Guard early access is open by request for Mac and Windows.</p>
-        <a className="button button-light" href="/contact/?product=nethershield-guard">Request early access <span aria-hidden="true">↗</span></a>
+        <p>NetherGuard early access is open by request for Mac and Windows.</p>
+        <a className="button button-light" href="/contact/?product=netherguard">Request early access <span aria-hidden="true">↗</span></a>
       </section>
     </InteriorPage>
   );

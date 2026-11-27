@@ -75,10 +75,10 @@ async function request(path, init = {}) {
 }
 
 const routes = [
-  "/", "/products/", "/nethershield-guard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/",
+  "/", "/products/", "/netherguard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/",
   "/about/", "/contact/", "/privacy/",
 ];
-const structuredRoutes = new Set(["/", "/products/", "/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/"]);
+const structuredRoutes = new Set(["/", "/products/", "/nethercommand/", "/netherguard/", "/netherenvoy/", "/netherfuse/"]);
 const canonicalOrigin = "https://netherlabs.ai";
 const meta = (body, pattern) => body.match(pattern)?.[1] ?? "";
 const ogImages = new Set();
@@ -88,6 +88,8 @@ for (const route of routes) {
   assert.equal(response.status, 200, route);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html/i, route);
   assert.match(body, /NETHER LABS/i, route);
+  // 2026-11-27 rename: the product is NetherGuard everywhere users see it.
+  assert.doesNotMatch(body, /NetherShield|NETHERSHIELD|\/nethershield-guard\//, `${route}: old product name`);
   verifyHeaders(response, route);
 
   // SEO contract: title, canonical, Open Graph image and parseable JSON-LD.
@@ -123,10 +125,17 @@ const llms = await request("/llms.txt");
 assert.equal(llms.response.status, 200, "llms.txt status");
 assert.match(llms.response.headers.get("content-type") ?? "", /^text\/plain/i, "llms.txt type");
 assert.match(llms.body, /^# Nether Labs/, "llms.txt body");
+assert.match(llms.body, /NetherGuard/, "llms.txt: NetherGuard");
+assert.doesNotMatch(llms.body, /NetherShield/, "llms.txt: old product name");
+const productsHub = (await request("/products/")).body;
+assert.match(productsHub, /id="netherforge"[\s\S]*?NetherForge[\s\S]*?In development/, "products: NetherForge listed as in development");
+assert.match((await request("/netherguard/")).body, /<h1[^>]*>[^<]*See what the AI on your computer can reach/, "netherguard: product page");
 
 // 2026-11-26 AI-security refocus: retired consulting routes (and Steward, NetherForge's old name) must keep working.
+// 2026-11-27: NetherShield Guard is now NetherGuard; its old route must land on the new one.
 for (const [route, target] of [
-  ["/workflow-audit/", "/nethershield-guard/"], ["/netherforge/", "/products/"], ["/steward", "/products/"], ["/steward/", "/products/"],
+  ["/nethershield-guard/", "/netherguard/"], ["/nethershield-guard", "/netherguard/"],
+  ["/workflow-audit/", "/netherguard/"], ["/netherforge/", "/products/"], ["/steward", "/products/"], ["/steward/", "/products/"],
 ]) {
   const { response } = await request(route);
   assert.equal(response.status, 301, `${route}: redirect status`);

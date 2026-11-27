@@ -7,7 +7,7 @@ import { faqPage, graph, organization, website } from "./lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "Security for the AI Layer",
-  description: "Nether Labs builds security for the AI layer. NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.",
+  description: "Nether Labs builds security for the AI layer. NetherGuard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.",
   path: "/",
 });
 

@@ -9,17 +9,17 @@ const out = join(root, "out");
 const read = (path) => readFileSync(join(root, path), "utf8");
 
 const routes = [
-  ["out/index.html", "Security for the AI Layer", "Nether Labs builds security for the AI layer. NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.", "https://netherlabs.ai/"],
-  ["out/products/index.html", "Products: Security for the AI Layer | Nether Labs", "NetherShield Guard shows what the AI on your Mac or PC can reach and do. NetherCommand gives oversight of the work your AI agents do. Plus two lab projects.", "https://netherlabs.ai/products/"],
-  ["out/nethershield-guard/index.html", "NetherShield Guard: See What Your AI Can Reach | Nether Labs", "NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page, with a fix for each risk. Nothing is uploaded.", "https://netherlabs.ai/nethershield-guard/"],
+  ["out/index.html", "Security for the AI Layer", "Nether Labs builds security for the AI layer. NetherGuard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.", "https://netherlabs.ai/"],
+  ["out/products/index.html", "Products: Security for the AI Layer | Nether Labs", "NetherGuard shows what the AI on your Mac or PC can reach and do. NetherCommand gives oversight of the work your AI agents do, and NetherForge will govern it.", "https://netherlabs.ai/products/"],
+  ["out/netherguard/index.html", "NetherGuard: See What Your AI Can Reach | Nether Labs", "NetherGuard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page, with a fix for each risk. Nothing is uploaded.", "https://netherlabs.ai/netherguard/"],
   ["out/nethercommand/index.html", "NetherCommand: Oversight for Your AI Agents | Nether Labs", "NetherCommand gives oversight of your AI agents: what they are working on, what is blocked and the decisions that need a person, in one view. In development.", "https://netherlabs.ai/nethercommand/"],
   ["out/netherenvoy/index.html", "NetherEnvoy: Private Voice Assistant for AI Agents | Nether Labs", "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model running on your own hardware. In development.", "https://netherlabs.ai/netherenvoy/"],
   ["out/netherfuse/index.html", "NetherFuse: One Model Across Mac Studio and DGX Spark | Nether Labs", "NetherFuse is software to run one AI model across a Mac Studio and NVIDIA DGX Spark systems over a fast network link. Early research; no benchmarks claimed.", "https://netherlabs.ai/netherfuse/"],
-  ["out/about/index.html", "About | Nether Labs", "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherShield Guard for Mac and Windows.", "https://netherlabs.ai/about/"],
-  ["out/contact/index.html", "Contact | Nether Labs", "Request early access to NetherShield Guard for Mac or Windows, or contact Nether Labs about AI-layer security.", "https://netherlabs.ai/contact/"],
+  ["out/about/index.html", "About | Nether Labs", "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherGuard for Mac and Windows.", "https://netherlabs.ai/about/"],
+  ["out/contact/index.html", "Contact | Nether Labs", "Request early access to NetherGuard for Mac or Windows, or contact Nether Labs about AI-layer security.", "https://netherlabs.ai/contact/"],
   ["out/privacy/index.html", "Privacy | Nether Labs", "How Nether Labs handles public website request data and early-access and contact submissions.", "https://netherlabs.ai/privacy/"],
 ];
-const productPages = ["nethershield-guard", "nethercommand", "netherenvoy", "netherfuse"];
+const productPages = ["netherguard", "nethercommand", "netherenvoy", "netherfuse"];
 
 function jsonLd(html) {
   return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
@@ -257,7 +257,13 @@ test("structured data is valid JSON-LD and stays honest", () => {
 
   const hub = nodes(read("out/products/index.html"));
   const list = hub.find((node) => node["@type"] === "CollectionPage").mainEntity.itemListElement;
-  assert.deepEqual(list.map((item) => new URL(item.url).pathname), ["/nethershield-guard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/"]);
+  assert.deepEqual(list.map((item) => new URL(item.url).pathname), ["/netherguard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/"]);
+
+  // NetherForge has no page yet: it is listed on Products as in development, and nowhere claims a release.
+  const products = read("out/products/index.html");
+  assert.match(products, /id="netherforge"[\s\S]*?NetherForge[\s\S]*?In development/);
+  assert.doesNotMatch(products, /href="\/netherforge\/"/);
+  assert.match(read("out/llms.txt"), /NetherForge .*Status: In development; no external release yet\./);
 
   const fuse = read("out/netherfuse/index.html");
   assert.match(fuse, /Ash Hart/);
@@ -267,5 +273,7 @@ test("structured data is valid JSON-LD and stays honest", () => {
 test("public copy contains no internal hosts, addresses or partner names", () => {
   const files = walk(out).filter((path) => [".html", ".txt", ".xml"].includes(extname(path)));
   const source = files.map((path) => readFileSync(path, "utf8")).join("\n");
+  // 2026-11-27: the product is NetherGuard; the old "NetherShield" name must not reach public copy.
+  assert.doesNotMatch(source, /NetherShield|NETHERSHIELD|\/nethershield-guard\//);
   assert.doesNotMatch(source, /ts\.net|tailnet|tailscale|100\.\d+\.\d+\.\d+|192\.168\.|yvess-mac-studio|pinax|paperclip|\bNET-\d+|\bINI-\d+/i);
 });

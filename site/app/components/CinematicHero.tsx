@@ -104,12 +104,12 @@ export default function CinematicHero({ onContact, contactOpen }: { onContact: (
         <div ref={copy} className="cinema-copy">
           <p className="eyebrow"><span className="short-rule" /> AI SECURITY. FOR YOUR MAC AND PC.</p>
           <h1>Security for<br /><em>the AI layer.</em></h1>
-          <p className="cinema-description">Your AI assistants and agents can read your files, use your keys and run commands. NetherShield Guard shows what the AI on your computer can reach and do, on one page, with the fix for each risk.</p>
+          <p className="cinema-description">Your AI assistants and agents can read your files, use your keys and run commands. NetherGuard shows what the AI on your computer can reach and do, on one page, with the fix for each risk.</p>
           <div className="cinema-actions">
             <button className="button primary" aria-haspopup="dialog" aria-controls="early-access" aria-expanded={contactOpen} onClick={onContact}>Request early access <span aria-hidden="true">↗︎</span></button>
-            <a className="text-link" href="#guard">See how Guard works <span aria-hidden="true">↓</span></a>
+            <a className="text-link" href="#guard">See how NetherGuard works <span aria-hidden="true">↓</span></a>
           </div>
-          <p className="cinema-note">Guard v0.2 release candidate · Mac and Windows · Runs on your computer</p>
+          <p className="cinema-note">NetherGuard v0.2 release candidate · Mac and Windows · Runs on your computer</p>
         </div>
       </div>
       <div className="cinema-footer shell">

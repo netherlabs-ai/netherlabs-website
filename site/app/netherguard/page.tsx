@@ -3,7 +3,7 @@ import ProductPage from "../components/ProductPage";
 import { getProduct } from "../lib/products";
 import { buildMetadata } from "../lib/site";
 
-const product = getProduct("nethershield-guard");
+const product = getProduct("netherguard");
 
 export const metadata: Metadata = buildMetadata({
   title: product.title,
@@ -12,6 +12,6 @@ export const metadata: Metadata = buildMetadata({
   image: { url: product.ogImage, alt: product.ogAlt },
 });
 
-export default function NethershieldGuardPage() {
+export default function NetherGuardPage() {
   return <ProductPage product={product} />;
 }

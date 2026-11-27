@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import StaticShell from "../components/StaticShell";
 import JsonLd from "../components/JsonLd";
 import { SectionLabel } from "../components/ProductPage";
-import { products } from "../lib/products";
+import { netherforgeCard, products } from "../lib/products";
 import { breadcrumbs, graph, organizationId } from "../lib/structured-data";
 import { buildMetadata, siteOrigin } from "../lib/site";
 import "../components/product.css";
 
 const title = "Products: Security for the AI Layer";
-const description = "NetherShield Guard shows what the AI on your Mac or PC can reach and do. NetherCommand gives oversight of the work your AI agents do. Plus two lab projects.";
+const description = "NetherGuard shows what the AI on your Mac or PC can reach and do. NetherCommand gives oversight of the work your AI agents do, and NetherForge will govern it.";
 
 export const metadata: Metadata = buildMetadata({
   title,
@@ -45,9 +45,9 @@ export default function ProductsPage() {
         <section className="pp-hero hub-hero" aria-labelledby="hub-title">
           <div className="page-shell">
             <nav className="pp-crumbs pp-in" aria-label="Breadcrumb"><ol><li><Link href="/" prefetch={false}>Home</Link></li><li aria-current="page">Products</li></ol></nav>
-            <p className="pp-meta pp-in" style={{ "--i": 1 } as CSSProperties}><span className="pp-pill"><i aria-hidden="true" />Guard v0.2 release candidate</span><span>NETHER LABS / PRODUCTS</span></p>
+            <p className="pp-meta pp-in" style={{ "--i": 1 } as CSSProperties}><span className="pp-pill"><i aria-hidden="true" />NetherGuard v0.2 release candidate</span><span>NETHER LABS / PRODUCTS</span></p>
             <h1 id="hub-title" className="pp-rise">Security for the AI layer.</h1>
-            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>See what the AI on your computer can reach with NetherShield Guard. Oversee what your agents do with NetherCommand. We use both on our own machines, and each page says plainly what works today and what does not yet.</p>
+            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>See what the AI on your computer can reach with NetherGuard. Oversee what your agents do with NetherCommand. NetherForge, a governed workspace for AI agents, is in development. We use NetherGuard and NetherCommand on our own machines, and each page says plainly what works today and what does not yet.</p>
           </div>
         </section>
         <section className="pp-section" aria-labelledby="hub-security">
@@ -65,6 +65,14 @@ export default function ProductsPage() {
                   </a>
                 </li>
               ))}
+              <li id="netherforge" className="hub-card" style={{ "--accent": "var(--night-muted)" } as CSSProperties}>
+                <div className="hub-card-static">
+                  <span className="hub-card-meta"><span>SUPPORTING / {netherforgeCard.category}</span><span className="pp-pill"><i aria-hidden="true" />{netherforgeCard.status}</span></span>
+                  <h2>{netherforgeCard.name}</h2>
+                  <p>{netherforgeCard.summary}</p>
+                  <span className="hub-card-go">{netherforgeCard.note}</span>
+                </div>
+              </li>
             </ul>
           </div>
         </section>
@@ -86,9 +94,9 @@ export default function ProductsPage() {
             <div>
               <SectionLabel n="→">EARLY ACCESS</SectionLabel>
               <h2 id="hub-cta">See what the AI on your computer can reach.</h2>
-              <p>NetherShield Guard early access is open by request for Mac and Windows. Tell us which AI tools you use, and we will reach out as places open. The other products have no external release yet.</p>
+              <p>NetherGuard early access is open by request for Mac and Windows. Tell us which AI tools you use, and we will reach out as places open. The other products have no external release yet.</p>
             </div>
-            <div className="pp-actions"><a className="pp-btn pp-btn-primary" href="/contact/?product=nethershield-guard">Request Guard early access <span aria-hidden="true">↗</span></a></div>
+            <div className="pp-actions"><a className="pp-btn pp-btn-primary" href="/contact/?product=netherguard">Request NetherGuard early access <span aria-hidden="true">↗</span></a></div>
           </div>
         </section>
       </div>
