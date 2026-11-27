@@ -56,3 +56,6 @@ dialog{border:1px solid var(--night-line);background:var(--void);color:var(--pap
 
 /* The external site retains its mailbox-only contact boundary. */
 .mailbox-body{margin-top:28px}.mailbox-body>p{color:var(--night-muted)}.mailbox-body>.button{margin-top:24px;overflow-wrap:anywhere;min-width:0}.mailbox-disclosure{display:block;max-width:540px;margin-top:16px;font-size:.8125rem;line-height:1.6;color:var(--night-muted)}.mailbox-guidance{margin-top:24px;font-size:.875rem}.mailbox-body>.text-link{margin-top:8px}
+
+/* AI-security refocus (2026-11-26): "NetherCommand." is one long word; Guard has four steps, not five. */
+@media(max-width:700px){#command .steward-heading h2{font-size:clamp(2.625rem,11.5vw,4rem)}#guard .diagnostic-tabs .tab-list{grid-template-columns:repeat(4,minmax(0,1fr))}}
