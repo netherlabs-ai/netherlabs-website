@@ -75,8 +75,8 @@ async function request(path, init = {}) {
 }
 
 const routes = [
-  "/", "/products/", "/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/",
-  "/about/", "/workflow-audit/", "/netherforge/", "/contact/", "/privacy/",
+  "/", "/products/", "/nethershield-guard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/",
+  "/about/", "/contact/", "/privacy/",
 ];
 const structuredRoutes = new Set(["/", "/products/", "/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/"]);
 const canonicalOrigin = "https://netherlabs.ai";
@@ -124,16 +124,18 @@ assert.equal(llms.response.status, 200, "llms.txt status");
 assert.match(llms.response.headers.get("content-type") ?? "", /^text\/plain/i, "llms.txt type");
 assert.match(llms.body, /^# Nether Labs/, "llms.txt body");
 
-// NetherForge was named Steward until 2026-10-27; the old route must keep working.
-for (const route of ["/steward", "/steward/"]) {
+// 2026-11-26 AI-security refocus: retired consulting routes (and Steward, NetherForge's old name) must keep working.
+for (const [route, target] of [
+  ["/workflow-audit/", "/nethershield-guard/"], ["/netherforge/", "/products/"], ["/steward", "/products/"], ["/steward/", "/products/"],
+]) {
   const { response } = await request(route);
   assert.equal(response.status, 301, `${route}: redirect status`);
-  assert.equal(new URL(response.headers.get("location") ?? "", base).pathname, "/netherforge/", `${route}: redirect target`);
+  assert.equal(new URL(response.headers.get("location") ?? "", base).pathname, target, `${route}: redirect target`);
 }
 
 for (const route of ["/", "/contact/"]) {
   const { body } = await request(route);
-  assert.match(body, /<form\b/i, `${route}: visible diagnostic form`);
+  assert.match(body, /<form\b/i, `${route}: visible early-access form`);
   for (const field of ["name", "email", "company", "timing", "workflow", "challenge"]) {
     assert.match(body, new RegExp(`name="${field}"`, "i"), `${route}: ${field} field`);
   }
