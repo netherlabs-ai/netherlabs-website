@@ -147,10 +147,10 @@ export function resolveFormsEndpoint(env = {}) {
 
 function buildBrief(fields) {
   return [
-    "NETHER LABS | WORKFLOW DIAGNOSTIC REQUEST", "", `Name: ${fields.name}`,
+    "NETHER LABS | EARLY ACCESS / CONTACT REQUEST", "", `Name: ${fields.name}`,
     `Work email: ${fields.email}`, `Company: ${fields.company || "Not provided"}`,
-    `Timing: ${fields.timing}`, `Workflow or process: ${fields.workflow || "Not provided"}`,
-    `Source: ${fields.source}`, "", "What makes this workflow difficult today:", fields.challenge,
+    `Timing: ${fields.timing}`, `Interested in: ${fields.workflow || "Not provided"}`,
+    `Source: ${fields.source}`, "", "What they run and want to protect:", fields.challenge,
   ].join("\n");
 }
 

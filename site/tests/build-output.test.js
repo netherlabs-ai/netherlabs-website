@@ -9,19 +9,17 @@ const out = join(root, "out");
 const read = (path) => readFileSync(join(root, path), "utf8");
 
 const routes = [
-  ["out/index.html", "AI Workflow Strategy and Implementation", "Nether Labs helps established businesses find where AI can improve real workflows: a focused diagnostic, clear human review and a practical implementation path.", "https://netherlabs.ai/"],
-  ["out/products/index.html", "Products: Local-First AI Software | Nether Labs", "Software for running AI agents on hardware you control: NetherCommand, NetherShield Guard, NetherEnvoy, NetherFuse and NetherForge. All in development.", "https://netherlabs.ai/products/"],
-  ["out/nethercommand/index.html", "NetherCommand: AI Agent Command Center | Nether Labs", "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one view. In development.", "https://netherlabs.ai/nethercommand/"],
-  ["out/nethershield-guard/index.html", "NetherShield Guard: AI Agent Security for Your Machine | Nether Labs", "NetherShield Guard audits a computer for the ways an AI agent could be turned against you and explains each fix. Runs locally. Linux today; macOS in progress.", "https://netherlabs.ai/nethershield-guard/"],
+  ["out/index.html", "Security for the AI Layer", "Nether Labs builds security for the AI layer. NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.", "https://netherlabs.ai/"],
+  ["out/products/index.html", "Products: Security for the AI Layer | Nether Labs", "NetherShield Guard shows what the AI on your Mac or PC can reach and do. NetherCommand gives oversight of the work your AI agents do. Plus two lab projects.", "https://netherlabs.ai/products/"],
+  ["out/nethershield-guard/index.html", "NetherShield Guard: See What Your AI Can Reach | Nether Labs", "NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page, with a fix for each risk. Nothing is uploaded.", "https://netherlabs.ai/nethershield-guard/"],
+  ["out/nethercommand/index.html", "NetherCommand: Oversight for Your AI Agents | Nether Labs", "NetherCommand gives oversight of your AI agents: what they are working on, what is blocked and the decisions that need a person, in one view. In development.", "https://netherlabs.ai/nethercommand/"],
   ["out/netherenvoy/index.html", "NetherEnvoy: Private Voice Assistant for AI Agents | Nether Labs", "NetherEnvoy is a private voice interface for your AI agents, with replies spoken by a voice model running on your own hardware. In development.", "https://netherlabs.ai/netherenvoy/"],
   ["out/netherfuse/index.html", "NetherFuse: One Model Across Mac Studio and DGX Spark | Nether Labs", "NetherFuse is software to run one AI model across a Mac Studio and NVIDIA DGX Spark systems over a fast network link. Early research; no benchmarks claimed.", "https://netherlabs.ai/netherfuse/"],
-  ["out/about/index.html", "About | Nether Labs", "How Nether Labs helps established organizations direct AI at real operating constraints and compound governed improvements.", "https://netherlabs.ai/about/"],
-  ["out/workflow-audit/index.html", "AI Workflow Diagnostic | Nether Labs", "Map one real workflow, expose operating drag, define controls and create a governed path to a first pilot.", "https://netherlabs.ai/workflow-audit/"],
-  ["out/netherforge/index.html", "NetherForge | Nether Labs", "NetherForge is the Nether Labs pathway for connecting workflows, knowledge, agents, governance, metrics and human authority.", "https://netherlabs.ai/netherforge/"],
-  ["out/contact/index.html", "Contact | Nether Labs", "Contact Nether Labs about a workflow diagnostic for an established business.", "https://netherlabs.ai/contact/"],
-  ["out/privacy/index.html", "Privacy | Nether Labs", "How Nether Labs handles public website request data and workflow diagnostic submissions.", "https://netherlabs.ai/privacy/"],
+  ["out/about/index.html", "About | Nether Labs", "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherShield Guard for Mac and Windows.", "https://netherlabs.ai/about/"],
+  ["out/contact/index.html", "Contact | Nether Labs", "Request early access to NetherShield Guard for Mac or Windows, or contact Nether Labs about AI-layer security.", "https://netherlabs.ai/contact/"],
+  ["out/privacy/index.html", "Privacy | Nether Labs", "How Nether Labs handles public website request data and early-access and contact submissions.", "https://netherlabs.ai/privacy/"],
 ];
-const productPages = ["nethercommand", "nethershield-guard", "netherenvoy", "netherfuse"];
+const productPages = ["nethershield-guard", "nethercommand", "netherenvoy", "netherfuse"];
 
 function jsonLd(html) {
   return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
@@ -143,7 +141,7 @@ test("robots, sitemap and contact output match the production contract", () => {
 
   const llms = read("out/llms.txt");
   assert.match(llms, /^# Nether Labs\n\n> /);
-  for (const slug of [...productPages, "netherforge", "workflow-audit", "contact"]) assert.ok(llms.includes(`https://netherlabs.ai/${slug}/`), slug);
+  for (const slug of [...productPages, "contact"]) assert.ok(llms.includes(`https://netherlabs.ai/${slug}/`), slug);
 
   for (const path of ["out/index.html", "out/contact/index.html"]) {
     const html = read(path);
@@ -259,7 +257,7 @@ test("structured data is valid JSON-LD and stays honest", () => {
 
   const hub = nodes(read("out/products/index.html"));
   const list = hub.find((node) => node["@type"] === "CollectionPage").mainEntity.itemListElement;
-  assert.deepEqual(list.map((item) => new URL(item.url).pathname), ["/nethercommand/", "/nethershield-guard/", "/netherenvoy/", "/netherfuse/", "/netherforge/"]);
+  assert.deepEqual(list.map((item) => new URL(item.url).pathname), ["/nethershield-guard/", "/nethercommand/", "/netherenvoy/", "/netherfuse/"]);
 
   const fuse = read("out/netherfuse/index.html");
   assert.match(fuse, /Ash Hart/);

@@ -6,8 +6,8 @@ import { buildMetadata } from "./lib/site";
 import { faqPage, graph, organization, website } from "./lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
-  title: "AI Workflow Strategy and Implementation",
-  description: "Nether Labs helps established businesses find where AI can improve real workflows: a focused diagnostic, clear human review and a practical implementation path.",
+  title: "Security for the AI Layer",
+  description: "Nether Labs builds security for the AI layer. NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page.",
   path: "/",
 });
 

@@ -5,22 +5,22 @@ import { buildMetadata } from "../lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
-  description: "Contact Nether Labs about a workflow diagnostic for an established business.",
+  description: "Request early access to NetherShield Guard for Mac or Windows, or contact Nether Labs about AI-layer security.",
   path: "/contact/",
 });
 
 export default function ContactPage() {
   return (
     <InteriorPage
-      eyebrow="CONTACT NETHER LABS"
-      title="Bring us the work that should not still be this hard."
-      introduction="The strongest starting points are repeated, measurable, owned and grounded in real examples."
+      eyebrow="EARLY ACCESS AND CONTACT"
+      title="See what the AI on your computer can reach."
+      introduction="NetherShield Guard early access is open by request for Macs with Apple silicon and Windows PCs. Tell us which AI tools and agents you use, and we will reach out as places open."
     >
       <section className="contact-form-panel" aria-labelledby="contact-form-title">
-        <p className="micro-label">BEGIN WITH ONE WORKFLOW</p>
-        <h2 id="contact-form-title">Request a workflow diagnostic.</h2>
-        <p>Tell us which repeated workflow is creating drag, where it breaks down, and what a better result would make possible.</p>
-        <p>Interested in a <a className="inline-link" href="/products/">Nether Labs product</a>? Use the same form to join the early-access interest list: name the product in the workflow field and tell us what you run.</p>
+        <p className="micro-label">NETHERSHIELD GUARD EARLY ACCESS</p>
+        <h2 id="contact-form-title">Request early access.</h2>
+        <p>Tell us which AI assistants, coding agents and connectors you use, whether you are on Mac or Windows, and whether it is just you or a team. Please do not include passwords, API keys or other secrets.</p>
+        <p>Interested in <a className="inline-link" href="/nethercommand/">NetherCommand</a> or another <a className="inline-link" href="/products/">Nether Labs product</a>? Use the same form and name the product in the “Interested in” field.</p>
         <DiagnosticForm source="contact-page" className="route-form" />
         <form name="workflow-diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
           <input type="hidden" name="form-name" value="workflow-diagnostic" />

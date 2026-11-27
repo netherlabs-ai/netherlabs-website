@@ -2,12 +2,11 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import StaticShell from "./StaticShell";
 import ProductVisual from "./ProductVisual";
+import GuardReport from "./GuardReport";
 import JsonLd from "./JsonLd";
 import { products, type Product } from "../lib/products";
 import { breadcrumbs, faqPage, graph, softwareApplication } from "../lib/structured-data";
 import "./product.css";
-
-const statusDate = "November 7, 2026";
 
 export function SectionLabel({ n, children }: { n: string; children: string }) {
   return <p className="pp-label"><span>{n}</span>{children}</p>;
@@ -15,6 +14,7 @@ export function SectionLabel({ n, children }: { n: string; children: string }) {
 
 export default function ProductPage({ product }: { product: Product }) {
   const related = products.filter((item) => item.slug !== product.slug);
+  const isGuard = product.slug === "nethershield-guard";
   const accessHref = `/contact/?product=${product.slug}`;
 
   return (
@@ -35,13 +35,13 @@ export default function ProductPage({ product }: { product: Product }) {
               <h1 id="pp-title" className="pp-rise">{product.h1}</h1>
               <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>{product.lead}</p>
               <div className="pp-actions pp-in" style={{ "--i": 3 } as CSSProperties}>
-                <a className="pp-btn pp-btn-primary" href={accessHref}>Join the early-access list <span aria-hidden="true">↗</span></a>
+                <a className="pp-btn pp-btn-primary" href={accessHref}>{product.cta.button} <span aria-hidden="true">↗</span></a>
                 <a className="pp-btn pp-btn-ghost" href="#how">How it works <span aria-hidden="true">↓</span></a>
               </div>
             </div>
             <figure className="pp-visual pp-in" style={{ "--i": 4 } as CSSProperties}>
-              <ProductVisual kind={product.visual} />
-              <figcaption><span>{product.name.toUpperCase()}</span><span>ILLUSTRATIVE DIAGRAM</span></figcaption>
+              {isGuard ? <GuardReport /> : <ProductVisual kind={product.visual} />}
+              <figcaption><span>{isGuard ? "THE ONE-PAGE REPORT" : product.name.toUpperCase()}</span><span>{isGuard ? "ILLUSTRATIVE EXAMPLE" : "ILLUSTRATIVE DIAGRAM"}</span></figcaption>
             </figure>
           </div>
         </section>
@@ -86,7 +86,7 @@ export default function ProductPage({ product }: { product: Product }) {
                 <ul>{product.today.next.map((item) => <li key={item}>{item}</li>)}</ul>
               </div>
             </div>
-            <p className="pp-footnote">Status as of {statusDate}. We update this page when something ships, not before.</p>
+            <p className="pp-footnote">Status as of {product.statusDate}. We update this page when something ships, not before.</p>
             {product.credit ? <p className="pp-credit"><span>CREDIT</span>{product.credit}</p> : null}
           </div>
         </section>
@@ -112,11 +112,11 @@ export default function ProductPage({ product }: { product: Product }) {
           <div className="page-shell pp-cta-inner">
             <div>
               <p className="pp-label"><span>05</span>EARLY ACCESS</p>
-              <h2 id="pp-cta-title">Interested in <em>{product.name}</em>?</h2>
-              <p>There is no external release yet. Join the early-access interest list, tell us what you run and what you need, and we will reach out when there is something real to try.</p>
+              <h2 id="pp-cta-title">{product.cta.heading}</h2>
+              <p>{product.cta.copy}</p>
             </div>
             <div className="pp-actions">
-              <a className="pp-btn pp-btn-primary" href={accessHref}>Join the early-access list <span aria-hidden="true">↗</span></a>
+              <a className="pp-btn pp-btn-primary" href={accessHref}>{product.cta.button} <span aria-hidden="true">↗</span></a>
               <a className="pp-btn pp-btn-ghost" href="/products/">All products</a>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function ProductPage({ product }: { product: Product }) {
         <section className="pp-section pp-related" aria-labelledby="pp-related">
           <div className="page-shell">
             <SectionLabel n="06">ALSO FROM NETHER LABS</SectionLabel>
-            <h2 id="pp-related" className="pp-visually-small">More products in development</h2>
+            <h2 id="pp-related" className="pp-visually-small">More from Nether Labs</h2>
             <ul className="pp-related-list">
               {related.map((item) => (
                 <li key={item.slug} style={{ "--accent": item.accent } as CSSProperties}>

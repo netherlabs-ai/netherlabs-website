@@ -6,47 +6,47 @@ import { buildMetadata } from "../lib/site";
 const principles = [
   {
     number: "01",
-    title: "Workflow before software",
-    copy: "Begin with how the work actually moves, where it breaks down and what a better outcome would make possible.",
+    title: "See it before you trust it",
+    copy: "Every AI tool you connect works with some of your access. The first job of security for the AI layer is to show that access plainly.",
   },
   {
     number: "02",
-    title: "People remain accountable",
-    copy: "AI can prepare, recommend and execute within clear boundaries. People retain authority over consequential decisions.",
+    title: "Your data stays yours",
+    copy: "Guard runs on your computer and sends nothing anywhere. Secrets are reported by name and location, never by value.",
   },
   {
     number: "03",
-    title: "Governance is architecture",
-    copy: "Permissions, evidence, review, escalation and security belong in the system from the beginning.",
+    title: "Plain language, ranked",
+    copy: "A finding is only useful if you can act on it. Say what it is, why it matters and what to fix first.",
   },
   {
     number: "04",
-    title: "Evidence earns expansion",
-    copy: "Measure quality, time, cost and risk. Broaden the system only when real operating evidence supports it.",
+    title: "Claim only what is proven",
+    copy: "Each product page says what works today and what does not yet. We update it when something ships, not before.",
   },
 ] as const;
 
 const companyPath = [
   {
     number: "01",
-    title: "Diagnose",
-    copy: "Find the workflow where a governed improvement can create meaningful operating leverage now.",
+    title: "NetherShield Guard",
+    copy: "See what the AI on your Mac or PC can reach and do, on one page. v0.2 release candidate; early access by request.",
   },
   {
     number: "02",
-    title: "Implement",
-    copy: "Turn the strongest opportunity into a controlled system that works against real examples and exceptions.",
+    title: "Guard, always on",
+    copy: "Next: a monitor in the menu bar or tray that notices new connectors, keys and risky settings, with reversible fixes. In development.",
   },
   {
     number: "03",
-    title: "NetherForge",
-    copy: "Use proven patterns to shape the operating environment that connects intelligence across the whole business.",
+    title: "NetherCommand",
+    copy: "Oversight of what your agents are doing and the decisions that need a person. Runs inside Nether Labs; in development.",
   },
 ] as const;
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
-  description: "How Nether Labs helps established organizations direct AI at real operating constraints and compound governed improvements.",
+  description: "Nether Labs is an AI security company. We build security for the AI layer, starting with NetherShield Guard for Mac and Windows.",
   path: "/about/",
 });
 
@@ -54,23 +54,23 @@ export default function AboutPage() {
   return (
     <InteriorPage
       eyebrow="ABOUT NETHER LABS"
-      title="Built by an operator. For operators."
-      introduction="Nether Labs is an AI systems company for established businesses. We help leaders improve real operations today while building the governed operating layer for what comes next."
+      title="We run the agents. So we built the guard."
+      introduction="Nether Labs is an AI security company in Ottawa, Canada. We build security for the AI layer: the AI tools and agents on your computer, the connectors they use, the keys they can read and the settings around them."
     >
       <div className="interior-lead">
-        <p>We believe AI is changing the economics of execution. As routine work becomes cheaper and faster, advantage shifts toward the quality of the idea, the clarity of the decision and the system that can carry both into practice.</p>
+        <p>AI assistants now read files, hold keys and run commands with the same access as the person using them. That makes them useful. It also makes them the newest way into a computer, and most people cannot see what their AI can reach.</p>
       </div>
 
       <section className="interior-section" aria-labelledby="about-purpose-title">
         <p className="micro-label">WHY WE EXIST</p>
-        <h2 id="about-purpose-title">The business already contains the raw material.</h2>
-        <p>Customers, expertise, data, workflows, systems and hard-won institutional knowledge are already in motion. What many businesses lack is a practical way to connect those assets to AI without losing control, context or accountability. Nether Labs exists to close that gap.</p>
+        <h2 id="about-purpose-title">The AI layer needs its own security.</h2>
+        <p>Antivirus watches for malware. Large security platforms now inventory AI agents for IT teams across company fleets. The person at the keyboard, running Claude, ChatGPT, Cursor and a handful of connectors on their own machine, still has no plain answer to a simple question: what can my AI reach? Nether Labs exists to answer it.</p>
       </section>
 
       <section className="interior-section" aria-labelledby="about-principles-title">
         <p className="micro-label">WHAT WE BELIEVE</p>
-        <h2 id="about-principles-title">Principles before platforms.</h2>
-        <p>Technology should serve the operating model, not force the business to reorganize around another tool.</p>
+        <h2 id="about-principles-title">Principles before features.</h2>
+        <p>Security software asks for trust. These are the rules we hold ourselves to in return.</p>
         <div className="interior-card-grid four-up">
           {principles.map((principle) => (
             <article key={principle.number}>
@@ -84,22 +84,22 @@ export default function AboutPage() {
 
       <section className="interior-proof" aria-labelledby="operating-proof-title">
         <div>
-          <h2 id="operating-proof-title">Our own work informs the approach.</h2>
-          <p>We use agent-assisted workflows in our own operations, with defined roles, review and escalation. That experience informs our approach; every client workflow still needs its own evidence.</p>
+          <h2 id="operating-proof-title">We are our own first test.</h2>
+          <p>Nether Labs runs AI agents across its own operations every day, on Macs, Windows PCs and AI servers. Guard v0.2 was proven on our own Mac and Windows machines first, and its first reports found things we had to fix.</p>
         </div>
       </section>
 
       <section className="interior-section" aria-labelledby="about-founder-title">
         <p className="micro-label">FOUNDER</p>
         <h2 id="about-founder-title">Built by an operator, for operators.</h2>
-        <p>Yves La Rose founded Nether Labs around a simple conviction: businesses should not need to rebuild themselves from scratch to benefit from AI. The company starts with the operating reality, assigns clear authority, tests against evidence and compounds only what works.</p>
+        <p>Yves La Rose founded Nether Labs and runs it with a large team of AI agents. Guard started as the tool we needed to see, in plain language, what those agents could reach on our own machines.</p>
         <InceptionMember variant="about" />
       </section>
 
       <section className="interior-section stack-section" aria-labelledby="about-path-title">
-        <p className="micro-label">FROM PRACTICE TO PRODUCT</p>
-        <h2 id="about-path-title">Improve what exists. Build what comes next.</h2>
-        <p>Workflow diagnostics are the front door. Controlled implementation creates evidence. Those lessons inform NetherForge, our operating environment in development. It is designed to connect intelligence, memory, governance and execution across the business. Implementation is scoped separately from the diagnostic.</p>
+        <p className="micro-label">WHAT WE ARE BUILDING</p>
+        <h2 id="about-path-title">See what AI can reach. Oversee what it does.</h2>
+        <p>Guard comes first. NetherCommand follows, for owners who need oversight of the work their agents do.</p>
         <div className="stack-list">
           {companyPath.map((stage) => (
             <article key={stage.number}>
@@ -112,10 +112,10 @@ export default function AboutPage() {
       </section>
 
       <section className="mailbox-panel" aria-labelledby="about-contact-title">
-        <p className="micro-label">START WITH THE BUSINESS YOU HAVE</p>
-        <h2 id="about-contact-title">Bring us the workflow that should work better.</h2>
-        <p>We will help you understand the operating drag, the opportunity and the controls required before you commit to a larger build.</p>
-        <a className="button button-light" href="/workflow-audit/">Explore the workflow diagnostic <span aria-hidden="true">↗</span></a>
+        <p className="micro-label">EARLY ACCESS</p>
+        <h2 id="about-contact-title">See what the AI on your computer can reach.</h2>
+        <p>NetherShield Guard early access is open by request for Mac and Windows.</p>
+        <a className="button button-light" href="/contact/?product=nethershield-guard">Request early access <span aria-hidden="true">↗</span></a>
       </section>
     </InteriorPage>
   );

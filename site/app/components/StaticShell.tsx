@@ -44,7 +44,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => <Link key={item.href} href={item.href} prefetch={false}>{item.label}</Link>)}
         </nav>
-        <Link className="header-cta" href="/contact/" prefetch={false}>Discuss a workflow <span aria-hidden="true">↗</span></Link>
+        <Link className="header-cta" href="/contact/?product=nethershield-guard" prefetch={false}>Request early access <span aria-hidden="true">↗</span></Link>
         <button className="menu-toggle" type="button" ref={opener} aria-label="Open navigation" aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="interior-navigation" onClick={openMenu}>Menu <span aria-hidden="true">☰</span></button>
       </header>
       <main id="main-content" tabIndex={-1}>{children}</main>
@@ -52,7 +52,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
         <div className="shell footer-main">
           <div>
             <Link className="brand" href="/" prefetch={false} aria-label="Nether Labs home"><Brand /></Link>
-            <p>Better workflows. Stronger businesses.</p>
+            <p>Security for the AI layer.</p>
             <a className="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>
           </div>
           <nav aria-label="Footer navigation">
@@ -65,7 +65,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
         <InceptionMember variant="footer" />
         <div className="shell footer-bottom">
           <span>© 2026 Nether Labs</span>
-          <span>Strategy / Systems / Operations</span>
+          <span>Guard / Command / On watch</span>
           <a href="#main-content">Back to top ↑</a>
         </div>
       </footer>

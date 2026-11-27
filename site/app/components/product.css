@@ -176,3 +176,25 @@
 @media (prefers-reduced-motion: reduce) {
   .product-page *, .product-page *::before, .product-page *::after { animation: none !important; transition: none !important; }
 }
+
+/* Guard one-page report mock (illustrative). Amber marks "fix first"; a dashed rule marks a chain. */
+.gr { padding: clamp(18px, 2.4vw, 28px); display: grid; gap: 10px; font-family: var(--font-sans); color: var(--pp-text); }
+.gr-head { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--pp-hair); }
+.gr-score { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--lamp); display: grid; place-content: center; text-align: center; line-height: 1; }
+.gr-score b { font-size: 1.5rem; font-weight: 600; }
+.gr-score small { font: 500 .625rem/1.2 var(--font-mono); letter-spacing: .06em; color: var(--pp-muted); }
+.gr-kicker, .gr-section { margin: 0; font: 500 .6875rem/1.4 var(--font-mono); letter-spacing: .08em; color: var(--pp-dim); }
+.gr-title { margin: 4px 0 2px; font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; }
+.gr-sub { margin: 0; font-size: .8125rem; color: var(--pp-muted); }
+.gr-section { margin-top: 6px; }
+.gr-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.gr-item { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 2px; align-items: baseline; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--pp-hair); background: var(--pp-s1); }
+.gr-item strong { font-size: .875rem; font-weight: 600; }
+.gr-item > span:last-child { grid-column: 2; font-size: .8125rem; color: var(--pp-muted); }
+.gr-badge { grid-row: span 2; align-self: start; padding: 2px 7px; border-radius: 6px; font: 600 .625rem/1.6 var(--font-mono); letter-spacing: .06em; color: var(--guide-ink); background: var(--lamp); }
+.gr-badge-muted { background: transparent; color: var(--pp-muted); border: 1px solid var(--pp-hair); }
+.gr-important { border-left: 3px solid var(--lamp); animation: gr-in 900ms cubic-bezier(.16,1,.3,1) both; }
+.gr-chain { border-style: dashed; border-color: var(--lamp); }
+.gr-chain .gr-badge { background: transparent; color: var(--lamp-hi); border: 1px solid var(--lamp); }
+@keyframes gr-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .gr-important { animation: none; } }

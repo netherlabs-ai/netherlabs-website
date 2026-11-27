@@ -1,6 +1,6 @@
 // Product pillar content. Every claim here must stay true and conservative:
-// these products are in development, so "today" lists only what runs now
-// (inside Nether Labs) and "next" lists what is planned or missing.
+// "today" lists only what runs now and "next" lists what is planned or missing.
+// Guard v0.2 evidence: engineering/state/guard-ship-v02-20261126/ (STATUS.md, proof/).
 // Sources are recorded in engineering/state/growth-20261107/site/RESULT.md.
 
 export type ProductSlug = "nethercommand" | "nethershield-guard" | "netherenvoy" | "netherfuse";
@@ -29,28 +29,107 @@ export type Product = {
   faqs: { q: string; a: string }[];
   credit?: string;
   legal?: string;
+  // "security" products lead the site; "lab" projects are listed separately.
+  line: "security" | "lab";
+  statusDate: string;
+  cta: { heading: string; copy: string; button: string };
 };
 
 const earlyAccess = "Not yet. It runs inside Nether Labs today and has no external release. Join the early-access interest list through the contact form and tell us about your setup; we will reach out when there is something real to try.";
 
+const labCta = {
+  heading: "Interested in this project?",
+  copy: "There is no external release yet. Join the early-access interest list, tell us what you run and what you need, and we will reach out when there is something real to try.",
+  button: "Join the early-access list",
+};
+
 export const products: readonly Product[] = [
+  {
+    slug: "nethershield-guard",
+    name: "NetherShield Guard",
+    path: "/nethershield-guard/",
+    accent: "var(--night-muted)",
+    visual: "shield",
+    category: "AI-LAYER SECURITY",
+    status: "v0.2 release candidate",
+    title: "NetherShield Guard: See What Your AI Can Reach",
+    description: "NetherShield Guard shows what the AI tools and agents on your Mac or Windows PC can reach and do, on one page, with a fix for each risk. Nothing is uploaded.",
+    summary: "See what the AI tools and agents on your Mac or PC can reach and do, on one page, with the fix for each risk.",
+    h1: "See what the AI on your computer can reach.",
+    lead: "AI assistants, coding agents and their connectors work with your files, your keys and your shell. NetherShield Guard reads that AI layer on your Mac or Windows PC and writes a one-page report in plain language: what to fix first, how the risks combine and how to close each one. It runs on your computer and sends nothing anywhere.",
+    applicationCategory: "SecurityApplication",
+    operatingSystem: "macOS, Windows",
+    ogImage: "/og/nethershield-guard.jpg",
+    ogAlt: "NetherShield Guard: see what the AI on your computer can reach",
+    problem: {
+      heading: "Your computer was not set up for an assistant with your keys.",
+      points: [
+        { title: "Agents inherit your access", copy: "An assistant that can read files or run commands can usually read the same API keys, cloud credentials and tokens you can." },
+        { title: "Connectors widen it quietly", copy: "MCP servers and app connectors give assistants folders, shells and accounts. Most are set up once and never reviewed, and some act without asking." },
+        { title: "Small gaps chain together", copy: "A key in a plain file, an agent that acts alone and a switched-off firewall are minor apart. Together they can put your data one injected prompt away." },
+        { title: "Security tools report elsewhere", copy: "Antivirus does not report on AI connectors or the keys they can read. The platforms that now inventory AI agents are sold to IT teams and report to an admin console, not to you." },
+      ],
+    },
+    how: {
+      heading: "Scan, rank, connect the dots. Then keep watch.",
+      steps: [
+        { title: "Scan, read-only", copy: "Guard reads the AI layer on this computer: Claude, ChatGPT, Cursor, VS Code and other AI tools, their MCP servers and connectors, keys and tokens in plain files, browser extensions with access to every site, and disk encryption, firewall, updates and antivirus. On a Mac it also checks network exposure, remote login, file sharing, startup items and admin rights." },
+        { title: "Rank in plain language", copy: "The one-page report starts with what to fix first. Each finding says what it is, why it matters and the steps to fix it. Secret values never appear, only their name and location." },
+        { title: "Connect the dots", copy: "Guard links separate findings into the paths an attacker could use, such as an injected prompt reaching a key saved in plain text, so one fix can break the most dangerous chain." },
+        { title: "Keep watch", copy: "Guard will run quietly in the menu bar or system tray, notice when a new connector, key or risky setting appears and tell you in plain language.", planned: true },
+        { title: "Fix, with undo", copy: "One-click fixes for common issues, each shown before it runs, backed up and reversible.", planned: true },
+      ],
+    },
+    today: {
+      working: [
+        "v0.2 release candidate for Macs with Apple silicon and Windows PCs (x64), proven on our own Mac and Windows machines on November 26, 2026.",
+        "A one-page HTML report in plain language: what to fix first, how the problems combine, and what is worth fixing.",
+        "Checks for AI app configs and MCP connectors, assistants set to act without asking, keys and tokens in plain files (including synced folders), browser extensions, disk encryption, firewall, updates and antivirus.",
+        "Read-only: apart from saving its report, Guard changes nothing. It sends nothing anywhere, and secret values never appear in the report.",
+        "One self-contained program built only from Go's standard library, with no third-party dependencies.",
+      ],
+      next: [
+        "Builds are not yet code-signed, so macOS and Windows ask you to confirm before the first run.",
+        "Continuous monitoring, alerts and one-click reversible fixes are in development.",
+        "Windows checks for network exposure, remote desktop and local admin accounts are not in v0.2.",
+        "Not open source. No public download yet; early access is by request.",
+      ],
+    },
+    faqs: [
+      { q: "What is NetherShield Guard?", a: "A security app for the AI layer of your computer. It shows which AI tools and agents are on your Mac or Windows PC, what they can reach and do, and how to close each risk, on one page in plain language." },
+      { q: "Is it an antivirus?", a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus. It covers what antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings." },
+      { q: "Does it upload my data?", a: "No. The scan runs on your computer and the report is saved there. Guard sends nothing anywhere. Secrets are listed by name and location only; their values never appear in the report." },
+      { q: "Will it change my system?", a: "No. v0.2 only reads, apart from saving its report. Planned fixes will show the change first, keep a backup and be reversible." },
+      { q: "Which systems are supported?", a: "Macs with Apple silicon and Windows PCs (x64). Linux is planned later." },
+      { q: "Why does my computer warn me before it runs?", a: "The early-access builds are not yet code-signed by Apple or Microsoft, so macOS and Windows ask you to confirm once. Early-access users get written install steps and a SHA-256 checksum to verify the download." },
+      { q: "Is Guard open source?", a: "No. It is a single program built only from Go's standard library, with no third-party dependencies." },
+      { q: "How do I get it?", a: "Request early access through the form. Tell us which AI tools you use and whether you are on Mac or Windows, and we will reach out as places open." },
+    ],
+    line: "security",
+    statusDate: "November 26, 2026",
+    cta: {
+      heading: "See what the AI on your computer can reach.",
+      copy: "Early access is open by request. Tell us which AI tools you use and whether you are on Mac or Windows, and we will reach out with a build and install steps as places open.",
+      button: "Request early access",
+    },
+  },
   {
     slug: "nethercommand",
     name: "NetherCommand",
     path: "/nethercommand/",
     accent: "var(--night-muted)",
     visual: "command",
-    category: "AI OPERATIONS",
+    category: "AGENT OVERSIGHT",
     status: "In development",
-    title: "NetherCommand: AI Agent Command Center",
-    description: "A command center for teams running AI agents: agent work, hardware health and decisions that need a person, in one view. In development.",
-    summary: "One command center for agent work, hardware health and the decisions that need a person.",
-    h1: "The command center for AI agents and the hardware they run on.",
-    lead: "When work is spread across many agents, models and machines, status hides in logs and chat threads. NetherCommand brings the work, the hardware and the decisions waiting on people into one calm view.",
+    title: "NetherCommand: Oversight for Your AI Agents",
+    description: "NetherCommand gives oversight of your AI agents: what they are working on, what is blocked and the decisions that need a person, in one view. In development.",
+    summary: "Oversight of your AI agents: the work in progress, what is blocked and the decisions that need a person.",
+    h1: "Oversight for the work your AI agents do.",
+    lead: "When work is spread across many agents, models and machines, status hides in logs and chat threads, and the decisions that need a person get buried. NetherCommand brings the work, the machines and the decisions waiting on people into one calm view, so people keep the consequential calls.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web browser",
     ogImage: "/og/nethercommand.jpg",
-    ogAlt: "NetherCommand: the command center for AI agents and the hardware they run on",
+    ogAlt: "NetherCommand: oversight for the work your AI agents do",
     problem: {
       heading: "Agent work is easy to start and hard to see.",
       points: [
@@ -89,63 +168,15 @@ export const products: readonly Product[] = [
       { q: "Does NetherCommand change my systems?", a: "Monitoring screens only read. Needs-you is the exception: the owner answers decisions there, and the answers are recorded back to the tracker. Actions on machines stay in the tools you already use." },
       { q: "Which hardware does it monitor?", a: "Today it monitors the machines we operate: NVIDIA GB10-based systems, Apple Mac Studio computers and a GPU workstation. Support for other hardware will follow what early-access teams run." },
       { q: "How is it different from a monitoring dashboard?", a: "Monitoring dashboards show metrics. NetherCommand is organized around work and decisions: what is moving, what is blocked and what needs you, with hardware health as context." },
+      { q: "How does it relate to NetherShield Guard?", a: "Guard shows what the AI on a computer can reach. NetherCommand shows what your agents are doing with that reach, and which of their decisions need a person." },
     ],
-  },
-  {
-    slug: "nethershield-guard",
-    name: "NetherShield Guard",
-    path: "/nethershield-guard/",
-    accent: "var(--night-muted)",
-    visual: "shield",
-    category: "AI AGENT SECURITY",
-    status: "In development",
-    title: "NetherShield Guard: AI Agent Security for Your Machine",
-    description: "NetherShield Guard audits a computer for the ways an AI agent could be turned against you and explains each fix. Runs locally. Linux today; macOS in progress.",
-    summary: "A local security audit for machines that run AI agents, MCP servers and local models.",
-    h1: "Security for computers that run AI agents.",
-    lead: "AI agents, MCP servers and local models get real access to your files, keys and shell. NetherShield Guard checks how that access could be abused on your machine and shows how to close each path. It runs on your machine; nothing is uploaded.",
-    applicationCategory: "SecurityApplication",
-    operatingSystem: "Linux",
-    ogImage: "/og/nethershield-guard.jpg",
-    ogAlt: "NetherShield Guard: security for computers that run AI agents",
-    problem: {
-      heading: "Your machine was not set up for an agent with a shell.",
-      points: [
-        { title: "Agents inherit your access", copy: "An agent that can run commands can usually read the same SSH keys, cloud credentials and tokens you can." },
-        { title: "Small gaps chain together", copy: "A broad sudo rule, an exposed model server and a plaintext token are minor alone. Together they can put root one prompt injection away." },
-        { title: "Most tools look elsewhere", copy: "Enterprise security products focus on managed fleets. Developer laptops and home GPU servers are largely left to their owners." },
-      ],
+    line: "security",
+    statusDate: "November 26, 2026",
+    cta: {
+      heading: "Want oversight of your own agents?",
+      copy: "NetherCommand is not available outside Nether Labs yet. Join the early-access interest list, tell us what agents you run, and we will reach out when there is something real to try.",
+      button: "Join the early-access list",
     },
-    how: {
-      heading: "Audit, connect the dots, then fix with undo.",
-      steps: [
-        { title: "Audit, read-only", copy: "A local scan covers AI agents and MCP servers, privileges, secrets, remote access, network exposure, sharing, patching, persistence and hardening." },
-        { title: "Connect the dots", copy: "Attack-chain rules link individual findings into the paths an attacker could actually use, with a score you can recompute by hand." },
-        { title: "Fix, with undo", copy: "Guided fixes for low- and medium-risk issues, each backed up, verified by re-running the check and reversible.", planned: true },
-        { title: "Keep watching", copy: "Continuous local monitoring for new listeners, startup items, key changes and decoy credentials being read.", planned: true },
-      ],
-    },
-    today: {
-      working: [
-        "Read-only audit command-line tool: 18 checks across 10 categories and 5 attack-chain rules.",
-        "Local scan history with diffs, a loopback-only API and a JSON report format.",
-        "Automated test suite, including checks that fixture secrets are excluded from reports.",
-        "Used on our own Linux machines.",
-      ],
-      next: [
-        "Guided, reversible fixes and continuous monitoring are in development.",
-        "macOS checks are written but not yet tested on a real Mac; Windows comes later.",
-        "No public download, signed release or pricing yet.",
-      ],
-    },
-    faqs: [
-      { q: "What is NetherShield Guard?", a: "A security tool for computers that run AI agents, MCP servers and local models. It audits how an agent's access to your machine could be abused, links findings into attack chains and explains how to close each one." },
-      { q: "Is it an antivirus?", a: "Not in the traditional sense. It does not depend on malware signatures. It looks at how your machine is configured for AI agents and where that configuration could be abused, and can use established open-source scanners where they help." },
-      { q: "Does it upload my data?", a: "No. Scans run on your machine and results stay there. There is no cloud scanning." },
-      { q: "Will it change my system?", a: "The current version only reads. Planned fixes will show the change first, keep a backup, verify the result and be reversible." },
-      { q: "Which systems are supported?", a: "Linux today, tested on our own machines. macOS support is in progress and has not yet been tested on a real Mac. Windows is planned after that." },
-      { q: "Can I try NetherShield Guard?", a: earlyAccess },
-    ],
   },
   {
     slug: "netherenvoy",
@@ -201,6 +232,9 @@ export const products: readonly Product[] = [
       { q: "Does NetherEnvoy clone voices?", a: "No. It uses a licensed stock voice and does not clone any real person's voice." },
       { q: "Can I try NetherEnvoy?", a: earlyAccess },
     ],
+    line: "lab",
+    statusDate: "November 7, 2026",
+    cta: labCta,
   },
   {
     slug: "netherfuse",
@@ -258,17 +292,11 @@ export const products: readonly Product[] = [
     ],
     credit: "NetherFuse builds on the original idea and open-source work of Ash Hart's MCDMA project, a native macOS RDMA driver released under the Apache-2.0 license. NetherFuse is an independent Nether Labs product and is not affiliated with or endorsed by that project.",
     legal: "Mac Studio is a trademark of Apple Inc. NVIDIA and DGX Spark are trademarks of NVIDIA Corporation. Nether Labs is not affiliated with Apple or NVIDIA.",
+    line: "lab",
+    statusDate: "November 7, 2026",
+    cta: labCta,
   },
 ];
-
-export const netherforgeCard = {
-  name: "NetherForge",
-  path: "/netherforge/",
-  accent: "var(--night-muted)",
-  category: "AGENT ORGANIZATION",
-  status: "In development",
-  summary: "A managed operating environment that connects workflows, knowledge, agents, governance and human authority.",
-} as const;
 
 export function getProduct(slug: ProductSlug): Product {
   const product = products.find((item) => item.slug === slug);

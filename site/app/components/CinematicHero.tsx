@@ -102,19 +102,19 @@ export default function CinematicHero({ onContact, contactOpen }: { onContact: (
       <div className="cinema-exit" aria-hidden="true" />
       <div className="cinema-content shell">
         <div ref={copy} className="cinema-copy">
-          <p className="eyebrow"><span className="short-rule" /> AI STRATEGY. BUILT AROUND YOUR BUSINESS.</p>
-          <h1>Less friction.<br /><em>More possibility.</em></h1>
-          <p className="cinema-description">Your best people have better things to do. We help you find where AI can take work off their hands, then build the right workflow around them.</p>
+          <p className="eyebrow"><span className="short-rule" /> AI SECURITY. FOR YOUR MAC AND PC.</p>
+          <h1>Security for<br /><em>the AI layer.</em></h1>
+          <p className="cinema-description">Your AI assistants and agents can read your files, use your keys and run commands. NetherShield Guard shows what the AI on your computer can reach and do, on one page, with the fix for each risk.</p>
           <div className="cinema-actions">
-            <button className="button primary" aria-haspopup="dialog" aria-controls="workflow-contact" aria-expanded={contactOpen} onClick={onContact}>Discuss a workflow <span aria-hidden="true">↗︎</span></button>
-            <a className="text-link" href="#diagnostic">Explore the diagnostic <span aria-hidden="true">↓</span></a>
+            <button className="button primary" aria-haspopup="dialog" aria-controls="early-access" aria-expanded={contactOpen} onClick={onContact}>Request early access <span aria-hidden="true">↗︎</span></button>
+            <a className="text-link" href="#guard">See how Guard works <span aria-hidden="true">↓</span></a>
           </div>
-          <p className="cinema-note">For established businesses. Start with one real workflow.</p>
+          <p className="cinema-note">Guard v0.2 release candidate · Mac and Windows · Runs on your computer</p>
         </div>
       </div>
       <div className="cinema-footer shell">
-        <a className="cinema-scroll" href="#workflows"><span className="cinema-scroll-label">SCROLL INTO THE POSSIBILITIES</span><span className="cinema-static-label">EXPLORE THE POSSIBILITIES</span><span aria-hidden="true">↓</span><i aria-hidden="true"><b /></i></a>
-        <p className="cinema-caption"><span>THE NETHER LABS OPERATING VISION</span>Human direction. Coordinated execution.</p>
+        <a className="cinema-scroll" href="#exposure"><span className="cinema-scroll-label">SCROLL INTO THE AI LAYER</span><span className="cinema-static-label">EXPLORE THE AI LAYER</span><span aria-hidden="true">↓</span><i aria-hidden="true"><b /></i></a>
+        <p className="cinema-caption"><span>NETHER LABS / AI SECURITY</span>On watch, night and day.</p>
       </div>
     </div>
   </section>;

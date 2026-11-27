@@ -9,11 +9,11 @@ type FormState = "idle" | "submitting" | "sent" | "error";
 // Product pages link to /contact/?product=<slug>; prefill the workflow field so
 // early-access requests arrive labelled. Only known slugs are accepted.
 const earlyAccess: Record<string, string> = {
-  nethercommand: "Early-access list: NetherCommand",
-  "nethershield-guard": "Early-access list: NetherShield Guard",
-  netherenvoy: "Early-access list: NetherEnvoy",
-  netherfuse: "Early-access list: NetherFuse",
-  general: "Early-access list: Nether Labs products",
+  nethercommand: "Early access: NetherCommand",
+  "nethershield-guard": "Early access: NetherShield Guard",
+  netherenvoy: "Early access: NetherEnvoy",
+  netherfuse: "Early access: NetherFuse",
+  general: "Early access: Nether Labs products",
 };
 
 type DiagnosticFormProps = {
@@ -63,22 +63,22 @@ export default function DiagnosticForm({ source, className }: DiagnosticFormProp
       <label><span>Work email</span><input name="email" type="email" required maxLength={254} autoComplete="email" placeholder="you@company.com" /></label>
       <label><span>Company <i>OPTIONAL</i></span><input name="company" maxLength={200} autoComplete="organization" placeholder="Company or organization" /></label>
       <label>
-        <span>Timing</span>
+        <span>How soon</span>
         <select name="timing" defaultValue="This quarter"><option>Now</option><option>This quarter</option><option>Exploring</option></select>
       </label>
-      <label className="full-field"><span>Workflow or process <i>OPTIONAL</i></span><input name="workflow" ref={workflowField} maxLength={300} placeholder="e.g. document intake and review" /></label>
-      <label className="full-field"><span>What makes it difficult today?</span><textarea name="challenge" required maxLength={4000} rows={source === "contact-page" ? 6 : 5} placeholder="The handoffs, delays, repeated work, exceptions or risk you want to understand..." /></label>
+      <label className="full-field"><span>Interested in <i>OPTIONAL</i></span><input name="workflow" ref={workflowField} maxLength={300} placeholder="e.g. NetherShield Guard on a Mac" /></label>
+      <label className="full-field"><span>Which AI tools and agents do you use?</span><textarea name="challenge" required maxLength={4000} rows={source === "contact-page" ? 6 : 5} placeholder="e.g. Claude Desktop with two MCP servers, Cursor, ChatGPT in the browser. Mac or Windows? Just you, or a team?" /></label>
       <button className="button drawer-submit" type="submit" disabled={state === "submitting"}>
-        {state === "submitting" ? "Submitting request" : state === "sent" ? "Request submitted" : "Submit diagnostic request"}
+        {state === "submitting" ? "Sending request" : state === "sent" ? "Request sent" : "Request early access"}
         <span aria-hidden="true" className="arrow">↗</span>
       </button>
       <p className="intake-route">Your request goes to Nether Labs for review.</p>
       {state !== "idle" && (
         <p className={`form-note ${state === "error" ? "form-note-error" : ""}`} role={state === "error" ? "alert" : "status"}>
-          {state === "error" ? "We could not send your request. Your details are kept here so you can retry or email hello@netherlabs.ai." : state === "submitting" ? "Sending your request." : "Request received. Nether Labs will review the workflow brief."}
+          {state === "error" ? "We could not send your request. Your details are kept here so you can retry or email hello@netherlabs.ai." : state === "submitting" ? "Sending your request." : "Request received. Nether Labs will be in touch as early-access places open."}
         </p>
       )}
-      {brief && <label className="full-field brief-output"><span>Prepared diagnostic brief</span><textarea value={brief} readOnly rows={9} /></label>}
+      {brief && <label className="full-field brief-output"><span>Your request</span><textarea value={brief} readOnly rows={9} /></label>}
     </form>
   );
 }
