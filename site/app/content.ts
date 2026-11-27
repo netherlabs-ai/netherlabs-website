@@ -10,7 +10,7 @@ export const exposures = [
     description: "Claude, ChatGPT, Cursor and VS Code can be wired to MCP servers and connectors that read folders, run commands or reach your accounts. Most are set up once and never looked at again.",
     steps: ["Prompt arrives", "Assistant calls a connector", "Connector runs with your access", "Result leaves the machine"],
     risk: "Broad file, shell or account access, added months ago and forgotten.",
-    shows: "Every connector Guard finds, what it can reach, and which ones look risky.",
+    shows: "Every connector Guard finds, what it runs, and which ones look risky.",
     boundary: "You decide which connectors stay. Guard explains how to remove the rest.",
   },
   {
@@ -28,10 +28,10 @@ export const exposures = [
     short: "Autonomy",
     title: "Some assistants act without asking first.",
     description: "Coding agents and desktop assistants can be set to run commands or edit files without a confirmation. That is convenient until a web page or document carries instructions meant for the agent.",
-    steps: ["Agent opens a page", "Hidden instruction", "Command runs unasked", "Damage is done"],
+    steps: ["Agent opens a page", "Hidden instruction", "Command runs unasked", "Files change or leak"],
     risk: "Auto-approve settings that turn one injected prompt into a real action.",
     shows: "Which tools are set to act without asking, and how that combines with what they can reach.",
-    boundary: "You choose where autonomy is worth it. Guard shows the cost.",
+    boundary: "You choose where autonomy is worth it. Guard shows the risk.",
   },
   {
     label: "The machine around it",
@@ -40,8 +40,8 @@ export const exposures = [
     description: "A switched-off firewall, missing updates, an unencrypted disk or a browser extension that reads every site are minor alone. Next to an AI tool with real access, they add up.",
     steps: ["Weak setting", "AI tool with access", "Second weak setting", "Open path"],
     risk: "Separate findings that nobody connects until they are used together.",
-    shows: "How findings combine into attack paths, with the one fix that breaks each chain.",
-    boundary: "Fix the link that matters most first. The report ranks them for you.",
+    shows: "How findings combine into attack paths. Fixing any one link breaks the chain.",
+    boundary: "The report ranks what to fix first.",
   },
 ];
 
@@ -49,7 +49,7 @@ export const guardSteps = [
   {
     title: "Scan",
     output: "A read-only look at your AI layer",
-    copy: "Run one app. Guard reads the AI tools, connectors, keys, browser extensions and security settings on this computer. It changes nothing and sends nothing anywhere.",
+    copy: "Guard reads the AI tools, connectors, keys, browser extensions and security settings on this computer. It takes about a minute and only reads.",
     decision: "What AI is on this machine, and what can it reach?",
     signal: "WHAT GUARD READS",
     nodes: ["AI APPS", "CONNECTORS", "KEYS", "EXTENSIONS"],
@@ -58,10 +58,10 @@ export const guardSteps = [
   {
     title: "Rank",
     output: "Fix these first",
-    copy: "Findings are ranked by what matters most, each one written in plain language with why it matters and the steps to fix it.",
+    copy: "Findings are ranked by what matters most. Each one says, in plain language, why it matters and how to fix it.",
     decision: "What should I fix tonight?",
     signal: "HOW IT IS SORTED",
-    nodes: ["FIX FIRST", "WORTH FIXING", "GOOD", "EVIDENCE"],
+    nodes: ["FIX FIRST", "COMBINED", "WORTH FIXING", "PASSED"],
     planned: false,
   },
   {
@@ -122,7 +122,7 @@ export const aiLayer = [
     number: "L5",
     title: "The machine itself",
     mobileTitle: "Machine",
-    detail: "The settings that decide how far a misused AI tool can get: encryption, firewall, updates, antivirus and what is open to the network.",
+    detail: "The settings that decide how far a misused AI tool can get: encryption, firewall, updates, antivirus and, on a Mac, what is open to the network.",
     tags: ["Encryption", "Firewall", "Updates", "Antivirus"],
   },
 ];
@@ -158,7 +158,7 @@ export const faqs = [
   },
   {
     q: "Is NetherShield Guard an antivirus?",
-    a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus, and it covers what antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings.",
+    a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus, and it covers what most antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings.",
   },
   {
     q: "Does my data leave my computer?",

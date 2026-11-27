@@ -65,9 +65,9 @@ export const products: readonly Product[] = [
       heading: "Your computer was not set up for an assistant with your keys.",
       points: [
         { title: "Agents inherit your access", copy: "An assistant that can read files or run commands can usually read the same API keys, cloud credentials and tokens you can." },
-        { title: "Connectors widen it quietly", copy: "MCP servers and app connectors give assistants folders, shells and accounts. Most are set up once and never reviewed, and some act without asking." },
+        { title: "Connectors widen it quietly", copy: "MCP servers and app connectors give assistants folders, shells and accounts. Most are set up once and never reviewed." },
         { title: "Small gaps chain together", copy: "A key in a plain file, an agent that acts alone and a switched-off firewall are minor apart. Together they can put your data one injected prompt away." },
-        { title: "Security tools report elsewhere", copy: "Antivirus does not report on AI connectors or the keys they can read. The platforms that now inventory AI agents are sold to IT teams and report to an admin console, not to you." },
+        { title: "Security tools report elsewhere", copy: "Most antivirus does not report on AI connectors or the keys they can read. The platforms that now inventory AI agents are sold to IT teams and report to an admin console, not to you." },
       ],
     },
     how: {
@@ -75,14 +75,14 @@ export const products: readonly Product[] = [
       steps: [
         { title: "Scan, read-only", copy: "Guard reads the AI layer on this computer: Claude, ChatGPT, Cursor, VS Code and other AI tools, their MCP servers and connectors, keys and tokens in plain files, browser extensions with access to every site, and disk encryption, firewall, updates and antivirus. On a Mac it also checks network exposure, remote login, file sharing, startup items and admin rights." },
         { title: "Rank in plain language", copy: "The one-page report starts with what to fix first. Each finding says what it is, why it matters and the steps to fix it. Secret values never appear, only their name and location." },
-        { title: "Connect the dots", copy: "Guard links separate findings into the paths an attacker could use, such as an injected prompt reaching a key saved in plain text, so one fix can break the most dangerous chain." },
+        { title: "Connect the dots", copy: "Guard links separate findings into the paths an attacker could use, such as an injected prompt reaching a key saved in plain text, and fixing any one link breaks the chain." },
         { title: "Keep watch", copy: "Guard will run quietly in the menu bar or system tray, notice when a new connector, key or risky setting appears and tell you in plain language.", planned: true },
         { title: "Fix, with undo", copy: "One-click fixes for common issues, each shown before it runs, backed up and reversible.", planned: true },
       ],
     },
     today: {
       working: [
-        "v0.2 release candidate for Macs with Apple silicon and Windows PCs (x64), proven on our own Mac and Windows machines on November 26, 2026.",
+        "v0.2 release candidate for Macs with Apple silicon and Windows PCs (x64), tested on our own Mac and Windows machines on November 26, 2026.",
         "A one-page HTML report in plain language: what to fix first, how the problems combine, and what is worth fixing.",
         "Checks for AI app configs and MCP connectors, assistants set to act without asking, keys and tokens in plain files (including synced folders), browser extensions, disk encryption, firewall, updates and antivirus.",
         "Read-only: apart from saving its report, Guard changes nothing. It sends nothing anywhere, and secret values never appear in the report.",
@@ -97,7 +97,7 @@ export const products: readonly Product[] = [
     },
     faqs: [
       { q: "What is NetherShield Guard?", a: "A security app for the AI layer of your computer. It shows which AI tools and agents are on your Mac or Windows PC, what they can reach and do, and how to close each risk, on one page in plain language." },
-      { q: "Is it an antivirus?", a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus. It covers what antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings." },
+      { q: "Is it an antivirus?", a: "No, and it does not replace one. It runs alongside Microsoft Defender, XProtect or your current antivirus. It covers what most antivirus does not report on: AI tools, their connectors, the keys they can read and how those combine with your machine's settings." },
       { q: "Does it upload my data?", a: "No. The scan runs on your computer and the report is saved there. Guard sends nothing anywhere. Secrets are listed by name and location only; their values never appear in the report." },
       { q: "Will it change my system?", a: "No. v0.2 only reads, apart from saving its report. Planned fixes will show the change first, keep a backup and be reversible." },
       { q: "Which systems are supported?", a: "Macs with Apple silicon and Windows PCs (x64). Linux is planned later." },
@@ -149,7 +149,7 @@ export const products: readonly Product[] = [
     },
     today: {
       working: [
-        "Nether Labs runs on it every day; we are its first customer.",
+        "Nether Labs uses it every day to run its own agents.",
         "App shell with sidebar, command palette, Overview and 14 routed screens.",
         "Fleet view of our AI hardware, refreshed every five minutes.",
         "Timeline (Gantt) of all tracked work, from product down to individual issue.",
@@ -277,7 +277,7 @@ export const products: readonly Product[] = [
         "Test hardware in house: GB10 systems, a 100 GbE switch and a Thunderbolt 5 network enclosure.",
       ],
       next: [
-        "Mac-side bring-up starts when our test Mac Studio arrives.",
+        "Our test Mac Studio is set up; Mac-side bring-up is next.",
         "No performance results yet; we will not quote speed-ups before end-to-end tests.",
         "Not available for installation; no pricing.",
       ],

@@ -14,7 +14,7 @@ export default function NotFound() {
       <section className="not-found dark-section">
         <div className="page-shell">
           <p className="micro-label">404 / PAGE NOT FOUND</p>
-          <h1>This page is outside the operating map.</h1>
+          <h1>This page does not exist.</h1>
           <p>Return to the Nether Labs home page or see what NetherShield Guard can show you about the AI on your computer.</p>
           <div>
             <Link className="button button-light" href="/">Return home</Link>

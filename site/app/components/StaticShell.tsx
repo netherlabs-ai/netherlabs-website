@@ -65,7 +65,7 @@ export default function StaticShell({ children }: { children: ReactNode }) {
         <InceptionMember variant="footer" />
         <div className="shell footer-bottom">
           <span>© 2026 Nether Labs</span>
-          <span>Guard / Command / On watch</span>
+          <span>Ottawa, Canada</span>
           <a href="#main-content">Back to top ↑</a>
         </div>
       </footer>

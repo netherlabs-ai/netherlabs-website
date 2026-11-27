@@ -3,7 +3,7 @@
 // example, not a real machine. Pure markup and CSS, no JavaScript.
 
 const fixFirst = [
-  { title: "Risky AI tool connections", detail: "A connector gives your assistant access to your whole home folder." },
+  { title: "Risky AI tool connections", detail: "A connector runs a local program and has an API key pasted into its settings." },
   { title: "AI assistants that act without asking", detail: "One coding agent is set to run commands without a confirmation." },
   { title: "API keys saved in plain files", detail: "2 keys found by name in config files. Values are never shown." },
 ];

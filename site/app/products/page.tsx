@@ -47,7 +47,7 @@ export default function ProductsPage() {
             <nav className="pp-crumbs pp-in" aria-label="Breadcrumb"><ol><li><Link href="/" prefetch={false}>Home</Link></li><li aria-current="page">Products</li></ol></nav>
             <p className="pp-meta pp-in" style={{ "--i": 1 } as CSSProperties}><span className="pp-pill"><i aria-hidden="true" />Guard v0.2 release candidate</span><span>NETHER LABS / PRODUCTS</span></p>
             <h1 id="hub-title" className="pp-rise">Security for the AI layer.</h1>
-            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>See what the AI on your computer can reach with NetherShield Guard. Oversee what your agents do with NetherCommand. We run both on our own machines first, and each page says plainly what works today and what does not yet.</p>
+            <p className="pp-lead pp-rise" style={{ "--i": 2 } as CSSProperties}>See what the AI on your computer can reach with NetherShield Guard. Oversee what your agents do with NetherCommand. We use both on our own machines, and each page says plainly what works today and what does not yet.</p>
           </div>
         </section>
         <section className="pp-section" aria-labelledby="hub-security">
@@ -71,7 +71,7 @@ export default function ProductsPage() {
         <section className="pp-section pp-related" aria-labelledby="hub-lab">
           <div className="page-shell">
             <SectionLabel n="02">FROM THE LAB</SectionLabel>
-            <h2 id="hub-lab" className="pp-visually-small">Lab projects we run in our own operations</h2>
+            <h2 id="hub-lab" className="pp-visually-small">Lab projects</h2>
             <ul className="pp-related-list">
               {lab.map((item) => (
                 <li key={item.slug} style={{ "--accent": item.accent } as CSSProperties}>

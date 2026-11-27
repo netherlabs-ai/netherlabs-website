@@ -58,13 +58,13 @@ export default function AboutPage() {
       introduction="Nether Labs is an AI security company in Ottawa, Canada. We build security for the AI layer: the AI tools and agents on your computer, the connectors they use, the keys they can read and the settings around them."
     >
       <div className="interior-lead">
-        <p>AI assistants now read files, hold keys and run commands with the same access as the person using them. That makes them useful. It also makes them the newest way into a computer, and most people cannot see what their AI can reach.</p>
+        <p>AI assistants now read files, hold keys and run commands with the same access as the person using them. That makes them useful. It also makes them a new way into a computer, and it is hard to see what an AI tool can reach.</p>
       </div>
 
       <section className="interior-section" aria-labelledby="about-purpose-title">
         <p className="micro-label">WHY WE EXIST</p>
         <h2 id="about-purpose-title">The AI layer needs its own security.</h2>
-        <p>Antivirus watches for malware. Large security platforms now inventory AI agents for IT teams across company fleets. The person at the keyboard, running Claude, ChatGPT, Cursor and a handful of connectors on their own machine, still has no plain answer to a simple question: what can my AI reach? Nether Labs exists to answer it.</p>
+        <p>Antivirus watches for malware. Large security platforms now inventory AI agents for IT teams across company fleets. The person at the keyboard, running Claude, ChatGPT, Cursor and a handful of connectors on their own machine, rarely gets a plain answer to a simple question: what can my AI reach? Nether Labs exists to answer it.</p>
       </section>
 
       <section className="interior-section" aria-labelledby="about-principles-title">
@@ -85,7 +85,7 @@ export default function AboutPage() {
       <section className="interior-proof" aria-labelledby="operating-proof-title">
         <div>
           <h2 id="operating-proof-title">We are our own first test.</h2>
-          <p>Nether Labs runs AI agents across its own operations every day, on Macs, Windows PCs and AI servers. Guard v0.2 was proven on our own Mac and Windows machines first, and its first reports found things we had to fix.</p>
+          <p>Nether Labs runs AI agents across its own operations every day, on Macs, Windows PCs and AI servers. Guard v0.2 was tested on our own Mac and Windows machines, and its first reports found real issues on them.</p>
         </div>
       </section>
 
